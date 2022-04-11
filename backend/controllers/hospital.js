@@ -25,6 +25,7 @@ exports.findDoctor = async (req, res) => {
 
 exports.addHospital = async (req, res) => {
     try {
+        console.log(req);
         const { Name, regNo, type, password } = req.body;
         await User.findOne({ regNo: regNo }, async (err, Hospital) => {
             if (err) {

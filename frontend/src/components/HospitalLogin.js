@@ -1,12 +1,15 @@
-import React from 'react'
-import {useState} from 'react'
-import { useNavigate } from "react-router";
+import {React,useState} from 'react'
 
-function DoctorLogin() {
+import { useNavigate } from "react-router";
+function HospitalLogin() {
     const navigate = useNavigate();
     const [values, setValues] = useState({
-        doctorId: "",
-        doctorPass: "",
+        hospitalName: "",
+        hospitalRegnumber: "",
+        type:"",
+        password:""
+        
+
     });
     const [submitted, setSubmitted] = useState(false);
     const handlesubmit = () => {
@@ -24,35 +27,34 @@ function DoctorLogin() {
     <div class="form-container">
     <form class="register-form" >
    
-        <input
-            onChange={handleChange}
-            value={values.doctorId}
-            id="doctorId"
-            class="form-field"
-            type="text"
-            placeholder="doctorId"
-            name="doctorId"
-        />
-        {submitted && !values.doctorId ? <span id="first-name-error">Please enter a first name</span> : null}
 
         <input
             onChange={handleChange}
-            value={values.doctorPass}
-            id="doctorPass"
+            value={values.hospitalRegnumber}
+            id="hospitalRegnumber"
             class="form-field"
             type="text"
-            placeholder="doctorPass"
-            name="doctorPass"
+            placeholder="hospitalRegnumber"
+            name="hospitalRegnumber"
         />
-        {submitted && !values.doctorPass ? <span id="doctorPass-error">Please enter a last name</span> : null}
-
-
+        {submitted && !values.hospitalRegnumber ? <span id="hospitalRegnumber-error">Please enter a last name</span> : null}
+   
+        <input
+            onChange={handleChange}
+            value={values.password}
+            id="password"
+            class="form-field"
+            type="text"
+            placeholder="Confirm password"
+            name="password"
+        />
+        {submitted && !values.password ? <span id="password-error">Please enter a last name</span> : null}
+        
         <button class="form-field" type="button" onClick={handlesubmit}>
             Submit
         </button>
     </form>
-</div>
-  )
+</div>)
 }
 
-export default DoctorLogin
+export default HospitalLogin

@@ -16,14 +16,14 @@ app.use([
     routes
 ]);
 
-mongoose.connect(process.env.MONGOOSE_URL, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("mongodb://localhost:27017/DecentraHealth", {useNewUrlParser: true, useUnifiedTopology: true});
 
-const port = process.env.PORT || 8000;
+const port = 8000;
 
-app.use()
+// app.use()
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}!`);
 });
 
-export default index;
+// export default index;
