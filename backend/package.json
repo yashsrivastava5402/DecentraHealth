@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend for the DecentrHealth app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yashsrivastava5402/DecentraHealth.git"
+  },
+  "author": "Yash Srivastava",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yashsrivastava5402/DecentraHealth/issues"
+  },
+  "homepage": "https://github.com/yashsrivastava5402/DecentraHealth#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
