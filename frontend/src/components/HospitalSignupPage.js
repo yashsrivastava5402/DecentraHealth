@@ -13,8 +13,12 @@ function HospitalSignupPage() {
     });
     const [submitted, setSubmitted] = useState(false);
     const handlesubmit = () => {
+        setSubmitted(true);
+
         if (values.hospitalName.trim() !== "" && values.hospitalRegnumber.trim() !== ""  && values.password.trim() !== "" && values.cpassword.trim() !== "" )
         {
+            
+            
             axios.post('http://localhost:8000/HospitalSignup', {
                 values
               })
@@ -22,15 +26,18 @@ function HospitalSignupPage() {
                 console.log(response);
                     if(response.status===200)
                     {
-                        // navigate("/Admin", { replace: true });
+                        navigate("/Admin", { replace: true });
                     }
-                    else if(response.staus==400)
+                    else if(response.status==204)
                     {
-                        // already present
+                        alert("Hospital already registered");
                     }
+                    else
+                    alert("Something went wrong");
               })
               .catch(function (error) {
                 console.log(error);
+
               });
         }
         else
@@ -38,7 +45,7 @@ function HospitalSignupPage() {
             alert("Please Fill every field");
         }
 
-        setSubmitted(true);
+        
     };
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -98,6 +105,7 @@ function HospitalSignupPage() {
             placeholder="Confirm password"
             name="cpassword"
         />
+        {values.cpassword!==values.password ? <span id="password-error">Passwords do not match</span> : null}
         {submitted && !values.cpassword ? <span id="password-error">Please Confirm Password</span> : null}
         
         <button class="form-field" type="button" onClick={handlesubmit}>

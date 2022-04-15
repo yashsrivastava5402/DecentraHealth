@@ -32,7 +32,7 @@ exports.addHospital = async (req, res) => {
             if (err) {
                 res.status(500).send(err);
             } else if (hospital) {
-                res.status(400).send("Hospital already present.");
+                res.status(204).send("Hospital already present.");
             } else {
                 console.log("Hospital not present.");
                 const newHospital = {
