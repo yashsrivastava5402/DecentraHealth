@@ -4,6 +4,6 @@ const hospitalController = require('../controllers/hospital');
 const router = express.Router();
 
 router.post('/doctorLogin', doctorController.findDoctor);
-router.post('/hospitalSignup', hospitalController.addHospital)
+router.post('/hospitalSignup', hospitalController.addHospital);
 
 module.exports=router;

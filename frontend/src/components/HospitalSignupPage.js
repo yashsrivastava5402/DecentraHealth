@@ -7,7 +7,7 @@ function HospitalSignupPage() {
     const [values, setValues] = useState({
         hospitalName: "",
         hospitalRegnumber: "",
-        type:"1",
+        type:"0",
         password:"",
         cpassword:""
     });
@@ -15,7 +15,7 @@ function HospitalSignupPage() {
     const handlesubmit = () => {
         if (values.hospitalName.trim() !== "" && values.hospitalRegnumber.trim() !== ""  && values.password.trim() !== "" && values.cpassword.trim() !== "" )
         {
-            axios.post('localhost:8000/HospitalSignup', {
+            axios.post('http://localhost:8000/HospitalSignup', {
                 values
               })
               .then(function (response) {
@@ -74,9 +74,9 @@ function HospitalSignupPage() {
         {submitted && !values.hospitalRegnumber ? <span id="hospitalRegnumber-error">Please enter a last name</span> : null}
    
         <p>Type of Hospital</p>
-          <input type="radio" id="gov" name="type" value="gov"/>
+          <input onChange={handleChange} type="radio" id="gov" name="type" value="gov"/>
           <label for="gov">Government</label>
-          <input type="radio" id="private" name="type" value="private"/>
+          <input onChange={handleChange} type="radio" id="private" name="type" value="private"/>
           <label for="private">Private</label>
          
         <input

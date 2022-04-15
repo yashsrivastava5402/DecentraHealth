@@ -1,11 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const http = require('http');
 const cors = require('cors');
 const routes = require('./routes/routes');
 const bodyParser = require('body-parser');
 const morgan=require('morgan');
 
 const app = express();
+const server = http.createServer(app);
 
 app.use(morgan('tiny'));
 app.use([
@@ -22,7 +24,7 @@ const port = 8000;
 
 // app.use()
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Server is running on port ${port}!`);
 });
 

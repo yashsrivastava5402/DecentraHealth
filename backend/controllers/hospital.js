@@ -1,4 +1,4 @@
-const hospital = require('../models/hospital');
+const Hospital = require('../models/hospital');
 
 exports.findDoctor = async (req, res) => {
     try {
@@ -25,30 +25,49 @@ exports.findDoctor = async (req, res) => {
 
 exports.addHospital = async (req, res) => {
     try {
-        console.log(req);
-        const { Name, regNo, type, password } = req.body;
-        await User.findOne({ regNo: regNo }, async (err, Hospital) => {
+        console.log(req.body);
+        const { hospitalName, hospitalRegnumber, type, password } = req.body.values;
+        await Hospital.findOne({ regNo: hospitalRegnumber }, async (err, hospital) => {
+            console.log(hospitalName);
             if (err) {
                 res.status(500).send(err);
-            } else if (Hospital) {
+            } else if (hospital) {
                 res.status(400).send("Hospital already present.");
             } else {
-                const hospital = {
-                    Name,
-                    regNo,
-                    type,
-                    password,
+                console.log("Hospital not present.");
+                const newHospital = {
+                    Name: hospitalName,
+                    regNo: hospitalRegnumber,
+                    type: type,
+                    password: password,
                     patients: []
-                }
-                await User.insertMany(hospital, (err) => {
+                };
+                //console.log(newhospital);
+                // hospital.save((err) => {
+                //     if(err) {
+                //         console.error('ERROR!');
+                //     }
+                // });
+                await Hospital.insertMany(newHospital, async(err) => {
                     if (err) {
                         console.log(err);
                     } else {
-                        res.status(200).send(hospital);
+                        console.log(newHospital);
+                        res.status(200).send(newHospital);
                     }
                 });
-            }
-        });
+            }})
+        // const newHospital = {
+        //     Name: hospitalName,
+        //     regNo: hospitalRegnumber,
+        //     type: type,
+        //     password: password,
+        //     patients: []
+        // };
+        // console.log(newHospital);
+        // let hospitalo=await Hospital.findOneAndUpdate({ regNo: hospitalRegnumber },{newHospital}, {new: true}, {upsert: true});
+        // res.status(200).send(hospitalo);
+    // }).clone().catch(function(err){ console.log(err)});
     } catch (err) {
         console.log(err);
     }
