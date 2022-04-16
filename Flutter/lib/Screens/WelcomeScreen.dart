@@ -1,12 +1,13 @@
-import 'package:decentrahealth/Screens/PatientLoginScreen.dart';
+import 'package:decentrahealth/Screens/LoginScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:decentrahealth/Widgets/RoundTextButton.dart';
-import 'package:decentrahealth/Screens/PatientLoginScreen.dart';
+import 'package:decentrahealth/Screens/LoginScreen.dart';
+import 'package:decentrahealth/constants.dart';
 class WelcomeScreen extends StatelessWidget {
 // Future pushPatientLoginScreen(BuildContext context){
 //   return
 // }
-
+var Isuser;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,18 +21,20 @@ class WelcomeScreen extends StatelessWidget {
               RoundTextButton(
               label: 'Patient',
               whenPressed: (){
+                Isuser=Users.patient;
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => PatientLoginScreen()),
+                  MaterialPageRoute(builder: (context) => PatientLoginScreen(user: Isuser,)),
                 );
               },
               ),
               RoundTextButton(
                 label: 'Doctor',
                 whenPressed: (){
+                  Isuser=Users.doctor;
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => PatientLoginScreen()),
+                    MaterialPageRoute(builder: (context) => PatientLoginScreen(user: Isuser, )),
                   );
                 },
               ),
