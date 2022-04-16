@@ -26,7 +26,7 @@ function HospitalSignupPage() {
                 console.log(response);
                     if(response.status===200)
                     {
-                        navigate("/Admin", { replace: true });
+                        navigate("/Admin/:hospitalRegnumber", { replace: true });
                     }
                     else if(response.status==204)
                     {

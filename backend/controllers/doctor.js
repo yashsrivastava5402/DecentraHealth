@@ -23,56 +23,39 @@ exports.findDoctor = async (req, res) => {
     }
 }
 
+
 exports.addDoctor = async (req, res) => {
     try {
-        const { username, email, password } = req.body;
-        await User.findOne({ email: email }, async (err, foundUser) => {
+        const { Name, doctorId, hospitalRegnumber, password } = req.body;
+        await Doctor.findOne({ doctorId: doctorId }, async (err, doctor) => {
             if (err) {
-                res.status(500).send(err);
-            } else if (foundUser) {
-                res.status(300).send("User already present.");
+                res.status(205).send(err);
+            } else if (doctor) {
+                res.status(203).send("Doctor already present.");
             } else {
-                const newUser = {
-                    username,
-                    email,
+                const newDoctor = {
+                    Name,
+                    doctorId,
+                    hospitalRegnumber,
+                    UPRNnum,
                     password,
-                    NativeLanguage: "",
-                    LearningLanguage: "",
-                    CreatedAt: Date.now(),
-                    UpdatedAt: Date.now()
+                    patients: []
                 }
-                await User.insertMany(newUser, (err) => {
+                await Doctor.insertMany(newDoctor, (err) => {
                     if (err) {
                         console.log(err);
-                    } else {
-                        // User.findOne(newUser), (err, foundUser) => {
-                        //     if (err) {
-                        //         res.status(500).sens(err);
-                        //     } else if (foundUser) {
-                        //         res.status(400).send("User already present.");
-                        //     } else {
-                        //         res.status(200).send(newUser);
-                        //     }
-                        res.status(200).send(newUser);
                     }
                 });
-                // res.status(200).send(newUser);
+                await Hospital.findOne({regNo: hospitalRegnumber}, async (err, hospital) => {
+                    if (err) {
+                        res.status(206).send(err);
+                    }
+                    else{
+                        hospital.patients.push(newDoctor);
+                        res.status(200).send(newDoctor);
+                    }
+                })
             }
-            // User.insertOne(newUser, (err) => {
-            //     if (err) {
-            //         console.log(err);
-            //     } else {
-            //         // User.findOne(newUser), (err, foundUser) => {
-            //         //     if (err) {
-            //         //         res.status(500).sens(err);
-            //         //     } else if (foundUser) {
-            //         //         res.status(400).send("User already present.");
-            //         //     } else {
-            //         //         res.status(200).send(newUser);
-            //         //     }
-            //         }
-            //     }
-
         });
     } catch (err) {
         console.log(err);

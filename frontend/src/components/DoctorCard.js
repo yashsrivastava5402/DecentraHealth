@@ -1,14 +1,14 @@
 import React from 'react'
 
-function DoctorCard() {
+function DoctorCard({id,name}) {
 
   return (
     <div>
         <div>
-            id
+           { id}
         </div>
         <div>
-            name
+            {name}
         </div>
         <div>
             remove button

@@ -11,6 +11,14 @@ const doctorSchema = new Schema({
         type: String,
         required: [true]
     },
+    hospitalRegnumber: {
+        type: Number,
+        required: [true]
+    },
+    UPRNnum: {
+        type: Number,
+        required: [true]
+    },
     password: {
         type: String,
         required: [true]
