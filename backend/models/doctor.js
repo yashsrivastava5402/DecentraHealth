@@ -7,15 +7,15 @@ const doctorSchema = new Schema({
         type: String,
         required: [true]
     },
+    UPRN: {
+        type: Number,
+        required: [true]
+    },
     doctorId: {
         type: String,
         required: [true]
     },
     hospitalRegnumber: {
-        type: Number,
-        required: [true]
-    },
-    UPRNnum: {
         type: Number,
         required: [true]
     },

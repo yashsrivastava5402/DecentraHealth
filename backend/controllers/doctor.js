@@ -1,4 +1,5 @@
 const doctor = require('../models/doctor');
+const Hospital = require('../models/hospital');
 
 exports.findDoctor = async (req, res) => {
     try {
@@ -26,22 +27,23 @@ exports.findDoctor = async (req, res) => {
 
 exports.addDoctor = async (req, res) => {
     try {
-        const { Name, doctorId, hospitalRegnumber, password } = req.body;
-        await Doctor.findOne({ doctorId: doctorId }, async (err, doctor) => {
+        console.log(req.body);
+        const { Name, UPRN, doctorId, hospitalRegnumber, hospitalName, password } = req.body;
+        await doctor.findOne({ doctorId: doctorId }, async (err, foundDoctor) => {
             if (err) {
                 res.status(205).send(err);
-            } else if (doctor) {
+            } else if (foundDoctor) {
                 res.status(203).send("Doctor already present.");
             } else {
                 const newDoctor = {
                     Name,
+                    UPRN,
                     doctorId,
                     hospitalRegnumber,
-                    UPRNnum,
                     password,
                     patients: []
                 }
-                await Doctor.insertMany(newDoctor, (err) => {
+                await doctor.insertMany(newDoctor, (err) => {
                     if (err) {
                         console.log(err);
                     }
