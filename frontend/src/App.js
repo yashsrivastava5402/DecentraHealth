@@ -3,6 +3,7 @@ import DoctorLogin from "./components/DoctorLogin";
 import HospitalSignupPage from "./components/HospitalSignupPage";
 import HospitalLogin from "./components/HospitalLogin";
 import Admin from "./components/Admin";
+import PatientLogin from "./components/PatientLogin";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Route path="/HospitalSignupPage" element={<HospitalSignupPage />} /> 
       <Route path="/HospitalLogin" element={<HospitalLogin />} /> 
       <Route path="/Admin/:id" element={<Admin />} />
+      <Route path="/PatientLogin" element={<PatientLogin />} />
       <Route path="/" element={<Navigate replace to="/home" />} />    
     </Routes>
   </BrowserRouter>

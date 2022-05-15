@@ -8,9 +8,6 @@
     "server": "cd backend && nodemon index.js &",
     "client": "cd frontend && npm start",
     "dev": "concurrently \"npm run client\" \"npm run server\""
-    
-
-
   },
   "repository": {
     "type": "git",
