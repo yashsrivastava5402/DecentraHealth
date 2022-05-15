@@ -9,8 +9,8 @@ function HospitalLogin() {
         password:"",
     });
     const [submitted, setSubmitted] = useState(false);
-    const handlesubmit = (e) => {
-        e.preventDefault();
+    const handlesubmit = () => {
+
         setSubmitted(true);
         if (values.hospitalRegnumber.trim() !== ""  && values.password.trim() !== "" )
         {
@@ -23,7 +23,7 @@ function HospitalLogin() {
                 console.log(response);
                     if(response.status===200)
                     {
-                        navigate(`/Admin/:${values.hospitalRegnumber}`, {state:{values: response.data}});
+                        navigate(`/Admin/:${values.hospitalRegnumber}`, {state:{doctors:response.data.doctors, hospitalName: response.data.Name}});
                     }
                     else if(response.status==203)
                     {
