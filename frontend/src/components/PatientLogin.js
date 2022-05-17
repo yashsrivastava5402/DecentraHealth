@@ -21,7 +21,7 @@ const firebaseConfig = {
   // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const authen = getAuth(app);
-authen.languageCode = "it";
+authen.languageCode = "en";
 
 function PatientLogin() {
     const navigate = useNavigate();
@@ -42,25 +42,29 @@ function PatientLogin() {
         });
     };
     const configureCaptcha = () =>{
+        //console.log("Recaptcha Verified!")
         window.recaptchaVerifier = new RecaptchaVerifier('sign-in-button', {
             'size': 'invisible',
             'callback': (response) => {
               // reCAPTCHA solved, allow signInWithPhoneNumber.
-              onSignInSubmit();
+              //onSignInSubmit();
               console.log("Recaptcha Verified!")
-            }
+            },
+            defaultCountry: "IN"
           }, authen);
     };
     const onSignInSubmit = (e) =>{
         e.preventDefault();
         setSubmitted(true);
         configureCaptcha();
-        const phoneNumber = values.phone;
+        const phoneNumber = "+" + values.phone;
         console.log(phoneNumber);
         const appVerifier = window.recaptchaVerifier;
+        console.log(appVerifier);
+        console.log(authen);
 
-        const auth = getAuth(app);
-        signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+       // const auth = getAuth();
+        signInWithPhoneNumber(authen, phoneNumber, appVerifier)
             .then((confirmationResult) => {
             // SMS sent. Prompt user to type the code from the message, then sign the
             // user in with confirmationResult.confirm(code).
@@ -70,6 +74,7 @@ function PatientLogin() {
             }).catch((error) => {
             // Error; SMS not sent
             // ...
+            console.log(error);
             console.log("SMS not sent.");
             });
     }
@@ -81,18 +86,20 @@ function PatientLogin() {
         window.confirmationResult.confirm(code).then((result) => {
           // User signed in successfully.
           const user = result.user;
-          console.log(JSON.stringify(user))
+          console.log(JSON.stringify(user));
           alert("User is verified");
           // ...
         }).catch((error) => {
           // User couldn't sign in (bad verification code?)
           // ...
+          console.error("OTP Submission error!");
         });
     }
 
 
   return (
-    <div class="form-container">
+      <div>
+<div class="form-container">
     <form class="register-form" >
    
         <input
@@ -126,6 +133,8 @@ function PatientLogin() {
             Submit
         </button>
     </form>
+</div>
+<div id = "sign-in-button"></div>
 </div>
   )
 }
