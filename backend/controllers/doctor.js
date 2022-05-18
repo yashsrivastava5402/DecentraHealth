@@ -1,9 +1,10 @@
-const doctor = require('../models/doctor');
+const Doctor = require('../models/doctor');
+const Hospital = require('../models/hospital');
 
 exports.findDoctor = async (req, res) => {
     try {
         const { email, password } = req.body;
-        await doctor.findOne({doctorId: email}, async (err, doctor) => {
+        await Doctor.findOne({doctorId: email}, async (err, doctor) => {
             if (err) {
                 res.status(400).send(err);
             }
@@ -37,21 +38,24 @@ exports.addDoctor = async (req, res) => {
                     Name,
                     doctorId,
                     hospitalRegnumber,
-                    UPRNnum,
+                    UPRNnum: req.body.UPRN,
                     password,
                     patients: []
                 }
-                await Doctor.insertMany(newDoctor, (err) => {
+                console.log(newDoctor);
+                // while (newDoctor.Name !== req.body.Name);
+                Doctor.insertMany(newDoctor, (err) => {
                     if (err) {
                         console.log(err);
                     }
                 });
-                await Hospital.findOne({regNo: hospitalRegnumber}, async (err, hospital) => {
+                const update = await Hospital.findOneAndUpdate({regNo: hospitalRegnumber}, {$push: {doctors: newDoctor}}, async (err, hospital) => {
                     if (err) {
                         res.status(206).send(err);
                     }
                     else{
-                        hospital.patients.push(newDoctor);
+                        console.log("hospital: ", hospital.Name, " ", hospital.doctors);
+                        // hospital.doctors.push(newDoctor);
                         res.status(200).send(newDoctor);
                     }
                 })

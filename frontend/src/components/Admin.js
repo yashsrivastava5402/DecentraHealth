@@ -4,6 +4,7 @@ import { useLocation, useParams } from 'react-router-dom'
 import DoctorCard from './DoctorCard';
 import DoctorLogin from './DoctorLogin';
 import { generate } from './utils/passgen';
+import Button from "@mui/material/Button";
 
 const addDoctor = function(values) {
   // await axios.post('/addDoctor', values)
@@ -27,34 +28,39 @@ const addDoctor = function(values) {
   //   reject(error);
 
   // });
-  return new Promise( (resolve, reject) => {
+  // return new Promise( (resolve, reject) => {
 
-      const{ newDoctorId, newPassword }=generate(values);
-    //   setValues({
-    //     ...values,
-    //     doctorId: newDoctorId,
-    //     password:newPassword
-    // });
-    resolve({ newDoctorId, newPassword });
-  });
+  //     const{ newDoctorId, newPassword }=generate(values);
+  //   //   setValues({
+  //   //     ...values,
+  //   //     doctorId: newDoctorId,
+  //   //     password:newPassword
+  //   // });
+  //   resolve({ newDoctorId, newPassword });
+  // });
     
 }
 
 function Admin() {
+  const {state}=useLocation();
+  console.log(state);
   const [values, setValues] = useState({
     Name:"",
     UPRN:"",
     doctorId:"",
-    hospitalRegnumber: "",
-    hospitalName: state.hospitalName,
+    hospitalRegnumber: state.values.hospitalRegnumber,
+    hospitalName: state.values.hospitalName,
     password:""
   });
-  const [doctors, setdoctors] = useState([]);
-  const { hospitalRegnumber } = useParams();
-  const {state}=useLocation();
-  setdoctors(state);
-  console.log(state);
-  console.log(doctors);
+  const [doctors, setdoctors] = useState(state.values.doctors);
+  // console.log(state.values);
+  console.log("outide: ", doctors);
+  const[submitted,setSubmitted]=useState(false);
+  //const { hospitalRegnumber } = useParams();
+  // const {state}=useLocation();
+  // setdoctors(state);
+  // console.log(state);
+  // console.log(doctors);
   // axios.post('http://localhost:8000/getDoctors',
   //   hospitalRegnumber
   // )
@@ -77,6 +83,8 @@ function Admin() {
 
   //   });
   const handleChange = (e) => {
+    e.preventDefault();
+    console.log("values");
     const { name, value } = e.target;
     setValues({
         ...values,
@@ -84,7 +92,8 @@ function Admin() {
     });
 };
   return (
-    <div>Admin{hospitalRegnumber}
+    <div>Admin{values.hospitalRegnumber}
+    <form class="register-form" >
       <input
             onChange={handleChange}
             value={values.Name}
@@ -106,13 +115,32 @@ function Admin() {
             name="UPRN"
         />
         {submitted && !values.UPRN ? <span id="UPRN-error">Please enter UPRN number</span> : null}
-    <Button size="large" variant="contained" style={{height:"60px",width:"150px",margin:"70px",alignItems:"center",justifyContent:"center"}} onClick={()=>{
-          addDoctor(values).then (function (received){
-            setValues(received);
-          });
+        <Button size="large" variant="contained" style={{height:"60px",width:"150px",margin:"70px",alignItems:"center",justifyContent:"center"}} onClick={(e)=>{
+          e.preventDefault();
+          setSubmitted(true);
+          const{ newDoctorId, newPassword }=generate(values);
+          values.doctorId = newDoctorId;
+          values.password = newPassword;
+          //addDoctor(values).then (function (received){
+            setValues(values);
+            //doctors.push(state.values.doctors);
+            doctors.push(values);
+            console.log(values);
+            setdoctors(doctors);
+            console.log(doctors);
+            axios.post('http://localhost:8000/addDoctors',
+            values
+            )
+              .then(function (response) {
+                console.log(response);
+              // function Admin() {
+                //ßconsole.log(error);
+          
+              });
       }}>Add Doctor</Button>
+            </form>
     { doctors.map((doctor)=>{
-       <DoctorCard id={doctor.doctorId} name={doctor.Name}/>
+        return <DoctorCard id={doctor.doctorId} name={doctor.Name}/>
      })}
     </div>
    

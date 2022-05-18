@@ -57,7 +57,7 @@ function PatientLogin() {
         e.preventDefault();
         setSubmitted(true);
         configureCaptcha();
-        const phoneNumber = "+" + values.phone;
+        const phoneNumber = values.phone;
         console.log(phoneNumber);
         const appVerifier = window.recaptchaVerifier;
         console.log(appVerifier);
@@ -87,7 +87,8 @@ function PatientLogin() {
           // User signed in successfully.
           const user = result.user;
           console.log(JSON.stringify(user));
-          alert("User is verified");
+          // alert("User is verified");
+          navigate(`/Patient/:${values.phone}`);
           // ...
         }).catch((error) => {
           // User couldn't sign in (bad verification code?)

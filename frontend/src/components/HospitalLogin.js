@@ -23,7 +23,7 @@ function HospitalLogin() {
                 console.log(response);
                     if(response.status===200)
                     {
-                        navigate(`/Admin/:${values.hospitalRegnumber}`, {state:{doctors:response.data.doctors, hospitalName: response.data.Name}});
+                        navigate(`/Admin/:${values.hospitalRegnumber}`, {state:{values:{doctors:response.data.doctors, hospitalName: response.data.Name, hospitalRegnumber: response.data.regNo}}});
                     }
                     else if(response.status==203)
                     {

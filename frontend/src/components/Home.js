@@ -10,7 +10,7 @@ function Home() {
           navigate("/DoctorLogin");
       }}>Doctor</Button>
       <Button size="large" variant="contained" style={{height:"60px",width:"150px",margin:"70px",alignItems:"center",justifyContent:"center"}} onClick={()=>{
-          navigate("/");}}>Patient</Button>
+          navigate("/PatientLogin");}}>Patient</Button>
       </div>
    
     
