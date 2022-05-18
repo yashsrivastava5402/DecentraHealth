@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const patientsSchema = new Schema({
     Phone: {
-        type: Number,
+        type: String,
         required: [true]
     },
     patients: {

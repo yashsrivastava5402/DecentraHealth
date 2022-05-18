@@ -17,6 +17,7 @@ app.use([
     bodyParser.urlencoded({ extended: true }),
     routes
 ]);
+app.disable('etag');
 
 mongoose.connect("mongodb://localhost:27017/DecentraHealth", {useNewUrlParser: true, useUnifiedTopology: true});
 

@@ -1,5 +1,21 @@
 const Hospital = require('../models/hospital');
 
+exports.getHospitals = async (req, res) => {
+    try {
+        await Hospital.find({}, async (err, hospital) => {
+            if (err) {
+                res.status(205).send(err);
+            }
+            else{
+                console.log(hospital);
+                res.status(200).send(hospital);
+            }
+        });
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 exports.getDoctors = async (req, res) => {
     try {
         const { hospitalRegnumber } = req.body;

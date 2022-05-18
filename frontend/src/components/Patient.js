@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React,{useState} from 'react'
 import { useLocation, useParams } from 'react-router-dom'
-import DoctorCard from './DoctorCard';
+import PatientCard from './PatientCard';
 import Button from "@mui/material/Button";
 
 function Patient() {
@@ -25,7 +25,7 @@ function Patient() {
     });
 };
   return (
-    <div>Patient{values.phone}
+    <div>Patient{values.Phone}
     <form class="register-form" >
       <input
             onChange={handleChange}
@@ -79,12 +79,15 @@ function Patient() {
             )
               .then(function (response) {
                 console.log(response);
+                values.patients = response.data.patients;
+                console.log(values);
               });
-      }}>SignUp</Button>
+      }}>Add Patient</Button>
             </form>
-     {/* { patients.map((patient)=>{ */}
-        <DoctorCard id={values.Aadhar} name={values.Name}/>
-     {/* //})} */}
+     { values.patients.map((patient)=>{
+          console.log(patient);
+         return <PatientCard id={patient.Aadhar} name={patient.Name}/> 
+     })}
     </div>
    
 
