@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import DoctorCard from './DoctorCard';
 import DoctorLogin from './DoctorLogin';
@@ -91,6 +91,17 @@ function Admin() {
         [name]: value,
     });
 };
+useEffect(() => {
+
+  axios.post('http://localhost:8000/getDoctors',
+  state.values
+  )
+    .then(function (response) {
+      console.log(response);
+      setdoctors(response.data);
+    });
+}, []);
+
   return (
     <div>Admin{values.hospitalRegnumber}
     <form class="register-form" >
