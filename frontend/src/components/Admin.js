@@ -119,6 +119,16 @@ function Admin() {
           e.preventDefault();
           setSubmitted(true);
           const{ newDoctorId, newPassword }=generate(values);
+          // setValues((prevState) => {
+          //   return {
+          //     ...prevState,
+          //       doctorId: newDoctorId,
+          //       password: newPassword
+          //   }
+          // });
+          values.doctorId = newDoctorId;
+          values.password = newPassword;
+          setValues(values);
        
           //addDoctor(values).then (function (received){
             
@@ -129,17 +139,13 @@ function Admin() {
                 console.log(response);
               // function Admin() {
                 //ßconsole.log(error);
-                setValues((prevState) => {
-                  return {
-                    ...prevState,
-                     doctorId: newDoctorId,
-                     password: newPassword
-                  }
-                });
+               
                 //doctors.push(state.values.doctors);
                 // doctors.push(values);
                 console.log(values);
-                setdoctors(response.data.doctors);
+                setdoctors((prevState) => {
+                  return [...prevState, values];
+                });
                 console.log(doctors);
           
               });
