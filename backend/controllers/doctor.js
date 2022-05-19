@@ -28,7 +28,7 @@ exports.findDoctor = async (req, res) => {
 exports.addDoctor = async (req, res) => {
     try {
         const { Name, doctorId, hospitalRegnumber, password } = req.body;
-        await Doctor.findOne({ doctorId: doctorId }, async (err, doctor) => {
+        Doctor.findOne({ doctorId: doctorId }, (err, doctor) => {
             if (err) {
                 res.status(205).send(err);
             } else if (doctor) {
@@ -48,17 +48,20 @@ exports.addDoctor = async (req, res) => {
                     if (err) {
                         console.log(err);
                     }
-                });
-                const update = await Hospital.findOneAndUpdate({regNo: hospitalRegnumber}, {$push: {doctors: newDoctor}}, async (err, hospital) => {
-                    if (err) {
-                        res.status(206).send(err);
-                    }
                     else{
-                        console.log("hospital: ", hospital.Name, " ", hospital.doctors);
-                        // hospital.doctors.push(newDoctor);
-                        res.status(200).send(newDoctor);
+                        Hospital.findOneAndUpdate({regNo: hospitalRegnumber}, {$push: {doctors: newDoctor}}, async (err, hospital) => {
+                            if (err) {
+                                res.status(500).send(err);
+                            }
+                            else{
+                                console.log("hospital: ", hospital.Name, " ", hospital.doctors);
+                                // hospital.doctors.push(newDoctor);
+                                res.status(200).send(newDoctor);
+                            }
+                        })
                     }
-                })
+                });
+                
             }
         });
     } catch (err) {

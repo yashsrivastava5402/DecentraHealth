@@ -86,7 +86,7 @@ function Patient() {
             </form>
      { values.patients.map((patient)=>{
           console.log(patient);
-         return <PatientCard id={patient.Aadhar} name={patient.Name}/> 
+         return <PatientCard aadhar={patient.Aadhar} name={patient.Name} age={patient.Age} gender={patient.Gender}/> 
      })}
     </div>
    

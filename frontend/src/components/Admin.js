@@ -119,15 +119,9 @@ function Admin() {
           e.preventDefault();
           setSubmitted(true);
           const{ newDoctorId, newPassword }=generate(values);
-          values.doctorId = newDoctorId;
-          values.password = newPassword;
+       
           //addDoctor(values).then (function (received){
-            setValues(values);
-            //doctors.push(state.values.doctors);
-            doctors.push(values);
-            console.log(values);
-            setdoctors(doctors);
-            console.log(doctors);
+            
             axios.post('http://localhost:8000/addDoctors',
             values
             )
@@ -135,6 +129,18 @@ function Admin() {
                 console.log(response);
               // function Admin() {
                 //ßconsole.log(error);
+                setValues((prevState) => {
+                  return {
+                    ...prevState,
+                     doctorId: newDoctorId,
+                     password: newPassword
+                  }
+                });
+                //doctors.push(state.values.doctors);
+                // doctors.push(values);
+                console.log(values);
+                setdoctors(response.data.doctors);
+                console.log(doctors);
           
               });
       }}>Add Doctor</Button>

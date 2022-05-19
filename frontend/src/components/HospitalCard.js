@@ -2,32 +2,40 @@ import React, {useState} from 'react'
 import { useNavigate } from "react-router";
 import axios from 'axios';
 
-function PatientCard({aadhar,name,age,gender}) {
+function HospitalCard({id,name,state}) {
 
     const navigate = useNavigate();
     const [submitted, setSubmitted] = useState(false);
     const goToPatient = (e) =>{
         e.preventDefault();
         setSubmitted(true);
-        axios.get('http://localhost:8000/getHospitals')
+        console.log("state", state);
+        const values ={
+            Name: state.values.Name,
+            Aadhar: state.values.Aadhar,
+            Age: state.values.Age,
+            Gender: state.values.Gender,
+            HospitalID: id
+        }
+        axios.post('http://localhost:8000/addPatientHospital', values)
         .then(function (response){
             console.log(response);
             if(response.status === 200){
-                navigate(`/PatientPage/:${aadhar}`, {state: {values: {hospitals: response.data, Name: name, Aadhar: aadhar, Age: age, Gender: gender}}});
+                alert("Applied succesfully!!");
             }
         });
     }
   return (
     <div>
         <div>
-           {aadhar}
+           {id}
         </div>
         <div>
             {name}
         </div>
         <div>
         <button type="button" onClick={goToPatient}>
-            Submit
+            Apply
         </button>
         </div>
         <div>
@@ -37,4 +45,4 @@ function PatientCard({aadhar,name,age,gender}) {
   )
 }
 
-export default PatientCard;
+export default HospitalCard;

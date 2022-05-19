@@ -22,6 +22,10 @@ const hospitalSchema = new Schema({
     doctors: {
         type: Array,
         required: [true]
+    },
+    patients: {
+        type: Array,
+        required: [true]
     }
 });
 
