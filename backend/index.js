@@ -5,7 +5,7 @@ const cors = require('cors');
 const routes = require('./routes/routes');
 const bodyParser = require('body-parser');
 const morgan=require('morgan');
-
+const fileupload = require("express-fileupload");
 const app = express();
 const server = http.createServer(app);
 
@@ -15,8 +15,10 @@ app.use([
     express.static("public"),
     bodyParser.json(),
     bodyParser.urlencoded({ extended: true }),
-    routes
+    routes,
+    fileupload()
 ]);
+
 app.disable('etag');
 
 mongoose.connect("mongodb://localhost:27017/DecentraHealth", {useNewUrlParser: true, useUnifiedTopology: true});

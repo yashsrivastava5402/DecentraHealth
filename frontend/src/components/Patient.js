@@ -24,6 +24,17 @@ function Patient() {
         [name]: value,
     });
 };
+// useEffect(() => {
+
+//   axios.post('http://localhost:8000/geDoctors',
+//   state.values
+//   )
+//     .then(function (response) {
+//       console.log(response);
+//       setdoctors(response.data);
+//     });
+   
+// }, []);
   return (
     <div>Patient{values.Phone}
     <form class="register-form" >
@@ -79,11 +90,12 @@ function Patient() {
             )
               .then(function (response) {
                 console.log(response);
-                values.patients = response.data.patients;
+              
                 // setValues(values);
-                setValues((prevState) => {
-                  return [...prevState, values.patients];
-                });
+                setValues(prevState => ({
+                  ...prevState, 
+                  patients: response.data.patients
+               }));
                 console.log(values);
               });
       }}>Add Patient</Button>
