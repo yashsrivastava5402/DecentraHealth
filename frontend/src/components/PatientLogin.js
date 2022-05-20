@@ -1,8 +1,12 @@
 //import auth from '../firebase';
-import React from 'react'
-import {useState} from 'react'
-import { useNavigate } from "react-router";
+import React from 'react';
 import { initializeApp } from 'firebase/app';
+import  { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Form, Alert } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 import {
     getAuth,
     RecaptchaVerifier,
@@ -25,11 +29,12 @@ authen.languageCode = "en";
 
 function PatientLogin() {
     const navigate = useNavigate();
+    const [error, setError] = useState("");
     const [values, setValues] = useState({
         phone: "",
         OTP: "",
     });
-    const [submitted, setSubmitted] = useState(false);
+    const [flag, setFlag] = useState(false);
     // const handlesubmitPhone = (e) => {
     //     e.preventDefault();
     //     setSubmitted(true);
@@ -55,14 +60,18 @@ function PatientLogin() {
     };
     const onSignInSubmit = (e) =>{
         e.preventDefault();
-        setSubmitted(true);
+  
         configureCaptcha();
         const phoneNumber = values.phone;
-        console.log(phoneNumber);
+        console.log("phonenu",phoneNumber);
+        setError("");
+        if (phoneNumber === "" || phoneNumber === undefined)
+          return setError("Please enter a valid phone number!");
         const appVerifier = window.recaptchaVerifier;
         console.log(appVerifier);
         console.log(authen);
-
+   
+     
        // const auth = getAuth();
         signInWithPhoneNumber(authen, phoneNumber, appVerifier)
             .then((confirmationResult) => {
@@ -70,19 +79,23 @@ function PatientLogin() {
             // user in with confirmationResult.confirm(code).
             window.confirmationResult = confirmationResult;
             console.log("OTP sent");
+            setFlag(true);
             // ...
             }).catch((error) => {
             // Error; SMS not sent
             // ...
             console.log(error);
+            setError(error.message);
             console.log("SMS not sent.");
             });
     }
 
     const onOTPSubmit = (e) =>{
         e.preventDefault();
-        setSubmitted(true);
+        setError("");
+    
         const code = values.OTP;
+        if (code === "" || code === null) return;
         window.confirmationResult.confirm(code).then((result) => {
           // User signed in successfully.
           const user = result.user;
@@ -93,62 +106,76 @@ function PatientLogin() {
         }).catch((error) => {
           // User couldn't sign in (bad verification code?)
           // ...
+          setError(error.message);
           console.error("OTP Submission error!");
         });
     }
 
 
   return (
-      <div>
-<div class="form-container">
-    <form class="register-form" >
-   
-        <input
-            onChange={handleChange}
-            value={values.phone}
-            id="phone"
-            class="form-field"
-            type="text"
-            placeholder="PhoneNumber"
-            name="phone"
-        />
-        {/* {submitted && !values.phone ? <span id="phone-error">Please enter the phone number</span> : null} */}
-        <button class="form-field" type="button" onClick={onSignInSubmit}>
-            Submit
-        </button>
-    </form>
-    <form class="otp" >
-        <input
-            onChange={handleChange}
-            value={values.OTP}
-            id="otp"
-            class="form-field"
-            type="text"
-            placeholder="OTP"
-            name="OTP"
-        />
-        {/* {submitted && !values.OTP ? <span id="otp-error">Please enter the otp</span> : null} */}
 
+<>
+<div className="p-4 box">
+  <h2 className="mb-3">Firebase Phone Auth</h2>
+  {error && <Alert variant="danger">{error}</Alert>}
+  <Form onSubmit={onSignInSubmit} style={{ display: !flag ? "block" : "none" }}>
+    <Form.Group className="mb-3" controlId="formBasicEmail">
+      <PhoneInput
+        defaultCountry="IN"
+        value={values.phone}
+        onChange={(e)=>{
+            console.log(e);
+            setValues({
+                ...values,
+                phone: e,
+            });
+        }}
+        placeholder="Enter Phone Number"
+      />
+      <div id="sign-in-button"></div>
+    </Form.Group>
+    <div className="button-right">
+      <Link to="/">
+        <Button variant="secondary">Cancel</Button>
+      </Link>
+      &nbsp;
+      <Button type="submit" variant="primary">
+        Send Otp
+      </Button>
+    </div>
+  </Form>
 
-        <button class="form-field" type="button" onClick={onOTPSubmit}>
-            Submit
-        </button>
-    </form>
+  <Form onSubmit={onOTPSubmit} style={{ display: flag ? "block" : "none" }}>
+    <Form.Group className="mb-3" controlId="formBasicOtp">
+      <Form.Control
+        type="otp"
+        value={values.OTP}
+        placeholder="Enter OTP"
+        onChange={(e)=>{
+        
+            setValues({
+                ...values,
+               OTP : e.target.value,
+            });
+        }}
+     
+      />
+    </Form.Group>
+    <div className="button-right">
+      <Link to="/">
+        <Button variant="secondary">Cancel</Button>
+      </Link>
+      &nbsp;
+      <Button type="submit" variant="primary">
+        Verify
+      </Button>
+    </div>
+  </Form>
 </div>
-<div id = "sign-in-button"></div>
-</div>
+</>
   )
 }
 
 export default PatientLogin;
 
 
-// configureCaptcha = () =>{
-//     window.recaptchaVerifier = new RecaptchaVerifier('sign-in-button', {
-//         'size': 'invisible',
-//         'callback': (response) => {
-//           // reCAPTCHA solved, allow signInWithPhoneNumber.
-//           onSignInSubmit();
-//         }
-//       }, auth);
-// }
