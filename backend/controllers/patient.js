@@ -69,15 +69,23 @@ exports.addPatientHospital = (req, res) => {
 }
 exports.fileUpload=(req,res)=>{
     const newpath = __dirname + "/files/";
+    console.log(req.files);
     const file = req.files.file;
-    const filename = file.name;
-   
-    file.mv(`${newpath}${filename}`, (err) => {
-      if (err) {
-        res.status(500).send({ message: "File upload failed", code: 200 });
-      }
-      res.status(200).send({ message: "File Uploaded", code: 200 });
-    });
+    //const filename = file.name;
+    for(let i = 0 ; i < file.length; i++){
+        file[i].mv(`${newpath}${file[i].name}`, (err) => {
+            if (err) {
+                console.log(err);
+              res.status(500).send({ message: "File upload failed", code: 200 });
+            }
+            //else{
+            //   res.status(200).send({ message: "File Uploaded", code: 200 });
+            //   console.log("File uploaded");
+            // }
+          });
+    }
+    res.status(200).send({ message: "File Uploaded", code: 200 });
+    
 }
 exports.getPatientsHospital = (req, res) => {
     const { HospitalID } = req.body;

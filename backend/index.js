@@ -9,6 +9,7 @@ const fileupload = require("express-fileupload");
 const app = express();
 const server = http.createServer(app);
 
+app.use(fileupload());
 app.use(morgan('tiny'));
 app.use([
     cors(),
@@ -16,8 +17,8 @@ app.use([
     bodyParser.json(),
     bodyParser.urlencoded({ extended: true }),
     routes,
-    fileupload()
 ]);
+app.use(express.static("files"));
 
 app.disable('etag');
 

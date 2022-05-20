@@ -3,22 +3,30 @@ import axios from 'axios';
 import {useState} from 'react'
 function FileUpload() {
 
-    const formData = new FormData();
+  const formData = new FormData();
     const saveFile = (e) => {
+      
         console.log(e.target.files[0])
-    formData.append("file", e.target.files[0]);
-    formData.append("fileName",e.target.files[0].name);
-        console.log(formData)
+        for(var i=0;i<e.target.files.length;i++){
+          formData.append('file', e.target.files[i]);
+          formData.append("fileName",e.target.files[i].name);
+        }
+    
+        //console.log(formData)
+        
     };
 
     const uploadFile = async (e) => {
       
-      
-        var options = { content: formData };
-      console.log(formData);
+        console.log(e);
+        // var options = { content: formData };
+        for (var pair of formData.entries()) {
+          console.log(pair[0]+ ', ' + pair[1]); 
+      }
       try {
         const res = await axios.post(
           "http://localhost:8000/fileUpload",
+          // options,
           formData
         );
         console.log(res);
@@ -29,7 +37,7 @@ function FileUpload() {
 
     return (
         <div className="App">
-          <input type="file" onChange={saveFile} />
+          <input type="file" multiple onChange={saveFile} />
           <button onClick={uploadFile}>Upload</button>
         </div>
       )
