@@ -1,8 +1,8 @@
 import axios from 'axios';
-import React,{useEffect, useState} from 'react'
+import React,{useState} from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import DoctorCard from './DoctorCard';
-import DoctorLogin from './DoctorLogin';
+import PatientCard from './PatientCard';
 import { generate } from './utils/passgen';
 import Button from "@mui/material/Button";
 
@@ -53,8 +53,9 @@ function Admin() {
     password:""
   });
   const [doctors, setdoctors] = useState(state.values.doctors);
+  const [patients, setpatients] = useState(state.values.patients);
   // console.log(state.values);
-  console.log("outide: ", doctors);
+  console.log("outide: ", patients);
   const[submitted,setSubmitted]=useState(false);
   //const { hospitalRegnumber } = useParams();
   // const {state}=useLocation();
@@ -91,17 +92,6 @@ function Admin() {
         [name]: value,
     });
 };
-useEffect(() => {
-
-  axios.post('http://localhost:8000/getDoctors',
-  state.values
-  )
-    .then(function (response) {
-      console.log(response);
-      setdoctors(response.data);
-    });
-}, []);
-
   return (
     <div>Admin{values.hospitalRegnumber}
     <form class="register-form" >
@@ -165,6 +155,11 @@ useEffect(() => {
     { doctors.map((doctor)=>{
         return <DoctorCard id={doctor.doctorId} name={doctor.Name}/>
      })}
+    <div>
+    { patients.map((patient)=>{
+        return <PatientCard aadhar={patient.Aadhar} name={patient.Name} age={patient.Age} gender={patient.Gender}/>
+     })}
+    </div>
     </div>
    
 
