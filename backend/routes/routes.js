@@ -12,5 +12,6 @@ router.post('/addDoctors', doctorController.addDoctor);
 router.post('/addPatients', patientController.addPatients);
 router.get('/getHospitals', hospitalController.getHospitals);
 router.post('/addPatientHospital', patientController.addPatientHospital);
+router.post('/getPatientsHospital', patientController.getPatientsHospital);
 
 module.exports=router;

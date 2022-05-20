@@ -7,15 +7,17 @@ function HospitalLogin() {
     const [values, setValues] = useState({
         hospitalRegnumber: "",
         password:"",
+        patients: []
     });
     const [submitted, setSubmitted] = useState(false);
-    const handlesubmit = () => {
-
+    const handlesubmit = (e) => {
+        e.preventDefault();
         setSubmitted(true);
         if (values.hospitalRegnumber.trim() !== ""  && values.password.trim() !== "" )
         {
             
-            
+            // const res = await axios.post('http://localhost:8000/getPatientsHospital',{HospitalID: hospitalRegnumber} );
+
             axios.post('http://localhost:8000/hospitalLogin', 
                 values
               )
@@ -23,7 +25,7 @@ function HospitalLogin() {
                 console.log(response);
                     if(response.status===200)
                     {
-                        navigate(`/Admin/:${values.hospitalRegnumber}`, {state:{values:{doctors:response.data.doctors, hospitalName: response.data.Name, hospitalRegnumber: response.data.regNo}}});
+                        navigate(`/Admin/:${values.hospitalRegnumber}`, {state:{values:{doctors: response.data.doctors, hospitalName: response.data.Name, hospitalRegnumber: response.data.regNo, patients: response.data.patients}}});
                     }
                     else if(response.status==203)
                     {

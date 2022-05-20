@@ -12,13 +12,15 @@ function HospitalSignupPage() {
         cpassword:""
     });
     const [submitted, setSubmitted] = useState(false);
-    const handlesubmit = () => {
+    const handlesubmit = (e) => {
+        e.preventDefault();
         setSubmitted(true);
 
         if (values.hospitalName.trim() !== "" && values.hospitalRegnumber.trim() !== ""  && values.password.trim() !== "" && values.cpassword.trim() !== "" )
         {
             
-            
+            // const res = await axios.post('http://localhost:8000/getPatientsHospital',{HospitalID: hospitalRegnumber} );
+
             axios.post('http://localhost:8000/HospitalSignup', {
                 values
               })
@@ -26,7 +28,7 @@ function HospitalSignupPage() {
                 console.log(response);
                     if(response.status===200)
                     {
-                        navigate("/Admin/:hospitalRegnumber", { replace: true });
+                        navigate(`/Admin/:${values.hospitalRegnumber}`, {state:{values:{doctors: response.data.doctors, hospitalName: response.data.Name, hospitalRegnumber: response.data.regNo, patients: response.data.patients}}}, { replace: true });
                     }
                     else if(response.status==204)
                     {

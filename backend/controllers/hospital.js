@@ -1,8 +1,8 @@
 const Hospital = require('../models/hospital');
 
-exports.getHospitals = async (req, res) => {
+exports.getHospitals = (req, res) => {
     try {
-        await Hospital.find({}, async (err, hospital) => {
+        Hospital.find({}, async (err, hospital) => {
             if (err) {
                 res.status(205).send(err);
             }
@@ -16,10 +16,10 @@ exports.getHospitals = async (req, res) => {
     }
 }
 
-exports.getDoctors = async (req, res) => {
+exports.getDoctors = (req, res) => {
     try {
         const { hospitalRegnumber } = req.body;
-        await Hospital.findOne({regNo: hospitalRegnumber}, async (err, hospital) => {
+        Hospital.findOne({regNo: hospitalRegnumber}, async (err, hospital) => {
             if (err) {
                 res.status(205).send(err);
             }
@@ -32,10 +32,10 @@ exports.getDoctors = async (req, res) => {
     }
 }
 
-exports.findHospital = async (req, res) => {
+exports.findHospital = (req, res) => {
     try {
         const { hospitalRegnumber, password } = req.body;
-        await Hospital.findOne({regNo: hospitalRegnumber}, async (err, hospital) => {
+        Hospital.findOne({regNo: hospitalRegnumber}, async (err, hospital) => {
             if (err) {
                 res.status(205).send(err);
             }
@@ -55,11 +55,11 @@ exports.findHospital = async (req, res) => {
     }
 }
 
-exports.addHospital = async (req, res) => {
+exports.addHospital = (req, res) => {
     try {
         console.log(req.body);
         const { hospitalName, hospitalRegnumber, type, password } = req.body.values;
-        await Hospital.findOne({ regNo: hospitalRegnumber }, async (err, hospital) => {
+        Hospital.findOne({ regNo: hospitalRegnumber }, async (err, hospital) => {
             console.log(hospitalName);
             if (err) {
                 res.status(205).send(err);
@@ -72,6 +72,7 @@ exports.addHospital = async (req, res) => {
                     regNo: hospitalRegnumber,
                     type: type,
                     password: password,
+                    doctors: [],
                     patients: []
                 };
                 //console.log(newhospital);
@@ -80,7 +81,7 @@ exports.addHospital = async (req, res) => {
                 //         console.error('ERROR!');
                 //     }
                 // });
-                await Hospital.insertMany(newHospital, async(err) => {
+                Hospital.insertMany(newHospital, async(err) => {
                     if (err) {
                         console.log(err);
                     } else {

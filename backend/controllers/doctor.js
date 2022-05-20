@@ -1,10 +1,10 @@
 const Doctor = require('../models/doctor');
 const Hospital = require('../models/hospital');
 
-exports.findDoctor = async (req, res) => {
+exports.findDoctor = (req, res) => {
     try {
         const { email, password } = req.body;
-        await Doctor.findOne({doctorId: email}, async (err, doctor) => {
+        Doctor.findOne({doctorId: email}, async (err, doctor) => {
             if (err) {
                 res.status(400).send(err);
             }
@@ -25,7 +25,7 @@ exports.findDoctor = async (req, res) => {
 }
 
 
-exports.addDoctor = async (req, res) => {
+exports.addDoctor = (req, res) => {
     try {
         const { Name, doctorId, hospitalRegnumber, password } = req.body;
         Doctor.findOne({ doctorId: doctorId }, (err, doctor) => {

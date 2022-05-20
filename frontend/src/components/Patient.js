@@ -80,12 +80,16 @@ function Patient() {
               .then(function (response) {
                 console.log(response);
                 values.patients = response.data.patients;
+                // setValues(values);
+                setValues((prevState) => {
+                  return [...prevState, values.patients];
+                });
                 console.log(values);
               });
       }}>Add Patient</Button>
             </form>
      { values.patients.map((patient)=>{
-          console.log(patient);
+        console.log(patient);
          return <PatientCard aadhar={patient.Aadhar} name={patient.Name} age={patient.Age} gender={patient.Gender}/> 
      })}
     </div>

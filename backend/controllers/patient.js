@@ -2,7 +2,7 @@
 const Hospital = require('../models/hospital');
 const Patients = require('../models/patients');
 
-exports.addPatients = async (req, res) => {
+exports.addPatients = (req, res) => {
     try {
         const { Name, Aadhar, Age, Gender, Phone } = req.body;
         const newPatient = {
@@ -12,7 +12,7 @@ exports.addPatients = async (req, res) => {
             Gender
         }
         console.log(newPatient);
-        await Patients.findOneAndUpdate({Phone: Phone}, {$push: {patients: newPatient}}, {new: true, upsert: true}, async (err, patients) => {
+        Patients.findOneAndUpdate({Phone: Phone}, {$push: {patients: newPatient}}, {new: true, upsert: true}, (err, patients) => {
             if (err) {
                 res.status(206).send(err);
             }
@@ -27,7 +27,7 @@ exports.addPatients = async (req, res) => {
     }
 }
 
-exports.addPatientHospital = async (req, res) => {
+exports.addPatientHospital = (req, res) => {
     try {
         // const { Name, Aadhar, Age, Gender, Phone } = req.body;
         // console.log(newPatient);
@@ -48,7 +48,7 @@ exports.addPatientHospital = async (req, res) => {
             Age,
             Gender
         }
-        await Hospital.findOneAndUpdate({regNo: HospitalID}, {$push: {patients: newPatient}}, async (err, output) => {
+        Hospital.findOneAndUpdate({regNo: HospitalID}, {$push: {patients: newPatient}}, (err, output) => {
             if (err) {
                 res.status(206).send(err);
             }
@@ -59,4 +59,16 @@ exports.addPatientHospital = async (req, res) => {
     } catch (err) {
         console.log(err);
     }
+}
+
+exports.getPatientsHospital = (req, res) => {
+    const { HospitalID } = req.body;
+    Hospital.findOne({regNo: HospitalID}, (err, hospital) => {
+        if (err) {
+            res.status(206).send(err);
+        }
+        else{
+            res.status(200).send(hospital.patients);
+        }
+    });
 }
