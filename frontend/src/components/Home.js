@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function Home() {
     const navigate = useNavigate();
   return (
@@ -11,8 +12,9 @@ function Home() {
       }}>Doctor</Button>
       <Button size="large" variant="contained" style={{height:"60px",width:"150px",margin:"70px",alignItems:"center",justifyContent:"center"}} onClick={()=>{
           navigate("/PatientLogin");}}>Patient</Button>
+         <FontAwesomeIcon icon="fa-solid fa-bars" />
       </div>
-   
+ 
     
   )
 }

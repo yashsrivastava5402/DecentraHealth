@@ -9,6 +9,7 @@ import PatientPage from "./components/PatientPage";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import React from "react";
 import FileUpload from "./components/FileUpload";
+import FileDownload from "./components/FileDownload";
 function App() {
   return (
     <BrowserRouter>
@@ -22,6 +23,7 @@ function App() {
       <Route path="/Patient/:phone" element={<Patient />} />
       <Route path="/PatientPage/:id" element={<PatientPage />} />
       <Route path="/FileUpload" element={<FileUpload />} />
+      <Route path="/FileDownload" element={<FileDownload />} />
       <Route path="/" element={<Navigate replace to="/home" />} />    
     </Routes>
   </BrowserRouter>
