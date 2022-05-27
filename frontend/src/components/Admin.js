@@ -5,6 +5,7 @@ import DoctorCard from './DoctorCard';
 import PatientCard from './PatientCard';
 import { generate } from './utils/passgen';
 import Button from "@mui/material/Button";
+import PatientCardDoctor from './PatientCardDoctor';
 
 const addDoctor = function(values) {
   // await axios.post('/addDoctor', values)
@@ -175,7 +176,7 @@ useEffect(() => {
      })}
    <div>
     { patients.map((patient)=>{
-        return <PatientCard aadhar={patient.Aadhar} name={patient.Name} age={patient.Age} gender={patient.Gender}/>
+        return <PatientCardDoctor aadhar={patient.Aadhar} name={patient.Name} age={patient.Age} gender={patient.Gender}/>
      })}
     </div>
     </div>

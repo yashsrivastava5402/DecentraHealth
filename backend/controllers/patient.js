@@ -1,6 +1,8 @@
 //const Patient = require('../models/patient');
 const Hospital = require('../models/hospital');
 const Patients = require('../models/patients');
+const fs = require('fs');
+// const { Blob } = require('node-blob');
 
 exports.addPatients = (req, res) => {
     try {
@@ -68,12 +70,36 @@ exports.addPatientHospital = (req, res) => {
     }
 }
 exports.fileUpload=(req,res)=>{
-    const newpath = __dirname + "/files/";
+    var Aadhar=0, flag=0;
+    if(req.body.Aadhar instanceof Array){
+        Aadhar = req.body.Aadhar[0];
+        flag=1;
+    }
+    else
+        Aadhar = req.body.Aadhar;
+    const newpath = __dirname + "/" + Aadhar;
+    if(!fs.existsSync(newpath)){
+        fs.mkdirSync(newpath);
+    }
     console.log(req.files);
+    console.log(req.body);
     const file = req.files.file;
+    const fileName = req.body.fileName;
     //const filename = file.name;
+    if(flag===0){
+        file.mv(`${newpath}/${fileName}`, (err) => {
+            if (err) {
+                console.log(err);
+              res.status(500).send({ message: "File upload failed", code: 200 });
+            }
+            //else{
+            //   res.status(200).send({ message: "File Uploaded", code: 200 });
+            //   console.log("File uploaded");
+            // }
+          });
+    }
     for(let i = 0 ; i < file.length; i++){
-        file[i].mv(`${newpath}${file[i].name}`, (err) => {
+        file[i].mv(`${newpath}/${fileName[i]}`, (err) => {
             if (err) {
                 console.log(err);
               res.status(500).send({ message: "File upload failed", code: 200 });
@@ -97,4 +123,53 @@ exports.getPatientsHospital = (req, res) => {
             res.status(200).send(hospital.patients);
         }
     });
+}
+
+exports.viewFiles = (req, res) => {
+    const { aadhar } = req.body;
+    const path = __dirname + "/" + aadhar;
+    const arr = [];
+    console.log("path", path);
+    if(fs.existsSync(path)){
+        console.log("Exists");
+        fs.readdir(path, function (err, files) {
+            //handling error
+            if (err) {
+                // return console.log('Unable to scan directory: ' + err);
+                res.status(500).send('Unable to scan directory: ' + err);
+            } 
+            //listing all files using forEach
+            console.log("No erroe");
+            files.forEach(function (file) {
+                // Do whatever you want to do with the file
+                /* Get all the contents from a file */
+                const content = fs.readFileSync(`${path}/${file}`);
+                // var binary = file.data;
+                console.log(content);
+                // var blob = new Blob([binary]);
+                // var blobUrl = URL.createObjectURL(blob);
+                //console.log("blobUrl", blobUrl);
+                var url = path + "/" + file;
+                url = url.replace("/Users/yashsrivastava/Desktop/DecentraHealth/backend/", "");
+                const output = {
+                    content,
+                    fileName: file,
+                    name: file,
+                    url
+                }
+                arr.push(output);
+                console.log("file", file); 
+            });
+            res.status(200).send(arr);
+        });
+    }else{
+        res.status(200).send(arr);
+    }
+}
+
+exports.fileDownload = (req, res) => {
+    const aadhar = req.params['aadhar'];
+    const fileName = req.params['fileName'];
+    const path = __dirname + "/" + aadhar + "/" + fileName;
+    res.status(200).download(path);
 }

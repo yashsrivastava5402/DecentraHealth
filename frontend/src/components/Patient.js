@@ -101,7 +101,7 @@ function Patient() {
       }}>Add Patient</Button>
             </form>
      { values.patients.map((patient)=>{
-        console.log(patient);
+           console.log(patient);
          return <PatientCard aadhar={patient.Aadhar} name={patient.Name} age={patient.Age} gender={patient.Gender}/> 
      })}
     </div>

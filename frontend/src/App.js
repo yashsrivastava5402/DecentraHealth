@@ -10,6 +10,7 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import React from "react";
 import FileUpload from "./components/FileUpload";
 import FileDownload from "./components/FileDownload";
+import PaitentPageDoctor from "./components/PatientPageDoctor";
 function App() {
   return (
     <BrowserRouter>
@@ -22,8 +23,9 @@ function App() {
       <Route path="/PatientLogin" element={<PatientLogin />} />
       <Route path="/Patient/:phone" element={<Patient />} />
       <Route path="/PatientPage/:id" element={<PatientPage />} />
-      <Route path="/FileUpload" element={<FileUpload />} />
+      <Route path="/fileUpload/:aadhar" element={<FileUpload />} />
       <Route path="/FileDownload" element={<FileDownload />} />
+      <Route path="/PatientPageDoctor/:aadhar" element={<PaitentPageDoctor />} />
       <Route path="/" element={<Navigate replace to="/home" />} />    
     </Routes>
   </BrowserRouter>

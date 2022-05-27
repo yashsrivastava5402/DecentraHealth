@@ -1,7 +1,11 @@
 import React from 'react'
 import axios from 'axios';
-import {useState} from 'react'
-function FileUpload() {
+import {useParams} from 'react-router-dom';
+import { useNavigate } from "react-router";
+function FileUpload({aadhar}) {
+
+  // const { aadhar } = useParams();
+  console.log(aadhar);
 
   const formData = new FormData();
     const saveFile = (e) => {
@@ -10,6 +14,7 @@ function FileUpload() {
         for(var i=0;i<e.target.files.length;i++){
           formData.append('file', e.target.files[i]);
           formData.append("fileName",e.target.files[i].name);
+          formData.append("Aadhar", aadhar);
         }
     
         //console.log(formData)
@@ -43,4 +48,4 @@ function FileUpload() {
       )
 }
 
-export default FileUpload
+export default FileUpload;
