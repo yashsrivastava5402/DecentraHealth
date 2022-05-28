@@ -2,6 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useFileDownloader from './utils/Downloader/useFileDownloader';
 import './FileDownload.css'
+import { Table } from 'semantic-ui-react'
 // const files = [
 //     {
 //       name: "Photo 1",
@@ -57,26 +58,38 @@ function FileDownload({aadhar, files}) {
 
       <div className="row">
         <div className="col text-center">
-          <h2>File Downloader with progress bar in react</h2>
+          <h2>These are Your Previous Records</h2>
           <div className="row mt-3">
-            {files.map((file, idx) => (
-              <div className="col" key={idx}>
-                <div className="card ">
-                  <div className="card-body" key={idx}>
-                    <img className="card-img-top mb-3" src={file.thumb} />
-                    <h5 className="card-title">{file.name}</h5>
-
-                    <a
-                      className="btn btn-primary cursor-pointer text-white"
-                      onClick={() => download(file)}
-                    >
-                      Download <FontAwesomeIcon icon="download" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            ))}
+            
+            <Table>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell width={10}>File Name</Table.HeaderCell>
+                <Table.HeaderCell width='six'>Download Link</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+        
+            <Table.Body>
+            {files.map((file) => (
+              <Table.Row>
+                <Table.Cell>{file.name}</Table.Cell>
+                <Table.Cell><a
+                              className="btn btn-primary cursor-pointer text-white"
+                              onClick={() => download(file)}
+                            >
+                           <button class="bg-sky-600 hover:bg-sky-700 ...">
+Download
+</button>
+                            </a></Table.Cell>
+              </Table.Row>
+             ))}
+            </Table.Body>
+        
+         
+          </Table>
+          
           </div>
+          
         </div>
         {downloaderComponentUI}
       </div>
