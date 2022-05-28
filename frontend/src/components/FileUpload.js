@@ -2,21 +2,34 @@ import React from 'react'
 import axios from 'axios';
 import {useParams} from 'react-router-dom';
 import { useNavigate } from "react-router";
-function FileUpload({aadhar}) {
+function FileUpload({aadhar,handleupl}) {
 
   // const { aadhar } = useParams();
   console.log(aadhar);
 
   const formData = new FormData();
+  const arr=[];
     const saveFile = (e) => {
-      
+   
+     
         console.log(e.target.files[0])
         for(var i=0;i<e.target.files.length;i++){
           formData.append('file', e.target.files[i]);
           formData.append("fileName",e.target.files[i].name);
           formData.append("Aadhar", aadhar);
+          // for stateupdate
+          var link = `http://localhost:8000/fileDownload/${aadhar}/${e.target.files[i].name}`;
+
+          const output = {
+              
+             file : link,
+             filename: e.target.files[i].name,
+              name: e.target.files[i].name,
+          }
+          arr.push(output);
+          
         }
-    
+        console.log(arr)
         //console.log(formData)
         
     };
@@ -35,6 +48,7 @@ function FileUpload({aadhar}) {
           formData
         );
         console.log(res);
+        handleupl(arr);
       } catch (ex) {
         console.log(ex);
       }

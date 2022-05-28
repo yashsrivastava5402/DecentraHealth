@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import PatientCard from './PatientCard';
 import Button from "@mui/material/Button";
@@ -35,6 +35,20 @@ function Patient() {
 //     });
    
 // }, []);
+useEffect(() => {
+
+
+    axios.post('http://localhost:8000/getPatients',
+    {Phone:values.Phone}
+    )
+      .then(function (response) {
+        console.log(response);
+        setValues(prevState => ({
+          ...prevState, 
+          patients: response.data
+       }));
+      });
+}, []);
   return (
     <div>Patient{values.Phone}
     <form class="register-form" >

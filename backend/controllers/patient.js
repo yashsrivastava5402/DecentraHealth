@@ -124,7 +124,17 @@ exports.getPatientsHospital = (req, res) => {
         }
     });
 }
-
+exports.getPatients=(req,res)=>{
+    const {Phone}=req.body;
+    Patients.findOne({Phone},(err,patient)=>{
+        if(err)
+        res.status(500).send(err);
+    
+    else{
+        res.status(200).send(patient.patients);
+    }
+    })
+}
 exports.viewFiles = (req, res) => {
     const { aadhar } = req.body;
     const path = __dirname + "/" + aadhar;
@@ -141,21 +151,13 @@ exports.viewFiles = (req, res) => {
             //listing all files using forEach
             console.log("No erroe");
             files.forEach(function (file) {
-                // Do whatever you want to do with the file
-                /* Get all the contents from a file */
-                const content = fs.readFileSync(`${path}/${file}`);
-                // var binary = file.data;
-                console.log(content);
-                // var blob = new Blob([binary]);
-                // var blobUrl = URL.createObjectURL(blob);
-                //console.log("blobUrl", blobUrl);
-                var url = path + "/" + file;
-                url = url.replace("/Users/yashsrivastava/Desktop/DecentraHealth/backend/", "");
+
+                    var link = `http://localhost:8000/fileDownload/${aadhar}/${file}`;
+
                 const output = {
-                    content,
-                    fileName: file,
+                    filename: file,
                     name: file,
-                    url
+                   file : link
                 }
                 arr.push(output);
                 console.log("file", file); 

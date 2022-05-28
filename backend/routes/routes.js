@@ -14,6 +14,7 @@ router.get('/getHospitals', hospitalController.getHospitals);
 router.post('/addPatientHospital', patientController.addPatientHospital);
 router.post('/getPatientsHospital', patientController.getPatientsHospital);
 router.post('/fileUpload', patientController.fileUpload);
+router.post('/getPatients', patientController.getPatients);
 router.post('/viewFiles', patientController.viewFiles);
 router.get('/fileDownload/:aadhar/:fileName', patientController.fileDownload);
 
