@@ -6,7 +6,7 @@ function Home() {
     const navigate = useNavigate();
   return (
       <div className="App" style={{justifyContent:"center"}}>
-           <h1>Welcome to DecentraHealth</h1>
+           <h1 className="bg-black text-3xl">Welcome to DecentraHealth</h1>
            <Button size="large" variant="contained" style={{height:"60px",width:"150px",margin:"70px",alignItems:"center",justifyContent:"center"}} onClick={()=>{
           navigate("/DoctorLogin");
       }}>Doctor</Button>
