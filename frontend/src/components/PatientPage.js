@@ -20,7 +20,7 @@ function PaitentPage(){
             console.log(response.data);
       
                 setFiles((prevState) => {
-                    return [...prevState,...response.data];
+                    return [prevState,...response.data];
                 })
        
         })
