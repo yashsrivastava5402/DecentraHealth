@@ -156,7 +156,7 @@ useEffect(() => {
             values
             )
               .then(function (response) {
-                alert(`doctor added ${doctor.Name}`);
+                alert(`doctor added ${response.data.Name}`);
               // function Admin() {
                 //ßconsole.log(error);
                
@@ -176,7 +176,7 @@ useEffect(() => {
      })} */}
    <div>
     { patients.map((patient)=>{
-        return <PatientCardHospital aadhar={patient.Aadhar} name={patient.Name} regNo = {UPRN}/>
+        return <PatientCardHospital aadhar={patient.Aadhar} name={patient.Name} regNo = {values.hospitalRegnumber} age = {patient.Age} gender = {patient.Gender}/>
      })}
     </div>
     </div>

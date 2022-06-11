@@ -10,6 +10,7 @@ import PatientCardDoctor from './PatientCardDoctor';
 function Doctor(){
     //const { aadhar } = useParams();
     const {state} = useLocation();
+    console.log(state);
     //console.log(state);
     return (
         <div>

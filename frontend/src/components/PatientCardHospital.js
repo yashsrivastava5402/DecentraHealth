@@ -2,13 +2,14 @@ import React, {useState} from 'react'
 import { useNavigate } from "react-router";
 import axios from 'axios';
 
-function PatientCardHospital({aadhar,name, age, gender}) {
+function PatientCardHospital({aadhar,name, regNo, age, gender}) {
 
     const navigate = useNavigate();
     const [submitted, setSubmitted] = useState(false);
     const goToPatient = (e) =>{
         e.preventDefault();
         setSubmitted(true);
+        console.log(regNo);
         axios.post('https://decentrahealth-server.herokuapp.com/getDoctors', {hospitalRegnumber: regNo}).then((response) => {
             console.log(response.data);
             if(response.status===200)

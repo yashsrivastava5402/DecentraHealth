@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import HospitalCard from './HospitalCard';
 import FileUpload from './FileUpload';
 import FileDownload from './FileDownload';
-import Hospital from '../../../backend/models/hospital';
+// import Hospital from '../../../backend/models/hospital';
 import DoctorCard from './DoctorCard';
 
 
