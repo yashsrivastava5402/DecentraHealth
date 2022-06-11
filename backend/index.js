@@ -28,6 +28,9 @@ mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopolo
 const port = 8000;
 
 // app.use()
+app.get('/', (req, res) => {
+    res.send("Hello from express");
+})
 
 server.listen(process.env.PORT || port, () => {
     console.log(process.env.MONGO_URL);
