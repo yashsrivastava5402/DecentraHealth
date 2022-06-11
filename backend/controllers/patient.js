@@ -152,7 +152,7 @@ exports.viewFiles = (req, res) => {
             console.log("No erroe");
             files.forEach(function (file) {
 
-                    var link = `http://localhost:8000/fileDownload/${aadhar}/${file}`;
+                    var link = `https://decentrahealth-server.heroku.com/fileDownload/${aadhar}/${file}`;
 
                 const output = {
                     filename: file,
