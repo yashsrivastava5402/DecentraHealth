@@ -11,6 +11,8 @@ import React from "react";
 import FileUpload from "./components/FileUpload";
 import FileDownload from "./components/FileDownload";
 import PaitentPageDoctor from "./components/PatientPageDoctor";
+import PaitentPageHospital from "./components/PatientPageHospital";
+import Doctor from "./components/Doctor";
 function App() {
   return (
     <BrowserRouter>
@@ -26,6 +28,8 @@ function App() {
       <Route path="/fileUpload/:aadhar" element={<FileUpload />} />
       <Route path="/FileDownload" element={<FileDownload />} />
       <Route path="/PatientPageDoctor/:aadhar" element={<PaitentPageDoctor />} />
+      <Route path="/PatientPageHospital/:aadhar" element={<PaitentPageHospital />} />
+      <Route path="/Doctor" element={<Doctor />} />
       <Route path="/" element={<Navigate replace to="/home" />} />    
     </Routes>
   </BrowserRouter>

@@ -5,7 +5,7 @@ import DoctorCard from './DoctorCard';
 import PatientCard from './PatientCard';
 import { generate } from './utils/passgen';
 import Button from "@mui/material/Button";
-import PatientCardDoctor from './PatientCardDoctor';
+import PatientCardHospital from './PatientCardHospital';
 
 const addDoctor = function(values) {
   // await axios.post('/addDoctor', values)
@@ -156,7 +156,7 @@ useEffect(() => {
             values
             )
               .then(function (response) {
-                console.log(response);
+                alert(`doctor added ${doctor.Name}`);
               // function Admin() {
                 //ßconsole.log(error);
                
@@ -171,12 +171,12 @@ useEffect(() => {
               });
       }}>Add Doctor</Button>
             </form>
-    { doctors.map((doctor)=>{
+    {/* { doctors.map((doctor)=>{
         return <DoctorCard id={doctor.doctorId} name={doctor.Name}/>
-     })}
+     })} */}
    <div>
     { patients.map((patient)=>{
-        return <PatientCardDoctor aadhar={patient.Aadhar} name={patient.Name} age={patient.Age} gender={patient.Gender}/>
+        return <PatientCardHospital aadhar={patient.Aadhar} name={patient.Name} regNo = {UPRN}/>
      })}
     </div>
     </div>

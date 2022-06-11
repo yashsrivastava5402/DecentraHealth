@@ -17,5 +17,6 @@ router.post('/fileUpload', patientController.fileUpload);
 router.post('/getPatients', patientController.getPatients);
 router.post('/viewFiles', patientController.viewFiles);
 router.get('/fileDownload/:aadhar/:fileName', patientController.fileDownload);
+router.post('/addPatientDoctor', doctorController.addPatientDoctor);
 
 module.exports=router;

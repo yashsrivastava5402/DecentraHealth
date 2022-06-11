@@ -68,3 +68,21 @@ exports.addDoctor = (req, res) => {
         console.log(err);
     }
 }
+
+exports.addPatientDoctor = (req, res) => {
+    const { doctorId, Name, Aadhar, Age, Gender} = req.body;
+    const newPatient = {
+        Name,
+        Aadhar,
+        Age,
+        Gender
+    }
+    Doctor.findOneAndUpdate({doctorId: doctorId}, {$push: {patients: newPatient}}, (err, output) => {
+        if (err) {
+            res.status(500).send(err);
+        }
+        else{
+            res.status(200).send(output);
+        }
+    });
+}

@@ -9,15 +9,22 @@ function DoctorLogin() {
         doctorPass: "",
     });
     const [submitted, setSubmitted] = useState(false);
-    const handlesubmit = () => {
-
+    const handlesubmit = (e) => {
+        e.preventDefault();
         setSubmitted(true);
+        axios.get()
     };
     const handleChange = (e) => {
         const { name, value } = e.target;
         setValues({
             ...values,
             [name]: value,
+        });
+        axios.post("https://decentrahealth-server.heroku.com/findDoctor", {email: doctorId, password: doctorPass})
+        .then((response) => {
+            if(response.status === 200){
+                navigate(`/Doctor`, {state: {patients: response.patients}});
+            }
         });
     };
   return (

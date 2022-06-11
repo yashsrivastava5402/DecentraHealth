@@ -30,9 +30,8 @@ function PaitentPageDoctor(){
    
     return (
         <div>
-            <div>console.log({aadhar});
-
-                Aadhar is
+            <div>
+                Aadhar is {aadhar}
                  <FileUpload aadhar={aadhar} handleupl={handleup}/> 
             </div>
             <div>
