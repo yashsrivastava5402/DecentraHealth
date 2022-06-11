@@ -1,4 +1,5 @@
 const express = require('express');
+const dotenv = require('dotenv').config()
 const mongoose = require('mongoose');
 const http = require('http');
 const cors = require('cors');
@@ -22,13 +23,14 @@ app.use(express.static("files"));
 
 app.disable('etag');
 
-mongoose.connect("mongodb://localhost:27017/DecentraHealth", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const port = 8000;
 
 // app.use()
 
-server.listen(port, () => {
+server.listen(process.env.PORT || port, () => {
+    console.log(process.env.MONGO_URL);
     console.log(`Server is running on port ${port}!`);
 });
 

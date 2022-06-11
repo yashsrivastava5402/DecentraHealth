@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Backend for the DecentrHealth app.",
   "main": "index.js",
+  "engines": {
+    "node": "14.x",
+    "npm": "6.14.11"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,6 +23,7 @@
   "dependencies": {
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.17.3",
     "express-fileupload": "^1.3.1",
     "mongoose": "^6.2.10",
