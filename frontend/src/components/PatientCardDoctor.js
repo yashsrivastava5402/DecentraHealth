@@ -9,7 +9,7 @@ function PatientCardDoctor({aadhar,name,age,gender}) {
     const goToPatient = (e) =>{
         e.preventDefault();
         setSubmitted(true);
-        axios.post('http://localhost:8000/viewFiles', {aadhar: aadhar}).then((response) => {
+        axios.post('https://decentrahealth-server.herokuapp.com/viewFiles', {aadhar: aadhar}).then((response) => {
             console.log(response.data);
             if(response.status===200)
                 navigate(`/PatientPageDoctor/${aadhar}`, {state: {values: response.data}});

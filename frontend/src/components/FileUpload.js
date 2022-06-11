@@ -18,7 +18,7 @@ function FileUpload({aadhar,handleupl}) {
           formData.append("fileName",e.target.files[i].name);
           formData.append("Aadhar", aadhar);
           // for stateupdate
-          var link = `http://localhost:8000/fileDownload/${aadhar}/${e.target.files[i].name}`;
+          var link = `https://decentrahealth-server.herokuapp.com/fileDownload/${aadhar}/${e.target.files[i].name}`;
 
           const output = {
               
@@ -43,7 +43,7 @@ function FileUpload({aadhar,handleupl}) {
       }
       try {
         const res = await axios.post(
-          "http://localhost:8000/fileUpload",
+          "https://decentrahealth-server.herokuapp.com/fileUpload",
           // options,
           formData
         );

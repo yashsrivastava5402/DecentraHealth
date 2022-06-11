@@ -17,7 +17,7 @@ function HospitalCard({id,name,state}) {
             Gender: state.values.Gender,
             HospitalID: id
         }
-        axios.post('http://localhost:8000/addPatientHospital', values)
+        axios.post('https://decentrahealth-server.herokuapp.com/addPatientHospital', values)
         .then(function (response){
             console.log(response);
             if(response.status === 200){

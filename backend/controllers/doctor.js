@@ -4,7 +4,7 @@ const Hospital = require('../models/hospital');
 exports.findDoctor = (req, res) => {
     try {
         const { email, password } = req.body;
-        Doctor.findOne({doctorId: email}, async (err, doctor) => {
+        Doctor.findOne({doctorId: email}, (err, doctor) => {
             if (err) {
                 res.status(400).send(err);
             }
@@ -49,7 +49,7 @@ exports.addDoctor = (req, res) => {
                         console.log(err);
                     }
                     else{
-                        Hospital.findOneAndUpdate({regNo: hospitalRegnumber}, {$push: {doctors: newDoctor}}, async (err, hospital) => {
+                        Hospital.findOneAndUpdate({regNo: hospitalRegnumber}, {$push: {doctors: newDoctor}}, (err, hospital) => {
                             if (err) {
                                 res.status(500).send(err);
                             }

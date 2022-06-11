@@ -21,7 +21,7 @@ function PaitentPageDoctor(){
     }
     console.log(state2)
 //    useEffect(() => {
-//     axios.post('http://localhost:8000/viewFiles', {aadhar: aadhar}).then((response) => {
+//     axios.post('https://decentrahealth-server.herokuapp.com/viewFiles', {aadhar: aadhar}).then((response) => {
 //         console.log(response.data);
 //         if(response.status===200)
 //          handleup();

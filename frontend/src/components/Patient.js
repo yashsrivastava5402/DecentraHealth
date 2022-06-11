@@ -26,7 +26,7 @@ function Patient() {
 };
 // useEffect(() => {
 
-//   axios.post('http://localhost:8000/geDoctors',
+//   axios.post('https://decentrahealth-server.herokuapp.com/geDoctors',
 //   state.values
 //   )
 //     .then(function (response) {
@@ -38,7 +38,7 @@ function Patient() {
 useEffect(() => {
 
 
-    axios.post('http://localhost:8000/getPatients',
+    axios.post('https://decentrahealth-server.herokuapp.com/getPatients',
     {Phone:values.Phone}
     )
       .then(function (response) {
@@ -99,7 +99,7 @@ useEffect(() => {
         <Button size="large" variant="contained" style={{height:"60px",width:"150px",margin:"70px",alignItems:"center",justifyContent:"center"}} onClick={(e)=>{
           e.preventDefault();
           setSubmitted(true);
-            axios.post('http://localhost:8000/addPatients',
+            axios.post('https://decentrahealth-server.herokuapp.com/addPatients',
             values
             )
               .then(function (response) {

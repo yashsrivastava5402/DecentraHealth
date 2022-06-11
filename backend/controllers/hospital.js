@@ -2,7 +2,7 @@ const Hospital = require('../models/hospital');
 
 exports.getHospitals = (req, res) => {
     try {
-        Hospital.find({}, async (err, hospital) => {
+        Hospital.find({}, (err, hospital) => {
             if (err) {
                 res.status(205).send(err);
             }
@@ -19,7 +19,7 @@ exports.getHospitals = (req, res) => {
 exports.getDoctors = (req, res) => {
     try {
         const { hospitalRegnumber } = req.body;
-        Hospital.findOne({regNo: hospitalRegnumber}, async (err, hospital) => {
+        Hospital.findOne({regNo: hospitalRegnumber}, (err, hospital) => {
             if (err) {
                 res.status(205).send(err);
             }
@@ -35,7 +35,7 @@ exports.getDoctors = (req, res) => {
 exports.findHospital = (req, res) => {
     try {
         const { hospitalRegnumber, password } = req.body;
-        Hospital.findOne({regNo: hospitalRegnumber}, async (err, hospital) => {
+        Hospital.findOne({regNo: hospitalRegnumber}, (err, hospital) => {
             if (err) {
                 res.status(205).send(err);
             }
@@ -59,7 +59,7 @@ exports.addHospital = (req, res) => {
     try {
         console.log(req.body);
         const { hospitalName, hospitalRegnumber, type, password } = req.body.values;
-        Hospital.findOne({ regNo: hospitalRegnumber }, async (err, hospital) => {
+        Hospital.findOne({ regNo: hospitalRegnumber }, (err, hospital) => {
             console.log(hospitalName);
             if (err) {
                 res.status(205).send(err);
@@ -81,7 +81,7 @@ exports.addHospital = (req, res) => {
                 //         console.error('ERROR!');
                 //     }
                 // });
-                Hospital.insertMany(newHospital, async(err) => {
+                Hospital.insertMany(newHospital, (err) => {
                     if (err) {
                         console.log(err);
                     } else {
