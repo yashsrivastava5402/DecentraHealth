@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
-
 class PatientLoggedInScreen extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text('Hi'),
+      ),
+    );
   }
 }
 //

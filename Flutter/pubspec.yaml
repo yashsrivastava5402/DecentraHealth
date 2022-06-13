@@ -11,6 +11,11 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   http: ^0.13.4
+  firebase_core: ^1.17.1
+  firebase_auth: ^3.3.19
+  google_fonts: ^3.0.1
+ # firebase_phone_auth_handler: ^1.0.4
+  sms_autofill: ^2.2.0
 
 dev_dependencies:
   flutter_test:

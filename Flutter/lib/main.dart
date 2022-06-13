@@ -1,9 +1,13 @@
+import 'package:decentrahealth/Screens/phone_number_screen.dart';
+
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-import 'Screens/WelcomeScreen.dart';
-
-void main() {
-  runApp( MaterialApp(
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: MyApp(),
   ));
 }
@@ -11,7 +15,6 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return WelcomeScreen();
+    return const LogInScreen();
   }
 }
-
