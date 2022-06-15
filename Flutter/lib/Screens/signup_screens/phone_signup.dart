@@ -1,25 +1,16 @@
-// ignore_for_file: prefer_const_constructors
-
-// import 'package:faym/network_service/auth_service/phone_auth_state.dart';
-// import 'package:faym/view_model/authentication_state.dart';
-// import 'package:faym/view_model/homeview_model.dart';
-import 'package:decentrahealth/Screens/verify_phoneNo_screen.dart';
+import 'package:decentrahealth/Screens/signup_screens/otp_signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../theme/colors.dart';
 
-import '../theme/colors.dart';
-// import 'package:loading_overlay/loading_overlay.dart';
-// import 'package:provider/provider.dart';
-
-// import '../../theme/app_theme.dart';
-class LogInScreen extends StatefulWidget {
-  const LogInScreen({Key? key}) : super(key: key);
+class PhoneSignup extends StatefulWidget {
+  const PhoneSignup({Key? key}) : super(key: key);
 
   @override
-  State<LogInScreen> createState() => _LogInScreenState();
+  State<PhoneSignup> createState() => _PhoneSignupState();
 }
 
-class _LogInScreenState extends State<LogInScreen> {
+class _PhoneSignupState extends State<PhoneSignup> {
   final phoneTextController = TextEditingController();
   @override
   void initState() {
@@ -57,7 +48,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         height: 1.2,
                         letterSpacing: 3,
                         fontSize: 28.0),
-                    text: "FAYM!"),
+                    text: "Decentra Health"),
                 TextSpan(
                     style: TextStyle(
                         color: Color(0xff413945),
@@ -105,8 +96,7 @@ class _LogInScreenState extends State<LogInScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        PhoneVerificationScreen(
+                                    builder: (context) => OTPSignup(
                                           phoneNo:
                                               '+91 ' + phoneTextController.text,
                                         )));

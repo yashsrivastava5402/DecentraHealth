@@ -8,14 +8,14 @@ class AppTheme {
   BuildContext context;
 
   final themeData = ThemeData(
-    scaffoldBackgroundColor: appBarBackground,
+    scaffoldBackgroundColor: backgroundColor,
     appBarTheme: const AppBarTheme(
-        iconTheme: IconThemeData(color: textPrimary),
+        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
         elevation: 0,
         titleTextStyle: TextStyle(
-            color: textPrimary, fontSize: 16, fontWeight: FontWeight.w600),
-        backgroundColor: appBarBackground),
+            color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
+        backgroundColor: backgroundColor),
     primaryColor: primaryColor,
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
@@ -33,7 +33,7 @@ class AppTheme {
       style: ElevatedButton.styleFrom(
           primary: primaryColor,
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           textStyle: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,

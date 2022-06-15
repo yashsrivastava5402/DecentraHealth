@@ -1,66 +1,40 @@
+import 'package:decentrahealth/Screens/patient_screens/patient_main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
-import '../theme/colors.dart';
+import '../../theme/colors.dart';
 // import 'package:sms_autofill/sms_autofill.dart';
 
 // import '../../get_it_dependecy/locator.dart';
 // import '../../view_model/authentication_state.dart';
 
-class PhoneVerificationScreen extends StatefulWidget {
-  PhoneVerificationScreen({Key? key, required this.phoneNo}) : super(key: key);
+class OTPSignup extends StatefulWidget {
+  OTPSignup({Key? key, required this.phoneNo}) : super(key: key);
   String phoneNo = '1';
   @override
-  State<PhoneVerificationScreen> createState() =>
-      _PhoneVerificationScreenState();
+  State<OTPSignup> createState() => _OTPSignupState();
 }
 
-class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
+class _OTPSignupState extends State<OTPSignup> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   String? smsCode;
   String? _verificationId;
+  TextEditingController otpController = TextEditingController();
+  AuthCredential? credential;
 
   @override
   void initState() {
-    // listenForSms();
+    listenForSms();
     super.initState();
     verifyPhoneNumber();
   }
 
-  // listenForSms() async {
-  //   await SmsAutoFill().listenForCode();
-  // }
+  listenForSms() async {
+    await SmsAutoFill().listenForCode();
+  }
 
   void verifyPhoneNumber() async {
-//     // ignore: prefer_function_declarations_over_variables
-//     PhoneVerificationCompleted verificationCompleted =
-//         (PhoneAuthCredential phoneAuthCredential) async {
-//       await _auth.signInWithCredential(phoneAuthCredential);
-//       showSnackbar(
-//           "Phone number automatically verified and user signed in: ${_auth.currentUser!.uid}");
-//     };
-
-// // ignore: prefer_function_declarations_over_variables
-//     PhoneVerificationFailed verificationFailed =
-//         (FirebaseAuthException authException) {
-//       showSnackbar(
-//           'Phone number verification failed. Code: ${authException.code}. Message: ${authException.message}');
-//     };
-
-//    // ignore: prefer_function_declarations_over_variables
-//     Future<void> Function(String verificationId, [int forceResendingToken])
-//         codeSent = (String verificationId, [int forceResendingToken]) async {
-//       showSnackbar('Please check your phone for the verification code.');
-//       _verificationId = verificationId;
-//     };
-
-    // ignore: prefer_function_declarations_over_variables
-    PhoneCodeAutoRetrievalTimeout codeAutoRetrievalTimeout =
-        (String verificationId) {
-      showSnackbar("verification code: " + verificationId);
-      _verificationId = verificationId;
-    };
     try {
       await _auth.verifyPhoneNumber(
           phoneNumber: widget.phoneNo,
@@ -79,9 +53,31 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
             showSnackbar('Please check your phone for the verification code.');
             _verificationId = verificationId;
           },
-          codeAutoRetrievalTimeout: codeAutoRetrievalTimeout);
+          codeAutoRetrievalTimeout: (String verificationId) {
+            showSnackbar("verification code: " + verificationId);
+            _verificationId = verificationId;
+          });
     } catch (e) {
       showSnackbar("Failed to Verify Phone Number: $e");
+    }
+  }
+
+  Future<void> signInWithPhoneNumber() async {
+    try {
+      credential = PhoneAuthProvider.credential(
+        verificationId: _verificationId!,
+        smsCode: otpController.text,
+      );
+
+      final User? user = (await _auth.signInWithCredential(credential!)).user;
+
+      showSnackbar("Successfully signed in UID: ${user!.uid}");
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const PatientMainScreen()),
+          (route) => false);
+    } catch (e) {
+      showSnackbar("Failed to sign in: " + e.toString());
     }
   }
 
@@ -126,6 +122,7 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
                 height: 20,
               ),
               PinFieldAutoFill(
+                  controller: otpController,
                   onCodeChanged: (val) {
                     // if (val != null) authService.smsCode = val;
                     smsCode = val;
@@ -177,6 +174,11 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
               ),
               ElevatedButton(
                   onPressed: () async {
+                    if (otpController.text.length == 6) {
+                      await signInWithPhoneNumber();
+                    } else {
+                      showSnackbar('OTP Invalid!');
+                    }
                     // authService.verifyViaOTp();
                     // await controller.verifyOTP(otp: smsCode!);
                     // context.pushNamed(RoutesName.chooseDomainScreen);
