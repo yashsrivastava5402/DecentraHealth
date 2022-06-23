@@ -126,6 +126,8 @@ exports.getPatientsHospital = (req, res) => {
 }
 exports.getPatients=(req,res)=>{
     const {Phone}=req.body;
+    console.log(req);
+    console.log(req.body);
     Patients.findOne({Phone},(err,patient)=>{
         if(err)
         res.status(500).send(err);
