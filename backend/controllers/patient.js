@@ -130,11 +130,14 @@ exports.getPatients=(req,res)=>{
     console.log(req.body);
     Patients.findOne({Phone},(err,patient)=>{
         if(err)
-        res.status(500).send(err);
+            res.status(500).send(err);
     
-    else{
-        res.status(200).send(patient.patients);
-    }
+        else{
+            if(patient)
+                res.status(200).send(patient.patients);
+            else
+                res.status(200).send("Patient not added!");
+        }
     })
 }
 exports.viewFiles = (req, res) => {
