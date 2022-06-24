@@ -136,7 +136,7 @@ exports.getPatients=(req,res)=>{
             if(patient)
                 res.status(200).send(patient.patients);
             else
-                res.status(200).send("Patient not added!");
+                res.status(200).send([]);
         }
     })
 }
