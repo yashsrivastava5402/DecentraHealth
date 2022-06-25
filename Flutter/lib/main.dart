@@ -1,5 +1,4 @@
 import 'package:decentrahealth/Screens/splash_screen.dart';
-import 'package:decentrahealth/Screens/welcome_screen.dart';
 import 'package:decentrahealth/models/home_view_model.dart';
 import 'package:decentrahealth/theme/app_theme.dart';
 import 'package:decentrahealth/utils/shared_pref.dart';

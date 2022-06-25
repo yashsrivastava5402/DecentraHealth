@@ -14,46 +14,67 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      bottomSheet: Container(
+        color: backgroundColor,
         child: Padding(
           padding: const EdgeInsets.all(15.0),
-          child: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                SvgPicture.asset(
-                  'asset/icons/doctor_patient.svg',
-                  width: 500,
-                ),
-                WelcomeHeadingText(),
-                const SizedBox(
-                  height: 50.0,
-                ),
-                ElevatedButton(
-                    onPressed: () {
-                      Isuser = Users.patient;
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const PhoneSignup()),
-                      );
-                    },
-                    child: const Text('Patient')),
-                const SizedBox(height: 30),
-                ElevatedButton(
-                    onPressed: () {
-                      Isuser = Users.doctor;
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
-                      );
-                    },
-                    child: const Text('Doctor')),
-                const Spacer(),
-              ],
-            ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              ElevatedButton(
+                  onPressed: () {
+                    Isuser = Users.patient;
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const PhoneSignup()),
+                    );
+                  },
+                  child: const Text('Patient')),
+              const SizedBox(height: 30),
+              ElevatedButton(
+                  onPressed: () {
+                    Isuser = Users.doctor;
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                    );
+                  },
+                  child: const Text('Doctor')),
+            ],
           ),
         ),
+      ),
+      body: SafeArea(
+        child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: CustomScrollView(
+              slivers: [
+                SliverFillRemaining(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 50),
+                        child: SvgPicture.asset(
+                          'asset/icons/doctor_patient.svg',
+                          width: 300,
+                        ),
+                      ),
+                      const Spacer(),
+                      WelcomeHeadingText(), const Spacer(),
+                      // const SizedBox(
+                      //   height: 50.0,
+                      // ),
+
+                      const Spacer(),
+                    ],
+                  ),
+                )
+              ],
+            )),
       ),
     );
   }

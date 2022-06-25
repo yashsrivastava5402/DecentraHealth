@@ -21,6 +21,13 @@ class _PhoneSignupState extends State<PhoneSignup> {
     // Future.microtask(() => context.read<HomeViewModel>().getCategories());
   }
 
+  void showSnackbar(String message) {
+    var snackBar = SnackBar(
+      content: Text(message),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -58,7 +65,7 @@ class _PhoneSignupState extends State<PhoneSignup> {
                         fontWeight: FontWeight.w600,
                         fontStyle: FontStyle.normal,
                         fontSize: 28.0),
-                    text: "!!!")
+                    text: "!")
               ])),
               const Spacer(
                 flex: 1,
@@ -97,6 +104,11 @@ class _PhoneSignupState extends State<PhoneSignup> {
                       ),
                       ElevatedButton(
                           onPressed: () async {
+                            if (phoneTextController.text.length != 10) {
+                              showSnackbar('Phone Number Invalid!');
+                              FocusManager.instance.primaryFocus?.unfocus();
+                              return;
+                            }
                             await SharedPrefs.setPhoneNo(
                                 '+91' + phoneTextController.text);
                             Navigator.push(

@@ -1,8 +1,11 @@
 import 'package:decentrahealth/Screens/patient_screens/add_patient_screen.dart';
+import 'package:decentrahealth/Screens/patient_screens/patient_details.dart';
+import 'package:decentrahealth/Screens/splash_screen.dart';
 import 'package:decentrahealth/models/home_view_model.dart';
 import 'package:decentrahealth/theme/app_theme.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../models/patient_class.dart';
 import '../../utils/shared_pref.dart';
@@ -15,18 +18,18 @@ class PatientMainScreen extends StatefulWidget {
 }
 
 class _PatientMainScreenState extends State<PatientMainScreen> {
-  String? _phoneNum;
   @override
   void initState() {
     super.initState();
     _phoneNum = SharedPrefs.getPhoneNum() ?? '';
     dataFuture = getPatients();
+    // Provider.of<HomeViewModel>(context).updatePhoneNo('$_phoneNum');
   }
 
+  String? _phoneNum;
   late List<Patient> patientList;
   late Future<List<Patient>> dataFuture;
   Future<List<Patient>> getPatients() async {
-    print('shared pref' + _phoneNum!);
     var res = await Dio().post(
         'https://decentrahealth-server.herokuapp.com/getPatients',
         data: {'Phone': ':' + _phoneNum!});
@@ -37,9 +40,6 @@ class _PatientMainScreenState extends State<PatientMainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    setState(() {
-      dataFuture = getPatients();
-    });
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: primaryColor,
@@ -79,6 +79,16 @@ class _PatientMainScreenState extends State<PatientMainScreen> {
                             itemCount: snapshot.data!.length,
                             itemBuilder: (context, index) {
                               return PatientTile(
+                                ontap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: ((context) =>
+                                              PatientDetailsScreen(
+                                                patientIndex: index,
+                                                patientList: patientList,
+                                              ))));
+                                },
                                 index: index,
                                 name: snapshot.data![index].name!,
                               );
@@ -114,7 +124,19 @@ class _PatientMainScreenState extends State<PatientMainScreen> {
             },
             icon: const Icon(Icons.replay_outlined),
             color: primaryColor,
-          )
+          ),
+          IconButton(
+              onPressed: () async {
+                await SharedPrefs.clearAllData();
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                        builder: (context) => const SplashScreen()),
+                    (route) => false);
+              },
+              icon: const Icon(
+                Icons.logout,
+                color: primaryColor,
+              ))
         ],
       ),
     );
@@ -124,7 +146,9 @@ class _PatientMainScreenState extends State<PatientMainScreen> {
 class PatientTile extends StatelessWidget {
   int index;
   String name;
+  VoidCallback ontap;
   PatientTile({
+    required this.ontap,
     required this.index,
     required this.name,
     Key? key,
@@ -133,9 +157,9 @@ class PatientTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
       child: GestureDetector(
-        onTap: () {},
+        onTap: ontap,
         child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             alignment: Alignment.centerLeft,
@@ -147,20 +171,24 @@ class PatientTile extends StatelessWidget {
                   name,
                   style: const TextStyle(
                     color: primaryColor,
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w600,
                     fontStyle: FontStyle.normal,
                     height: 1.2,
+                    fontSize: 17,
                     //  letterSpacing: 3,
                     //  fontSize: 28.0),
                   ),
                 ),
-                const Icon(Icons.arrow_right_alt_rounded)
+                SvgPicture.asset(
+                  'asset/icons/right_arrow.svg',
+                  color: primaryColor,
+                )
               ],
             ),
             width: double.infinity,
-            decoration: BoxDecoration(
-                color: secondaryColor,
-                borderRadius: BorderRadius.circular(15))),
+            decoration: BoxDecoration(boxShadow: const [
+              BoxShadow(color: secondaryColor, blurRadius: 5, spreadRadius: 1)
+            ], color: secondaryColor, borderRadius: BorderRadius.circular(15))),
       ),
     );
   }

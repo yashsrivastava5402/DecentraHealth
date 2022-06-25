@@ -150,6 +150,9 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
 
   addPatient() async {
     String gender = groupValue == 1 ? "Male" : "Female";
+    if (!_formkey.currentState!.validate()) {
+      return;
+    }
     _formkey.currentState!.save();
     AddPatient addPatient = AddPatient(
         name: _name,
@@ -160,7 +163,6 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
     var res = await Dio().post(
         'https://decentrahealth-server.herokuapp.com/addPatients',
         data: addPatient.toJson());
-    print(res.data);
   }
 
   @override
@@ -248,7 +250,7 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
           ),
         ),
         bottomSheet: Container(
-          color: Colors.transparent,
+          color: backgroundColor,
           padding: const EdgeInsets.only(bottom: 20, left: 25, right: 25),
           width: double.infinity,
           child: ElevatedButton(

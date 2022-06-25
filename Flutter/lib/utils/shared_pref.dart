@@ -12,4 +12,6 @@ class SharedPrefs {
       await _preferances!.setString(_phoneNumKey, phonenum);
 
   static String? getPhoneNum() => _preferances!.getString(_phoneNumKey);
+
+  static Future clearAllData() => _preferances!.clear();
 }

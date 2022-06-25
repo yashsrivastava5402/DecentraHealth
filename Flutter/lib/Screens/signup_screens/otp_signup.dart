@@ -1,4 +1,5 @@
 import 'package:decentrahealth/Screens/patient_screens/patient_main_screen.dart';
+import 'package:decentrahealth/utils/shared_pref.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sms_autofill/sms_autofill.dart';
@@ -22,9 +23,11 @@ class _OTPSignupState extends State<OTPSignup> {
   String? _verificationId;
   TextEditingController otpController = TextEditingController();
   AuthCredential? credential;
+  late String? phoneno;
 
   @override
   void initState() {
+    phoneno = SharedPrefs.getPhoneNum() ?? '';
     listenForSms();
     super.initState();
     verifyPhoneNumber();
@@ -118,21 +121,22 @@ class _OTPSignupState extends State<OTPSignup> {
                       fontStyle: FontStyle.normal,
                       fontSize: 16.0),
                   textAlign: TextAlign.left),
+              Text(phoneno ?? '',
+                  style: const TextStyle(
+                      color: brownishGrey,
+                      fontWeight: FontWeight.w400,
+                      height: 1.5,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 16.0),
+                  textAlign: TextAlign.left),
               const SizedBox(
                 height: 20,
               ),
               PinFieldAutoFill(
                   controller: otpController,
-                  onCodeChanged: (val) {
-                    // if (val != null) authService.smsCode = val;
+                  onCodeChanged: (val) async {
                     smsCode = val;
                   },
-                  // onCodeSubmitted: (val) {
-                  //   // authService.smsCode = val;
-                  //   // authService.verifyViaOTp();
-                  //   smsCode = val;
-
-                  // },
                   codeLength: 6,
                   cursor: Cursor(
                       width: 2,
@@ -174,14 +178,12 @@ class _OTPSignupState extends State<OTPSignup> {
               ),
               ElevatedButton(
                   onPressed: () async {
+                    FocusManager.instance.primaryFocus?.unfocus();
                     if (otpController.text.length == 6) {
                       await signInWithPhoneNumber();
                     } else {
                       showSnackbar('OTP Invalid!');
                     }
-                    // authService.verifyViaOTp();
-                    // await controller.verifyOTP(otp: smsCode!);
-                    // context.pushNamed(RoutesName.chooseDomainScreen);
                   },
                   child: const Text('Verify OTP')),
             ],
