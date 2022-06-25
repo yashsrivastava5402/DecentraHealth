@@ -1,7 +1,10 @@
 import 'package:decentrahealth/Screens/signup_screens/otp_signup.dart';
+import 'package:decentrahealth/models/home_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import '../../theme/colors.dart';
+import '../../utils/shared_pref.dart';
 
 class PhoneSignup extends StatefulWidget {
   const PhoneSignup({Key? key}) : super(key: key);
@@ -67,6 +70,9 @@ class _PhoneSignupState extends State<PhoneSignup> {
                     children: [
                       Flexible(
                         child: TextField(
+                          onChanged: (val) {
+                            HomeViewModel().updatePhoneNo(':+91$val');
+                          },
                           maxLength: 10,
                           maxLengthEnforcement: MaxLengthEnforcement.enforced,
                           keyboardType: TextInputType.phone,
@@ -78,21 +84,21 @@ class _PhoneSignupState extends State<PhoneSignup> {
                               labelText: 'Enter Mobile no'),
                         ),
                       ),
-                      const Text(
-                        'OTP will be sent to this number',
-                        style: TextStyle(
-                            color: blueyGrey, fontSize: 12, height: 2.2),
-                      ),
+                      Consumer<HomeViewModel>(
+                          builder: (context, hvmodel, child) {
+                        return const Text(
+                          'OTP will be sent to this number',
+                          style: TextStyle(
+                              color: blueyGrey, fontSize: 12, height: 2.2),
+                        );
+                      }),
                       const SizedBox(
                         height: 16,
                       ),
                       ElevatedButton(
                           onPressed: () async {
-                            print(phoneTextController.text);
-                            // context.read<AuthenticationState>().verifyPhone(
-                            //     '+91' + phoneTextController.text);
-
-                            // context.pushNamed(RoutesName.phoneVerificationScreen);
+                            await SharedPrefs.setPhoneNo(
+                                '+91' + phoneTextController.text);
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
