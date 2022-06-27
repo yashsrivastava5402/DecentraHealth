@@ -11,6 +11,7 @@ import React from "react";
 import FileUpload from "./components/FileUpload";
 import FileDownload from "./components/FileDownload";
 import PaitentPageDoctor from "./components/PatientPageDoctor";
+<<<<<<< Updated upstream
 import PaitentPageHospital from "./components/PatientPageHospital";
 import Doctor from "./components/Doctor";
 function App() {
@@ -19,6 +20,13 @@ function App() {
 
      
     <BrowserRouter>
+=======
+import Appbar from "./components/appbar";
+function App() {
+  return (
+    <div>
+    <Appbar/>
+>>>>>>> Stashed changes
     <Routes>
       <Route path="/home" element={<Home />} /> 
       <Route path="/DoctorLogin" element={<DoctorLogin />} /> 
@@ -35,9 +43,13 @@ function App() {
       <Route path="/Doctor" element={<Doctor />} />
       <Route path="/" element={<Navigate replace to="/home" />} />    
     </Routes>
+<<<<<<< Updated upstream
   </BrowserRouter>
   </div>
 
+=======
+  </div>
+>>>>>>> Stashed changes
   );
 }
 
