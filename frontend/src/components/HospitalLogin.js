@@ -3,6 +3,9 @@ import React from 'react';
 import axios from 'axios'
 
 import { useNavigate } from "react-router";
+import { Grid,Paper, Avatar, Button, TextField } from '@material-ui/core'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Dialog from '@material-ui/core/Dialog';
 function HospitalLogin() {
     const navigate = useNavigate();
     const [values, setValues] = useState({
@@ -10,6 +13,8 @@ function HospitalLogin() {
         password:"",
         patients: []
     });
+    const paperStyle={padding :20,height:'73vh',width:348, margin:"0 auto"}
+    const avatarStyle={backgroundColor:'#1bbd7e'}
     const [submitted, setSubmitted] = useState(false);
     const handlesubmit = (e) => {
         e.preventDefault();
@@ -58,37 +63,64 @@ function HospitalLogin() {
         });
     };
   return (
+    <Dialog
+            open
+            
+            maxWidth='sm'
+            
+            
+          > 
+          <Paper style={paperStyle}>
+<Grid align='center'>
+                     <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
+                     <br/>
+        <br/>
     <div class="form-container">
     <form class="register-form" >
    
 
-        <input
+        <TextField
             onChange={handleChange}
             value={values.hospitalRegnumber}
             id="hospitalRegnumber"
             class="form-field"
             type="text"
-            placeholder="hospitalRegnumber"
+            placeholder="Hospital Reg Number"
             name="hospitalRegnumber"
+             margin="normal"
+            fullWidth
         />
+        <br/>
+        <br/>
         {submitted && !values.hospitalRegnumber ? <span id="hospitalRegnumber-error">Please enter hospital registration number</span> : null}
    
-        <input
+        <TextField
             onChange={handleChange}
             value={values.password}
             id="password"
             class="form-field"
             type="text"
-            placeholder="Confirm password"
+            placeholder="Password"
             name="password"
+             margin="normal"
+            fullWidth
         />
         {submitted && !values.password ? <span id="password-error">Please enter password</span> : null}
-        
-        <button class="form-field" type="button" onClick={handlesubmit}>
+        <br/>
+        <br/>
+        <Button type="submit" variant="contained" color="success"
+style={{
+        color:"white",
+        backgroundColor: "#013220",
+       }}
+        fullWidth onClick={handlesubmit}>
             Submit
-        </button>
+        </Button>
     </form>
-</div>)
+</div>
+</Grid>
+</Paper>
+</Dialog>)
 }
 
 export default HospitalLogin

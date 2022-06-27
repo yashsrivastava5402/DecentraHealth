@@ -15,9 +15,8 @@ function PatientCardDoctor({aadhar,name}) {
                 navigate(`/PatientPageDoctor/${aadhar}`, {state: {values: response.data}});
         })
     }
-  return (
-    <div>
-        <div>
+  return (<>
+     <div>
            {aadhar}
         </div>
         <div>
@@ -28,11 +27,14 @@ function PatientCardDoctor({aadhar,name}) {
             Submit
         </button>
         </div>
-        <div>
-            remove button
-        </div>
-    </div>
-  )
+        <div> 
+            remove button 
+         </div>
+    
+  </>)
+   
+        
+  
 }
 
 export default PatientCardDoctor;

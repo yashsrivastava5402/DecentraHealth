@@ -15,6 +15,9 @@ import PaitentPageHospital from "./components/PatientPageHospital";
 import Doctor from "./components/Doctor";
 function App() {
   return (
+     <div>
+
+     
     <BrowserRouter>
     <Routes>
       <Route path="/home" element={<Home />} /> 
@@ -33,6 +36,8 @@ function App() {
       <Route path="/" element={<Navigate replace to="/home" />} />    
     </Routes>
   </BrowserRouter>
+  </div>
+
   );
 }
 

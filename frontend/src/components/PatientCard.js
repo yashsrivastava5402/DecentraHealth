@@ -17,7 +17,7 @@ function PatientCard({aadhar,name,age,gender}) {
             }
         });
     }
-  return (
+  return (<>
     <div>
         <div>
            {aadhar}
@@ -34,7 +34,9 @@ function PatientCard({aadhar,name,age,gender}) {
             remove button
         </div>
     </div>
-  )
+  
+  </>)
+    
 }
 
 export default PatientCard;

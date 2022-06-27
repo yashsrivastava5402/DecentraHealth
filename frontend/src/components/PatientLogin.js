@@ -2,11 +2,18 @@
 import React from 'react';
 import { initializeApp } from 'firebase/app';
 import  { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Form, Alert } from "react-bootstrap";
-import { Button } from "react-bootstrap";
+
 import "react-phone-number-input/style.css";
+import { Grid,Paper, Avatar, Button } from '@material-ui/core'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Dialog from '@material-ui/core/Dialog';
+// import PhoneInput from 'react-phone-input-2'
+// import 'react-phone-input-2/lib/style.css'
 import PhoneInput from "react-phone-number-input";
+// import MuiPhoneNumber from 'material-ui-phone-number';
+
 import {
     getAuth,
     RecaptchaVerifier,
@@ -39,6 +46,8 @@ function PatientLogin() {
     //     e.preventDefault();
     //     setSubmitted(true);
     // };
+    const paperStyle={padding :20,height:'65vh',width:500, margin:"0 auto",border: '2px solid #fff',}
+    const avatarStyle={backgroundColor:'#1bbd7e'}
     const handleChange = (e) => {
         const { name, value } = e.target;
         setValues({
@@ -113,15 +122,33 @@ function PatientLogin() {
 
 
   return (
-
-<>
-<div className="p-4 box">
-  <h2 className="mb-3">Firebase Phone Auth</h2>
+ <Dialog
+            open
+            // fullWidth
+            maxWidth='sm'
+            
+            
+          > 
+{/* <Grid style={{backgroundColor:"light green"}}> */}
+<Paper style={paperStyle}>
+<Grid align='center'>
+                     <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
+  <h2 className="mb-3">Patient Login</h2> <br/></Grid>
   {error && <Alert variant="danger">{error}</Alert>}
   <Form onSubmit={onSignInSubmit} style={{ display: !flag ? "block" : "none" }}>
     <Form.Group className="mb-3" controlId="formBasicEmail">
       <PhoneInput
-        defaultCountry="IN"
+         
+          // onlyCountries={["in"]}
+          // // maxWidth='md'
+          // // inputStyle='normal'
+          // masks={{
+          //   in: "..........",
+          // }}
+          style={{
+          height:"30px",
+          width:"310px"
+        }}
         value={values.phone}
         onChange={(e)=>{
             console.log(e);
@@ -131,22 +158,41 @@ function PatientLogin() {
             });
         }}
         placeholder="Enter Phone Number"
+        
+        
+        
       />
+      <br/>
       <div id="sign-in-button"></div>
     </Form.Group>
-    <div className="button-right">
-      <Link to="/">
-        <Button variant="secondary">Cancel</Button>
-      </Link>
-      &nbsp;
-      <Button type="submit" variant="primary">
+    
+      
+      
+      
+        <Button type="submit" variant="contained" 
+        style={{
+        color:"white",
+        backgroundColor: "#013220",
+       }}
+         fullWidth href='/'>Cancel</Button>
+<br/>   
+<br/>
+
+<Button type="submit" variant="contained" color="success"
+style={{
+        color:"white",
+        backgroundColor: "#013220",
+       }}
+        fullWidth>
         Send Otp
-      </Button>
-    </div>
+        </Button>
+      
   </Form>
 
   <Form onSubmit={onOTPSubmit} style={{ display: flag ? "block" : "none" }}>
-    <Form.Group className="mb-3" controlId="formBasicOtp">
+    <Form.Group
+    
+     controlId="formBasicOtp">
       <Form.Control
         type="otp"
         value={values.OTP}
@@ -158,21 +204,37 @@ function PatientLogin() {
                OTP : e.target.value,
             });
         }}
+        style={{
+          height:"30px",
+          width:"340px"
+        }}
+        
      
       />
+      <br/>
+      <br/>
     </Form.Group>
-    <div className="button-right">
-      <Link to="/">
-        <Button variant="secondary">Cancel</Button>
-      </Link>
-      &nbsp;
-      <Button type="submit" variant="primary">
+        <Button  variant="contained" 
+        style={{
+        color:"white",
+        backgroundColor: "#013220",
+       }}
+         fullWidth href='/'>Cancel</Button>
+        <br/>
+        <br/>
+      <Button type="submit"  variant="contained" 
+      style={{
+        color:"white",
+        backgroundColor: "#013220",
+       }}
+       fullWidth>
         Verify
       </Button>
-    </div>
   </Form>
-</div>
-</>
+  </Paper>
+  {/* </Grid> */}
+  </Dialog>
+
   )
 }
 
