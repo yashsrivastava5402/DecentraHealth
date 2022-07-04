@@ -291,7 +291,7 @@ export default function FormDialog({phone, handlenew, setSubmitted, handleChange
               //  }));
                 console.log(values);
               });
-              // handleNull();
+              handleNull();
       }}>Add Patient</Button>
 <br/>
         </DialogContent>

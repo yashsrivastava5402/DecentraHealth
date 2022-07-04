@@ -130,6 +130,7 @@ async function main() {
 	}
 	exports.getdata = (aadhar) => {
 		const tx1 = await contract.methods.getUserData(aadhar).call({ from: address });
+		return tx1;
 		//transactionhandle();
 	}
 }

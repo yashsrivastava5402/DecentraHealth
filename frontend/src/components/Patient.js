@@ -54,10 +54,13 @@ function Patient() {
   const[submitted,setSubmitted]=useState(false);
   const handleNull = () => {
     setValues({
+      ...values,
       Name: "",
       Aadhar: "",
       Age: "",
-      Gender: ""
+      Gender: "",
+      Phone: params.phone,
+      patients: values.patients
   });
   }
   const handleChange = (e) => {

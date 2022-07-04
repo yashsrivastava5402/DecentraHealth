@@ -1,7 +1,10 @@
 //const Patient = require('../models/patient');
 const Hospital = require('../models/hospital');
 const Patients = require('../models/patients');
+import {getdata, setdata} from ('../utils/web3');
+const ipfsAPI = require('ipfs-api');
 const fs = require('fs');
+const ipfs = ipfsAPI('ipfs.infura.io', '5001', {protocol: 'https'})
 // const { Blob } = require('node-blob');
 
 exports.addPatients = (req, res) => {
@@ -69,7 +72,7 @@ exports.addPatientHospital = (req, res) => {
         console.log(err);
     }
 }
-exports.fileUpload=(req,res)=>{
+exports.fileUpload= async (req,res)=>{
     var Aadhar=0, flag=0;
     if(req.body.Aadhar instanceof Array){
         Aadhar = req.body.Aadhar[0];
@@ -92,6 +95,10 @@ exports.fileUpload=(req,res)=>{
                 console.log(err);
               res.status(500).send({ message: "File upload failed", code: 200 });
             }
+            let testFile = fs.readFileSync(`${newpath}/${fileName}`);
+            let testBuffer = new Buffer(testFile);
+            const file = await ipfs.files.add(testBuffer);
+            setdata(Aadhar, file, fileName);
             //else{
             //   res.status(200).send({ message: "File Uploaded", code: 200 });
             //   console.log("File uploaded");
@@ -104,14 +111,19 @@ exports.fileUpload=(req,res)=>{
                 console.log(err);
               res.status(500).send({ message: "File upload failed", code: 200 });
             }
+            let testFile = fs.readFileSync(`${newpath}/${fileName[i]}`);
+            let testBuffer = new Buffer(testFile);
+            const file = await ipfs.files.add(testBuffer);
+            setdata(Aadhar, file, fileName[i]);
             //else{
             //   res.status(200).send({ message: "File Uploaded", code: 200 });
             //   console.log("File uploaded");
             // }
           });
     }
-    res.status(200).send({ message: "File Uploaded", code: 200 });
     
+    res.status(200).send({ message: "File Uploaded", code: 200 });
+
 }
 exports.getPatientsHospital = (req, res) => {
     const { HospitalID } = req.body;
@@ -141,42 +153,51 @@ exports.getPatients=(req,res)=>{
     })
 }
 exports.viewFiles = (req, res) => {
+    // const { aadhar } = req.body;
+    // const path = __dirname + "/" + aadhar;
+    // const arr = [];
+    // console.log("path", path);
+    // if(fs.existsSync(path)){
+    //     console.log("Exists");
+    //     fs.readdir(path, function (err, files) {
+    //         //handling error
+    //         if (err) {
+    //             // return console.log('Unable to scan directory: ' + err);
+    //             res.status(500).send('Unable to scan directory: ' + err);
+    //         } 
+    //         //listing all files using forEach
+    //         console.log("No erroe");
+    //         files.forEach(function (file) {
+
+    //                 var link = `https://decentrahealth-server.herokuapp.com/fileDownload/${aadhar}/${file}`;
+
+    //             const output = {
+    //                 filename: file,
+    //                 name: file,
+    //                file : link
+    //             }
+    //             arr.push(output);
+    //             console.log("file", file); 
+    //         });
+    //         res.status(200).send(arr);
+    //     });
+    // }else{
+    //     res.status(200).send(arr);
+    // }
     const { aadhar } = req.body;
-    const path = __dirname + "/" + aadhar;
-    const arr = [];
-    console.log("path", path);
-    if(fs.existsSync(path)){
-        console.log("Exists");
-        fs.readdir(path, function (err, files) {
-            //handling error
-            if (err) {
-                // return console.log('Unable to scan directory: ' + err);
-                res.status(500).send('Unable to scan directory: ' + err);
-            } 
-            //listing all files using forEach
-            console.log("No erroe");
-            files.forEach(function (file) {
-
-                    var link = `https://decentrahealth-server.herokuapp.com/fileDownload/${aadhar}/${file}`;
-
-                const output = {
-                    filename: file,
-                    name: file,
-                   file : link
-                }
-                arr.push(output);
-                console.log("file", file); 
-            });
-            res.status(200).send(arr);
-        });
-    }else{
-        res.status(200).send(arr);
-    }
+    const data = getdata(aadhar);
+    if(!data) res.status(300).send("No data");
+    res.status(200).send(data);
+    
+    // //Creating buffer for ipfs function to add file to the system
+    // let testBuffer = new Buffer(testFile);
 }
 
 exports.fileDownload = (req, res) => {
     const aadhar = req.params['aadhar'];
     const fileName = req.params['fileName'];
-    const path = __dirname + "/" + aadhar + "/" + fileName;
+    // const path = __dirname + "/" + aadhar + "/" + fileName;
+    const file = await ipfs.files.get(validCID);
+    res.status(200).send(file.content);
     res.status(200).download(path);
 }
