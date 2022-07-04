@@ -52,17 +52,17 @@ function Patient() {
     patients: []
   }); 
   const[submitted,setSubmitted]=useState(false);
-  const handleNull = () => {
-    setValues({
-      ...values,
-      Name: "",
-      Aadhar: "",
-      Age: "",
-      Gender: "",
-      Phone: params.phone,
-      patients: values.patients
-  });
-  }
+  // const handleNull = () => {
+  //   setValues({
+  //     ...values,
+  //     Name: "",
+  //     Aadhar: "",
+  //     Age: "",
+  //     Gender: "",
+  //     Phone: params.phone,
+  //     patients: values.patients
+  // });
+  // }
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
