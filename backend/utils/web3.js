@@ -1,8 +1,7 @@
 const Web3 = require('web3');
 const address = '0x61BEAEA848C3Fd25e0bEcbA98eFeC4A27B450e3a';
 const privateKey = '0xc76f501ed6c72f757a3207d4e5cbbd507689d80d3c7ea5f677c8892fc0984b0c';
-async function main() {
-	console.log("2");
+
 	//   const web3 = new Web3(infuraUrl);
 	const provider = new Web3.providers.HttpProvider("https://polygon-mumbai.g.alchemy.com/v2/osMjxia3d6riAGMSVAT6GBqaIW7SBtDy");
 	const web3 = new Web3(provider);
@@ -102,15 +101,15 @@ async function main() {
 		}
 	]
 	const contract = new web3.eth.Contract(ABI, ADDRESS);
-	const transactionhandle = (data) => {
-		const data = tx.encodeABI();
+	const transactionhandle =async (data) => {
+		const dataencoded = data.encodeABI();
 		const nonce = await web3.eth.getTransactionCount(address);
 
 		const signedTx = await web3.eth.accounts.signTransaction(
 			{
 				"from": address,
 				"to": '0xE693c55d8Fc392cDbbFbBa9C6D0d20d22A655bfA',
-				"data": data,
+				"data": dataencoded,
 				"gas": 500000,
 				"nonce": nonce,
 			},
@@ -124,15 +123,13 @@ async function main() {
 			}
 		});
 	}
-	exports.setdata = (aadhar, filename, filehash) => {
+	exports.setdata = async (aadhar, filename, filehash) => {
 		const tx = await contract.methods.setUserData(aadhar, filehash, filename);
 		transactionhandle(tx);
 	}
-	exports.getdata = (aadhar) => {
+	exports.getdata = async (aadhar) => {
 		const tx1 = await contract.methods.getUserData(aadhar).call({ from: address });
+		console.log(tx1);
 		return tx1;
 		//transactionhandle();
 	}
-}
-// main();
-

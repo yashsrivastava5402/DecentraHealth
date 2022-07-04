@@ -74,7 +74,7 @@ function Patient() {
 useEffect(() => {
 
 
-  axios.post('https://decentrahealth-server.herokuapp.com/getPatients',
+  axios.post('http://localhost:8000/getPatients',
   {Phone:values.Phone}
   )
     .then(function (response) {
@@ -104,7 +104,7 @@ useEffect(() => {
 //    useEffect(() => {
 
 
-//     axios.post('https://decentrahealth-server.herokuapp.com/getPatients',
+//     axios.post('http://localhost:8000/getPatients',
 //     {Phone:values.Phone}
 //     )
 //       .then(function (response) {
@@ -119,7 +119,7 @@ useEffect(() => {
     
   return (
     <>
-       <FormDialog phone={values.Phone} handlenew={handlenew} setSubmitted={setSubmitted} handleChange={handleChange} handleNull = {handleNull} submitted={submitted} values={values}/>
+       <FormDialog phone={values.Phone} handlenew={handlenew} setSubmitted={setSubmitted} handleChange={handleChange}  submitted={submitted} values={values}/>
     { values.patients.map((patient)=>{
       console.log(patient);
     return <PatientCard aadhar={patient.Aadhar} name={patient.Name} age={patient.Age} gender={patient.Gender}/> 

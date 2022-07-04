@@ -8,7 +8,7 @@ function FileUpload({aadhar,handleupl}) {
   console.log(aadhar);
 
   const formData = new FormData();
-  const arr=[];
+
     const saveFile = (e) => {
    
      
@@ -18,18 +18,8 @@ function FileUpload({aadhar,handleupl}) {
           formData.append("fileName",e.target.files[i].name);
           formData.append("Aadhar", aadhar);
           // for stateupdate
-          var link = `https://decentrahealth-server.herokuapp.com/fileDownload/${aadhar}/${e.target.files[i].name}`;
-
-          const output = {
-              
-             file : link,
-             filename: e.target.files[i].name,
-              name: e.target.files[i].name,
-          }
-          arr.push(output);
-          
         }
-        console.log(arr)
+
         //console.log(formData)
         
     };
@@ -43,12 +33,12 @@ function FileUpload({aadhar,handleupl}) {
       }
       try {
         const res = await axios.post(
-          "https://decentrahealth-server.herokuapp.com/fileUpload",
+          "http://localhost:8000/fileUpload",
           // options,
           formData
         );
         console.log(res);
-        handleupl(arr);
+        handleupl(res.data);
       } catch (ex) {
         console.log(ex);
       }

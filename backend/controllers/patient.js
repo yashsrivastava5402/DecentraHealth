@@ -1,7 +1,7 @@
 //const Patient = require('../models/patient');
 const Hospital = require('../models/hospital');
 const Patients = require('../models/patients');
-import {getdata, setdata} from ('../utils/web3');
+ const {getdata, setdata} =require('../utils/web3');
 const ipfsAPI = require('ipfs-api');
 const fs = require('fs');
 const ipfs = ipfsAPI('ipfs.infura.io', '5001', {protocol: 'https'})
@@ -74,6 +74,7 @@ exports.addPatientHospital = (req, res) => {
 }
 exports.fileUpload= async (req,res)=>{
     var Aadhar=0, flag=0;
+    const senddata=[];
     if(req.body.Aadhar instanceof Array){
         Aadhar = req.body.Aadhar[0];
         flag=1;
@@ -86,43 +87,66 @@ exports.fileUpload= async (req,res)=>{
     }
     console.log(req.files);
     console.log(req.body);
-    const file = req.files.file;
+    const files = req.files.file;
     const fileName = req.body.fileName;
     //const filename = file.name;
+   
     if(flag===0){
-        file.mv(`${newpath}/${fileName}`, (err) => {
+      
+           await files.mv(`${newpath}/${fileName}`,async (err) => {
             if (err) {
                 console.log(err);
               res.status(500).send({ message: "File upload failed", code: 200 });
             }
+
             let testFile = fs.readFileSync(`${newpath}/${fileName}`);
             let testBuffer = new Buffer(testFile);
-            const file = await ipfs.files.add(testBuffer);
-            setdata(Aadhar, file, fileName);
+
+               let file = await ipfs.files.add(testBuffer);
+                console.log(9);
+                console.log(file);
+                setdata(Aadhar, file[0].hash, fileName);
+                let link = `http://localhost:8000/fileDownload/${Aadhar}/${file[0].hash}`;
+                senddata.push({name:fileName, file:link, filename:fileName})
+                console.log(senddata)
+                return res.status(200).send(senddata);
             //else{
             //   res.status(200).send({ message: "File Uploaded", code: 200 });
             //   console.log("File uploaded");
             // }
-          });
+          })
+
+        
     }
-    for(let i = 0 ; i < file.length; i++){
-        file[i].mv(`${newpath}/${fileName[i]}`, (err) => {
+    else
+    await Promise.all( files.map( async(currfile, i) => {
+    
+        currfile.mv(`${newpath}/${fileName[i]}`,async (err) => {
             if (err) {
                 console.log(err);
               res.status(500).send({ message: "File upload failed", code: 200 });
             }
             let testFile = fs.readFileSync(`${newpath}/${fileName[i]}`);
             let testBuffer = new Buffer(testFile);
-            const file = await ipfs.files.add(testBuffer);
-            setdata(Aadhar, file, fileName[i]);
+
+                let newfile = await ipfs.files.add(testBuffer);
+                setdata(Aadhar, newfile[0].hash, fileName[i]);
+                let link = `http://localhost:8000/fileDownload/${Aadhar}/${newfile[0].hash}`;
+  
+                senddata.push({name:fileName[i], file:link, filename:fileName[i]})
+
+           
+         
             //else{
             //   res.status(200).send({ message: "File Uploaded", code: 200 });
             //   console.log("File uploaded");
             // }
           });
-    }
     
-    res.status(200).send({ message: "File Uploaded", code: 200 });
+      }))
+  
+    console.log(senddata);
+    res.status(200).send(senddata);
 
 }
 exports.getPatientsHospital = (req, res) => {
@@ -169,7 +193,7 @@ exports.viewFiles = (req, res) => {
     //         console.log("No erroe");
     //         files.forEach(function (file) {
 
-    //                 var link = `https://decentrahealth-server.herokuapp.com/fileDownload/${aadhar}/${file}`;
+    //                 var link = `http://localhost:8000/fileDownload/${aadhar}/${file}`;
 
     //             const output = {
     //                 filename: file,
@@ -186,18 +210,32 @@ exports.viewFiles = (req, res) => {
     // }
     const { aadhar } = req.body;
     const data = getdata(aadhar);
-    if(!data) res.status(300).send("No data");
-    res.status(200).send(data);
+    console.log(data);
+    const arr = [];
+    for(let i=0;i<data.length;i++)
+    {
+        let element=data[i];
+        var link = `http://localhost:8000/fileDownload/${aadhar}/${element.userDataDetail}`;
+        const output = {
+                            filename:element.userDataFilename ,
+                            name: element.userDataDetail,
+                           file : link
+                        }
+                        arr.push(output);
+
+    }
+
+    res.status(200).send(arr);
     
     // //Creating buffer for ipfs function to add file to the system
     // let testBuffer = new Buffer(testFile);
 }
 
-exports.fileDownload = (req, res) => {
+exports.fileDownload = async (req, res) => {
     const aadhar = req.params['aadhar'];
     const fileName = req.params['fileName'];
     // const path = __dirname + "/" + aadhar + "/" + fileName;
-    const file = await ipfs.files.get(validCID);
+    const file = await ipfs.files.get(fileName);
     res.status(200).send(file.content);
-    res.status(200).download(path);
+    // res.status(200).download(path);
 }

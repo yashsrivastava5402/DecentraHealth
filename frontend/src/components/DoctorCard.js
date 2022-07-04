@@ -15,7 +15,7 @@ function DoctorCard({id,name,aadhar, patientName, age, gender}) {
            Age: age,
            Gender: gender
         }
-        axios.post('https://decentrahealth-server.herokuapp.com/addPatientDoctor', postInfo)
+        axios.post('http://localhost:8000/addPatientDoctor', postInfo)
         .then(function (response){
             console.log(response);
             if(response.status === 200){

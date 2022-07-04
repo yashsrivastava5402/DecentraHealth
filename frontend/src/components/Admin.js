@@ -63,7 +63,7 @@ function Admin() {
   // setdoctors(state);
   // console.log(state);
   // console.log(doctors);
-  // axios.post('https://decentrahealth-server.herokuapp.com/getDoctors',
+  // axios.post('http://localhost:8000/getDoctors',
   //   hospitalRegnumber
   // )
   //   .then(function (response) {
@@ -95,14 +95,14 @@ function Admin() {
 };
 useEffect(() => {
 
-  axios.post('https://decentrahealth-server.herokuapp.com/getDoctors',
+  axios.post('http://localhost:8000/getDoctors',
   state.values
   )
     .then(function (response) {
       console.log(response);
       setdoctors(response.data);
     });
-    axios.post('https://decentrahealth-server.herokuapp.com/getPatientsHospital',
+    axios.post('http://localhost:8000/getPatientsHospital',
     {HospitalID:state.values.hospitalRegnumber}
     )
       .then(function (response) {
@@ -152,7 +152,7 @@ useEffect(() => {
        
           //addDoctor(values).then (function (received){
             
-            axios.post('https://decentrahealth-server.herokuapp.com/addDoctors',
+            axios.post('http://localhost:8000/addDoctors',
             values
             )
               .then(function (response) {
