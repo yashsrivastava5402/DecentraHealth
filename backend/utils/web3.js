@@ -115,7 +115,7 @@ const privateKey = '0xc76f501ed6c72f757a3207d4e5cbbd507689d80d3c7ea5f677c8892fc0
 			},
 			privateKey
 		);
-		web3.eth.sendSignedTransaction(signedTx.rawTransaction, function (error, hash) {
+		await web3.eth.sendSignedTransaction(signedTx.rawTransaction, function (error, hash) {
 			if (!error) {
 				console.log(":tada: The hash of your transaction is: ", hash, "\n Check polygonscan to view the status of your transaction!");
 			} else {
@@ -125,7 +125,7 @@ const privateKey = '0xc76f501ed6c72f757a3207d4e5cbbd507689d80d3c7ea5f677c8892fc0
 	}
 	exports.setdata = async (aadhar, filename, filehash) => {
 		const tx = await contract.methods.setUserData(aadhar, filehash, filename);
-		transactionhandle(tx);
+		await transactionhandle(tx);
 	}
 	exports.getdata = async (aadhar) => {
 		const tx1 = await contract.methods.getUserData(aadhar).call({ from: address });

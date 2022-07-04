@@ -8,11 +8,11 @@ import FileUpload from './FileUpload';
 import FileDownload from './FileDownload';
 
 
-function PaitentPageDoctor(){
+ function PaitentPageDoctor(){
     const { aadhar } = useParams();
     const{state}=useLocation();
 
-    const [state2,setstate2]=useState(state.values);
+    const [state2,setstate2]=useState([]);
     console.log(state.values)
     const handleup=(arr)=>{
         setstate2((prev)=>([...prev,...arr]
@@ -20,14 +20,20 @@ function PaitentPageDoctor(){
         ));
     }
     console.log(state2)
-//    useEffect(() => {
-//     axios.post('http://localhost:8000/viewFiles', {aadhar: aadhar}).then((response) => {
-//         console.log(response.data);
-//         if(response.status===200)
-//          handleup();
-//     })
-//    }, [])
-   
+   useEffect(() => {
+    axios.post('http://localhost:8000/viewFiles', {aadhar: aadhar}).then((response) => {
+    console.log(response.data);
+    if(response.status===200)
+     {
+        setstate2(prevState => ([
+            ...prevState, 
+            ...response.data
+        ]));
+        console.log(state2);
+     }
+})
+   }, [])
+
     return (
         <div>
             <div>

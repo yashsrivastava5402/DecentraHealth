@@ -105,7 +105,7 @@ exports.fileUpload= async (req,res)=>{
                let file = await ipfs.files.add(testBuffer);
                 console.log(9);
                 console.log(file);
-                setdata(Aadhar, file[0].hash, fileName);
+                await setdata(Aadhar,fileName, file[0].hash);
                 let link = `http://localhost:8000/fileDownload/${Aadhar}/${file[0].hash}`;
                 senddata.push({name:fileName, file:link, filename:fileName})
                 console.log(senddata)
@@ -121,7 +121,7 @@ exports.fileUpload= async (req,res)=>{
     else
     await Promise.all( files.map( async(currfile, i) => {
     
-        currfile.mv(`${newpath}/${fileName[i]}`,async (err) => {
+        await currfile.mv(`${newpath}/${fileName[i]}`,async (err) => {
             if (err) {
                 console.log(err);
               res.status(500).send({ message: "File upload failed", code: 200 });
@@ -130,13 +130,9 @@ exports.fileUpload= async (req,res)=>{
             let testBuffer = new Buffer(testFile);
 
                 let newfile = await ipfs.files.add(testBuffer);
-                setdata(Aadhar, newfile[0].hash, fileName[i]);
-                let link = `http://localhost:8000/fileDownload/${Aadhar}/${newfile[0].hash}`;
-  
+                await setdata(Aadhar, newfile[0].hash, fileName[i]);
+                let link = `http://localhost:8000/fileDownload/${Aadhar}/${newfile[0].hash}`; 
                 senddata.push({name:fileName[i], file:link, filename:fileName[i]})
-
-           
-         
             //else{
             //   res.status(200).send({ message: "File Uploaded", code: 200 });
             //   console.log("File uploaded");
@@ -176,7 +172,7 @@ exports.getPatients=(req,res)=>{
         }
     })
 }
-exports.viewFiles = (req, res) => {
+exports.viewFiles =async (req, res) => {
     // const { aadhar } = req.body;
     // const path = __dirname + "/" + aadhar;
     // const arr = [];
@@ -209,7 +205,7 @@ exports.viewFiles = (req, res) => {
     //     res.status(200).send(arr);
     // }
     const { aadhar } = req.body;
-    const data = getdata(aadhar);
+    const data = await getdata(aadhar);
     console.log(data);
     const arr = [];
     for(let i=0;i<data.length;i++)
@@ -217,15 +213,15 @@ exports.viewFiles = (req, res) => {
         let element=data[i];
         var link = `http://localhost:8000/fileDownload/${aadhar}/${element.userDataDetail}`;
         const output = {
-                            filename:element.userDataFilename ,
-                            name: element.userDataDetail,
+                            filename:element.userDataDetail ,
+                            name: element.userDataFilename,
                            file : link
                         }
                         arr.push(output);
 
     }
 
-    res.status(200).send(arr);
+    // res.status(200).send(arr);
     
     // //Creating buffer for ipfs function to add file to the system
     // let testBuffer = new Buffer(testFile);
