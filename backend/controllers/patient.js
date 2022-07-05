@@ -93,7 +93,7 @@ exports.fileUpload= async (req,res)=>{
    
     if(flag===0){
       
-           await files.mv(`${newpath}/${fileName}`,async (err) => {
+            files.mv(`${newpath}/${fileName}`,async (err) => {
             if (err) {
                 console.log(err);
               res.status(500).send({ message: "File upload failed", code: 200 });
@@ -109,7 +109,7 @@ exports.fileUpload= async (req,res)=>{
                 let link = `http://localhost:8000/fileDownload/${Aadhar}/${file[0].hash}`;
                 senddata.push({name:fileName, file:link, filename:fileName})
                 console.log(senddata)
-                return res.status(200).send(senddata);
+                res.status(200).send(senddata);
             //else{
             //   res.status(200).send({ message: "File Uploaded", code: 200 });
             //   console.log("File uploaded");
@@ -142,7 +142,7 @@ exports.fileUpload= async (req,res)=>{
       }))
   
     console.log(senddata);
-    res.status(200).send(senddata);
+    // res.status(200).send(senddata);
 
 }
 exports.getPatientsHospital = (req, res) => {
@@ -220,8 +220,9 @@ exports.viewFiles =async (req, res) => {
                         arr.push(output);
 
     }
+    console.log("GH");
 
-    // res.status(200).send(arr);
+    res.status(200).send(arr);
     
     // //Creating buffer for ipfs function to add file to the system
     // let testBuffer = new Buffer(testFile);
@@ -231,7 +232,12 @@ exports.fileDownload = async (req, res) => {
     const aadhar = req.params['aadhar'];
     const fileName = req.params['fileName'];
     // const path = __dirname + "/" + aadhar + "/" + fileName;
-    const file = await ipfs.files.get(fileName);
-    res.status(200).send(file.content);
+    const files = await ipfs.files.get(fileName);
+    files.forEach(file => {
+        console.log(file.path)
+        console.log(file);
+        res.status(200).send(file.content);
+    });
+    // res.status(200).send(file.content);
     // res.status(200).download(path);
 }
