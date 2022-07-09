@@ -5,36 +5,23 @@ import theme from '../styles/theme';
 import Appbar from './appbar';
 import Banner from './Banner';
 import CardMake from './CardMake';
-
-
 // import Navbar from '/Navbar';
 
 
 function Home() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <ThemeProvider theme={theme}>
-    <div
-    maxWidth="xl"
-    sx={{
-backgroundColor:"#fff"
-    }}>
-      <Appbar/>
-      
-<Banner/>
-<CardMake style={{backgroundColor:"#fff"}}/>
-<CardMake />
+      <div
+        maxWidth="xl"
+        sx={{
+          backgroundColor: "#fff"
+        }}>
+        <Banner />
+        <CardMake style={{ backgroundColor: "#fff" }} />
+        <CardMake />
 
-    
-
-
-
-  
-
-     
-      
-           
-           {/* <Button size ="large" variant="contained" 
+        {/* <Button size ="large" variant="contained" 
            type='submit' 
       //           style={{
       //   color:"white",
@@ -50,14 +37,10 @@ backgroundColor:"#fff"
           navigate("/PatientLogin");}}>Patient</Button>
            <Button size="large" variant="contained" style={{height:"60px",width:"150px",margin:"40px 100px 40px 250px",alignItems:"center",justifyContent:"center",backgroundColor: "#013220"}} onClick={()=>{
           navigate("/HospitalLogin");}}>Hospital</Button> */}
-         {/* <FontAwesomeIcon icon="fa-solid fa-bars" /> */}
-    
-           </div>
+        {/* <FontAwesomeIcon icon="fa-solid fa-bars" /> */}
 
-      
-      </ThemeProvider>
- 
-    
+      </div>
+    </ThemeProvider>
   )
 }
 

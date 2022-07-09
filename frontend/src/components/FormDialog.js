@@ -68,7 +68,7 @@
 //         <DialogTitle>Fill the details </DialogTitle>
 //         <DialogContent>
 //           <DialogContentText>
-           
+
 //           </DialogContentText>
 //            <TextField
 //             onChange={handleChange}
@@ -80,11 +80,11 @@
 //             name="Name"
 //             fullWidth
 //         />
-        
+
 //         {submitted && !values.Name ? <span id="Name-error">Please enter hospital 
 //          number</span> : null}
 //          <br/>
-   
+
 //         <TextField
 //             onChange={handleChange}
 //             value={values.Aadhar}
@@ -133,7 +133,7 @@
 //             )
 //               .then(function (response) {
 //                 console.log(response);
-              
+
 //                 // setValues(values);
 //                 setValues(prevState => ({
 //                   ...prevState, 
@@ -144,21 +144,21 @@
 //       }}>Add Patient</Button>
 // <br/>
 //         </DialogContent>
-      
+
 //           { values.patients.map((patient)=>{
 //            console.log(patient);
 //          return <PatientCard aadhar={patient.Aadhar} name={patient.Name} age={patient.Age} gender={patient.Gender}/> 
 //      })}
 //         <DialogActions>
-          
-//        </DialogActions>
-       
-         
-   
 
-          
-       
-        
+//        </DialogActions>
+
+
+
+
+
+
+
 //       </Dialog>
 //     </div>
 //   );
@@ -169,14 +169,14 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import axios from 'axios';
-import {useState,useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import PatientCard from './PatientCard';
-import { Grid,Paper, Avatar, TextField, Button, Typography,Link, Dialog } from '@material-ui/core'
+import { Grid, Paper, Avatar, TextField, Button, Typography, Link, Dialog } from '@material-ui/core'
 
 
 
-export default function FormDialog({phone, handlenew, setSubmitted, handleChange, handleNull, submitted, values}) {
+export default function FormDialog({ phone, handlenew, setSubmitted, handleChange, handleNull, submitted, values }) {
   // const [values, setValues] = useState({
   //   Name:"",
   //   Aadhar:"",
@@ -192,11 +192,11 @@ export default function FormDialog({phone, handlenew, setSubmitted, handleChange
   //       ...values,
   //       [name]: value,
   //   });
-//};
+  //};
 
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
+  const handleClickOpen = () => { 
     setOpen(true);
   };
 
@@ -206,20 +206,14 @@ export default function FormDialog({phone, handlenew, setSubmitted, handleChange
 
   return (
     <div>
-      <Button size="large" type='submit'  variant="contained" 
-        fullWidth style={{height:"60px",width:"150px",margin:"70px",alignItems:"center",
-        backgroundColor: "#013220",
-        color:"white",
-        justifyContent:"center", float:"right"}} onClick={handleClickOpen}>
-        Add Members
-      </Button>
+      <Button size="large" type='submit'  variant="contained" fullWidth style={{height:"60px",width:"150px",margin:"70px",alignItems:"center", backgroundColor: "#013220", color:"white", justifyContent:"center",  position: 'absolute', bottom:"40px", left:"700px", }} onClick={handleClickOpen}> Add Members </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Fill the details </DialogTitle>
         <DialogContent>
           <DialogContentText>
-           
+
           </DialogContentText>
-           <TextField
+          <TextField
             onChange={handleChange}
             value={values.Name}
             id="Name"
@@ -228,13 +222,13 @@ export default function FormDialog({phone, handlenew, setSubmitted, handleChange
             placeholder="Name"
             name="Name"
             fullWidth
-        />
-        
-        {submitted && !values.Name ? <span id="Name-error">Please enter hospital 
-         number</span> : null}
-         <br/>
-   
-        <TextField
+          />
+
+          {submitted && !values.Name ? <span id="Name-error">Please enter hospital
+            number</span> : null}
+          <br />
+
+          <TextField
             onChange={handleChange}
             value={values.Aadhar}
             id="Aadhar"
@@ -243,11 +237,11 @@ export default function FormDialog({phone, handlenew, setSubmitted, handleChange
             placeholder="Aadhar Number"
             name="Aadhar"
             fullWidth
-        />
-        {submitted && !values.Aadhar ? <span id="Aadhar-error">Please enter Aadhar number</span> : null}
-        <br/>
+          />
+          {submitted && !values.Aadhar ? <span id="Aadhar-error">Please enter Aadhar number</span> : null}
+          <br />
 
-        <TextField
+          <TextField
             onChange={handleChange}
             value={values.Age}
             id="Age"
@@ -256,10 +250,10 @@ export default function FormDialog({phone, handlenew, setSubmitted, handleChange
             placeholder="Age"
             name="Age"
             fullWidth
-        />
-        {submitted && !values.Age ? <span id="Age-error">Please enter Age</span> : null}
-<br/>
-        <TextField
+          />
+          {submitted && !values.Age ? <span id="Age-error">Please enter Age</span> : null}
+          <br />
+          <TextField
             onChange={handleChange}
             value={values.Gender}
             id="Gender"
@@ -268,45 +262,47 @@ export default function FormDialog({phone, handlenew, setSubmitted, handleChange
             placeholder="Gender"
             name="Gender"
             fullWidth
-        />
-        {submitted && !values.Gender ? <span id="Gender-error">Please enter Gender</span> : null}
-        <Button size="large" type='submit'  variant="contained" 
-        fullWidth style={{height:"60px",width:"150px",margin:"70px",alignItems:"center",
-        backgroundColor: "#013220",
-        color:"white",
-        justifyContent:"center"}} onClick={(e)=>{
-          e.preventDefault();
-          setSubmitted(true);
-          handleClose();
-            axios.post('http://localhost:8000/addPatients',
-            values
-            )
-              .then(function (response) {
-                console.log(response);
-                handlenew(response.data.patients);
-                // setValues(values);
-              //   setValues(prevState => ({
-              //     ...prevState, 
-              //     patients: response.data.patients
-              //  }));
-                console.log(values);
-              });
+          />
+          {submitted && !values.Gender ? <span id="Gender-error">Please enter Gender</span> : null}
+          <Button size="large" type='submit' variant="contained"
+            fullWidth style={{
+              height: "60px", width: "150px", margin: "70px", alignItems: "center",
+              backgroundColor: "#013220",
+              color: "white",
+              justifyContent: "center"
+            }} onClick={(e) => {
+              e.preventDefault();
+              setSubmitted(true);
+              handleClose();
+              axios.post('http://localhost:8000/addPatients',
+                values
+              )
+                .then(function (response) {
+                  console.log(response);
+                  handlenew(response.data.patients);
+                  // setValues(values);
+                  //   setValues(prevState => ({
+                  //     ...prevState, 
+                  //     patients: response.data.patients
+                  //  }));
+                  console.log(values);
+                });
               // handleNull();
-      }}>Add Patient</Button>
-<br/>
+            }}>Add Patient</Button>
+          <br />
         </DialogContent>
-      
-     
-        <DialogActions>
-          
-       </DialogActions>
-       
-         
-   
 
-          
-       
-        
+
+        <DialogActions>
+
+        </DialogActions>
+
+
+
+
+
+
+
       </Dialog>
     </div>
   );
