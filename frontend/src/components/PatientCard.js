@@ -18,12 +18,7 @@ function PatientCard({ aadhar, name, age, gender }) {
             });
     }
 
-    const myStyle = {
-        width: '60rem',
-        backgroundColor: 'white'
-    }
-
-    return (
+return (
         <>
             <td>{aadhar}</td>
             <td>{name}</td>
