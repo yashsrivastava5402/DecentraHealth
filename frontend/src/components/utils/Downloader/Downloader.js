@@ -53,7 +53,7 @@ const DownloadItem = ({ name, file, filename, removeFile }) => {
 
       const url = window.URL.createObjectURL(
         new Blob([response.data], {
-          type: response.headers["content-type"],
+          type: 'application/pdf',
         })
       );
 
