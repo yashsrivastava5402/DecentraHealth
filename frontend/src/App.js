@@ -1,6 +1,5 @@
 import Home from "./components/Home";
 import DoctorLogin from "./components/DoctorLogin";
-
 import HospitalSignupPage from "./components/HospitalSignupPage";
 import HospitalLogin from "./components/HospitalLogin";
 import Admin from "./components/Admin";
@@ -15,11 +14,12 @@ import PatientPageHospital from "./components/PatientPageHospital"
 import PatientPageDoctor from "./components/PatientPageDoctor";
 import Doctor from "./components/Doctor";
 import Appbar from "./components/appbar";
+
 function App() {
   return (
     <div>
-    
     <BrowserRouter>
+    <Appbar/>
     <Routes>
       <Route path="/home" element={<Home />} /> 
       <Route path="/DoctorLogin" element={<DoctorLogin />} /> 
