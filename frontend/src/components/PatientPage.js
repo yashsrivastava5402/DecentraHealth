@@ -18,11 +18,9 @@ function PaitentPage(){
         setSubmitted(true);
         axios.post('http://localhost:8000/viewFiles', {aadhar: state.values.Aadhar}).then((response) => {
             console.log(response.data);
-      
                 setFiles((prevState) => {
                     return [prevState,...response.data];
                 })
-       
         })
     }
 
