@@ -21,40 +21,19 @@ function DoctorCard({id,name,aadhar, patientName, age, gender}) {
             if(response.status === 200){
                 alert("Patient assigned to doctor!");
             }
-        });
-    }
+      });
+  }
 
   return (
-   <Container >
-   <Row>
-      <Col>{ id}</Col>
-      <Col>{name}</Col>
-      <Col>
-            <button type="button" onClick={goToPatient}>
-             Submit
-            </button>
-      </Col>
-    </Row >
- 
-   </Container>
-//    <div className='app-container'>
-//    <table>
-      
-//        <tbody>
-        
-        
-//             <tr>
-//                    <td>{id}</td>
-//                    <td>{name}</td>
-//                    <td>remove button</td>
- 
-//            </tr>
-        
-//        </tbody>
-//    </table>
-
-// </div>
- 
+   <>
+            <td>{id}</td>
+            <td>{name}</td>
+            <td>{aadhar}</td>
+            <td>{patientName}</td>
+            <td>{age}</td>
+            <td>{gender}</td>
+            <button className="btn btn-primary" onClick={goToPatient} style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 50px" }}>Submit</button>
+   </> 
   )
 }
 
