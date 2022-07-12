@@ -35,63 +35,30 @@ const DoctorLogin=()=>{
             [name]: value,
         });
     };
-    return(
-        <Dialog
-            open
-            fullWidth
-            maxWidth='sm'
-            
-          >
-        <Grid>
-            <Paper  style={paperStyle}>
-                <Grid align='center'>
-                     <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
-                    <h3>Doctor Login</h3>
-                </Grid>
-                <TextField 
-                onChange={handleChange}
-            value={values.doctorId}
-            id="doctorId"
-            class="form-field"
-            type="text"
-            placeholder="Doctor Id"
-            name="doctorId"
-            margin="normal"
-            fullWidth
-            />
-            
-        <br/>
-        {submitted && !values.doctorId ? <span id="first-name-error">Please enter correct Id</span> : null}
 
+return(
+    <Dialog open maxWidth='xs'>
+    <Grid>
+    <Paper  style={paperStyle}>
+    
+    <Grid align='center'>
+    <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
+    <h1>Doctor Login</h1>
+    </Grid>
 
-                <TextField 
-                 onChange={handleChange}
-            value={values.doctorPass}
-            id="doctorPass"
-            class="form-field"
-            type="text"
-            placeholder="Doctor Password"
-            name="doctorPass"
-            margin="normal"
-            fullWidth
-             />
+    <br/><br/>
+    <TextField onChange={handleChange} value={values.doctorId} id="doctorId" class="form-field" type="text" placeholder="Doctor Id" name="doctorId" margin="normal" fullWidth />{submitted && !values.doctorId ? <span id="first-name-error">Please enter correct Id</span> : null} <br/>
+        
+    <TextField onChange={handleChange} value={values.doctorPass} id="doctorPass" class="form-field"type="text" placeholder="Doctor Password" name="doctorPass" margin="normal" fullWidth/> {submitted && !values.doctorPass ? <span id="doctorPass-error">Please enter correct password</span> : null} <br/><br/><br/>
 
-             <br/>
-        {submitted && !values.doctorPass ? <span id="doctorPass-error">Please enter correct password</span> : null}
+    <Button type='submit'  variant="contained" style={{ color:"white", backgroundColor: "#013220"}} fullWidth onClick={handlesubmit}>Submit</Button><br/><br/>
 
-               
-                <Button type='submit'  variant="contained" 
-                style={{
-        color:"white",
-        backgroundColor: "#013220",
-       }}
-       fullWidth
-       onClick={handlesubmit}>Submit</Button>
+    <Button  variant="contained"  style={{color:"white",backgroundColor: "#013220",}}fullWidth href='/'>Cancel</Button>    
 
-            </Paper>
-        </Grid>
-        </Dialog>
+    </Paper>
+    </Grid>
+    </Dialog>
     )
 }
 
-export default DoctorLogin
+export default DoctorLogin;

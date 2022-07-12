@@ -8,6 +8,7 @@ import FileUpload from './FileUpload';
 import FileDownload from './FileDownload';
 
 
+
  function PaitentPageDoctor(){
     const { aadhar } = useParams();
     const{state}=useLocation();
@@ -34,15 +35,36 @@ import FileDownload from './FileDownload';
 })
    }, [])
 
+   const myStyle = {
+    width: '67rem',
+    backgroundColor: 'white'
+  }
+
     return (
         <div>
             <div>
-                Aadhar is {aadhar}
                  <FileUpload aadhar={aadhar} handleupl={handleup}/> 
             </div>
-            <div>
-              <FileDownload aadhar={aadhar} files={state2}/>
+            <div className="container my-5">
+            <div className="card text-left border-dark text-black" style={myStyle}>
+              <div className="card-header  border-dark">
+                <h1>Previous Records of Aadhar : {aadhar}</h1>
+              </div>
+              <div className="card-body">
+                <table class="table table-hover border-success">
+                  <thead>
+                    <tr>
+                      <th scope="col">File Name</th>
+                      <th scope="col">Link</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <FileDownload aadhar={aadhar} files={state2}/>
+                  </tbody>
+                  </table>
+              </div>
             </div>
+          </div>
         </div>
     )
 }
