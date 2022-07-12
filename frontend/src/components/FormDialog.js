@@ -163,6 +163,7 @@
 //     </div>
 //   );
 // }
+
 import * as React from 'react';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -206,7 +207,7 @@ export default function FormDialog({ phone, handlenew, setSubmitted, handleChang
 
   return (
     <div>
-      <Button size="large" type='submit'  variant="contained" fullWidth style={{height:"60px",width:"150px",margin:"70px",alignItems:"center", backgroundColor: "#013220", color:"white", justifyContent:"center",  position: 'absolute', bottom:"40px", left:"700px", }} onClick={handleClickOpen}> Add Members </Button>
+      <Button size="large" type='submit'  variant="contained" fullWidth style={{height:"60px",width:"150px",alignItems:"center", backgroundColor: "#af9c4d", color:"white", justifyContent:"center",  position: 'absolute',  top:"0px", left:"780px"}} onClick={handleClickOpen}> Add Members </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Fill the details </DialogTitle>
         <DialogContent>
@@ -223,7 +224,6 @@ export default function FormDialog({ phone, handlenew, setSubmitted, handleChang
             name="Name"
             fullWidth
           />
-
           {submitted && !values.Name ? <span id="Name-error">Please enter hospital
             number</span> : null}
           <br />
@@ -291,18 +291,8 @@ export default function FormDialog({ phone, handlenew, setSubmitted, handleChang
             }}>Add Patient</Button>
           <br />
         </DialogContent>
-
-
         <DialogActions>
-
         </DialogActions>
-
-
-
-
-
-
-
       </Dialog>
     </div>
   );

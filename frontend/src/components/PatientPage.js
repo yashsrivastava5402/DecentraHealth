@@ -25,7 +25,7 @@ function PaitentPage(){
     }
 
     const myStyle = {
-        width: '50rem',
+        width: '67rem',
         backgroundColor: 'white'
       }
     
@@ -34,7 +34,7 @@ function PaitentPage(){
           <div className="container my-5">
             <div className="card text-left border-dark text-black" style={myStyle}>
               <div className="card-header  border-dark">
-                Availabe Hospitals
+                Available Hospitals
               </div>
               <div className="card-body">
                 <table class="table table-hover border-success">
@@ -49,10 +49,12 @@ function PaitentPage(){
                     {state.values.hospitals.map((hospital) => {
                       console.log(hospital);
                       return <>
-                        <tr><HospitalCard id={hospital.regNo} name={hospital.Name} state={state} />
-                        </tr>
-                        <Button onClick={showDocs}>View Reports</Button>
+                        <tr>
+                        <HospitalCard id={hospital.regNo} name={hospital.Name} state={state} />
+                        <Button onClick={showDocs} style={{color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 60px"}}>View Reports</Button>
                         {submitted ? <FileDownload aadhar={state.values.Aadhar} files={files} /> : null}
+                        </tr>
+                        
                       </>
                     })}
                   </tbody>

@@ -7,6 +7,7 @@ import { generate } from './utils/passgen';
 import Button from "@mui/material/Button";
 import PatientCardHospital from './PatientCardHospital';
 import FormDialog from './FormDialog';
+import AddDoctor from './AddDoctor';
 
 const addDoctor = function (values) {
   // await axios.post('/addDoctor', values)
@@ -112,57 +113,45 @@ function Admin() {
       });
   }, []);
 
+  const onClick= (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+    const { newDoctorId, newPassword } = generate(values);
+    // setValues((prevState) => {
+    //   return {
+    //     ...prevState,
+    //       doctorId: newDoctorId,
+    //       password: newPassword
+    //   }
+    // });
+    values.doctorId = newDoctorId;
+    values.password = newPassword;
+    setValues(values);
+
+    //addDoctor(values).then (function (received){
+
+    axios.post('http://localhost:8000/addDoctors', values).then(function (response) {
+      alert(`doctor added ${response.data.Name}`);
+      // function Admin() {
+      //ßconsole.log(error);
+      //doctors.push(state.values.doctors);
+      // doctors.push(values);
+      console.log(values);
+      setdoctors((prevState) => {
+        return [...prevState, values];
+      });
+      console.log(doctors);
+    });
+  }
+
   const myStyle = {
-    width: '50rem',
+    width: '53rem',
     backgroundColor: 'white'
   }
 
   return (
     <>
-      <form class="register-form" >
-
-        <input onChange={handleChange} value={values.Name} id="Name" class="form-field" type="text" placeholder="Hospital Name" name="Name" />
-        {submitted && !values.Name ? <span id="Name-error">Please enter hospital registration number</span> : null}
-
-        <input onChange={handleChange} value={values.UPRN} id="UPRN" class="form-field" type="text" placeholder="UPRN number" name="UPRN" />
-        {submitted && !values.UPRN ? <span id="UPRN-error">Please enter UPRN number</span> : null}
-
-        <Button size="large" variant="contained" style={{ height: "60px", width: "150px", margin: "70px", alignItems: "center", justifyContent: "center" }} onClick={(e) => {
-          e.preventDefault();
-          setSubmitted(true);
-          const { newDoctorId, newPassword } = generate(values);
-          // setValues((prevState) => {
-          //   return {
-          //     ...prevState,
-          //       doctorId: newDoctorId,
-          //       password: newPassword
-          //   }
-          // });
-          values.doctorId = newDoctorId;
-          values.password = newPassword;
-          setValues(values);
-
-          //addDoctor(values).then (function (received){
-
-          axios.post('http://localhost:8000/addDoctors', values).then(function (response) {
-            alert(`doctor added ${response.data.Name}`);
-            // function Admin() {
-            //ßconsole.log(error);
-            //doctors.push(state.values.doctors);
-            // doctors.push(values);
-            console.log(values);
-            setdoctors((prevState) => {
-              return [...prevState, values];
-            });
-            console.log(doctors);
-          });
-        }}>Add Doctor</Button>
-      </form>
-
-      {/* { doctors.map((doctor)=>{
-        return <DoctorCard id={doctor.doctorId} name={doctor.Name}/>
-     })} */}
-       <div className="container my-5">
+      <div className="container my-5">
         <div className="card text-left border-dark text-black" style={myStyle}>
           <div className="card-header  border-dark">
             Admin{values.hospitalRegnumber}
@@ -179,7 +168,7 @@ function Admin() {
                 </tr>
               </thead>
               <tbody>
-                {/* <FormDialog phone={values.Phone}  setSubmitted={setSubmitted} handleChange={handleChange}  submitted={submitted} values={values} /> */}
+                <AddDoctor handleChange={handleChange} values={values} onClick={onClick} submitted={submitted}/>
                 {patients.map((patient) => {
                   return <tr><PatientCardHospital aadhar={patient.Aadhar} name={patient.Name} regNo={values.hospitalRegnumber} age={patient.Age} gender={patient.Gender} /> </tr>
                 })}

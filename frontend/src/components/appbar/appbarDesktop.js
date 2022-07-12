@@ -10,7 +10,8 @@ import Actions from "../../styles/appbar/action";
 export default function AppbarDesktop({ matches }) {
   const navigate = useNavigate();
   return (
-    <AppbarContainer >
+    <>
+    {/* <AppbarContainer >
       <AppbarHeader style={{ color: "darkgreen" }}> DecentraHealth</AppbarHeader>
       <MyList type="row">
         <Button size="small" variant="outlined"
@@ -32,21 +33,25 @@ export default function AppbarDesktop({ matches }) {
             navigate("/");
           }}>Contact Us</Button>
 
-
-
-
-        {/* <ListItemText primary="Doctors"/>
-          <ListItemText primary="Patients"/>
-          <ListItemText primary="Contact Us"/> */}
-        {/* <ListItemButton>
-            <ListItemIcon>
-              <SearchOutlined/>
-            </ListItemIcon>
-          </ListItemButton> */}
-
       </MyList>
       <Actions />
-    </AppbarContainer>
+    </AppbarContainer> */}
 
+    <nav class="bg-green-900 text-white flex justify-between">
+      <img
+        src="https://www.pngmart.com/files/8/Health-PNG-Transparent-Image.png"
+        class="h-20 mx-3"
+        alt=""
+      />
+      <span class="font-serif text-6xl pt-2 pr-[400px]  text-white-300">Decentra Health</span>
+      <ul class="mx-14 my-6 flex space-x-11 justify-end text-2xl">
+        <li class="cursor-pointer" onClick={() => {navigate("/");}}>Home</li>
+        <li class="cursor-pointer" onClick={() => {navigate("/PatientLogin");}}>Patient</li>
+        <li class="cursor-pointer" onClick={() => {navigate("/DoctorLogin");}}>Doctors</li>
+        <li class="cursor-pointer" onClick={() => {navigate("/HospitalLogin");}}>Hospitals</li>
+        <li class="cursor-pointer" onClick={() => {navigate("/");}}>Contact</li>
+      </ul>
+    </nav>
+</>
   );
 }

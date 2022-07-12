@@ -28,8 +28,8 @@ function HospitalCard({ id, name, state }) {
     return (<>
         <td>{id}</td>
         <td>{name}</td>
-        <button className="btn btn-primary" onClick={goToPatient} style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 50px", position: "relative", left: "50px" }}> Apply</button>
-        <button className="btn btn-primary" style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 10px", position: "relative", left: "50px" }}>Remove</button>
+        <button className="btn btn-primary" onClick={goToPatient} style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 5px", position: "relative", left: "50px" }}> APPLY</button>
+        <button className="btn btn-primary" style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 10px", position: "relative", left: "50px" }}>REMOVE</button>
 
     </>
     )

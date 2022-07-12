@@ -86,7 +86,7 @@ function Patient() {
   }
   
  const myStyle = {
-    width: '50rem',
+    width: '52rem',
     backgroundColor: 'white'
   }
 
@@ -112,7 +112,7 @@ function Patient() {
               {values.patients.map((patient) => {
                 console.log(patient);
                 return <>
-                 <tr> <PatientCard aadhar={patient.Aadhar} name={patient.Name} age={patient.Age} gender={patient.Gender} /> </tr>
+                 <tr> <PatientCard aadhar={patient.Aadhar} name={patient.Name} age={patient.Age} gender={patient.Gender} state={patient.state}/> </tr>
                 </>
               })}
           </tbody>
