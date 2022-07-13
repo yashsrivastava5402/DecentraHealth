@@ -14,7 +14,7 @@ export default function ViewReports() {
         axios.post('http://localhost:8000/viewFiles', {aadhar: state}).then((response) => {
             console.log(response.data);
                 setFiles((prevState) => {
-                    return [prevState,...response.data];
+                    return [...prevState,...response.data];
                 })
         })
     }, [])
