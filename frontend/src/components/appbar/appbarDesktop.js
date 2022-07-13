@@ -37,7 +37,7 @@ export default function AppbarDesktop({ matches }) {
       <Actions />
     </AppbarContainer> */}
 
-    <nav class="bg-green-900 text-white flex justify-between">
+    <nav class="bg-purple-900 text-white flex justify-between">
       <img
         src="https://www.pngmart.com/files/8/Health-PNG-Transparent-Image.png"
         class="h-20 mx-3"

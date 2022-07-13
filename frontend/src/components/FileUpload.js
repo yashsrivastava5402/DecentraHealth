@@ -46,7 +46,7 @@ function FileUpload({aadhar,handleupl}) {
         <>
         <div className="border-dark" style={{border:"2px solid",position:"absolute", left:"73rem", width:"320px"}}>
           <input type="file" multiple onChange={saveFile} style={{margin:"20px 0px 0px 60px"}}/>
-          <button className='btn btn-primary' style={{margin:"20px 0px 20px 120px", backgroundColor:"red"}} onClick={uploadFile}>Upload</button>
+          <button className='btn btn-primary' style={{margin:"20px 0px 20px 120px", backgroundColor:"#8d5ba7"}} onClick={uploadFile}>Upload</button>
           </div>
         </>
       )

@@ -112,7 +112,7 @@ function Patient() {
               {values.patients.map((patient) => {
                 console.log(patient);
                 return <>
-                 <tr> <PatientCard aadhar={patient.Aadhar} name={patient.Name} age={patient.Age} gender={patient.Gender} state={patient.state}/> </tr>
+                 <tr> <PatientCard aadhar={patient.Aadhar} name={patient.Name} age={patient.Age} gender={patient.Gender}/> </tr>
                 </>
               })}
           </tbody>

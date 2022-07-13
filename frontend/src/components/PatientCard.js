@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from "react-router";
 import axios from 'axios';
 
-function PatientCard({ aadhar, name, age, gender,state}) {
+function PatientCard({ aadhar, name, age, gender}) {
 
     const navigate = useNavigate();
     const [submitted, setSubmitted] = useState(false);
@@ -25,7 +25,7 @@ function PatientCard({ aadhar, name, age, gender,state}) {
                 <td>{age}</td>
                 <td>{gender}</td>
                 <button className="btn btn-primary" onClick={goToPatient} style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 30px" }}>Book Appointment</button>
-                <button className='btn btn-primary' style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 10px" }}>View Reports</button>
+                <button className='btn btn-primary' style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 10px" }} onClick={()=>{ navigate(`/ViewReports`,{state:aadhar})}} >View Reports</button>
                 <button className="btn btn-primary" style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 10px" }}>Remove</button>
             </>)
     }

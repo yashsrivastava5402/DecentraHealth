@@ -14,6 +14,7 @@ import PatientPageHospital from "./components/PatientPageHospital"
 import PatientPageDoctor from "./components/PatientPageDoctor";
 import Doctor from "./components/Doctor";
 import Appbar from "./components/appbar";
+import ViewReports from "./components/ViewReports";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
       <Route path="/PatientPageDoctor/:aadhar" element={<PatientPageDoctor />} />
       <Route path="/PatientPageHospital/:aadhar" element={<PatientPageHospital />} />
       <Route path="/Doctor" element={<Doctor />} />
+      <Route path="/ViewReports" element={<ViewReports />} />
       <Route path="/" element={<Navigate replace to="/home" />} />    
     </Routes>
   </BrowserRouter>

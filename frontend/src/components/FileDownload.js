@@ -2,25 +2,30 @@ import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useFileDownloader from './utils/Downloader/useFileDownloader';
 import './FileDownload.css'
-import { Table } from 'semantic-ui-react';
-
+import { Table } from 'semantic-ui-react'
 function FileDownload({aadhar, files}) {
-const [downloadFile, downloaderComponentUI] = useFileDownloader();
-const download = (file) => downloadFile(file);
-const myStyle = {
-  width: '67rem',
-  backgroundColor: 'white'
-}
+    const [downloadFile, downloaderComponentUI] = useFileDownloader();
+
+  const download = (file) => downloadFile(file);
 
   return (
     <>
-           {files.map((file) => (
+      {files.map((file) => (
               <Table.Row>
                 <Table.Cell>{file.name}</Table.Cell>
-                <Table.Cell><a className="btn btn-primary" onClick={() => download(file)} >Download</a></Table.Cell>
+                <Table.Cell><button className={"btn btn-primary"} style={{backgroundColor: "blue"}}
+                              
+                              onClick={() => download(file)}
+                            >
+                          
+Download
+
+                            </button></Table.Cell>
               </Table.Row>
              ))}
+        {downloaderComponentUI}
     </>
-)}
+  )
+}
 
-export default FileDownload;
+export default FileDownload

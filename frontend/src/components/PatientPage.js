@@ -51,8 +51,6 @@ function PaitentPage(){
                       return <>
                         <tr>
                         <HospitalCard id={hospital.regNo} name={hospital.Name} state={state} />
-                        <Button onClick={showDocs} style={{color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 60px"}}>View Reports</Button>
-                        {submitted ? <FileDownload aadhar={state.values.Aadhar} files={files} /> : null}
                         </tr>
                         
                       </>
