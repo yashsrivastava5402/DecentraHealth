@@ -106,7 +106,7 @@ exports.fileUpload= async (req,res)=>{
                 console.log(9);
                 console.log(file);
                 await setdata(Aadhar,fileName, file[0].hash);
-                let link = `http://decentrahealth-server.herokuapp.com /fileDownload/${Aadhar}/${file[0].hash}`;
+                let link = `http://decentrahealth-server.herokuapp.com/fileDownload/${Aadhar}/${file[0].hash}`;
                 senddata.push({name:fileName, file:link, filename:fileName})
                 console.log(senddata)
                 res.status(200).send(senddata);
@@ -131,7 +131,7 @@ exports.fileUpload= async (req,res)=>{
 
                 let newfile = await ipfs.files.add(testBuffer);
                 await setdata(Aadhar, newfile[0].hash, fileName[i]);
-                let link = `http://decentrahealth-server.herokuapp.com /fileDownload/${Aadhar}/${newfile[0].hash}`; 
+                let link = `http://decentrahealth-server.herokuapp.com/fileDownload/${Aadhar}/${newfile[0].hash}`; 
                 senddata.push({name:fileName[i], file:link, filename:fileName[i]})
             //else{
             //   res.status(200).send({ message: "File Uploaded", code: 200 });
@@ -189,7 +189,7 @@ exports.viewFiles =async (req, res) => {
     //         console.log("No erroe");
     //         files.forEach(function (file) {
 
-    //                 var link = `http://decentrahealth-server.herokuapp.com /fileDownload/${aadhar}/${file}`;
+    //                 var link = `http://decentrahealth-server.herokuapp.com/fileDownload/${aadhar}/${file}`;
 
     //             const output = {
     //                 filename: file,
@@ -211,7 +211,7 @@ exports.viewFiles =async (req, res) => {
     for(let i=0;i<data.length;i++)
     {
         let element=data[i];
-        var link = `http://decentrahealth-server.herokuapp.com /fileDownload/${aadhar}/${element.userDataDetail}`;
+        var link = `http://decentrahealth-server.herokuapp.com/fileDownload/${aadhar}/${element.userDataDetail}`;
         const output = {
                             filename:element.userDataDetail ,
                             name: element.userDataFilename,

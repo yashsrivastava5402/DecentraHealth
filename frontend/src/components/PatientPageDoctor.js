@@ -22,7 +22,7 @@ import FileDownload from './FileDownload';
     }
     console.log(state2)
    useEffect(() => {
-    axios.post('http://decentrahealth-server.herokuapp.com /viewFiles', {aadhar: aadhar}).then((response) => {
+    axios.post('http://decentrahealth-server.herokuapp.com/viewFiles', {aadhar: aadhar}).then((response) => {
     console.log(response.data);
     if(response.status===200)
      {

@@ -34,7 +34,7 @@
 // useEffect(() => {
 
 
-//     axios.post('http://decentrahealth-server.herokuapp.com /getPatients',
+//     axios.post('http://decentrahealth-server.herokuapp.com/getPatients',
 //     {Phone:values.Phone}
 //     )
 //       .then(function (response) {
@@ -128,7 +128,7 @@
 //         justifyContent:"center"}} onClick={(e)=>{
 //           e.preventDefault();
 //           setSubmitted(true);
-//             axios.post('http://decentrahealth-server.herokuapp.com /addPatients',
+//             axios.post('http://decentrahealth-server.herokuapp.com/addPatients',
 //             values
 //             )
 //               .then(function (response) {
@@ -274,7 +274,7 @@ export default function FormDialog({ phone, handlenew, setSubmitted, handleChang
               e.preventDefault();
               setSubmitted(true);
               handleClose();
-              axios.post('http://decentrahealth-server.herokuapp.com /addPatients',
+              axios.post('http://decentrahealth-server.herokuapp.com/addPatients',
                 values
               )
                 .then(function (response) {

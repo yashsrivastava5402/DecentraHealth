@@ -161,7 +161,7 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
         gender: gender,
         phone: ':' + _phoneNo!);
     var res = await Dio().post(
-        'http://decentrahealth-server.herokuapp.com /addPatients',
+        'http://decentrahealth-server.herokuapp.com/addPatients',
         data: addPatient.toJson());
   }
 

@@ -19,8 +19,8 @@ function HospitalLogin() {
         e.preventDefault();
         setSubmitted(true);
         if (values.hospitalRegnumber.trim() !== "" && values.password.trim() !== "") {
-            // const res = await axios.post('http://decentrahealth-server.herokuapp.com /getPatientsHospital',{HospitalID: hospitalRegnumber} );
-            axios.post('http://decentrahealth-server.herokuapp.com /hospitalLogin',
+            // const res = await axios.post('http://decentrahealth-server.herokuapp.com/getPatientsHospital',{HospitalID: hospitalRegnumber} );
+            axios.post('http://decentrahealth-server.herokuapp.com/hospitalLogin',
                 values
             )
                 .then(function (response) {
