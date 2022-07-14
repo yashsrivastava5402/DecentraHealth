@@ -31,7 +31,7 @@ function FileUpload({aadhar,handleupl}) {
       }
       try {
         const res = await axios.post(
-          "http://decentrahealth-server.herokuapp.com/fileUpload",
+          "https://decentrahealth-server.herokuapp.com/fileUpload",
           // options,
           formData
         );

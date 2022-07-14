@@ -16,7 +16,7 @@ function PaitentPage(){
     function showDocs(e){
         e.preventDefault();
         setSubmitted(true);
-        axios.post('http://decentrahealth-server.herokuapp.com/viewFiles', {aadhar: state.values.Aadhar}).then((response) => {
+        axios.post('https://decentrahealth-server.herokuapp.com/viewFiles', {aadhar: state.values.Aadhar}).then((response) => {
             console.log(response.data);
                 setFiles((prevState) => {
                     return [prevState,...response.data];

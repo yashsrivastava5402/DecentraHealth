@@ -11,18 +11,45 @@ export default function ViewReports() {
     console.log(state);
     const [files, setFiles] = useState([]);
     useEffect(() => {
-        axios.post('http://decentrahealth-server.herokuapp.com/viewFiles', {aadhar: state}).then((response) => {
+        axios.post('http://localhost:8000/viewFiles', {aadhar: state}).then((response) => {
             console.log(response.data);
                 setFiles((prevState) => {
                     return [...prevState,...response.data];
                 })
         })
-    }, [])
+    }, [])  
+
+    const myStyle = {
+    width: '67rem',
+    backgroundColor: 'white'
+  }
+
     
 
   return (
     <>
-    <FileDownload aadhar={state} files={files} />
+    <div>
+            <div className="container my-5">
+            <div className="card text-left border-dark text-black" style={myStyle}>
+              <div className="card-header  border-dark">
+                <h1>Previous Records of Aadhar : {state}</h1>
+              </div>
+              <div className="card-body">
+                <table class="table table-hover border-success">
+                  <thead>
+                    <tr>
+                      <th scope="col">File Name</th>
+                      <th scope="col">Link</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <FileDownload aadhar={state} files={files}/>
+                  </tbody>
+                  </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
     </>
 )}
-

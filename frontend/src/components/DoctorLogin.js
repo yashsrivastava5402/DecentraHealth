@@ -20,7 +20,7 @@ const DoctorLogin=()=>{
     const handlesubmit = (e) => {
         e.preventDefault();
         setSubmitted(true);
-        axios.post("http://decentrahealth-server.herokuapp.com/findDoctor", {email: values.doctorId, password: values.doctorPass})
+        axios.post("https://decentrahealth-server.herokuapp.com/findDoctor", {email: values.doctorId, password: values.doctorPass})
         .then((response) => {
             if(response.status === 200){
                 navigate(`/Doctor`, {state: {patients: response.data.patients}});
