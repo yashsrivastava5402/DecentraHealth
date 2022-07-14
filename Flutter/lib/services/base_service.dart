@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 class BaseService {
-  static String baseUrl = 'http://localhost:8000';
+  static String baseUrl = 'http://decentrahealth-server.herokuapp.com ';
 
   Future<Response?> getresponse(String subpath) async {
     try {

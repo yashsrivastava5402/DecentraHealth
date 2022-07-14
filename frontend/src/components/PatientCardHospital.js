@@ -10,7 +10,7 @@ function PatientCardHospital({aadhar,name, regNo, age, gender}) {
         e.preventDefault();
         setSubmitted(true);
         console.log(regNo);
-        axios.post('http://localhost:8000/getDoctors', {hospitalRegnumber: regNo}).then((response) => {
+        axios.post('http://decentrahealth-server.herokuapp.com /getDoctors', {hospitalRegnumber: regNo}).then((response) => {
             console.log(response.data);
             if(response.status===200)
                 navigate(`/PatientPageHospital/${aadhar}`, {state: {values: response.data, name: name, age: age, gender: gender}});

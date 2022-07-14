@@ -104,7 +104,7 @@ class _HospitalApplyState extends State<HospitalApply> {
   Future<List<Hospitals>> getHospitals() async {
     print('shared pref' + _phoneNum!);
     var res = await Dio().get(
-      'http://localhost:8000/getHospitals',
+      'http://decentrahealth-server.herokuapp.com /getHospitals',
     );
     // patientList = (res.data as List).map((e) => Patient.fromJson(e)).toList();
     _hospitalList =
