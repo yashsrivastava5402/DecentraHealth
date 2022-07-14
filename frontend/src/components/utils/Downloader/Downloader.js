@@ -56,7 +56,7 @@ const DownloadItem = ({ name, file, filename, removeFile }) => {
       {
         s='application/pdf';
       }
-      else if(s=='jpg' || s=='peg')
+      else if(s=='jpg' || s=='jpeg')
       {
         s='image/jpeg';
       }
