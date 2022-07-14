@@ -42,7 +42,7 @@ function Patient() {
   useEffect(() => {
 
 
-    axios.post('http://decentrahealth-server.herokuapp.com /getPatients',
+    axios.post('https://decentrahealth-server.herokuapp.com/getPatients',
       { Phone: values.Phone }
     )
       .then(function (response) {
@@ -72,7 +72,7 @@ function Patient() {
     //    useEffect(() => {
 
 
-    //     axios.post('http://decentrahealth-server.herokuapp.com /getPatients',
+    //     axios.post('https://decentrahealth-server.herokuapp.com/getPatients',
     //     {Phone:values.Phone}
     //     )
     //       .then(function (response) {

@@ -17,7 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   //   print('Response status: ${response.statusCode}');
   //   print('Response body: ${response.body}');
   //   print('...........');
-  //   // print(await http.read(Uri.parse('http://decentrahealth-server.herokuapp.com /doctorLogin')));
+  //   // print(await http.read(Uri.parse('https://decentrahealth-server.herokuapp.com/doctorLogin')));
   // }
 
   @override
@@ -115,4 +115,4 @@ class _LoginScreenState extends State<LoginScreen> {
 //     );
 //   }
 // }
-//'http://decentrahealth-server.herokuapp.com /doctorLogin'
+//'https://decentrahealth-server.herokuapp.com/doctorLogin'
