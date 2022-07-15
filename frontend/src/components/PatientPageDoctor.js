@@ -104,17 +104,40 @@ import FileDownload from './FileDownload';
 })
    }, [])
 
+   const myStyle = {
+    width: '70rem',
+    backgroundColor: 'white'
+  }
+
     return (
-      
+      <>
         <div>
             <div>
-                Aadhar is {aadhar}
+                
                  <FileUpload aadhar={aadhar} handleupl={handleup}/> 
-            </div>
-            <div>
-              <FileDownload aadhar={aadhar} files={state2}/>
-            </div>
         </div>
+        <div className="container my-5">
+        <div className="card text-left border-dark text-black" style={myStyle}>
+      <div className="card-header  border-dark">
+        <h1>Records of {aadhar}</h1>
+      </div>
+      <div className="card-body">
+        <table class="table table-hover border-success">
+          <thead>
+            <tr>
+              <th scope="col">File Name</th>
+              <th scope="col">Link</th>
+            </tr>
+          </thead>
+            <tbody>
+              <FileDownload aadhar={aadhar} files={state2}/>
+            </tbody>
+            </table>
+        </div>
+        </div>
+        </div>
+        </div>
+        </>
     )
 }
 
