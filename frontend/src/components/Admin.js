@@ -145,7 +145,7 @@ function Admin() {
   }
 
   const myStyle = {
-    width: '53rem',
+    width: '70rem',
     backgroundColor: 'white'
   }
 

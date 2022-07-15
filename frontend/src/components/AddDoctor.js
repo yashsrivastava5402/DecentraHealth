@@ -19,7 +19,7 @@ export default function AddDoctor({handleChange,values,onClick,submitted}) {
 
     return (
     <div>
-    <Button size="large" type='submit' variant="contained" fullWidth style={{ height: "60px", width: "150px", alignItems: "center", backgroundColor: "#af9c4d", color: "white", justifyContent: "center", position: 'absolute', top: "0px", left: "780px" }} onClick={handleClickOpen}> Add Doctor </Button>
+    <Button size="large" type='submit' variant="contained" fullWidth style={{ height: "60px", width: "150px", alignItems: "center", backgroundColor: "#af9c4d", color: "white", justifyContent: "center", position: 'absolute', top: "0px", right: "-170px" }} onClick={handleClickOpen}> Add Doctor </Button>
     <Dialog open={open} onClose={handleClose}>
     <DialogTitle>Registration Form</DialogTitle>
     <DialogContent>
