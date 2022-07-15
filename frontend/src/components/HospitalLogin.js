@@ -57,7 +57,8 @@ function HospitalLogin() {
     };
 
 return (
-    <Dialog open maxWidth='sm'>
+    <>
+    {/* <Dialog open maxWidth='sm'>
     <Paper style={paperStyle}>
     <Grid align='center'>
     <Avatar style={avatarStyle}><LockOutlinedIcon /></Avatar>
@@ -79,7 +80,44 @@ return (
         </div>
     </Grid>
     </Paper>
-    </Dialog>
+    </Dialog> */}
+    <div className="card-body text-black" >
+        <div className="row justify-content-center my-5">
+          <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 mt-5">
+            <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-5">Login</p>
+            <form className="mx-1 mx-md-5">
+
+              <div className="d-flex flex-row align-items-center mb-2 mt-6 mx-5">
+                <i className="fas fa-user fa-lg me-3 fa-fw"></i>
+                <div className="form-outline flex-fill mb-0">
+                  <label className="form-label">Hospital Reg Number</label>
+                  <input onChange={handleChange} value={values.hospitalRegnumber} id="hospitalRegnumber" class="form-control" type="text" name="hospitalRegnumber"/>
+                  {submitted && !values.hospitalRegnumber ? <span id="hospitalRegnumber-error">Please enter hospital registration number</span> : null}
+                </div>
+              </div>
+
+              <div className="d-flex flex-row align-items-center mb-2 mt-5 mx-5">
+                <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                <div className="form-outline flex-fill mb-0">
+                  <label className="form-label">Password</label>
+                  <input  onChange={handleChange} value={values.password} id="password" class="form-control" type="password" name="password" />
+                  {submitted && !values.password ? <span id="password-error">Please enter password</span> : null}
+                </div>
+              </div>
+
+              <div className="d-flex justify-content-center mx-4 mb-3 mt-lg-5">
+                <button type="submit" className="btn btn-primary btn-lg" style={{ backgroundColor: "white", color: "blue" }} onClick={handlesubmit}>Login</button>
+              </div>
+              <p class="text-center text-muted mt-5 mb-0">Don't Have an Account? <a href='/HospitalSignupPage' class="fw-bold text-body"><u>Sign Up</u></a></p>
+            </form>
+          </div>
+          <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+            <img src="/hospitallogin.png"
+              className=' mx-56 my-10' alt="Sample image" />
+          </div>
+        </div>
+      </div>
+    </>
     )
 }
 

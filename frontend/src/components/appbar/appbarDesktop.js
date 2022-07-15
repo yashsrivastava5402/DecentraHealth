@@ -43,7 +43,7 @@ export default function AppbarDesktop({ matches }) {
         class="h-20 mx-3"
         alt=""
       />
-      <span class="font-serif text-6xl pt-2 pr-[400px]  text-white-300">Decentra Health</span>
+      <span class="font-serif text-6xl pt-2 pr-[400px]  text-white-300">DecentraHealth</span>
       <ul class="mx-14 my-6 flex space-x-11 justify-end text-2xl">
         <li class="cursor-pointer" onClick={() => {navigate("/");}}>Home</li>
         <li class="cursor-pointer" onClick={() => {navigate("/PatientLogin");}}>Patient</li>

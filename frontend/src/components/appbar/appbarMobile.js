@@ -12,7 +12,7 @@ export default function AppbarMobile({matches}){
        
         </MenuOutlined>
       </IconButton>
-      <AppbarHeader textAlign={"center"} variant="h4">Welcome to DecentraHealth</AppbarHeader>
+      <AppbarHeader textAlign={"center"} variant="h4">DecentraHealth</AppbarHeader>
       <IconButton>
         <SearchOutlined></SearchOutlined>
       </IconButton>
