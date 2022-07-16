@@ -13,8 +13,7 @@ class AddPatientScreen extends StatefulWidget {
 }
 
 class _AddPatientScreenState extends State<AddPatientScreen> {
-  // final List<String> _cities = ['Delhi', 'Mumbai'];
-  // final List<String> _ages = ['15-20', '20-25', '25-30', '30-40'];
+  bool _isButtonDisabled = false;
   String? _name;
   String? _age;
   String? _aadhar;
@@ -160,16 +159,15 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
         aadhar: _aadhar,
         gender: gender,
         phone: ':' + _phoneNo!);
-    var res = await Dio().post(
-        'https://decentrahealth-server.herokuapp.com/addPatients',
+    await Dio().post('https://decentrahealth-server.herokuapp.com/addPatients',
         data: addPatient.toJson());
+    Navigator.pop(context, 'update');
   }
 
   @override
   void initState() {
     super.initState();
     _phoneNo = SharedPrefs.getPhoneNum() ?? '';
-    print('addpatientscren' + _phoneNo!);
   }
 
   @override
@@ -259,8 +257,11 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
                 //   return;
                 // }
                 // _formkey.currentState!.save();
-                await addPatient();
-                Navigator.pop(context, 'update');
+                if (_isButtonDisabled == false) {
+                  _isButtonDisabled = true;
+                  await addPatient();
+                  _isButtonDisabled = false;
+                }
               },
               child: const Text('Save')),
         ),

@@ -9,7 +9,6 @@ class PatientService {
       data: {'Phone': ':+916206794316'},
     );
     if (res != null) {
-      print(res);
       return res;
 
       // return (res.data as List).map((e) => Patient.fromJson(e)).toList();

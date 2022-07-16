@@ -1,5 +1,5 @@
 import 'package:decentrahealth/Screens/patient_screens/add_patient_screen.dart';
-import 'package:decentrahealth/Screens/patient_screens/patient_details.dart';
+import 'package:decentrahealth/Screens/patient_screens/patient_details_screen.dart';
 import 'package:decentrahealth/Screens/splash_screen.dart';
 import 'package:decentrahealth/models/home_view_model.dart';
 import 'package:decentrahealth/theme/app_theme.dart';
@@ -23,7 +23,7 @@ class _PatientMainScreenState extends State<PatientMainScreen> {
     super.initState();
     _phoneNum = SharedPrefs.getPhoneNum() ?? '';
     dataFuture = getPatients();
-    // Provider.of<HomeViewModel>(context).updatePhoneNo('$_phoneNum');
+//Provider.of<HomeViewModel>(context,listen: false).updatePhoneNo('$_phoneNum');
   }
 
   String? _phoneNum;
@@ -85,8 +85,7 @@ class _PatientMainScreenState extends State<PatientMainScreen> {
                                       MaterialPageRoute(
                                           builder: ((context) =>
                                               PatientDetailsScreen(
-                                                patientIndex: index,
-                                                patientList: patientList,
+                                                patient: patientList[index],
                                               ))));
                                 },
                                 index: index,

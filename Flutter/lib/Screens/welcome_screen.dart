@@ -1,4 +1,4 @@
-import 'package:decentrahealth/Screens/login_screen/login_screen.dart';
+import 'package:decentrahealth/Screens/doctor_login_screen/doctor_login_screen.dart';
 import 'package:decentrahealth/Screens/signup_screens/phone_signup.dart';
 import 'package:decentrahealth/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,7 @@ class WelcomeScreen extends StatelessWidget {
       bottomSheet: Container(
         color: backgroundColor,
         child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 15),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -38,7 +38,8 @@ class WelcomeScreen extends StatelessWidget {
                     Isuser = Users.doctor;
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => DoctorLoginScreen()),
                     );
                   },
                   child: const Text('Doctor')),
