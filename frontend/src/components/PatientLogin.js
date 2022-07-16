@@ -3,12 +3,9 @@ import React from 'react';
 import { initializeApp } from 'firebase/app';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Form, Alert } from "react-bootstrap";
-import "react-phone-number-input/style.css";
-import { Grid, Paper, Avatar, Button } from '@material-ui/core'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Dialog from '@material-ui/core/Dialog';
-import PhoneInput from "react-phone-number-input";
+import { Form, Alert} from "react-bootstrap";
+import 'react-phone-input-2/lib/style.css'
+import PhoneInput from 'react-phone-input-2'
 
 
 import {
@@ -44,7 +41,6 @@ function PatientLogin() {
   //     setSubmitted(true);
   // };
   const paperStyle = { padding: 20, height: '65vh', width: 500, margin: "0 auto", border: '2px solid #fff', }
-  const avatarStyle = { backgroundColor: '#1bbd7e' }
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({
@@ -68,7 +64,7 @@ function PatientLogin() {
     e.preventDefault();
 
     configureCaptcha();
-    const phoneNumber = values.phone;
+    const phoneNumber = '+' +values.phone;
     console.log("phonenu", phoneNumber);
     setError("");
     if (phoneNumber === "" || phoneNumber === undefined)
@@ -119,53 +115,70 @@ function PatientLogin() {
 
 
   return (
-    <Dialog open maxWidth='sm' >
-      {/* <Grid style={{backgroundColor:"light green"}}> */}
-      <Paper style={paperStyle}>
-      <Grid align='center'>
-      <Avatar style={avatarStyle}><LockOutlinedIcon /></Avatar>
-      <h1 className="mb-3">Patient Login</h1> <br /></Grid> {error && <Alert variant="danger">{error}</Alert>}
+    <>
+      <div className="card-body text-black" >
+        <div className="row justify-content-center my-5">
+          <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 mt-5">
+            <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-5"> Patient Login</p>
+            {error && <Alert variant="danger">{error}</Alert>}
 
-      <Form onSubmit={onSignInSubmit} style={{ display: !flag ? "block" : "none" }}>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-      <PhoneInput style={{ height: "30px", width: "310px"}}
-        // onlyCountries={["in"]}
-        // // maxWidth='md'
-        // // inputStyle='normal'
-        // masks={{
-        //   in: "..........",
-        // }}
-        value={values.phone}
-        onChange={(e) => {
-          console.log(e);
-          setValues({
-            ...values,
-            phone: e,
-          });
-        }}
-        placeholder="Enter Phone Number" /> <br />
-        <div id="sign-in-button"></div>
-        
-        </Form.Group>
+            <div className="mx-1 mx-md-5">
+              <Form onSubmit={onSignInSubmit} style={{ display: !flag ? "block" : "none" }}>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <div className="d-flex flex-row align-items-center mb-2 mt-6 mx-5">
+                    <i className="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div className="form-outline flex-fill mb-0">
+                      <label className="form-label">Mobile No</label>
+                      <PhoneInput country={'in'} value={values.phone} style={{width:"500px"}} inputStyle={{width :'446px'}}
+                        onChange={(e) => {
+                          console.log(e);
+                          setValues({
+                            ...values,
+                            phone: e,
+                          });
+                        }} /><br />
+                      <div id="sign-in-button"></div>
+                    </div>
+                  </div>
 
-        <Button type="submit" variant="contained" style={{color: "white",backgroundColor: "#013220"}} fullWidth href='/'>Cancel</Button> <br /> <br />
-        <Button type="submit" variant="contained" color="success" style={{color: "white",backgroundColor: "#013220"}} fullWidth>Send Otp</Button>
+                </Form.Group>
+                
+                <div className="d-flex justify-content-center mx-4 mb-3 mt-lg-5">
+                <button type="submit" variant="contained" className="btn btn-primary btn-lg" style={{ backgroundColor: "white", color: "blue" }} >Send OTP</button>
+                </div>
 
-      </Form>
+              </Form>
 
-      <Form onSubmit={onOTPSubmit} style={{ display: flag ? "block" : "none" }}>
+              <Form onSubmit={onOTPSubmit} style={{ display: flag ? "block" : "none" }}>
 
-        <Form.Group controlId="formBasicOtp">
-        <Form.Control type="otp" value={values.OTP} placeholder="Enter OTP" onChange={(e) => { setValues({ ...values, OTP: e.target.value,});}} style={{height: "30px",width: "340px"}}/><br /><br />
-        </Form.Group>
-
-        <Button variant="contained"style={{color: "white",backgroundColor: "#013220"}} fullWidth href='/'>Cancel</Button><br /><br />
-
-        <Button type="submit" variant="contained" style={{ color: "white",backgroundColor: "#013220",}}fullWidth>Verify</Button>
-      </Form>
-      </Paper>
-    </Dialog>
-)}
+                <Form.Group controlId="formBasicOtp">
+                  <div className="d-flex flex-row align-items-center mb-2 mt-5 mx-5">
+                    <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                    <div className="form-outline flex-fill mb-0">
+                      <label className="form-label">OTP</label>
+                      <input type="otp" value={values.OTP} className='form-control' onChange={(e) => { setValues({ ...values, OTP: e.target.value, }); }} />
+                      <div className="d-flex justify-content-center mx-4 mb-3 mt-lg-5">
+                      </div>
+                    </div>
+                  </div>
+                </Form.Group>
+              
+                <div className="d-flex justify-content-center mx-4 mb-3 mt-lg-5">
+                <button type="submit" variant="contained" className="btn btn-primary btn-lg" style={{ backgroundColor: "white", color: "blue" }} >Login</button>
+                </div>
+               
+              </Form>
+            </div>
+          </div>
+          <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+            <img src="/patientlogin.png"
+              className=' mx-56 my-10' alt="Sample image" />
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
 
 export default PatientLogin;
 

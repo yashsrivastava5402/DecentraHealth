@@ -62,7 +62,7 @@ return(
     <div className="card-body text-black">
         <div className="row justify-content-center my-5">
           <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 mt-5">
-            <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-5">Login</p>
+            <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-5">Doctor Login</p>
             <form className="mx-1 mx-md-5">
 
               <div className="d-flex flex-row align-items-center mb-2 mt-6 mx-5">

@@ -122,7 +122,7 @@ function HospitalSignupPage() {
                 <button type="submit" className="btn btn-primary btn-lg" style={{ backgroundColor: "white", color: "blue" }} onClick={handlesubmit}>Register</button>
                 
               </div>
-              <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href='/HospitalLogin' class="fw-bold text-body"><u>Login here</u></a></p>
+              <p class="text-center text-muted mt-5 mb-0">Have already an account? <a onClick={() => {navigate("/HospitalLogin");}} class="fw-bold text-body cursor-pointer"><u>Login here</u></a></p>
             </form>
             
           </div>

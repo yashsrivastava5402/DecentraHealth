@@ -84,7 +84,7 @@ return (
     <div className="card-body text-black" >
         <div className="row justify-content-center my-5">
           <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 mt-5">
-            <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-5">Login</p>
+            <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-5">Hospital Login</p>
             <form className="mx-1 mx-md-5">
 
               <div className="d-flex flex-row align-items-center mb-2 mt-6 mx-5">
@@ -108,7 +108,7 @@ return (
               <div className="d-flex justify-content-center mx-4 mb-3 mt-lg-5">
                 <button type="submit" className="btn btn-primary btn-lg" style={{ backgroundColor: "white", color: "blue" }} onClick={handlesubmit}>Login</button>
               </div>
-              <p class="text-center text-muted mt-5 mb-0">Don't Have an Account? <a href='/HospitalSignupPage' class="fw-bold text-body"><u>Sign Up</u></a></p>
+              <p class="text-center text-muted mt-5 mb-0">Don't Have an Account? <a onClick={() => {navigate("/HospitalSignupPage");}} class="fw-bold text-body cursor-pointer"><u>Sign Up</u></a></p>
             </form>
           </div>
           <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
