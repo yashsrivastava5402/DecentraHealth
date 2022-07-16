@@ -50,16 +50,26 @@ const DownloadItem = ({ name, file, filename, removeFile }) => {
       ...options,
     }).then(function (response) {
       console.log(response);
-
+      let n=name.length;
+      let s=name.substring(n-3,n);
+      if(s=='pdf')
+      {
+        s='application/pdf';
+      }
+      else if(s=='jpg' || s=='peg')
+      {
+        s='image/jpeg';
+      }
       const url = window.URL.createObjectURL(
         new Blob([response.data], {
-          type: response.headers["content-type"],
+          type: s,
         })
       );
 
       const link = document.createElement("a");
       link.href = url;
-      link.setAttribute("download", filename);
+      
+      link.setAttribute("download", name.substring(0,n-4));
       document.body.appendChild(link);
       link.click();
 

@@ -1,42 +1,33 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from "react-router";
 import axios from 'axios';
 
-function PatientCard({aadhar,name,age,gender}) {
+function PatientCard({ aadhar, name, age, gender}) {
 
     const navigate = useNavigate();
     const [submitted, setSubmitted] = useState(false);
-    const goToPatient = (e) =>{
+    const goToPatient = (e) => {
         e.preventDefault();
         setSubmitted(true);
         axios.get('https://decentrahealth-server.herokuapp.com/getHospitals')
-        .then(function (response){
-            console.log(response);
-            if(response.status === 200){
-                navigate(`/PatientPage/:${aadhar}`, {state: {values: {hospitals: response.data, Name: name, Aadhar: aadhar, Age: age, Gender: gender}}});
-            }
-        });
+            .then(function (response) {
+                console.log(response);
+                if (response.status === 200) {
+                    navigate(`/PatientPage/:${aadhar}`, { state: { values: { hospitals: response.data, Name: name, Aadhar: aadhar, Age: age, Gender: gender } } });
+                }
+            });
+        }
+        
+        return (
+            <>
+                <td>{aadhar}</td>
+                <td>{name}</td>
+                <td>{age}</td>
+                <td>{gender}</td>
+                <button className="btn btn-primary" onClick={goToPatient} style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 30px" }}>Book Appointment</button>
+                <button className='btn btn-primary' style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 10px" }} onClick={()=>{ navigate(`/ViewReports`,{state:aadhar})}} >View Reports</button>
+                <button className="btn btn-primary" style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 10px" }}>Remove</button>
+            </>)
     }
-  return (<>
-    <div>
-        <div>
-           {aadhar}
-        </div>
-        <div>
-            {name}
-        </div>
-        <div>
-        <button type="button" onClick={goToPatient}>
-            Submit
-        </button>
-        </div>
-        <div>
-            remove button
-        </div>
-    </div>
-  
-  </>)
-    
-}
 
-export default PatientCard;
+    export default PatientCard;

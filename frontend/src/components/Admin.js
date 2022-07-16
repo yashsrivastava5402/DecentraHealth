@@ -1,18 +1,20 @@
 import axios from 'axios';
-import React,{useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import DoctorCard from './DoctorCard';
 import PatientCard from './PatientCard';
 import { generate } from './utils/passgen';
 import Button from "@mui/material/Button";
 import PatientCardHospital from './PatientCardHospital';
+import FormDialog from './FormDialog';
+import AddDoctor from './AddDoctor';
 
-const addDoctor = function(values) {
+const addDoctor = function (values) {
   // await axios.post('/addDoctor', values)
   // .then ((response) => {
   //     if(response.status===200)
   //     {
-          
+
   //     }
   //     else if(response.status==203)
   //     {
@@ -39,25 +41,25 @@ const addDoctor = function(values) {
   //   // });
   //   resolve({ newDoctorId, newPassword });
   // });
-    
+
 }
 
 function Admin() {
-  const {state}=useLocation();
+  const { state } = useLocation();
   console.log(state);
   const [values, setValues] = useState({
-    Name:"",
-    UPRN:"",
-    doctorId:"",
+    Name: "",
+    UPRN: "",
+    doctorId: "",
     hospitalRegnumber: state.values.hospitalRegnumber,
     hospitalName: state.values.hospitalName,
-    password:""
+    password: ""
   });
   const [doctors, setdoctors] = useState(state.values.doctors);
   const [patients, setpatients] = useState(state.values.patients);
   // console.log(state.values);
   console.log("outide: ", doctors);
-  const[submitted,setSubmitted]=useState(false);
+  const [submitted, setSubmitted] = useState(false);
   //const { hospitalRegnumber } = useParams();
   // const {state}=useLocation();
   // setdoctors(state);
@@ -89,101 +91,94 @@ function Admin() {
     console.log("values");
     const { name, value } = e.target;
     setValues({
-        ...values,
-        [name]: value,
+      ...values,
+      [name]: value,
     });
-};
-useEffect(() => {
+  };
+  useEffect(() => {
 
-  axios.post('https://decentrahealth-server.herokuapp.com/getDoctors',
-  state.values
-  )
-    .then(function (response) {
-      console.log(response);
-      setdoctors(response.data);
-    });
+    axios.post('https://decentrahealth-server.herokuapp.com/getDoctors',
+      state.values
+    )
+      .then(function (response) {
+        console.log(response);
+        setdoctors(response.data);
+      });
     axios.post('https://decentrahealth-server.herokuapp.com/getPatientsHospital',
-    {HospitalID:state.values.hospitalRegnumber}
+      { HospitalID: state.values.hospitalRegnumber }
     )
       .then(function (response) {
         console.log(response);
         setpatients(response.data);
       });
-}, []);
+  }, []);
+
+  const onClick= (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+    const { newDoctorId, newPassword } = generate(values);
+    // setValues((prevState) => {
+    //   return {
+    //     ...prevState,
+    //       doctorId: newDoctorId,
+    //       password: newPassword
+    //   }
+    // });
+    values.doctorId = newDoctorId;
+    values.password = newPassword;
+    setValues(values);
+
+    //addDoctor(values).then (function (received){
+
+    axios.post('https://decentrahealth-server.herokuapp.com/addDoctors', values).then(function (response) {
+      alert(`doctor added ${response.data.Name}`);
+      // function Admin() {
+      //ßconsole.log(error);
+      //doctors.push(state.values.doctors);
+      // doctors.push(values);
+      console.log(values);
+      setdoctors((prevState) => {
+        return [...prevState, values];
+      });
+      console.log(doctors);
+    });
+  }
+
+  const myStyle = {
+    width: '70rem',
+    backgroundColor: 'white'
+  }
 
   return (
-    <div>Admin{values.hospitalRegnumber}
-    <form class="register-form" >
-      <input
-            onChange={handleChange}
-            value={values.Name}
-            id="Name"
-            class="form-field"
-            type="text"
-            placeholder="Name"
-            name="Name"
-        />
-        {submitted && !values.Name ? <span id="Name-error">Please enter hospital registration number</span> : null}
-   
-        <input
-            onChange={handleChange}
-            value={values.UPRN}
-            id="UPRN"
-            class="form-field"
-            type="text"
-            placeholder="UPRN number"
-            name="UPRN"
-        />
-        {submitted && !values.UPRN ? <span id="UPRN-error">Please enter UPRN number</span> : null}
-        <Button size="large" variant="contained" style={{height:"60px",width:"150px",margin:"70px",alignItems:"center",justifyContent:"center"}} onClick={(e)=>{
-          e.preventDefault();
-          setSubmitted(true);
-          const{ newDoctorId, newPassword }=generate(values);
-          // setValues((prevState) => {
-          //   return {
-          //     ...prevState,
-          //       doctorId: newDoctorId,
-          //       password: newPassword
-          //   }
-          // });
-          values.doctorId = newDoctorId;
-          values.password = newPassword;
-          setValues(values);
-       
-          //addDoctor(values).then (function (received){
-            
-            axios.post('https://decentrahealth-server.herokuapp.com/addDoctors',
-            values
-            )
-              .then(function (response) {
-                alert(`doctor added ${response.data.Name}`);
-              // function Admin() {
-                //ßconsole.log(error);
-               
-                //doctors.push(state.values.doctors);
-                // doctors.push(values);
-                console.log(values);
-                setdoctors((prevState) => {
-                  return [...prevState, values];
-                });
-                console.log(doctors);
-          
-              });
-      }}>Add Doctor</Button>
-            </form>
-    {/* { doctors.map((doctor)=>{
-        return <DoctorCard id={doctor.doctorId} name={doctor.Name}/>
-     })} */}
-   <div>
-    { patients.map((patient)=>{
-        return <PatientCardHospital aadhar={patient.Aadhar} name={patient.Name} regNo = {values.hospitalRegnumber} age = {patient.Age} gender = {patient.Gender}/>
-     })}
-    </div>
-    </div>
-   
-
-
+    <>
+      <div className="container my-5">
+        <div className="card text-left border-dark text-black" style={myStyle}>
+          <div className="card-header  border-dark">
+            Admin{values.hospitalRegnumber}
+          </div>
+          <div className="card-body">
+            <table class="table table-hover border-success">
+              <thead>
+                <tr>
+                  <th scope="col">Hospital Id</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Reg_No</th>
+                  <th scope="col">Age</th>
+                  <th scope="col">Gender</th>
+                </tr>
+              </thead>
+              <tbody>
+                <AddDoctor handleChange={handleChange} values={values} onClick={onClick} submitted={submitted}/>
+                {patients.map((patient) => {
+                  return <tr><PatientCardHospital aadhar={patient.Aadhar} name={patient.Name} regNo={values.hospitalRegnumber} age={patient.Age} gender={patient.Gender} /> </tr>
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </>
   )
 }
 
-export default Admin
+export default Admin;

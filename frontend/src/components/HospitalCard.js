@@ -1,16 +1,16 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from "react-router";
 import axios from 'axios';
 
-function HospitalCard({id,name,state}) {
+function HospitalCard({ id, name, state }) {
 
     const navigate = useNavigate();
     const [submitted, setSubmitted] = useState(false);
-    const goToPatient = (e) =>{
+    const goToPatient = (e) => {
         e.preventDefault();
         setSubmitted(true);
         console.log("state", state);
-        const values ={
+        const values = {
             Name: state.values.Name,
             Aadhar: state.values.Aadhar,
             Age: state.values.Age,
@@ -18,31 +18,21 @@ function HospitalCard({id,name,state}) {
             HospitalID: id
         }
         axios.post('https://decentrahealth-server.herokuapp.com/addPatientHospital', values)
-        .then(function (response){
-            console.log(response);
-            if(response.status === 200){
-                alert("Applied succesfully!!");
-            }
-        });
+            .then(function (response) {
+                console.log(response);
+                if (response.status === 200) {
+                    alert("Applied succesfully!!");
+                }
+            });
     }
-  return (
-    <div>
-        <div>
-           {id}
-        </div>
-        <div>
-            {name}
-        </div>
-        <div>
-        <button type="button" onClick={goToPatient}>
-            Apply
-        </button>
-        </div>
-        <div>
-            remove button
-        </div>
-    </div>
-  )
+    return (<>
+        <td>{id}</td>
+        <td>{name}</td>
+        <button className="btn btn-primary" onClick={goToPatient} style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 5px", position: "relative", left: "50px" }}> APPLY</button>
+        <button className="btn btn-primary" style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 10px", position: "relative", left: "50px" }}>REMOVE</button>
+
+    </>
+    )
 }
 
 export default HospitalCard;

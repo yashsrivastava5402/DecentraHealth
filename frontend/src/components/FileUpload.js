@@ -8,28 +8,16 @@ function FileUpload({aadhar,handleupl}) {
   console.log(aadhar);
 
   const formData = new FormData();
-  const arr=[];
+
     const saveFile = (e) => {
-   
-     
         console.log(e.target.files[0])
         for(var i=0;i<e.target.files.length;i++){
           formData.append('file', e.target.files[i]);
           formData.append("fileName",e.target.files[i].name);
           formData.append("Aadhar", aadhar);
           // for stateupdate
-          var link = `https://decentrahealth-server.herokuapp.com/fileDownload/${aadhar}/${e.target.files[i].name}`;
-
-          const output = {
-              
-             file : link,
-             filename: e.target.files[i].name,
-              name: e.target.files[i].name,
-          }
-          arr.push(output);
-          
         }
-        console.log(arr)
+
         //console.log(formData)
         
     };
@@ -48,17 +36,19 @@ function FileUpload({aadhar,handleupl}) {
           formData
         );
         console.log(res);
-        handleupl(arr);
+        handleupl(res.data);
       } catch (ex) {
         console.log(ex);
       }
     };
 
     return (
-        <div className="App">
-          <input type="file" multiple onChange={saveFile} />
-          <button onClick={uploadFile}>Upload</button>
-        </div>
+        <>
+        <div className="border-dark" style={{border:"2px solid",position:"absolute", left:"73rem", width:"320px"}}>
+          <input type="file" multiple onChange={saveFile} style={{margin:"20px 0px 0px 60px"}}/>
+          <button className='btn btn-primary' style={{margin:"20px 0px 20px 120px", backgroundColor:"#8d5ba7"}} onClick={uploadFile}>Upload</button>
+          </div>
+        </>
       )
 }
 

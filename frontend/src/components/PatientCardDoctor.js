@@ -15,8 +15,10 @@ function PatientCardDoctor({aadhar,name}) {
                 navigate(`/PatientPageDoctor/${aadhar}`, {state: {values: response.data}});
         })
     }
-  return (<>
-     <div>
+
+  return (
+  <>
+     {/* <div>
            {aadhar}
         </div>
         <div>
@@ -29,12 +31,13 @@ function PatientCardDoctor({aadhar,name}) {
         </div>
         <div> 
             remove button 
-         </div>
-    
+         </div> */}
+            <td>{aadhar}</td>
+            <td>{name}</td>
+            <button className="btn btn-primary" onClick={goToPatient} style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 50px" }}>View Reports</button>
+            <button className="btn btn-primary" style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 20px" }}>Remove</button>
   </>)
-   
-        
-  
+
 }
 
 export default PatientCardDoctor;

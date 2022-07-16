@@ -10,23 +10,17 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import React from "react";
 import FileUpload from "./components/FileUpload";
 import FileDownload from "./components/FileDownload";
-import PaitentPageDoctor from "./components/PatientPageDoctor";
-<<<<<<< Updated upstream
-import PaitentPageHospital from "./components/PatientPageHospital";
+import PatientPageHospital from "./components/PatientPageHospital"
+import PatientPageDoctor from "./components/PatientPageDoctor";
 import Doctor from "./components/Doctor";
-function App() {
-  return (
-     <div>
-
-     
-    <BrowserRouter>
-=======
 import Appbar from "./components/appbar";
+import ViewReports from "./components/ViewReports";
+
 function App() {
   return (
     <div>
+    <BrowserRouter>
     <Appbar/>
->>>>>>> Stashed changes
     <Routes>
       <Route path="/home" element={<Home />} /> 
       <Route path="/DoctorLogin" element={<DoctorLogin />} /> 
@@ -38,18 +32,15 @@ function App() {
       <Route path="/PatientPage/:id" element={<PatientPage />} />
       <Route path="/fileUpload/:aadhar" element={<FileUpload />} />
       <Route path="/FileDownload" element={<FileDownload />} />
-      <Route path="/PatientPageDoctor/:aadhar" element={<PaitentPageDoctor />} />
-      <Route path="/PatientPageHospital/:aadhar" element={<PaitentPageHospital />} />
+      <Route path="/PatientPageDoctor/:aadhar" element={<PatientPageDoctor />} />
+      <Route path="/PatientPageHospital/:aadhar" element={<PatientPageHospital />} />
       <Route path="/Doctor" element={<Doctor />} />
+      <Route path="/ViewReports" element={<ViewReports />} />
       <Route path="/" element={<Navigate replace to="/home" />} />    
     </Routes>
-<<<<<<< Updated upstream
   </BrowserRouter>
+    
   </div>
-
-=======
-  </div>
->>>>>>> Stashed changes
   );
 }
 

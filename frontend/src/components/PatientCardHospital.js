@@ -17,22 +17,15 @@ function PatientCardHospital({aadhar,name, regNo, age, gender}) {
         })
     }
   return (
-    <div>
-        <div>
-           {aadhar}
-        </div>
-        <div>
-            {name}
-        </div>
-        <div>
-        <button type="button" onClick={goToPatient}>
-            Submit
-        </button>
-        </div>
-        <div>
-            remove button
-        </div>
-    </div>
+    <>
+    <td>{aadhar}</td>
+    <td>{name}</td>
+    <td>{regNo}</td>
+    <td>{age}</td>
+    <td>{gender}</td>
+    <button className="btn btn-primary" onClick={goToPatient} style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 50px" }}>Assign Doctor</button>
+    <button className="btn btn-primary" style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 20px" }}>Remove</button>
+    </>
   )
 }
 

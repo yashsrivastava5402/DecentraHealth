@@ -10,45 +10,20 @@ function FileDownload({aadhar, files}) {
 
   return (
     <>
-      
-
-      <div className="row">
-        <div className="col text-center">
-          <h2>These are Your Previous Records</h2>
-          <div className="row mt-3">
-            
-            <Table>
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell width={10}>File Name</Table.HeaderCell>
-                <Table.HeaderCell width='six'>Download Link</Table.HeaderCell>
-              </Table.Row>
-            </Table.Header>
-        
-            <Table.Body>
-            {files.map((file) => (
+      {files.map((file) => (
               <Table.Row>
                 <Table.Cell>{file.name}</Table.Cell>
-                <Table.Cell><a onMouseOver="color='#0F0'"
-                              className=" hoverbtn btn-primary cursor-pointer text-white"
+                <Table.Cell><button className={"btn btn-primary"} style={{backgroundColor: "blue"}}
+                              
                               onClick={() => download(file)}
                             >
                           
 Download
 
-                            </a></Table.Cell>
+                            </button></Table.Cell>
               </Table.Row>
              ))}
-            </Table.Body>
-        
-         
-          </Table>
-          
-          </div>
-          
-        </div>
         {downloaderComponentUI}
-      </div>
     </>
   )
 }

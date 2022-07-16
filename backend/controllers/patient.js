@@ -1,7 +1,10 @@
 //const Patient = require('../models/patient');
 const Hospital = require('../models/hospital');
 const Patients = require('../models/patients');
+ const {getdata, setdata} =require('../utils/web3');
+const ipfsAPI = require('ipfs-api');
 const fs = require('fs');
+const ipfs = ipfsAPI('ipfs.infura.io', '5001', {protocol: 'https'})
 // const { Blob } = require('node-blob');
 
 exports.addPatients = (req, res) => {
@@ -69,8 +72,9 @@ exports.addPatientHospital = (req, res) => {
         console.log(err);
     }
 }
-exports.fileUpload=(req,res)=>{
+exports.fileUpload= async (req,res)=>{
     var Aadhar=0, flag=0;
+    const senddata=[];
     if(req.body.Aadhar instanceof Array){
         Aadhar = req.body.Aadhar[0];
         flag=1;
@@ -83,35 +87,63 @@ exports.fileUpload=(req,res)=>{
     }
     console.log(req.files);
     console.log(req.body);
-    const file = req.files.file;
+    const files = req.files.file;
     const fileName = req.body.fileName;
     //const filename = file.name;
+   
     if(flag===0){
-        file.mv(`${newpath}/${fileName}`, (err) => {
+      
+            files.mv(`${newpath}/${fileName}`,async (err) => {
             if (err) {
                 console.log(err);
               res.status(500).send({ message: "File upload failed", code: 200 });
             }
+
+            let testFile = fs.readFileSync(`${newpath}/${fileName}`);
+            let testBuffer = new Buffer(testFile);
+
+               let file = await ipfs.files.add(testBuffer);
+                console.log(9);
+                console.log(file);
+                await setdata(Aadhar,fileName, file[0].hash);
+                let link = `https://decentrahealth-server.herokuapp.com/fileDownload/${Aadhar}/${file[0].hash}`;
+                senddata.push({name:fileName, file:link, filename:fileName})
+                console.log(senddata)
+                res.status(200).send(senddata);
             //else{
             //   res.status(200).send({ message: "File Uploaded", code: 200 });
             //   console.log("File uploaded");
             // }
-          });
+          })
+
+        
     }
-    for(let i = 0 ; i < file.length; i++){
-        file[i].mv(`${newpath}/${fileName[i]}`, (err) => {
-            if (err) {
-                console.log(err);
-              res.status(500).send({ message: "File upload failed", code: 200 });
-            }
-            //else{
-            //   res.status(200).send({ message: "File Uploaded", code: 200 });
-            //   console.log("File uploaded");
-            // }
-          });
-    }
-    res.status(200).send({ message: "File Uploaded", code: 200 });
+    else
+    await Promise.all( files.map( async(currfile, i) => {
     
+        await currfile.mv(`${newpath}/${fileName[i]}`,async (err) => {
+            if (err) {
+                console.log(err);
+              res.status(500).send({ message: "File upload failed", code: 200 });
+            }
+            let testFile = fs.readFileSync(`${newpath}/${fileName[i]}`);
+            let testBuffer = new Buffer(testFile);
+
+                let newfile = await ipfs.files.add(testBuffer);
+                await setdata(Aadhar, newfile[0].hash, fileName[i]);
+                let link = `https://decentrahealth-server.herokuapp.com/fileDownload/${Aadhar}/${newfile[0].hash}`; 
+                senddata.push({name:fileName[i], file:link, filename:fileName[i]})
+            //else{
+            //   res.status(200).send({ message: "File Uploaded", code: 200 });
+            //   console.log("File uploaded");
+            // }
+          });
+    
+      }))
+  
+    console.log(senddata);
+    // res.status(200).send(senddata);
+
 }
 exports.getPatientsHospital = (req, res) => {
     const { HospitalID } = req.body;
@@ -140,43 +172,72 @@ exports.getPatients=(req,res)=>{
         }
     })
 }
-exports.viewFiles = (req, res) => {
+exports.viewFiles =async (req, res) => {
+    // const { aadhar } = req.body;
+    // const path = __dirname + "/" + aadhar;
+    // const arr = [];
+    // console.log("path", path);
+    // if(fs.existsSync(path)){
+    //     console.log("Exists");
+    //     fs.readdir(path, function (err, files) {
+    //         //handling error
+    //         if (err) {
+    //             // return console.log('Unable to scan directory: ' + err);
+    //             res.status(500).send('Unable to scan directory: ' + err);
+    //         } 
+    //         //listing all files using forEach
+    //         console.log("No erroe");
+    //         files.forEach(function (file) {
+
+    //                 var link = `https://decentrahealth-server.herokuapp.com/fileDownload/${aadhar}/${file}`;
+
+    //             const output = {
+    //                 filename: file,
+    //                 name: file,
+    //                file : link
+    //             }
+    //             arr.push(output);
+    //             console.log("file", file); 
+    //         });
+    //         res.status(200).send(arr);
+    //     });
+    // }else{
+    //     res.status(200).send(arr);
+    // }
     const { aadhar } = req.body;
-    const path = __dirname + "/" + aadhar;
+    const data = await getdata(aadhar);
+    console.log(data);
     const arr = [];
-    console.log("path", path);
-    if(fs.existsSync(path)){
-        console.log("Exists");
-        fs.readdir(path, function (err, files) {
-            //handling error
-            if (err) {
-                // return console.log('Unable to scan directory: ' + err);
-                res.status(500).send('Unable to scan directory: ' + err);
-            } 
-            //listing all files using forEach
-            console.log("No erroe");
-            files.forEach(function (file) {
+    for(let i=0;i<data.length;i++)
+    {
+        let element=data[i];
+        var link = `https://decentrahealth-server.herokuapp.com/fileDownload/${aadhar}/${element.userDataDetail}`;
+        const output = {
+                            filename:element.userDataDetail ,
+                            name: element.userDataFilename,
+                           file : link
+                        }
+                        arr.push(output);
 
-                    var link = `https://decentrahealth-server.herokuapp.com/fileDownload/${aadhar}/${file}`;
-
-                const output = {
-                    filename: file,
-                    name: file,
-                   file : link
-                }
-                arr.push(output);
-                console.log("file", file); 
-            });
-            res.status(200).send(arr);
-        });
-    }else{
-        res.status(200).send(arr);
     }
+    console.log("GH");
+
+    res.status(200).send(arr);
+    
+    // //Creating buffer for ipfs function to add file to the system
+    // let testBuffer = new Buffer(testFile);
 }
 
-exports.fileDownload = (req, res) => {
+exports.fileDownload = async (req, res) => {
     const aadhar = req.params['aadhar'];
     const fileName = req.params['fileName'];
-    const path = __dirname + "/" + aadhar + "/" + fileName;
-    res.status(200).download(path);
+    // const path = __dirname + "/" + aadhar + "/" + fileName;
+    const files = await ipfs.files.get(fileName);
+    files.forEach(file => {
+        console.log(file.path)
+        console.log(file);
+        res.status(200).send(file.content);
+    });
+    // res.status(200).send(file.content);
+    // res.status(200).download(path);
 }
