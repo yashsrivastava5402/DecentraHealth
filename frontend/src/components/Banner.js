@@ -27,10 +27,11 @@ const navigate = useNavigate();
 
 </div> */}
 
-    <main className="flex h-[491px]">
-      <div className="py-20 pl-20 xl:w-1/2 md:w-1/3 sm:w-full">
-      <div>
-        <div className="text-8xl">Best Health Care!!</div>
+   
+    <div className="card-body text-black" >
+        <div className="row justify-content-center my-5">
+          <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 mt-5 px-5">
+          <div className="text-8xl">Best Health Care!!</div>
         <p className="py-3  text-xl text-[#454545]" style={{fontStyle: "italic"}}>
           All yours Medical Facilites at one Place!!! Book Your Appointments, View your Medical Reports, History Linked with your Aadhar.
           The Best thing about this, Its Free!!!
@@ -40,12 +41,13 @@ const navigate = useNavigate();
           <button className="bg-[#1983A2] px-10 py-4 rounded-2xl text-white hover:text-slate-900 hover:bg-[#86B2C1]" onClick={() => {navigate("/PatientLogin");}}>Patient</button>
           <button className="bg-[#1983A2] px-10 py-4 rounded-2xl text-white hover:text-slate-900 hover:bg-[#86B2C1] mx-3" onClick={() => {navigate("/DoctorLogin");}}>Doctor</button>
         </div>
+          </div>
+          <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2 ">
+            <img src="/home.png"
+              className='w-3/5' alt="Sample image" />
+          </div>
         </div>
-        <div>
-        <img className="w-1/3 absolute left-[950px] top-44 img fluid" src="/home.png" alt="" />
-        </div>
-        </div>
-    </main>
+      </div>
     <footer className="text-center text-white">
       <div className="center mb-9 my-24">
       <p className="text-center my-6">
