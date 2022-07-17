@@ -27,7 +27,6 @@ mongoose.connect("mongodb+srv://srivyas:decentrahealth1234@decentrahealth.rkmod.
 
 const port = 8000;
 
-// app.use()
 app.get('/', (req, res) => {
     res.send("Hello from express");
 })
