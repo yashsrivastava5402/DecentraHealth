@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import PatientCard from './PatientCard';
-import FormDialog from './FormDialog';
+import AddMember from './AddMember';
 
 
 function Patient() {
@@ -86,8 +86,7 @@ function Patient() {
   }
   
  const myStyle = {
-    width: '52rem',
-    backgroundColor: 'white'
+    width: '70rem',
   }
 
   return (
@@ -108,7 +107,7 @@ function Patient() {
             </tr>
           </thead>
           <tbody>
-              <FormDialog phone={values.Phone} handlenew={handlenew} setSubmitted={setSubmitted} handleChange={handleChange} handleNull={handleNull} submitted={submitted} values={values} />
+              <AddMember phone={values.Phone} handlenew={handlenew} setSubmitted={setSubmitted} handleChange={handleChange} handleNull={handleNull} submitted={submitted} values={values} />
               {values.patients.map((patient) => {
                 console.log(patient);
                 return <>

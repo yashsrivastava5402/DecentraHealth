@@ -1,12 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
-import DoctorCard from './DoctorCard';
-import PatientCard from './PatientCard';
+import { useLocation} from 'react-router-dom'
 import { generate } from './utils/passgen';
-import Button from "@mui/material/Button";
 import PatientCardHospital from './PatientCardHospital';
-import FormDialog from './FormDialog';
 import AddDoctor from './AddDoctor';
 
 const addDoctor = function (values) {

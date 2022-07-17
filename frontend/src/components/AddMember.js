@@ -170,14 +170,11 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import axios from 'axios';
-import { useState, useEffect } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
-import PatientCard from './PatientCard';
-import { Grid, Paper, Avatar, TextField, Button, Typography, Link, Dialog } from '@material-ui/core'
+import {TextField, Button,Dialog } from '@material-ui/core';
 
 
 
-export default function FormDialog({ phone, handlenew, setSubmitted, handleChange, handleNull, submitted, values }) {
+export default function AddMember({ phone, handlenew, setSubmitted, handleChange, handleNull, submitted, values }) {
   // const [values, setValues] = useState({
   //   Name:"",
   //   Aadhar:"",
@@ -207,13 +204,10 @@ export default function FormDialog({ phone, handlenew, setSubmitted, handleChang
 
   return (
     <div>
-      <Button size="large" type='submit'  variant="contained" fullWidth style={{height:"60px",width:"150px",alignItems:"center", backgroundColor: "#af9c4d", color:"white", justifyContent:"center",  position: 'absolute',  top:"0px", left:"780px"}} onClick={handleClickOpen}> Add Members </Button>
+      <Button size="large" type='submit'  variant="contained" fullWidth style={{height:"60px",width:"150px",alignItems:"center", backgroundColor: "#af9c4d", color:"white", justifyContent:"center",  position: 'absolute',  top:"0px", left:"78rem"}} onClick={handleClickOpen}> Add Members </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Fill the details </DialogTitle>
         <DialogContent>
-          <DialogContentText>
-
-          </DialogContentText>
           <TextField
             onChange={handleChange}
             value={values.Name}
