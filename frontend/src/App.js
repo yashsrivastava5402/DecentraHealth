@@ -17,6 +17,7 @@ import Appbar from "./components/appbar";
 import ViewReports from "./components/ViewReports";
 
 function App() {
+   { document.body.style.backgroundImage = "url('https://www.transparenttextures.com/patterns/black-thread-light.png')"; }
   return (
     <div>
     <BrowserRouter>

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 
 export default function Banner() {
   const navigate = useNavigate();
-  { document.body.style.backgroundImage = "url('https://www.transparenttextures.com/patterns/black-thread-light.png')"; }
+  // { document.body.style.backgroundImage = "url('https://www.transparenttextures.com/patterns/black-thread-light.png')"; }
   return (
     <>
       {/* <div class="flex">
@@ -67,8 +67,8 @@ export default function Banner() {
               Bringing Innovations In Health And Learning To The Global Community!
             </p>
             <div className="my-10 text-3xl">
-              <button className="bg-[#1983A2] px-10 py-4 rounded-2xl text-white hover:text-slate-900 hover:bg-[#86B2C1]" onClick={() => { navigate("/PatientLogin"); }}>Patient</button>
-              <button className="bg-[#1983A2] px-10 py-4 rounded-2xl text-white hover:text-slate-900 hover:bg-[#86B2C1] mx-3" onClick={() => { navigate("/DoctorLogin"); }}>Doctor</button>
+              <button className="bg-[#1983A2] px-10 py-4 rounded-2xl text-white hover:text-slate-900 hover:bg-[#86B2C1] active:bg-red-200" onClick={() => { navigate("/PatientLogin"); }}>Patient</button>
+              <button className="bg-[#1983A2] px-10 py-4 rounded-2xl text-white hover:text-slate-900 hover:bg-[#86B2C1] mx-3 active:bg-red-200" onClick={() => { navigate("/DoctorLogin"); }}>Doctor</button>
             </div>
           </div>
           <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1  ">
