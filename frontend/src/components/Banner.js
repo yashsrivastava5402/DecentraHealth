@@ -59,7 +59,7 @@ export default function Banner() {
 
       <div className="card-body text-black" >
         <div className="row justify-content-center my-5 mb-0"  >
-          <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 mt-5 mr-16" >
+          <div className="col-md-10 col-lg-5 col-xl-6 order-2 order-lg-1 mt-32" >
             <div className="text-8xl">Best Health Care!!</div>
             <p className="py-3  text-xl text-[#454545]" style={{ fontStyle: "italic" }}>
               All yours Medical Facilites at one Place!!! Book Your Appointments, View your Medical Reports, History Linked with your Aadhar.
