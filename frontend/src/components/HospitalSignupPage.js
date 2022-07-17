@@ -76,18 +76,18 @@ function HospitalSignupPage() {
               <div className="d-flex flex-row align-items-center mb-2 mt-6">
                 <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                 <div className="form-outline flex-fill mb-0">
-                  <label className="form-label">First Name</label>
+                  <label className="form-label">Hospital Name</label>
                   <input type="text" name="hospitalName" className="form-control" onChange={handleChange} value={values.hospitalName} id="hospitalName"/>
-                  {submitted && !values.hospitalName ? <span id="first-name-error">Please enter a first name</span> : null}
+                  {submitted && !values.hospitalName ? <span id="first-name-error">Please enter the hospital name.</span> : null}
                 </div>
               </div>
 
               <div className="d-flex flex-row align-items-center mb-2">
                 <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
                 <div className="form-outline flex-fill mb-0">
-                  <label className="form-label">Last Name</label>
+                  <label className="form-label">Hospital Registration Number</label>
                   <input type="text" name="hospitalRegnumber" id="hospitalRegnumber" className="form-control" onChange={handleChange} value={values.hospitalRegnumber}/>
-                  {submitted && !values.hospitalRegnumber ? <span id="hospitalRegnumber-error">Please enter a last name</span> : null}
+                  {submitted && !values.hospitalRegnumber ? <span id="hospitalRegnumber-error">Please enter the hospital registration number.</span> : null}
                 </div>
               </div>
 
