@@ -103,7 +103,7 @@ function PatientLogin() {
       const user = result.user;
       console.log(JSON.stringify(user));
       // alert("User is verified");
-      navigate(`/Patient/:${values.phone}`);
+      navigate(`/Patient/:+${values.phone}`);
       // ...
     }).catch((error) => {
       // User couldn't sign in (bad verification code?)
