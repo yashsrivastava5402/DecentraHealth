@@ -176,7 +176,6 @@ exports.viewFiles =async (req, res) => {
     // const { aadhar } = req.body;
     // const path = __dirname + "/" + aadhar;
     // const arr = [];
-    // console.log("path", path);
     // if(fs.existsSync(path)){
     //     console.log("Exists");
     //     fs.readdir(path, function (err, files) {
