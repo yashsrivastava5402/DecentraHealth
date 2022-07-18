@@ -56,9 +56,13 @@ const DownloadItem = ({ name, file, filename, removeFile }) => {
       {
         s='application/pdf';
       }
-      else if(s=='jpg' || s=='jpeg' || s=='png')
+      else if(s=='jpg' || s=='jpeg')
       {
         s='image/jpeg';
+      }
+      else if(s=='png')
+      {
+        s='image/png';
       }
       const url = window.URL.createObjectURL(
         new Blob([response.data], {
