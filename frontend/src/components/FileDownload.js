@@ -12,9 +12,9 @@ function FileDownload({files}) {
     <>
       {files.map((file) => (
               <Table.Row>
-                <Table.Cell>{file.name}</Table.Cell>
+                <Table.Cell><h3>{file.name}</h3></Table.Cell>
                 <Table.Cell>
-                <button className={"btn btn-primary"} style={{backgroundColor: "blue"}} onClick={() => download(file)} >Download</button></Table.Cell>
+                <button className="btn btn-outline-primary" onClick={() => download(file)} >Download</button></Table.Cell>
               </Table.Row>
              ))}
         {downloaderComponentUI}

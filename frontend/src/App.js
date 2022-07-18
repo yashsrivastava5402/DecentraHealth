@@ -15,6 +15,7 @@ import PatientPageDoctor from "./components/PatientPageDoctor";
 import Doctor from "./components/Doctor";
 import Appbar from "./components/appbar";
 import ViewReports from "./components/ViewReports";
+import Creators from "./components/Creators";
 
 function App() {
    { document.body.style.backgroundImage = "url('https://www.transparenttextures.com/patterns/black-thread-light.png')"; }
@@ -37,10 +38,11 @@ function App() {
       <Route path="/PatientPageHospital/:aadhar" element={<PatientPageHospital />} />
       <Route path="/Doctor" element={<Doctor />} />
       <Route path="/ViewReports" element={<ViewReports />} />
-      <Route path="/" element={<Navigate replace to="/home" />} />    
+      <Route path="/" element={<Navigate replace to="/home" />} />   
+      <Route path="/Creators" element={<Creators />} /> 
     </Routes>
   </BrowserRouter>
-    
+  
   </div>
   );
 }
