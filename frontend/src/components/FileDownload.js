@@ -1,11 +1,11 @@
 import React from 'react'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useFileDownloader from './utils/Downloader/useFileDownloader';
 import './FileDownload.css'
 import { Table } from 'semantic-ui-react'
-function FileDownload({aadhar, files}) {
-    const [downloadFile, downloaderComponentUI] = useFileDownloader();
 
+function FileDownload({files}) {
+  
+  const [downloadFile, downloaderComponentUI] = useFileDownloader();
   const download = (file) => downloadFile(file);
 
   return (
@@ -13,14 +13,8 @@ function FileDownload({aadhar, files}) {
       {files.map((file) => (
               <Table.Row>
                 <Table.Cell>{file.name}</Table.Cell>
-                <Table.Cell><button className={"btn btn-primary"} style={{backgroundColor: "blue"}}
-                              
-                              onClick={() => download(file)}
-                            >
-                          
-Download
-
-                            </button></Table.Cell>
+                <Table.Cell>
+                <button className={"btn btn-primary"} style={{backgroundColor: "blue"}} onClick={() => download(file)} >Download</button></Table.Cell>
               </Table.Row>
              ))}
         {downloaderComponentUI}
@@ -28,4 +22,4 @@ Download
   )
 }
 
-export default FileDownload
+export default FileDownload;

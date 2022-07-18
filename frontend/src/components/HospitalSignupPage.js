@@ -73,7 +73,7 @@ function HospitalSignupPage() {
                 </div>
               </div>
 
-              <div className="d-flex flex-row align-items-center mb-2 mt-6">
+              <div className="d-flex flex-row align-items-center mb-2 mt-6 mx-5">
                 <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                 <div className="form-outline flex-fill mb-0">
                   <label className="form-label">Hospital Name</label>
@@ -82,7 +82,7 @@ function HospitalSignupPage() {
                 </div>
               </div>
 
-              <div className="d-flex flex-row align-items-center mb-2">
+              <div className="d-flex flex-row align-items-center mb-2 mx-5">
                 <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
                 <div className="form-outline flex-fill mb-0">
                   <label className="form-label">Hospital Registration Number</label>
@@ -91,7 +91,7 @@ function HospitalSignupPage() {
                 </div>
               </div>
 
-              <div className="d-flex flex-row align-items-center mb-2">
+              <div className="d-flex flex-row align-items-center mb-2 mx-5">
                 <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
                 <div className="form-outline flex-fill mb-0">
                   <label className="form-label">Password</label>
@@ -100,7 +100,7 @@ function HospitalSignupPage() {
                 </div>
               </div>
 
-              <div className="d-flex flex-row align-items-center mb-2">
+              <div className="d-flex flex-row align-items-center mb-2 mx-5">
                 <i className="fas fa-key fa-lg me-3 fa-fw"></i>
                 <div className="form-outline flex-fill mb-0">
                   <label className="form-label">Confirm your password</label>
