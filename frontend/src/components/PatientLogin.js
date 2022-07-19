@@ -126,7 +126,7 @@ function PatientLogin() {
               <Form onSubmit={onSignInSubmit} style={{ display: !flag ? "block" : "none" }}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <div className="d-flex flex-row align-items-center mb-2 mt-6 mx-5">
-                    <i className="fas fa-user fa-lg me-3 fa-fw"></i>
+                    
                     <div className="form-outline flex-fill mb-0">
                       <label className="form-label">Mobile No</label>
                       <PhoneInput country={'in'} value={values.phone} style={{width:"500px"}} inputStyle={{width :'446px'}}

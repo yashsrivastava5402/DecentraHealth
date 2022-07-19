@@ -63,8 +63,8 @@ function HospitalSignupPage() {
             <form className="mx-1 mx-md-5">
 
               <div className="d-flex flex-row align-items-center mb-2">
-                <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                <div className="form-outline flex-fill mb-0">
+                
+                <div className="form-outline flex-fill mb-0 mx-5">
                   <label className="form-label">Type of Hospital :</label>
                   <input className="form-check-input ml-5 " type="radio" name="type" id="gov" onChange={handleChange} value="gov"></input>
                   <label className="ml-2 mr-4" for="gov">Government</label>
@@ -74,7 +74,7 @@ function HospitalSignupPage() {
               </div>
 
               <div className="d-flex flex-row align-items-center mb-2 mt-6 mx-5">
-                <i className="fas fa-user fa-lg me-3 fa-fw"></i>
+               
                 <div className="form-outline flex-fill mb-0">
                   <label className="form-label">Hospital Name</label>
                   <input type="text" name="hospitalName" className="form-control" onChange={handleChange} value={values.hospitalName} id="hospitalName"/>
@@ -83,7 +83,7 @@ function HospitalSignupPage() {
               </div>
 
               <div className="d-flex flex-row align-items-center mb-2 mx-5">
-                <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                
                 <div className="form-outline flex-fill mb-0">
                   <label className="form-label">Hospital Registration Number</label>
                   <input type="text" name="hospitalRegnumber" id="hospitalRegnumber" className="form-control" onChange={handleChange} value={values.hospitalRegnumber}/>
@@ -92,7 +92,7 @@ function HospitalSignupPage() {
               </div>
 
               <div className="d-flex flex-row align-items-center mb-2 mx-5">
-                <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
+               
                 <div className="form-outline flex-fill mb-0">
                   <label className="form-label">Password</label>
                   <input type="text" id="password" className="form-control" onChange={handleChange} value={values.password} name="password"/>
@@ -101,7 +101,7 @@ function HospitalSignupPage() {
               </div>
 
               <div className="d-flex flex-row align-items-center mb-2 mx-5">
-                <i className="fas fa-key fa-lg me-3 fa-fw"></i>
+                
                 <div className="form-outline flex-fill mb-0">
                   <label className="form-label">Confirm your password</label>
                   <input type="password" id="cpassword" className="form-control" onChange={handleChange} value={values.cpassword} name="cpassword"/>

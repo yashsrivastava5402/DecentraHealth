@@ -40,7 +40,7 @@ return(
             <form className="mx-1 mx-md-5">
 
               <div className="d-flex flex-row align-items-center mb-2 mt-6 mx-5">
-                <i className="fas fa-user fa-lg me-3 fa-fw"></i>
+                
                 <div className="form-outline flex-fill mb-0">
                   <label className="form-label">Doctor Id</label>
                   <input onChange={handleChange} value={values.doctorId} id="doctorId" class="form-control" type="text" name="doctorId" />
@@ -49,7 +49,7 @@ return(
               </div>
 
               <div className="d-flex flex-row align-items-center mb-2 mt-5 mx-5">
-                <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                
                 <div className="form-outline flex-fill mb-0">
                   <label className="form-label">Password</label>
                   <input onChange={handleChange} value={values.doctorPass} id="doctorPass" class="form-control" type="text" name="doctorPass" />

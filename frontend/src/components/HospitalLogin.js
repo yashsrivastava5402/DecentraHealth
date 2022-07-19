@@ -2,9 +2,6 @@ import { useState } from 'react'
 import React from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router";
-import { Grid, Paper, Avatar, Button, TextField } from '@material-ui/core'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Dialog from '@material-ui/core/Dialog';
 
 function HospitalLogin() {
     const navigate = useNavigate();
@@ -58,29 +55,6 @@ function HospitalLogin() {
 
 return (
     <>
-    {/* <Dialog open maxWidth='sm'>
-    <Paper style={paperStyle}>
-    <Grid align='center'>
-    <Avatar style={avatarStyle}><LockOutlinedIcon /></Avatar>
-
-        <br />
-        <br />
-        <div class="form-container">
-            <form class="register-form" >
-            <TextField onChange={handleChange} value={values.hospitalRegnumber} id="hospitalRegnumber" class="form-field" type="text" placeholder="Hospital Reg Number" name="hospitalRegnumber" margin="normal" fullWidth />        
-            {submitted && !values.hospitalRegnumber ? <span id="hospitalRegnumber-error">Please enter hospital registration number</span> : null}
-            <br />
-            <br />
-            <TextField onChange={handleChange} value={values.password} id="password" class="form-field" type="text" placeholder="Password" name="password" margin="normal" fullWidth/>
-            {submitted && !values.password ? <span id="password-error">Please enter password</span> : null}
-            <br />
-            <br />
-            <Button type="submit" variant="contained" color="success" style={{color: "white",backgroundColor: "#013220",}} fullWidth onClick={handlesubmit}> Submit </Button>
-            </form>
-        </div>
-    </Grid>
-    </Paper>
-    </Dialog> */}
     <div className="card-body text-black" >
         <div className="row justify-content-center my-5">
           <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 mt-5">
@@ -88,7 +62,6 @@ return (
             <form className="mx-1 mx-md-5">
 
               <div className="d-flex flex-row align-items-center mb-2 mt-6 mx-5">
-                <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                 <div className="form-outline flex-fill mb-0">
                   <label className="form-label">Hospital Reg Number</label>
                   <input onChange={handleChange} value={values.hospitalRegnumber} id="hospitalRegnumber" class="form-control" type="text" name="hospitalRegnumber"/>
@@ -97,7 +70,6 @@ return (
               </div>
 
               <div className="d-flex flex-row align-items-center mb-2 mt-5 mx-5">
-                <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
                 <div className="form-outline flex-fill mb-0">
                   <label className="form-label">Password</label>
                   <input  onChange={handleChange} value={values.password} id="password" class="form-control" type="password" name="password" />
