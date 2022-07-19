@@ -45,7 +45,7 @@ export default function Creators() {
     		            <img src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="profile-sample1" class="background"/>
     		        </div>
     		        <div class="profile-thumb-block">
-    		            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="profile-image" class="profile"/>
+    		            <img src="/prince.png" alt="profile-image" class="profile"/>
     		        </div>
     		        <div class="card-content">
                     <h2>Prince Kumar<small>Blockchain</small></h2>
@@ -62,7 +62,7 @@ export default function Creators() {
     		            <img src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="profile-sample1" class="background"/>
     		        </div>
     		        <div class="profile-thumb-block">
-    		            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="profile-image" class="profile"/>
+    		            <img src="/shaurya.png" alt="profile-image" class="profile"/>
     		        </div>
     		        <div class="card-content">
                     <h2>Shaurya Singh<small>Backend</small></h2>
@@ -77,7 +77,7 @@ export default function Creators() {
     		            <img src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="profile-sample1" class="background"/>
     		        </div>
     		        <div class="profile-thumb-block">
-    		            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="profile-image" class="profile"/>
+    		            <img src="/yash.png" alt="profile-image" class="profile"/>
     		        </div>
     		        <div class="card-content">
                     <h2>Yash Srivastava<small>Backend</small></h2>
