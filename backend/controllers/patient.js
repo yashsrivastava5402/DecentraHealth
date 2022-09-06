@@ -13,7 +13,6 @@ const ipfs = ipfsAPI('ipfs.infura.io', '5001', {protocol: 'https',
 headers: {
     authorization: auth
   }})
-// const { Blob } = require('node-blob');
 
 exports.addPatients = (req, res) => {
     try {
