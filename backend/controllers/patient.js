@@ -14,6 +14,7 @@ headers: {
     authorization: auth
   }})
 
+  
 exports.addPatients = (req, res) => {
     try {
         const { Name, Aadhar, Age, Gender, Phone } = req.body;
