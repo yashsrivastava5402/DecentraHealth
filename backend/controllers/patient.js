@@ -2,9 +2,17 @@
 const Hospital = require('../models/hospital');
 const Patients = require('../models/patients');
  const {getdata, setdata} =require('../utils/web3');
+ const projectid="2EIossNsEkeVC88aVyiK1oR8mkA";
+ const secretkey="4b5f24663b48bc836f94339596fa7565";
+ const auth =
+ 'Basic ' + Buffer.from(projectid + ':' + secretkey).toString('base64');
+ 
 const ipfsAPI = require('ipfs-api');
 const fs = require('fs');
-const ipfs = ipfsAPI('ipfs.infura.io', '5001', {protocol: 'https'})
+const ipfs = ipfsAPI('ipfs.infura.io', '5001', {protocol: 'https',
+headers: {
+    authorization: auth
+  }})
 // const { Blob } = require('node-blob');
 
 exports.addPatients = (req, res) => {
