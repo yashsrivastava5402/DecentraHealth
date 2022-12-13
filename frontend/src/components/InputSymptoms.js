@@ -52,23 +52,35 @@ function Symptoms() {
 
 
 
-  const [symptoms, setsymptoms] = useState([]);
+  const [symptoms, setsymptoms] = useState("");
+  const [disease, setdisease] = useState("");
   const handleChange = (e) => {
     setsymptoms([...symptoms, e.target.value])
     console.log(symptoms);
     // setCurrency(e.target.value);
   }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log(symptoms);
+      const disease=await axios.post('http://localhost:8000/getDisease',symptoms)
+      setdisease(disease);
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+  //for recommendation page button
+  const goToReccom = async (e) => {
+    e.preventDefault();
+    try {
+     
       navigate(`/RecommendedDocs`, { state: { symptoms } });
     }
     catch (err) {
       console.log(err);
     }
-
-
-
   }
   return (
     //<div>
