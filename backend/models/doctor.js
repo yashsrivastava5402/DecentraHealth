@@ -19,6 +19,10 @@ const doctorSchema = new Schema({
         type: Number,
         required: [true]
     },
+    speciality: {
+        type: String,
+        required: [true]
+    },
     password: {
         type: String,
         required: [true]

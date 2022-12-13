@@ -27,7 +27,7 @@ function FileUpload({ aadhar, handleupl }) {
     }
     try {
       const res = await axios.post(
-        "https://decentrahealth-server.herokuapp.com/fileUpload",
+        "http://localhost:8000/fileUpload",
         // options,
         formData
       );

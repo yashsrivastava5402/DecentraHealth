@@ -19,7 +19,7 @@ class _DoctorLoginScreenState extends State<DoctorLoginScreen> {
 
   Future<void> doctorLogin(String email, String password) async {
     var res = await Dio().post(
-        'https://decentrahealth-server.herokuapp.com/doctorLogin',
+        'http://localhost:8000/doctorLogin',
         data: {'email': email, 'password': password});
     if (res.statusCode == 500) {
       showSnackbar('Incorrent Password');
