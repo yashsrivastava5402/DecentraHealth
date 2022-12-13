@@ -121,9 +121,7 @@ class _HospitalApplyState extends State<HospitalApply>
     map.addAll({
       'HospitalID': id,
     });
-    await Dio().post(
-        'http://localhost:8000/addPatientHospital',
-        data: map);
+    await Dio().post('http://localhost:8000/addPatientHospital', data: map);
   }
 
   @override
