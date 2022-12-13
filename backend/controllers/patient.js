@@ -449,7 +449,8 @@ exports.fileDownload = async (req, res) => {
 exports.getDisease = async (req, res) => {
     const { symptoms } = req.body;
     console.log(symptoms);
-    const childPython = await spawn('python3', ['./ml_utils/ml_disease_prediction.py', symptoms]);
+    const childPython = await spawn('python', ["ml_model_btp.py", symptoms]);
+    console.log("Hello");
 
     childPython.stdout.on('data', (data) => {
         console.log('received data');
@@ -458,10 +459,10 @@ exports.getDisease = async (req, res) => {
         res.status(200).send(data.toString());
     })
 
-    // childPython.stderr.on('data', (data) => {
-    //     console.log(`stderr: ${data}`);
-    //     res.status(500).send(data.toString());
-    // })
+    childPython.stderr.on('data', (data) => {
+        console.log(`stderr: ${data}`);
+        res.status(500).send(data.toString());
+    })
 }
 
 exports.getDoctors = async (req, res) => {
