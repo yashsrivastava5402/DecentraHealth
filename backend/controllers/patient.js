@@ -1,6 +1,7 @@
 //const Patient = require('../models/patient');
 const Hospital = require('../models/hospital');
 const Patients = require('../models/patients');
+const Doctor = require('../models/doctor');
  const {getdata, setdata} =require('../utils/web3');
  const p_id="2EIossNsEkeVC88aVyiK1oR8mkA";
  const s_key="4b5f24663b48bc836f94339596fa7565";
@@ -15,6 +16,202 @@ headers: {
   }})
 // const { Blob } = require('node-blob');
 
+  const { spawn } = require('child_process');
+// const { speciality } = require('../utils/specializations');
+speciality = [        
+    {            
+       disease: "Fungal infection",
+       speciality: "dermatologist"       
+    },        
+    {            
+       disease: "Allergy",
+       speciality: "immunologist",           
+    }, 
+    {
+      disease: "GERD",
+      speciality: "gastroenterologist"
+      },
+      {
+      disease: "Chronic cholestasis",
+      speciality: "gastroenterologist"
+      },
+      {
+      disease: "Drug Reaction",
+      speciality: "immunologist"
+      },
+      {
+      disease: "Peptic ulcer disease",
+      speciality: "gastroenterologist"
+      },
+      {
+      disease: "AIDS",
+      speciality: "Infectious Disease"
+      },
+      {
+      disease: "Diabetes",
+      speciality: "endocrynologist"
+      },
+      {
+      disease: "Gastroenteritis",
+      speciality: "gastroenterologist"
+      },
+      {
+      disease: "Bronchial Asthma",
+      speciality: "pulmonologist"
+      },
+      {            
+         disease: "Hypertension",
+         speciality: "cardiologist"           
+      },        
+      {            
+         disease: "Migraine",
+         speciality: "Neurologist"           
+      }, 
+      {            
+         disease: "Cervical spondylosis",
+         speciality: "orthopedic specialist"           
+      }, 
+      {            
+         disease: "Paralysis (brain hemorrhage)",
+         speciality: "neurosurgeon"           
+      }, 
+      {            
+         disease: "Jaundice",
+         speciality: "gastroenterologist"           
+      },
+      {
+      disease: "Malaria",
+      speciality: "Infectious Disease"
+      },
+      {
+      disease: "Chicken pox",
+      speciality: "Paediatrician"
+      },
+      {
+         disease: "Dengue",
+         speciality: "Infectious Disease"     
+      },
+      {            
+         disease: "Impetigo",
+         speciality: "Paediatrician"           
+      },        
+      {            
+         disease: "Psoriasis",
+         speciality: "Rheumatologist"           
+      }, 
+      {            
+         disease: "Urinary tract infection",
+         speciality: "Primary Care Provider"           
+      }, 
+      {            
+         disease: "Acne",
+         speciality: "Paediatrician"           
+      }, 
+      {            
+         disease: "Osteoarthristis",
+         speciality: "Orthopaedic"           
+      },  
+      {            
+         disease: "Hypoglycemia",
+         speciality: "Primary Care Provider"           
+      },        
+      {            
+         disease: "Hyperthyroidism",
+         speciality: "Endocrinologist"           
+      }, 
+      {            
+         disease: "Varicoseveins",
+         speciality: "Primary Care Provider"           
+      }, 
+      {            
+         disease: "Heartattack",
+         speciality: "Cardiologist"           
+      }, 
+      {            
+         disease: "Dimorphic hemmorhoids(piles)",
+         speciality: "Primary Care Provider"           
+      }, 
+      {            
+         disease: "Hepatitis E",
+         speciality: "Hepatologist"           
+      },  
+      {            
+         disease: "Hepatitis D",
+         speciality: "Hepatologist"           
+      },        
+      {            
+         disease: "Hepatitis C",
+         speciality: "Hepatologist"           
+      }, 
+      {
+         disease: "Dengue",
+         speciality: "Infectious Disease"     
+      },
+      {            
+         disease: "Impetigo",
+         speciality: "Paediatrician"           
+      },        
+      {            
+         disease: "Psoriasis",
+         speciality: "Rheumatologist"           
+      }, 
+      {            
+         disease: "Urinary tract infection",
+         speciality: "Primary Care Provider"           
+      }, 
+      {            
+         disease: "Acne",
+         speciality: "Paediatrician"           
+      }, 
+      {            
+         disease: "Osteoarthristis",
+         speciality: "Orthopaedic"           
+      },  
+      {            
+         disease: "Hypoglycemia",
+         speciality: "Primary Care Provider"           
+      },        
+      {            
+         disease: "Hyperthyroidism",
+         speciality: "Endocrinologist"           
+      }, 
+      {            
+         disease: "Varicoseveins",
+         speciality: "Primary Care Provider"           
+      }, 
+      {            
+         disease: "Heartattack",
+         speciality: "Cardiologist"           
+      }, 
+      {            
+         disease: "Dimorphic hemmorhoids(piles)",
+         speciality: "Primary Care Provider"           
+      }, 
+      {            
+         disease: "Hepatitis E",
+         speciality: "Hepatologist"           
+      },  
+      {            
+         disease: "Hepatitis D",
+         speciality: "Hepatologist"           
+      },        
+      {            
+         disease: "Hepatitis C",
+         speciality: "Hepatologist"           
+      },          
+      {
+         disease: "Hepatitis B",
+         speciality: "Hepatologist"
+      },
+      {
+         disease: "Hepatitis A",
+         speciality: "Hepatologist"
+      },
+      {
+         disease: "Typhoid",
+         speciality: "Infectious Disease Doctor"
+      }
+ ]
 exports.addPatients = (req, res) => {
     try {
         const { Name, Aadhar, Age, Gender, Phone } = req.body;
@@ -247,4 +444,49 @@ exports.fileDownload = async (req, res) => {
     });
     // res.status(200).send(file.content);
     // res.status(200).download(path);
+}
+
+exports.getDisease = async (req, res) => {
+    const { symptoms } = req.body;
+    console.log(symptoms);
+    const childPython = await spawn('python', ["ml_model_btp.py", symptoms]);
+    console.log("Hello");
+
+    childPython.stdout.on('data', (data) => {
+        console.log('received data');
+        console.log(`stdout: ${data}`);
+        console.log(data.toString());
+        res.status(200).send(data.toString());
+    })
+
+    childPython.stderr.on('data', (data) => {
+        console.log(`stderr: ${data}`);
+        res.status(500).send(data.toString());
+    })
+}
+
+exports.getDoctors = async (req, res) => {
+    const { disease } = req.body;
+    const arr = [];
+    console.log(speciality.length);
+    let i = 0, flag = 0;
+    for(i = 0; i < speciality.length; i++) {
+        if(speciality[i].disease === disease) {
+            Doctor.find({speciality: speciality[i].speciality}, (err, doctors) => {
+                if(err) {
+                    res.status(500).send(err);
+                }
+                else if(doctors.length>0){
+                    res.status(200).send(doctors);
+                }
+                else{
+                    res.status(200).send("Doctor not found");
+                }
+            });
+            flag = 1;
+            break;
+        }
+    }
+    if(i === speciality.length && flag === 0)
+    res.status(200).send("Doctor not found");
 }
