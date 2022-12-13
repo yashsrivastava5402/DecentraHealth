@@ -9,7 +9,7 @@ function PatientCard({ aadhar, name, age, gender}) {
     const goToPatient = (e) => {
         e.preventDefault();
         setSubmitted(true);
-        axios.get('https://decentrahealth-server.herokuapp.com/getHospitals')
+        axios.get('http://localhost:8000/getHospitals')
             .then(function (response) {
                 console.log(response);
                 if (response.status === 200) {
@@ -17,7 +17,11 @@ function PatientCard({ aadhar, name, age, gender}) {
                 }
             });
         }
-        
+        const goToRecc = (e) => {
+            e.preventDefault();
+            setSubmitted(true);
+            navigate(`/InputSymptoms`, { state: { Name: name, Aadhar: aadhar, Age: age, Gender: gender} });
+            }
         return (
             <>
                 <td>{aadhar}</td>
@@ -26,7 +30,7 @@ function PatientCard({ aadhar, name, age, gender}) {
                 <td>{gender}</td>
                 <button className="btn btn-primary" onClick={goToPatient} style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 30px" }}>Book Appointment</button>
                 <button className='btn btn-primary' style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 10px" }} onClick={()=>{ navigate(`/ViewReports`,{state:aadhar})}} >View Reports</button>
-                <button className="btn btn-primary" style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 10px" }}>Remove</button>
+                <button className="btn btn-primary" onClick={goToRecc}style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 10px" }}>Get Recommendations</button>
             </>)
     }
 

@@ -11,7 +11,7 @@ export default function ViewReports() {
     console.log(state);
     const [files, setFiles] = useState([]);
     useEffect(() => { //It will fetch the data already before even openeing page!
-        axios.post('https://decentrahealth-server.herokuapp.com/viewFiles', {aadhar: state}).then((response) => {
+        axios.post('http://localhost:8000/viewFiles', {aadhar: state}).then((response) => {
             console.log(response.data);
                 setFiles((prevState) => {
                     return [...prevState,...response.data];

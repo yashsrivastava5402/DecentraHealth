@@ -35,8 +35,7 @@ class _DoctorMainScreenState extends State<DoctorMainScreen> {
   late Future<List<Patient>> dataFuture;
 
   Future<List<Patient>> getPatients() async {
-    var res = await Dio().post(
-        'https://decentrahealth-server.herokuapp.com/doctorLogin',
+    var res = await Dio().post('http://localhost:8000/doctorLogin',
         data: {'email': _email, 'password': _password});
 
     return DoctorLoginClass.fromJson((res.data)).patients!;
