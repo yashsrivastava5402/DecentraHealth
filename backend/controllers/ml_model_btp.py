@@ -11,8 +11,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from sklearn.naive_bayes import GaussianNB
 
-data  = pd.read_csv("dataset.csv")
-data_sevrity = pd.read_csv("Symptom-severity.csv")
+data  = pd.read_csv("/Users/yashsrivastava/Desktop/DecentraHealth/backend/controllers/dataset.csv")
+data_sevrity = pd.read_csv("/Users/yashsrivastava/Desktop/DecentraHealth/backend/controllers/Symptom-severity.csv")
 
 data_dict = data_sevrity.set_index('Symptom').T.to_dict()
 
