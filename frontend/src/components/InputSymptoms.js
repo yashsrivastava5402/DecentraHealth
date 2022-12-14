@@ -52,7 +52,7 @@ function Symptoms() {
 
 
 
-  const [symptoms, setsymptoms] = useState("");
+  const [symptoms, setsymptoms] = useState([]);
   const [disease, setdisease] = useState("");
   const handleChange = (e) => {
     setsymptoms([...symptoms, e.target.value])
@@ -64,8 +64,8 @@ function Symptoms() {
     e.preventDefault();
     try {
       console.log(symptoms);
-      const disease=await axios.post('http://localhost:8000/getDisease',symptoms)
-      setdisease(disease);
+      const diseases=await axios.post('http://localhost:8000/getDisease',symptoms)
+      setdisease(diseases);
     }
     catch (err) {
       console.log(err);
@@ -76,108 +76,69 @@ function Symptoms() {
     e.preventDefault();
     try {
      
-      navigate(`/RecommendedDocs`, { state: { symptoms } });
+      navigate(`/RecommendedDocs`, { state: { disease,...state} });
     }
     catch (err) {
       console.log(err);
     }
   }
   return (
-    //<div>
-    //   <div>
-    //     <img style={{ marginLeft: "450px", marginRight: "40px" }} src={logo} alt="Logo" />
-    //   </div>
+    
 
-    //   <form onSubmit={handleSubmit}>
+    <div>
+      <div>
+        <img style={{ marginLeft: "450px", marginRight: "40px" }} src={logo} alt="Logo" />
+      </div>
 
-    //     <div style={{ marginTop: "70px", marginLeft: "40px", marginRight: "40px" }}>
+      <form onSubmit={handleSubmit}>
 
-    //       <h1>Tell Your Symptoms</h1>
-    //       <TextField
-    //         id="outlined-select-currency"
-    //         select
-    //         label="Select"
+        <div style={{ marginTop: "70px", marginLeft: "40px", marginRight: "40px" }}>
 
-    //         onChange={handleChange}
-    //         helperText="Please select your symptom"
-    //       >
-    //         {symptomsoptions.map((option) => (
-    //           <MenuItem key={option} value={option}>
-    //             {option}
-    //           </MenuItem>
-    //         ))}
-    //       </TextField>
-    //       <Button type="submit" size='large' variant="contained" style={{marginLeft:15,marginTop:5}}>Submit</Button>
+          <h1>Tell Your Symptoms</h1>
+          <TextField
+            id="outlined-select-currency"
+            select
+            label="Select"
 
-
-
-    //     </div>
-    //     <div>
-    //       <List style={flexContainer}>
-
-    //         {symptoms.map((option) => (
-    //           <ListItem >
-
-    //             <Card padding="0">
-    //               <CardContent>
-    //                 <Typography sx={{ fontSize: 14 }} color="blue" gutterBottom>
-    //                   {option}
-    //                 </Typography>
-
-    //               </CardContent>
-    //             </Card>
-
-    //           </ListItem>
-    //         ))}
-    //       </List>
-    //     </div>
+            onChange={handleChange}
+            helperText="Please select your symptom"
+          >
+            {symptomsoptions.map((option) => (
+              <MenuItem key={option} value={option}>
+                {option}
+              </MenuItem>
+            ))}
+          </TextField>
+          <Button type="submit" size='large' variant="contained" style={{marginLeft:15,marginTop:5}}>Submit</Button>
 
 
-    //   </form>
 
-    // </div>
+        </div>
+        <div>
+          <List style={flexContainer}>
 
-    <div className="card-body text-black">
-      <div className="row justify-content-center my-5">
-        <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 mt-5">
-          <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-5">Signs And Symptoms</p>
-          <form className="mx-1 mx-md-5">
+            {symptoms.map((option) => (
+              <ListItem >
 
-            <div className="d-flex flex-row align-items-center mb-2 mt-6 mx-5">
-
-              <div className="form-outline flex-fill mb-0">
-                <label className="form-label">Tell Your Symptoms</label>
-                <TextField
-                  id="outlined-select-currency"
-                  select
-                  label="Select"
-
-                  onChange={handleChange}
-                  helperText="Please select your symptom"
-                >
-                  {symptomsoptions.map((option) => (
-                    <MenuItem key={option} value={option}>
+                <Card padding="0">
+                  <CardContent>
+                    <Typography sx={{ fontSize: 14 }} color="blue" gutterBottom>
                       {option}
-                    </MenuItem>
-                  ))}
-                </TextField>
+                    </Typography>
 
-              </div>
-            </div>
+                  </CardContent>
+                </Card>
 
-           
-
-      
-
-            <div className="d-flex justify-content-center mx-4 mb-3 mt-lg-5">
-              <button type="submit" className="btn btn-primary btn-lg" style={{ backgroundColor: "white", color: "blue" }} onClick={handleSubmit}>Submit</button>
-            </div>
-          </form>
+              </ListItem>
+            ))}
+          </List>
         </div>
-        <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-          <img src={logo}
-            className=' mx-56 my-10' alt="logo" />
-        </div>
+            
+
+      </form>
+      <div>
+        {disease?<p>You have {disease}</p>:null}
+        {disease?<Button type="submit" size='large' variant="contained" style={{marginLeft:15,marginTop:5}} onClick={goToReccom}>Get Recommended Doctors</Button>:null}
       </div>
     </div>
   )

@@ -32,7 +32,8 @@ export default function AddDoctor({handleChange,values,onClick,submitted}) {
 
     <TextField onChange={handleChange} value={values.UPRN} id="URPN" class="form-field" type="text" placeholder="UPRN Number" name="UPRN" fullWidth /> {submitted && !values.Name ? <span id="Name-error">Please enter UPRN Number</span> : null}
     <br />
-
+    <TextField onChange={handleChange} value={values.speciality} id="speciality" class="form-field" type="text" placeholder="speciality" name="speciality" fullWidth /> {submitted && !values.Name ? <span id="Name-error">Please enter speciality</span> : null}
+    <br />
     <Button size="large" type='submit' variant="contained"
             fullWidth style={{
               height: "60px", width: "150px", margin: "70px", alignItems: "center",
