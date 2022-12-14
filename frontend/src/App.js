@@ -13,7 +13,7 @@ import FileDownload from "./components/FileDownload";
 import PatientPageHospital from "./components/PatientPageHospital"
 import PatientPageDoctor from "./components/PatientPageDoctor";
 import Doctor from "./components/Doctor";
-import Appbar from "./components/appbar";
+import Appbar from "./components/appbar/Appbar";
 import ViewReports from "./components/ViewReports";
 import Creators from "./components/Creators";
 import InputSymptoms from "./components/InputSymptoms";
@@ -41,7 +41,6 @@ function App() {
       <Route path="/InputSymptoms" element={<InputSymptoms/>} />
       <Route path="/ViewReports" element={<ViewReports />} />
       <Route path="/RecommendedDocs" element={<RecommendedDocs />} />
-      
       <Route path="/" element={<Navigate replace to="/home" />} />   
       <Route path="/Creators" element={<Creators />} /> 
     </Routes>
