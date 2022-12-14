@@ -449,20 +449,21 @@ exports.fileDownload = async (req, res) => {
 exports.getDisease = async (req, res) => {
     const { symptoms } = req.body;
     console.log(symptoms);
-    const childPython = await spawn('python', ["ml_model_btp.py", symptoms]);
+    const childPython = await spawn('python3', ['/Users/yashsrivastava/Desktop/DecentraHealth/backend/controllers/ml_model_btp.py','itching','skin_rash','nodal_skin_eruptions','dischromic_patches']);
     console.log("Hello");
 
     childPython.stdout.on('data', (data) => {
+        console.log('received data');
         console.log('received data');
         console.log(`stdout: ${data}`);
         console.log(data.toString());
         res.status(200).send(data.toString());
     })
 
-    childPython.stderr.on('data', (data) => {
-        console.log(`stderr: ${data}`);
-        res.status(500).send(data.toString());
-    })
+    // childPython.stderr.on('data', (data) => {
+    //     console.log(`stderr: ${data}`);
+    //     res.status(500).send(data.toString());
+    // })
 }
 
 exports.getDoctors = async (req, res) => {

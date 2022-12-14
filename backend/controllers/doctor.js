@@ -27,7 +27,7 @@ exports.findDoctor = (req, res) => {
 
 exports.addDoctor = (req, res) => {
     try {
-        const { Name, doctorId, hospitalRegnumber, password } = req.body;
+        const { Name, doctorId, hospitalRegnumber, speciality, password } = req.body;
         Doctor.findOne({ doctorId: doctorId }, (err, doctor) => {
             if (err) {
                 res.status(205).send(err);
@@ -39,6 +39,7 @@ exports.addDoctor = (req, res) => {
                     doctorId,
                     hospitalRegnumber,
                     UPRNnum: req.body.UPRN,
+                    speciality,
                     password,
                     patients: []
                 }
