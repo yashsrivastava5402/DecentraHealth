@@ -52,7 +52,7 @@ function Symptoms() {
 
 
 
-  const [symptoms, setsymptoms] = useState("");
+  const [symptoms, setsymptoms] = useState([]);
   const [disease, setdisease] = useState("");
   const handleChange = (e) => {
     setsymptoms([...symptoms, e.target.value])
@@ -64,7 +64,7 @@ function Symptoms() {
     e.preventDefault();
     try {
       console.log(symptoms);
-      const disease=await axios.post('http://localhost:8000/getDisease',symptoms)
+      const disease = await axios.post('http://localhost:8000/getDisease', symptoms)
       setdisease(disease);
     }
     catch (err) {
@@ -75,15 +75,16 @@ function Symptoms() {
   const goToReccom = async (e) => {
     e.preventDefault();
     try {
-     
+
       navigate(`/RecommendedDocs`, { state: { symptoms } });
     }
     catch (err) {
       console.log(err);
     }
   }
+
   return (
-    //<div>
+    // <div>
     //   <div>
     //     <img style={{ marginLeft: "450px", marginRight: "40px" }} src={logo} alt="Logo" />
     //   </div>
@@ -113,7 +114,7 @@ function Symptoms() {
 
     //     </div>
     //     <div>
-    //       <List style={flexContainer}>
+    //       {/* <List >
 
     //         {symptoms.map((option) => (
     //           <ListItem >
@@ -129,7 +130,7 @@ function Symptoms() {
 
     //           </ListItem>
     //         ))}
-    //       </List>
+    //       </List> */}
     //     </div>
 
 
@@ -138,8 +139,8 @@ function Symptoms() {
     // </div>
 
     <div className="card-body text-black">
-      <div className="row justify-content-center my-5">
-        <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 mt-5">
+      <div className="row justify-content-center ">
+        <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 ">
           <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-5">Signs And Symptoms</p>
           <form className="mx-1 mx-md-5">
 
@@ -151,7 +152,6 @@ function Symptoms() {
                   id="outlined-select-currency"
                   select
                   label="Select"
-
                   onChange={handleChange}
                   helperText="Please select your symptom"
                 >
@@ -161,14 +161,8 @@ function Symptoms() {
                     </MenuItem>
                   ))}
                 </TextField>
-
               </div>
             </div>
-
-           
-
-      
-
             <div className="d-flex justify-content-center mx-4 mb-3 mt-lg-5">
               <button type="submit" className="btn btn-primary btn-lg" style={{ backgroundColor: "white", color: "blue" }} onClick={handleSubmit}>Submit</button>
             </div>
@@ -176,9 +170,25 @@ function Symptoms() {
         </div>
         <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
           <img src={logo}
-            className=' mx-56 my-10' alt="logo" />
+            className=' mx-56 my-10' style={{ height: '450px', width: '450px' }} alt="logo" />
         </div>
+
       </div>
+
+     <div style={flexContainer}>
+        {symptoms.map((option) => (
+          <ListItem >
+            <Card sx={{ minWidth: 150, maxWidth: 200 }}>
+              <CardContent>
+                <Typography sx={{ fontSize: 14 }} color="blue" gutterBottom>
+                  {option}
+                </Typography>
+              </CardContent>
+            </Card>
+          </ListItem>
+        ))}
+        </div>
+     
     </div>
   )
 }
