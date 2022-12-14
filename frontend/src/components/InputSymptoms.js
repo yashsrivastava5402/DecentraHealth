@@ -82,6 +82,7 @@ function Symptoms() {
       console.log(err);
     }
   }
+
   return (
     
 
@@ -140,6 +141,21 @@ function Symptoms() {
         {disease?<p>You have {disease}</p>:null}
         {disease?<Button type="submit" size='large' variant="contained" style={{marginLeft:15,marginTop:5}} onClick={goToReccom}>Get Recommended Doctors</Button>:null}
       </div>
+
+     <div style={flexContainer}>
+        {symptoms.map((option) => (
+          <ListItem >
+            <Card sx={{ minWidth: 150, maxWidth: 200 }}>
+              <CardContent>
+                <Typography sx={{ fontSize: 14 }} color="blue" gutterBottom>
+                  {option}
+                </Typography>
+              </CardContent>
+            </Card>
+          </ListItem>
+        ))}
+        </div>
+     
     </div>
   )
 }
