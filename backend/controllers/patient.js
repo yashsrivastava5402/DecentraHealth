@@ -20,195 +20,195 @@ headers: {
 // const { speciality } = require('../utils/specializations');
 speciality = [        
     {            
-       disease: "Fungal infection",
+       disease: "Fungal_infection\n",
        speciality: "dermatologist"       
     },        
     {            
-       disease: "Allergy",
+       disease: "Allergy\n",
        speciality: "immunologist",           
     }, 
     {
-      disease: "GERD",
+      disease: "GERD\n",
       speciality: "gastroenterologist"
       },
       {
-      disease: "Chronic cholestasis",
+      disease: "Chronic_cholestasis\n",
       speciality: "gastroenterologist"
       },
       {
-      disease: "Drug Reaction",
+      disease: "Drug_Reaction\n",
       speciality: "immunologist"
       },
       {
-      disease: "Peptic ulcer disease",
+      disease: "Peptic_ulcer_disease\n",
       speciality: "gastroenterologist"
       },
       {
-      disease: "AIDS",
+      disease: "AIDS\n",
       speciality: "Infectious Disease"
       },
       {
-      disease: "Diabetes",
+      disease: "Diabetes\n",
       speciality: "endocrynologist"
       },
       {
-      disease: "Gastroenteritis",
+      disease: "Gastroenteritis\n",
       speciality: "gastroenterologist"
       },
       {
-      disease: "Bronchial Asthma",
+      disease: "Bronchial_Asthma\n",
       speciality: "pulmonologist"
       },
       {            
-         disease: "Hypertension",
+         disease: "Hypertension\n",
          speciality: "cardiologist"           
       },        
       {            
-         disease: "Migraine",
+         disease: "Migraine\n",
          speciality: "Neurologist"           
       }, 
       {            
-         disease: "Cervical spondylosis",
+         disease: "Cervical_spondylosis\n",
          speciality: "orthopedic specialist"           
       }, 
       {            
-         disease: "Paralysis (brain hemorrhage)",
+         disease: "Paralysis (brain hemorrhage)\n",
          speciality: "neurosurgeon"           
       }, 
       {            
-         disease: "Jaundice",
+         disease: "Jaundice\n",
          speciality: "gastroenterologist"           
       },
       {
-      disease: "Malaria",
+      disease: "Malaria\n",
       speciality: "Infectious Disease"
       },
       {
-      disease: "Chicken pox",
+      disease: "Chicken_pox\n",
       speciality: "Paediatrician"
       },
       {
-         disease: "Dengue",
+         disease: "Dengue\n",
          speciality: "Infectious Disease"     
       },
       {            
-         disease: "Impetigo",
+         disease: "Impetigo\n",
          speciality: "Paediatrician"           
       },        
       {            
-         disease: "Psoriasis",
+         disease: "Psoriasis\n",
          speciality: "Rheumatologist"           
       }, 
       {            
-         disease: "Urinary tract infection",
+         disease: "Urinary_tract_infection\n",
          speciality: "Primary Care Provider"           
       }, 
       {            
-         disease: "Acne",
+         disease: "Acne\n",
          speciality: "Paediatrician"           
       }, 
       {            
-         disease: "Osteoarthristis",
-         speciality: "Orthopaedic"           
+         disease: "Osteoarthristis\n",
+         speciality: "Orthopaedic"     
       },  
       {            
-         disease: "Hypoglycemia",
+         disease: "Hypoglycemia\n",
          speciality: "Primary Care Provider"           
       },        
       {            
-         disease: "Hyperthyroidism",
+         disease: "Hyperthyroidism\n",
          speciality: "Endocrinologist"           
       }, 
       {            
-         disease: "Varicoseveins",
+         disease: "Varicoseveins\n",
          speciality: "Primary Care Provider"           
       }, 
       {            
-         disease: "Heartattack",
+         disease: "Heartattack\n",
          speciality: "Cardiologist"           
       }, 
       {            
-         disease: "Dimorphic hemmorhoids(piles)",
+         disease: "Dimorphic_hemmorhoids(piles)\n",
          speciality: "Primary Care Provider"           
       }, 
       {            
-         disease: "Hepatitis E",
+         disease: "Hepatitis_E\n",
          speciality: "Hepatologist"           
       },  
       {            
-         disease: "Hepatitis D",
+         disease: "Hepatitis_D\n",
          speciality: "Hepatologist"           
       },        
       {            
-         disease: "Hepatitis C",
+         disease: "Hepatitis_C\n",
          speciality: "Hepatologist"           
       }, 
       {
-         disease: "Dengue",
+         disease: "Dengu\ne",
          speciality: "Infectious Disease"     
       },
       {            
-         disease: "Impetigo",
+         disease: "Impetigo\n",
          speciality: "Paediatrician"           
       },        
       {            
-         disease: "Psoriasis",
+         disease: "Psoriasis\n",
          speciality: "Rheumatologist"           
       }, 
       {            
-         disease: "Urinary tract infection",
+         disease: "Urinary_tract_infection\n",
          speciality: "Primary Care Provider"           
       }, 
       {            
-         disease: "Acne",
+         disease: "Acne\n",
          speciality: "Paediatrician"           
       }, 
       {            
-         disease: "Osteoarthristis",
+         disease: "Osteoarthristis\n",
          speciality: "Orthopaedic"           
       },  
       {            
-         disease: "Hypoglycemia",
+         disease: "Hypoglycemia\n",
          speciality: "Primary Care Provider"           
       },        
       {            
-         disease: "Hyperthyroidism",
+         disease: "Hyperthyroidism\n",
          speciality: "Endocrinologist"           
       }, 
       {            
-         disease: "Varicoseveins",
+         disease: "Varicoseveins\n",
          speciality: "Primary Care Provider"           
       }, 
       {            
-         disease: "Heartattack",
+         disease: "Heartattack\n",
          speciality: "Cardiologist"           
       }, 
       {            
-         disease: "Dimorphic hemmorhoids(piles)",
+         disease: "Dimorphic_hemmorhoids(piles)\n",
          speciality: "Primary Care Provider"           
       }, 
       {            
-         disease: "Hepatitis E",
+         disease: "Hepatitis_E\n",
          speciality: "Hepatologist"           
       },  
       {            
-         disease: "Hepatitis D",
+         disease: "Hepatitis_D\n",
          speciality: "Hepatologist"           
       },        
       {            
-         disease: "Hepatitis C",
+         disease: "Hepatitis_C\n",
          speciality: "Hepatologist"           
       },          
       {
-         disease: "Hepatitis B",
+         disease: "Hepatitis_B\n",
          speciality: "Hepatologist"
       },
       {
-         disease: "Hepatitis A",
+         disease: "Hepatitis_A\n",
          speciality: "Hepatologist"
       },
       {
-         disease: "Typhoid",
+         disease: "Typhoid\n",
          speciality: "Infectious Disease Doctor"
       }
  ]
@@ -449,7 +449,11 @@ exports.fileDownload = async (req, res) => {
 exports.getDisease = async (req, res) => {
     const { symptoms } = req.body;
     console.log(symptoms);
-    const childPython = await spawn('python3', ['/Users/yashsrivastava/Desktop/DecentraHealth/backend/controllers/ml_model_btp.py','itching','skin_rash','nodal_skin_eruptions','dischromic_patches']);
+    const sym1 = symptoms[0];
+    const sym2 = symptoms[1];
+    const sym3 = symptoms[2];
+    const sym4 = symptoms[3];
+    const childPython = await spawn('python3', ['/Users/yashsrivastava/Desktop/DecentraHealth/backend/controllers/ml_model_btp.py',sym1, sym2, sym3, sym4]);
     console.log("Hello");
 
     childPython.stdout.on('data', (data) => {
@@ -467,7 +471,8 @@ exports.getDisease = async (req, res) => {
 }
 
 exports.getDoctors = async (req, res) => {
-    const { disease } = req.body;
+    const  disease = req.body.disease;
+    console.log(req.body);
     const arr = [];
     console.log(speciality.length);
     let i = 0, flag = 0;
@@ -478,6 +483,8 @@ exports.getDoctors = async (req, res) => {
                     res.status(500).send(err);
                 }
                 else if(doctors.length>0){
+                    console.log("Doctor: ");
+                    console.log(doctors);
                     res.status(200).send(doctors);
                 }
                 else{

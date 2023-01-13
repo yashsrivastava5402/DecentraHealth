@@ -2,7 +2,7 @@ import * as React from 'react';
 import axios from 'axios';
 import { useEffect,useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import DoctorCard from './DoctorCard';
+import DoctorcardRecomm from './DoctorcardRecomm';
 function createData(Did,Dname,Dspecialisation,hospital_name) {
   return {Did,Dname,Dspecialisation,hospital_name};
 }
@@ -18,12 +18,15 @@ const rows = [
 
 export default function RecommendedDocs() {
   const { state } = useLocation();
+  console.log(state);
   const [row,setrow]=useState([]);
  useEffect(async () => {
-    const response=await axios.post('http://localhost:8000/getDoctorsRecommend', state.disease);
+    console.log(state.disease);
+    const response=await axios.post('http://localhost:8000/getDoctorsRecommend', {disease: state.disease});
+    console.log(response.data);
 
-  setrow([...row,response.data])
-  
+  setrow([...row,...response.data])
+  console.log(row);
   }, [])
  
   return (
@@ -38,7 +41,7 @@ export default function RecommendedDocs() {
         </thead>
         <tbody>
             {row.map((doctor) => {
-                return <tr><DoctorCard Dname={doctor.Name} speciality={doctor.speciality} id={doctor.doctorId} name={doctor.Name} aadhar={state.aadhar} patientName={state.name} age={state.age} gender={state.gender} /></tr>
+                return <tr><DoctorcardRecomm Dname={doctor.Name} speciality={doctor.speciality} id={doctor.doctorId} name={doctor.Name} aadhar={state.Aadhar} patientName={state.Name} age={state.Age} gender={state.Gender} /></tr>
             })}
         </tbody>
     </table>

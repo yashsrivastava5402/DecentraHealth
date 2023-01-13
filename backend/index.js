@@ -23,7 +23,7 @@ app.use(express.static("files"));
 
 app.disable('etag');
 
-mongoose.connect("mongodb+srv://srivyas:decentrahealth1234@decentrahealth.rkmod.mongodb.net/?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("mongodb+srv://Decentrahealth:Oespif9HbO8ZPpQv@cluster0.une2qr2.mongodb.net/?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
 
 const port = 8000;
 
