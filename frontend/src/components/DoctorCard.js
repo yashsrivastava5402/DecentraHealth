@@ -16,7 +16,7 @@ function DoctorCard({id,name,aadhar, patientName, age, gender}) {
            Age: age,
            Gender: gender
         }
-        axios.post('http://localhost:8000/addPatientDoctor', postInfo)
+        axios.post('https://decentrahealth-backend.onrender.com/addPatientDoctor', postInfo)
         .then(function (response){
             console.log(response);
             if(response.status === 200){

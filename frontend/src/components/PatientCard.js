@@ -9,7 +9,7 @@ function PatientCard({ aadhar, name, age, gender}) {
     const goToPatient = (e) => {
         e.preventDefault();
         setSubmitted(true);
-        axios.get('http://localhost:8000/getHospitals')
+        axios.get('https://decentrahealth-backend.onrender.com/getHospitals')
             .then(function (response) {
                 console.log(response);
                 if (response.status === 200) {

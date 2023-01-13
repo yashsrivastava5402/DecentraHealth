@@ -22,7 +22,7 @@ export default function RecommendedDocs() {
   const [row,setrow]=useState([]);
  useEffect(async () => {
     console.log(state.disease);
-    const response=await axios.post('http://localhost:8000/getDoctorsRecommend', {disease: state.disease});
+    const response=await axios.post('https://decentrahealth-backend.onrender.com/getDoctorsRecommend', {disease: state.disease});
     console.log(response.data);
 
   setrow([...row,...response.data])
