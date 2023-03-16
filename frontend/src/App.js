@@ -27,7 +27,6 @@ import RecommendedDocs from "./components/RecommendedDocs";
 import { Box } from '@mui/material';
 
 function App() {
-  //  { document.body.style.backgroundImage = "url('https://www.transparenttextures.com/patterns/black-thread-light.png')"; }
   return (
     <>
       <BrowserRouter>

@@ -7,9 +7,6 @@ import { Box, Button, Typography, styled } from "@mui/material";
 //CSS
 const ParentComponent = styled(Box)`
     margin-top : 50px;
-    .example::-webkit-scrollbar {
-  display: none;
-}
 `
 const Title = styled(Typography)`
     font-size: 70px;
@@ -17,23 +14,26 @@ const Title = styled(Typography)`
 `
 const Component = styled(Box)`
    text-align: center;
-    display:flex;
-    flex-direction: column;
+    
     &>img{
     margin: 0 auto;
   }
-    &>button{
-      width: 195px;
+   
+`
+const ButtonWrapper = styled(Box)`
+    display:flex;
+    flex-direction: column;
+     &>button{
+      width: 300px;
       text-align: center;
       margin: 0 auto;
-      margin-top: 20px;
       background-color: #2C88D9;
       color: #fff;
       font-weight :600;
-      height: 40px;
+      height: 50px;
+      font-size: 16px;
     }
 `
-
 function Home() {
   const navigate = useNavigate();
   return (
@@ -43,8 +43,10 @@ function Home() {
           DecentraHealth
         </Title>
         <img src="/home.png" alt="homepage_img" style={{width: 600, height: 450,}}/>
+        <ButtonWrapper>
         <Button variant="contained" onClick={() => { navigate("/PatientLogin"); }}>Patient</Button>
-        <Button variant="contained" onClick={() => { navigate("/DoctorLogin"); }}>Healthcare Operator</Button>
+        <Button variant="contained" onClick={() => { navigate("/DoctorLogin"); }} style={{marginTop:15}}>Healthcare Operator</Button>
+        </ButtonWrapper>
       </Component>
     </ParentComponent>
   )

@@ -24,14 +24,15 @@ const Component = styled(Box)`
     margin: 0 auto;
   }
     &>button{
-      width: 200px;
+      width: 300px;
       text-align: center;
       margin: 0 auto;
       margin-top: 20px;
       background-color: #2C88D9;
       color: #fff;
       font-weight :600;
-      height: 40px;
+      height: 50px;
+      font-size: 16px;
     }
 `
 
@@ -41,8 +42,8 @@ export default function PatientLoginIntro() {
     <ParentComponent>
       <Component>
         <Title> DecentraHealth </Title>
-        <img src="/patientLoginIntro.jpg" alt="patient_login_intro" style={{width: 500, height: 400}}/>
-        <Typography style={{color:'#1AAE9F',fontSize: 28, fontWeight: 600}}>Patient Login</Typography>
+        <img src="/patientLoginIntro.jpg" alt="patient_login_intro" style={{width: 430, height: 350}}/>
+        <Typography style={{color:'#1AAE9F',fontSize: 28, fontWeight: 600,marginTop: 30}}>Patient Login</Typography>
         <Button variant="contained" onClick={() => { navigate("/PatientLoginOtp"); }}>Login with OTP</Button>
         <Button variant="contained" onClick={() => { navigate("/PatientLoginFingerprint"); }}>Login with Fingerprint</Button>
       </Component>
