@@ -2,7 +2,56 @@ import { useState } from 'react'
 import React from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router";
+import { Form } from 'react-bootstrap';
 
+//MUI
+import { Box, Button, Typography, styled, TextField} from "@mui/material";
+
+//CSS
+const ParentComponent = styled(Box)`
+    margin-top : 60px;
+`
+const Title = styled(Typography)`
+    font-size: 70px;
+    color: #207868;
+`
+const Component = styled(Box)`
+   text-align: center;
+    display:flex;
+    flex-direction: column;
+    &>img{
+    margin: 0 auto;
+  }
+    &>button{
+      width: 300px;
+      text-align: center;
+      margin: 0 auto;
+      margin-top: 20px;
+      background-color: #2C88D9;
+      color: #fff;
+      font-weight :600;
+      height: 50px;
+      font-size: 16px;
+    }
+`
+
+const LowerComponent= styled(Form)`
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto 0px auto;
+    width:20%;
+    &>button{
+      width: 300px;
+      text-align: center;
+      margin: 0 auto;
+      margin-top: 20px;
+      background-color: #2C88D9;
+      color: #fff;
+      font-weight :600;
+      height: 50px;
+      font-size: 16px;
+    }
+`
 function HospitalLogin() {
     const navigate = useNavigate();
     const [values, setValues] = useState({
@@ -55,7 +104,28 @@ function HospitalLogin() {
 
 return (
     <>
-    <div className="card-body text-black" >
+      <ParentComponent>
+        <Component>
+          {/* <Title> DecentraHealth </Title> */}
+          <img src="/hospitallogin.png" alt="patient_login_intro" style={{ width: 360, height: 350 }} />
+          <Typography style={{ color: '#1AAE9F', fontSize: 28, fontWeight: 600, marginTop: 20 }}>Healthcare Login</Typography>
+          <LowerComponent>
+            <TextField variant='outlined' placeholder='HealthCare Id' onChange={handleChange} value={values.hospitalRegnumber} id="hospitalRegnumber" type="text" name="hospitalRegnumber"></TextField>
+            {submitted && !values.hospitalRegnumber ? <span id="hospitalRegnumber-error">Please enter hospital registration number</span> : null}
+            <TextField variant='outlined' placeholder='Password' onChange={handleChange} value={values.password} id="password" type="password" name="password" style={{marginTop:20}}></TextField>
+            {submitted && !values.password ? <span id="password-error">Please enter password</span> : null}
+            <Button type='submit' onClick={handlesubmit}>Login</Button>
+            <Typography style={{margin:'20px 0 10px 0'}} >Don't have an account ? <a onClick={() => {navigate("/HospitalSignupPage");}} style={{cursor:'pointer',fontWeight:600}}>Sign Up</a></Typography>
+          </LowerComponent>
+        </Component>
+      </ParentComponent>
+    </>
+    )
+}
+
+export default HospitalLogin;
+
+    {/* <div className="card-body text-black" >
         <div className="row justify-content-center my-5">
           <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 mt-5">
             <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-5">Hospital Login</p>
@@ -88,9 +158,4 @@ return (
               className=' mx-56 my-10' alt="Sample image" />
           </div>
         </div>
-      </div>
-    </>
-    )
-}
-
-export default HospitalLogin;
+      </div> */}

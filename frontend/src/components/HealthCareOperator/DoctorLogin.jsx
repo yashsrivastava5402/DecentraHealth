@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 import { Form } from 'react-bootstrap';
 
 //MUI
-import { Box, Button, Typography, styled, TextField} from "@mui/material";
+import { Box, Button, Typography, styled, TextField } from "@mui/material";
 
 //CSS
 const ParentComponent = styled(Box)`
@@ -38,7 +38,7 @@ const Component = styled(Box)`
     }
 `
 
-const LowerComponent= styled(Form)`
+const LowerComponent = styled(Form)`
     display: flex;
     flex-direction: column;
     margin: 20px auto 0px auto;
@@ -89,11 +89,12 @@ const DoctorLogin = () => {
         <Component>
           <Title> DecentraHealth </Title>
           <img src="/doctorlogin.jpg" alt="patient_login_intro" style={{ width: 550, height: 350 }} />
-          <Typography style={{ color: '#1AAE9F', fontSize: 28, fontWeight: 600, marginTop: 20 }}>Healthcare Login</Typography>
+          <Typography style={{ color: '#1AAE9F', fontSize: 28, fontWeight: 600, marginTop: 20 }}>Doctor Login</Typography>
           <LowerComponent>
-            <TextField variant='outlined' placeholder='HealthCare Id' onChange={handleChange} value={values.doctorId} id="doctorId" name="doctorId" ></TextField>
+            <TextField variant='outlined' placeholder='Doctor Id' onChange={handleChange} value={values.doctorId} id="doctorId" name="doctorId" ></TextField>
             {submitted && !values.doctorId ? <span id="first-name-error">Please enter correct Id</span> : null}
-            <TextField variant='outlined' placeholder='Password' onChange={handleChange} value={values.doctorPass} id="doctorPass" name="doctorPass" style={{marginTop:20}}></TextField>
+            <TextField variant='outlined' placeholder='Password' onChange={handleChange} value={values.doctorPass} id="doctorPass" name="doctorPass" type="password" style={{ marginTop: 20 }}></TextField>
+            {submitted && !values.doctorPass ? <span id="doctorPass-error">Please enter correct password</span> : null}
             <Button type='submit' onClick={handlesubmit}>Login</Button>
           </LowerComponent>
         </Component>

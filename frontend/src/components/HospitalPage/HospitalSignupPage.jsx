@@ -2,6 +2,52 @@ import React from 'react';
 import { useState } from 'react'
 import { useNavigate } from "react-router";
 import axios from 'axios'
+
+//MUI
+import { Box, styled, Typography, Grid,Button, TextField, FormControlLabel } from '@mui/material';
+
+const Component = styled(Box)(({ theme }) => ({
+  margin: '60px auto 0 auto',
+  width: '90%',
+  [theme.breakpoints.down('md')]: {
+    margin: '60px auto 0 auto',
+  }
+}))
+
+const Container = styled(Grid)(({ theme }) => ({
+  display: 'flex',
+  [theme.breakpoints.down('md')]: {
+    margin: 0
+  }
+}))
+
+const Image= styled('img')(({ theme }) => ({
+  marginTop: '170px',
+  [theme.breakpoints.down('md')]: {
+    marginTop: 0
+  }
+}))
+
+
+const Form = styled(Box)(({ theme }) => ({
+  textAlign: 'center',
+  margin: '50px auto 0 auto',
+  width: '50%',
+  [theme.breakpoints.down('md')]: {
+    margin: '20px auto 0 auto'
+  }
+}))
+
+
+const Input = styled(Box)`
+  display:flex;
+  flex-direction : column;
+  flex:1;
+  &>div , &>button, &>p{
+        margin-top: 30px;
+    }
+`
+
 function HospitalSignupPage() {
 
   const navigate = useNavigate();
@@ -56,7 +102,57 @@ function HospitalSignupPage() {
 
   return (
     <>
-      <div className="card-body text-black">
+      <Component>
+        <Container container>
+          <Grid item lg={4} md={4} sm={8} xs={12}>
+            <Image src='/hospitalsignup.png' alt="Sample image" />
+          </Grid>
+          <Grid item lg={8} md={8} sm={8} xs={12}>
+            <Form>
+              <Typography variant='h4' fontWeight={600}>Sign up</Typography>
+              
+              <Box style={{marginTop:30}}>
+                  <label className="form-label">Type of Hospital :</label>
+                  <input className="form-check-input ml-5 " type="radio" name="type" id="gov" onChange={handleChange} value="gov"></input>
+                  <label className="ml-2 mr-4" for="gov">Government</label>
+                  <input className="form-check-input ml-5" type="radio" name="type" id="private" onChange={handleChange} value="private"></input>
+                  <label className="ml-2" for="private">Private</label>
+              </Box>
+
+              <Input>
+                  <TextField type="text" name="hospitalName" onChange={handleChange} value={values.hospitalName} id="hospitalName" variant='standard' label='Hospital Name'/>
+                  {submitted && !values.hospitalName ? <span id="first-name-error">Please enter the hospital name.</span> : null}
+
+              
+                  <TextField type="text" name="hospitalRegnumber" id="hospitalRegnumber" label='Hospital Reg Number' onChange={handleChange} value={values.hospitalRegnumber} variant='standard' />
+                  {submitted && !values.hospitalRegnumber ? <span id="hospitalRegnumber-error">Please enter the hospital registration number.</span> : null}
+
+
+                  <TextField type="text" id="password" onChange={handleChange} value={values.password} name="password" label='Password' variant='standard' />
+                  {submitted && !values.password ? <span id="password-error">Please enter password</span> : null}
+  
+                  <TextField type="password" id="cpassword" onChange={handleChange} value={values.cpassword} name="cpassword" label='Confirm password' variant='standard' />
+                  {values.cpassword !== values.password ? <p id="password-error" style={{ color: 'red' }}>Passwords do not match</p> : null}
+                  {submitted && !values.cpassword ? <span id="password-error">Please Confirm Password</span> : null}
+  
+              
+                {/* <FormControlLabel label="I agree all statements in Terms & Conditions " /> */}
+                
+                <Button type="submit" variant='contained' onClick={handlesubmit} style={{width: 100,height: 40,margin: '40px auto 0 auto'}}>Register</Button>
+                </Input>
+
+              <p class="text-center text-muted mt-5 mb-0">Have already an account? <a onClick={() => { navigate("/HospitalLogin"); }} class="fw-bold text-body cursor-pointer"><u>Login here</u></a></p>
+            </Form>
+          </Grid>
+        </Container>
+      </Component>
+    </>
+  )
+}
+
+export default HospitalSignupPage;
+
+{/* <div className="card-body text-black">
         <div className="row justify-content-center">
           <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
             <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
@@ -131,10 +227,5 @@ function HospitalSignupPage() {
               className=' mx-48 my-20 w-2/3' alt="Sample image" style={{}} />
           </div>
         </div>
-      </div>
-    </>
-  )
-}
-
-export default HospitalSignupPage;
+      </div> */}
 

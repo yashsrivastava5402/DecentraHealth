@@ -4,8 +4,8 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 //Components
 import Home from "./components/Home/Home";
 import DoctorLogin from './components/HealthCareOperator/DoctorLogin';
-import HospitalSignupPage from "./components/HospitalSignupPage";
-import HospitalLogin from "./components/HospitalLogin";
+import HospitalSignupPage from "./components/HospitalPage/HospitalSignupPage";
+import HospitalLogin from "./components/HospitalPage/HospitalLogin"
 import Admin from "./components/Admin";
 import PatientLoginIntro from "./components/PatientPage/PatientLoginIntro";
 import PatientLoginOtp from "./components/PatientPage/PatientLoginOtp";
