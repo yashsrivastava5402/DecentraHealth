@@ -40,28 +40,32 @@ const LowerComponent = styled(Box)`
 `;
 const MobileInput = styled(Box)`
   display: flex;
-  margin: 0 auto;
+  margin: 20px auto 0px auto;
   & > button {
     width: 120px;
     text-align: center;
     background-color: #2c88d9;
     color: #fff;
     font-weight: 600;
-    height: 50px;
+    height: 40px;
     font-size: 16px;
+    margin: 30px 0px 0px 20px;
   }
 `;
 
 const OtpInput = styled(Box)`
   display: flex;
   flex-direction: column;
+  margin: 30px auto 0px auto;
   & > button {
-    width: 200px;
+    width: 120px;
     text-align: center;
     background-color: #2c88d9;
     color: #fff;
     font-weight: 600;
-    margin: 0 auto;
+    height: 40px;
+    font-size: 16px;
+    margin: 30px auto 0px auto;
   }
 `;
 
@@ -197,14 +201,14 @@ function PatientLogin() {
             <Form onSubmit={onSignInSubmit} style={{ display: !flag ? "block" : "none" }}>
               <Form.Group controlId="formBasicEmail">
                 <MobileInput>
-                  <PhoneInput country={'in'} value={values.phone} style={{width:"400px"}} inputStyle={{width :'446px'}} onChange={(e) => {
+                  <PhoneInput country={'in'} value={values.phone} style={{width:"300px",height:'40px',border:'none',marginTop:30}} inputStyle={{height:'40px',width :'300px'}} onChange={(e) => {
                       console.log(e);
                       setValues({
                         ...values,
                         phone: e,
                       });
                     }} />
-                  <Button type="submit" style={{ marginLeft: 20 }} id="sign-in-button">Get Otp</Button>
+                  <Button type="submit"  id="sign-in-button">Get Otp</Button>
                   </MobileInput>
                   </Form.Group>
             </Form>
@@ -215,12 +219,11 @@ function PatientLogin() {
                     fullWidth
                     placeholder="Otp"
                     variant="standard"
-                    style={{ width: 300, marginTop: 20 }}
+                    style={{ width:"300px"}}
                     onChange={(e) => { setValues({ ...values, OTP: e.target.value, }); }} />
                   <Button
                     type="submit"
                     variant="contained"
-                    style={{ marginTop: 25 }}
                   >
                     Login
                   </Button>

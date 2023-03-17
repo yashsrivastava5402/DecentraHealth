@@ -3,20 +3,20 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 //Components
 import Home from "./components/Home/Home";
-import DoctorLogin from "./components/DoctorLogin";
+import DoctorLogin from './components/HealthCareOperator/DoctorLogin';
 import HospitalSignupPage from "./components/HospitalSignupPage";
 import HospitalLogin from "./components/HospitalLogin";
 import Admin from "./components/Admin";
 import PatientLoginIntro from "./components/PatientPage/PatientLoginIntro";
 import PatientLoginOtp from "./components/PatientPage/PatientLoginOtp";
 import PatientLoginFinger from "./components/PatientPage/PatientLoginFinger";
-import Patient from "./components/Patient";
+import Patient from "./components/PatientPage/Patient";
 import PatientPage from "./components/PatientPage";
 import FileUpload from "./components/FileUpload";
 import FileDownload from "./components/FileDownload";
 import PatientPageHospital from "./components/PatientPageHospital"
 import PatientPageDoctor from "./components/PatientPageDoctor";
-import Doctor from "./components/Doctor";
+import Doctor from "./components/HealthCareOperator/Doctor";
 import Appbar from "./components/Navbar/Appbar";
 import ViewReports from "./components/ViewReports";
 import Creators from "./components/Creators";

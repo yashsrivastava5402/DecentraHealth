@@ -43,7 +43,7 @@ export default function PatientLoginIntro() {
       <Component>
         <Title> DecentraHealth </Title>
         <img src="/patientLoginIntro.jpg" alt="patient_login_intro" style={{width: 430, height: 350}}/>
-        <Typography style={{color:'#1AAE9F',fontSize: 28, fontWeight: 600,marginTop: 30}}>Patient Login</Typography>
+        <Typography style={{color:'#1AAE9F',fontSize: 28, fontWeight: 600,marginTop: 20}}>Patient Login</Typography>
         <Button variant="contained" onClick={() => { navigate("/PatientLoginOtp"); }}>Login with OTP</Button>
         <Button variant="contained" onClick={() => { navigate("/PatientLoginFingerprint"); }}>Login with Fingerprint</Button>
       </Component>
