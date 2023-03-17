@@ -4,7 +4,6 @@ import axios from 'axios';
 
 //MUI
 import { Box, Button, Typography, styled, TableContainer, TableCell, TableRow, TableHead, Table, TableBody, Select, MenuItem, InputLabel, FormControl } from "@mui/material";
-import { Rowing } from '@material-ui/icons';
 
 function PatientCardDoctor({ aadhar, name }) {
 

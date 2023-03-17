@@ -26,6 +26,7 @@ import RecommendedDocs from "./components/RecommendedDocs";
 
 //Material UI
 import { Box } from '@mui/material';
+import PatientInsight from "./components/PatientPage/PatientInsight";
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
             <Route path="/Patient/:phone" element={<Patient />} />
             <Route path="/PatientPage/:id" element={<PatientPage />} />
             <Route path='/PatientIntroPage' element={<PatientIntroPage />} />
+            <Route path='/PatientInsight' element={<PatientInsight />} />
             <Route path="/fileUpload/:aadhar" element={<FileUpload />} />
             <Route path="/FileDownload" element={<FileDownload />} />
             <Route path="/PatientPageDoctor/:aadhar" element={<PatientPageDoctor />} />

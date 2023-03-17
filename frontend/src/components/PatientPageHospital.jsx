@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { useNavigate } from "react-router";
 import Button from "@mui/material/Button";
-import HospitalCard from './HospitalCard';
+import HospitalCard from './PatientPage/HospitalCard';
 import FileUpload from './FileUpload';
 import FileDownload from './FileDownload';
 // import Hospital from '../../../backend/models/hospital';

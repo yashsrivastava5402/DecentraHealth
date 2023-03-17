@@ -2,9 +2,51 @@ import axios from 'axios';
 import React,{useState} from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { useNavigate } from "react-router";
-import HospitalCard from '../HospitalCard';
+import HospitalCard from './HospitalCard';
 import FileDownload from '../FileDownload';
-import Button from "@mui/material/Button";
+
+//MUI
+import { Box, Button, Typography, styled, TableContainer, TableCell, TableRow, TableHead, Table,TableBody, TextField } from "@mui/material";
+
+//CSS
+const ParentComponent = styled(Box)`
+    margin-top : 80px;
+`
+const Title = styled(Typography)`
+    font-size: 40px;
+    color: #207868;
+    text-align: center;   
+`
+const LowerComponent = styled(Box)`
+    margin: 30px auto 0 auto;
+    width:85%;
+`
+
+const InputSearch = styled(Box)`
+    margin-top:20px;
+    &>button{
+      color:white;
+      background-color: #6558F5;
+      width:100px;
+      height:50px;
+      font-size:16px;
+    },
+    &>div{
+      margin:0 30px 0 0;
+      width: 40%;
+    }
+`
+
+const Tablecontainer = styled(TableContainer)`
+    margin-top: 40px;
+`
+const Tablerow = styled(TableRow)`
+    &>th{
+     font-size: 16px;
+     font-weight: 600;
+    }
+
+`
 
 function PaitentPage(){
     const navigate = useNavigate();
@@ -23,15 +65,47 @@ function PaitentPage(){
                 })
         })
     }
-
-    const myStyle = {
-        width: '67rem',
-        backgroundColor: 'white'
-      }
     
       return (
         <>
-          <div className="container my-5">
+           <ParentComponent>
+                <Title>
+                    Book an Appointment
+                </Title>
+                <LowerComponent>
+                    <Typography variant='h4'>Hello, {state.values.Name}</Typography>
+                    <InputSearch>
+                      <TextField variant='filled' label='Search for hospital,doctor,specialization'></TextField>
+                      <TextField variant='filled' label='Location'></TextField>
+                      <Button>Search</Button>
+                    </InputSearch>
+                    <Tablecontainer>
+                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                            <TableHead>
+                                <Tablerow>
+                                    <TableCell>Name of Doctor</TableCell>
+                                    <TableCell>Hospital Id</TableCell>
+                                    <TableCell>Hospital Name</TableCell>
+                                    <TableCell>Qualification</TableCell>
+                                </Tablerow>
+                            </TableHead>
+                            <TableBody>
+                                {state.values.hospitals.map((hospital) => (
+                                  <HospitalCard id={hospital.regNo} name={hospital.Name} state={state} />
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </Tablecontainer>
+                </LowerComponent>
+            </ParentComponent>
+        </>
+      )
+    }
+    
+    
+export default PaitentPage;
+
+{/* <div className="container my-5">
             <div className="card text-left border-dark text-black" style={myStyle}>
               <div className="card-header  border-dark">
                 Available Hospitals
@@ -59,10 +133,4 @@ function PaitentPage(){
                 </table>
               </div>
             </div>
-          </div>
-        </>
-      )
-    }
-    
-    
-export default PaitentPage;
+          </div> */}

@@ -28,8 +28,8 @@ const Component = styled(Box)`
       background-color: #2C88D9;
       color: #fff;
       font-weight :600;
-      height: 50px;
       font-size: 16px;
+      height: 50px;
     }
 `
 
