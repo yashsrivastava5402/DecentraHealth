@@ -9,7 +9,7 @@ import { Box, Button, Typography, styled, TextField} from "@mui/material";
 
 //CSS
 const ParentComponent = styled(Box)`
-    margin-top : 60px;
+    margin-top : 73px;
 `
 const Title = styled(Typography)`
     font-size: 70px;
@@ -115,7 +115,7 @@ return (
             <TextField variant='outlined' placeholder='Password' onChange={handleChange} value={values.password} id="password" type="password" name="password" style={{marginTop:20}}></TextField>
             {submitted && !values.password ? <span id="password-error">Please enter password</span> : null}
             <Button type='submit' onClick={handlesubmit}>Login</Button>
-            <Typography style={{margin:'20px 0 10px 0'}} >Don't have an account ? <a onClick={() => {navigate("/HospitalSignupPage");}} style={{cursor:'pointer',fontWeight:600}}>Sign Up</a></Typography>
+            <Typography style={{margin:'20px 0 0 0'}} >Don't have an account ? <a onClick={() => {navigate("/HospitalSignupPage");}} style={{cursor:'pointer',fontWeight:600}}>Sign Up</a></Typography>
           </LowerComponent>
         </Component>
       </ParentComponent>
