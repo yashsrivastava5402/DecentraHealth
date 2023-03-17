@@ -29,7 +29,7 @@ const Component = styled(Box)`
   flex-direction: column;
   margin: 0 auto;
   & > img {
-    margin: 0 auto;
+    margin: 50px auto 0px auto;
   }
 `;
 
@@ -185,11 +185,11 @@ function PatientLogin() {
     <>
       <ParentComponent>
         <Component>
-          <Title> DecentraHealth </Title>
+          {/* <Title> DecentraHealth </Title> */}
           <img
             src="/patientLoginIntro.jpg"
             alt="patient_login_intro"
-            style={{ width: 430, height: 350 }}
+            style={{width: 500, height: 400}}
           />
           <Typography
             style={{ color: "#1AAE9F", fontSize: 28, fontWeight: 600 }}

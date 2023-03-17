@@ -11,7 +11,7 @@ import PatientLoginIntro from "./components/PatientPage/PatientLoginIntro";
 import PatientLoginOtp from "./components/PatientPage/PatientLoginOtp";
 import PatientLoginFinger from "./components/PatientPage/PatientLoginFinger";
 import Patient from "./components/PatientPage/Patient";
-import PatientPage from "./components/PatientPage";
+import PatientPage from "./components/PatientPage/PatientPage";
 import FileUpload from "./components/FileUpload";
 import FileDownload from "./components/FileDownload";
 import PatientPageHospital from "./components/PatientPageHospital"
@@ -21,10 +21,12 @@ import Appbar from "./components/Navbar/Appbar";
 import ViewReports from "./components/ViewReports";
 import Creators from "./components/Creators";
 import InputSymptoms from "./components/InputSymptoms";
+import PatientIntroPage from "./components/PatientPage/PatientIntroPage";
 import RecommendedDocs from "./components/RecommendedDocs";
 
 //Material UI
 import { Box } from '@mui/material';
+
 
 function App() {
   return (
@@ -43,6 +45,7 @@ function App() {
             <Route path="/PatientLoginFingerprint" element={<PatientLoginFinger />} />
             <Route path="/Patient/:phone" element={<Patient />} />
             <Route path="/PatientPage/:id" element={<PatientPage />} />
+            <Route path='/PatientIntroPage' element={<PatientIntroPage />} />
             <Route path="/fileUpload/:aadhar" element={<FileUpload />} />
             <Route path="/FileDownload" element={<FileDownload />} />
             <Route path="/PatientPageDoctor/:aadhar" element={<PatientPageDoctor />} />

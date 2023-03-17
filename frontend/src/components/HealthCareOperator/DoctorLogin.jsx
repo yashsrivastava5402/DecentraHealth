@@ -23,7 +23,7 @@ const Component = styled(Box)`
     display:flex;
     flex-direction: column;
     &>img{
-    margin: 0 auto;
+    margin: 50px auto 0 auto;
   }
     &>button{
       width: 300px;
@@ -44,7 +44,7 @@ const LowerComponent = styled(Form)`
     margin: 20px auto 0px auto;
     width:20%;
     &>button{
-      width: 300px;
+      width: 200px;
       text-align: center;
       margin: 0 auto;
       margin-top: 20px;
@@ -87,7 +87,7 @@ const DoctorLogin = () => {
     <>
       <ParentComponent>
         <Component>
-          <Title> DecentraHealth </Title>
+          {/* <Title> DecentraHealth </Title> */}
           <img src="/doctorlogin.jpg" alt="patient_login_intro" style={{ width: 550, height: 350 }} />
           <Typography style={{ color: '#1AAE9F', fontSize: 28, fontWeight: 600, marginTop: 20 }}>Doctor Login</Typography>
           <LowerComponent>

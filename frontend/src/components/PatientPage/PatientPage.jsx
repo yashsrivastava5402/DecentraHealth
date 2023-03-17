@@ -2,8 +2,8 @@ import axios from 'axios';
 import React,{useState} from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { useNavigate } from "react-router";
-import HospitalCard from './HospitalCard';
-import FileDownload from './FileDownload';
+import HospitalCard from '../HospitalCard';
+import FileDownload from '../FileDownload';
 import Button from "@mui/material/Button";
 
 function PaitentPage(){

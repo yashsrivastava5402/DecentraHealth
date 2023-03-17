@@ -41,7 +41,7 @@ const LowerComponent= styled(Form)`
     margin: 20px auto 0px auto;
     width:20%;
     &>button{
-      width: 300px;
+      width: 200px;
       text-align: center;
       margin: 0 auto;
       margin-top: 20px;

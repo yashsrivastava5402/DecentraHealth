@@ -22,7 +22,8 @@ const Container = styled(Grid)(({ theme }) => ({
 }))
 
 const Image= styled('img')(({ theme }) => ({
-  marginTop: '170px',
+  width:'90%',
+  marginTop: '10%',
   [theme.breakpoints.down('md')]: {
     marginTop: 0
   }
@@ -104,10 +105,10 @@ function HospitalSignupPage() {
     <>
       <Component>
         <Container container>
-          <Grid item lg={4} md={4} sm={8} xs={12}>
+          <Grid item lg={6} md={4} sm={8} xs={12}>
             <Image src='/hospitalsignup.png' alt="Sample image" />
           </Grid>
-          <Grid item lg={8} md={8} sm={8} xs={12}>
+          <Grid item lg={6} md={8} sm={8} xs={12}>
             <Form>
               <Typography variant='h4' fontWeight={600}>Sign up</Typography>
               
@@ -141,7 +142,7 @@ function HospitalSignupPage() {
                 <Button type="submit" variant='contained' onClick={handlesubmit} style={{width: 100,height: 40,margin: '40px auto 0 auto'}}>Register</Button>
                 </Input>
 
-              <p class="text-center text-muted mt-5 mb-0">Have already an account? <a onClick={() => { navigate("/HospitalLogin"); }} class="fw-bold text-body cursor-pointer"><u>Login here</u></a></p>
+              <p class="text-center text-muted mt-5 mb-0">Have already an account? <a onClick={() => { navigate("/HospitalLogin"); }} class="fw-bold text-body cursor-pointer"><u style={{cursor:'pointer'}}>Login here</u></a></p>
             </Form>
           </Grid>
         </Container>

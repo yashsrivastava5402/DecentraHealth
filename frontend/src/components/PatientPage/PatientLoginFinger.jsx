@@ -7,9 +7,6 @@ import { Box, Button, Typography, styled } from "@mui/material";
 //CSS
 const ParentComponent = styled(Box)`
     margin-top : 50px;
-    .example::-webkit-scrollbar {
-  display: none;
-}
 `
 const Title = styled(Typography)`
     font-size: 70px;
@@ -20,7 +17,7 @@ const Component = styled(Box)`
     display:flex;
     flex-direction: column;
     &>img{
-    margin: 0 auto;
+      margin: 50px auto 0px auto;
   }
     &>button{
       width: 200px;
@@ -39,12 +36,12 @@ export default function PatientLoginFinger() {
     <>
       <ParentComponent>
       <Component>
-        <Title> DecentraHealth </Title>
+        {/* <Title> DecentraHealth </Title> */}
         <img src="/patientLoginIntro.jpg" alt="patient_login_intro" style={{width: 500, height: 400}}/>
         <Typography style={{color:'#1AAE9F',fontSize: 28, fontWeight: 600}}>Patient Login</Typography>
         <Typography>Verify your Identity</Typography>
         <Typography>Use your Biometrics to verify Identity</Typography>
-        <img src="/fingerprint.png" alt="fingerprint" style={{height: 60,width:60}} />
+        <img src="/fingerprint.png" alt="fingerprint" style={{height: 60,width:60,marginTop:10}} />
         <Typography>Touch the Fingerprint Sensor.</Typography>
       </Component>
     </ParentComponent>

@@ -8,9 +8,6 @@ import { Box, Button, Typography, styled } from "@mui/material";
 //CSS
 const ParentComponent = styled(Box)`
     margin-top : 50px;
-    .example::-webkit-scrollbar {
-  display: none;
-}
 `
 const Title = styled(Typography)`
     font-size: 70px;
@@ -21,7 +18,7 @@ const Component = styled(Box)`
     display:flex;
     flex-direction: column;
     &>img{
-    margin: 0 auto;
+    margin: 50px auto 0px auto;
   }
     &>button{
       width: 300px;
@@ -41,9 +38,9 @@ export default function PatientLoginIntro() {
   return (
     <ParentComponent>
       <Component>
-        <Title> DecentraHealth </Title>
-        <img src="/patientLoginIntro.jpg" alt="patient_login_intro" style={{width: 430, height: 350}}/>
-        <Typography style={{color:'#1AAE9F',fontSize: 28, fontWeight: 600,marginTop: 20}}>Patient Login</Typography>
+        {/* <Title> DecentraHealth </Title> */}
+        <img src="/patientLoginIntro.jpg" alt="patient_login_intro" style={{width: 500, height: 400}}/>
+        <Typography style={{color:'#1AAE9F',fontSize: 28, fontWeight: 600,margin: '18px 0 5px 0'}}>Patient Login</Typography>
         <Button variant="contained" onClick={() => { navigate("/PatientLoginOtp"); }}>Login with OTP</Button>
         <Button variant="contained" onClick={() => { navigate("/PatientLoginFingerprint"); }}>Login with Fingerprint</Button>
       </Component>

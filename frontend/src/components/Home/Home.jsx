@@ -14,9 +14,8 @@ const Title = styled(Typography)`
 `
 const Component = styled(Box)`
    text-align: center;
-    
     &>img{
-    margin: 0 auto;
+    margin: 30px auto 0 auto;
   }
    
 `
@@ -39,10 +38,10 @@ function Home() {
   return (
     <ParentComponent>
       <Component>
-        <Title>
+        {/* <Title>
           DecentraHealth
-        </Title>
-        <img src="/home.png" alt="homepage_img" style={{width: 600, height: 450,}}/>
+        </Title> */}
+        <img src="/home.png" alt="homepage_img" style={{width: 600, height: 480,}}/>
         <ButtonWrapper>
         <Button variant="contained" onClick={() => { navigate("/PatientLogin"); }}>Patient</Button>
         <Button variant="contained" onClick={() => { navigate("/DoctorLogin"); }} style={{marginTop:15}}>Healthcare Operator</Button>
