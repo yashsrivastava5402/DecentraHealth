@@ -25,7 +25,7 @@ const ButtonWrapper = styled(Box)`
      &>button{
       width: 300px;
       text-align: center;
-      margin: 0 auto;
+      margin: 7px auto;
       background-color: #2C88D9;
       color: #fff;
       font-weight :600;

@@ -20,7 +20,7 @@ import Doctor from "./components/HealthCareOperator/Doctor";
 import Appbar from "./components/Navbar/Appbar";
 import ViewReports from "./components/ViewReports";
 import Creators from "./components/Creators";
-import InputSymptoms from "./components/InputSymptoms";
+import InputSymptoms from './components/PatientPage/InputSymptoms';
 import PatientIntroPage from "./components/PatientPage/PatientIntroPage";
 import RecommendedDocs from "./components/RecommendedDocs";
 

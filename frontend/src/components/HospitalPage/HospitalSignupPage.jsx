@@ -44,6 +44,7 @@ const Input = styled(Box)`
   display:flex;
   flex-direction : column;
   flex:1;
+  margin-bottom: 20px;
   &>div , &>button, &>p{
         margin-top: 30px;
     }
@@ -142,7 +143,7 @@ function HospitalSignupPage() {
                 <Button type="submit" variant='contained' onClick={handlesubmit} style={{width: 100,height: 40,margin: '40px auto 0 auto'}}>Register</Button>
                 </Input>
 
-              <p class="text-center text-muted mt-5 mb-0">Have already an account? <a onClick={() => { navigate("/HospitalLogin"); }} class="fw-bold text-body cursor-pointer"><u style={{cursor:'pointer'}}>Login here</u></a></p>
+              <p>Have already an account? <a onClick={() => { navigate("/HospitalLogin"); }}><u style={{cursor:'pointer'}}>Login here</u></a></p>
             </Form>
           </Grid>
         </Container>

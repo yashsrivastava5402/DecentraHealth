@@ -24,7 +24,7 @@ const Container = styled(Grid)(({ theme }) => ({
 const Image= styled('img')(({ theme }) => ({
   width:'70%',
   marginLeft:'60px',
-  marginTop: '8%',
+  marginTop: '13%',
   [theme.breakpoints.down('md')]: {
     width : '100%',
     margin : '20px 0 0 0',
@@ -41,7 +41,7 @@ const LeftComponent = styled(Grid)(({ theme }) => ({
 }))
 
 const Buttons = styled(Button)(({ theme }) => ({
-      width:'31%',
+      width:'35%',
       margin: '30px 0 20px 100px',
       backgroundColor: '#2C88D9',
       color: '#fff',
@@ -49,8 +49,8 @@ const Buttons = styled(Button)(({ theme }) => ({
       height: '40px',
       fontSize: '16px',
       [theme.breakpoints.down('lg')]: {
-        width : '100%',
-        margin:'10px 0 10px 0'
+        width : '50%',
+        margin:'10px auto 10px auto'
       }
   }))
 function PatientIntroPage() {
@@ -69,6 +69,17 @@ function PatientIntroPage() {
                 }
             });
     }
+
+    const goToInsight = ()=>{
+      navigate('/PatientInsight',{ state: { Name: state.Name, Aadhar: state.Aadhar, Age: state.Age, Gender: state.Gender } });
+    }
+    
+    const goToRecc = (e) => {
+      e.preventDefault();
+      setSubmitted(true);
+      navigate(`/InputSymptoms`, {state: { Name: state.Name, Aadhar: state.Aadhar, Age: state.Age, Gender: state.Gender }});
+  }
+
     return (
       <>
         <Component>
@@ -76,9 +87,9 @@ function PatientIntroPage() {
         <Container container>
           <LeftComponent item lg={6} md={4} sm={12} xs={12}>
             <Typography variant='h4' style={{margin:'60px 0px 20px 100px'}}>Hello, {state.Name}</Typography>
-            <Buttons variant='contained'>Patient Insight</Buttons>
+            <Buttons variant='contained' onClick={goToInsight}>Patient Insight</Buttons>
             <Buttons variant='contained'  onClick={goToPatient} >Book appointment</Buttons>
-            <Buttons variant='contained'>Disease Prediction</Buttons>
+            <Buttons variant='contained' onClick={goToRecc}>Disease Prediction</Buttons>
             <Buttons variant='contained' onClick={()=>{ navigate(`/ViewReports`,{state: state.Aadhar})}}>HealthCare Records</Buttons>
             <Buttons variant='contained'>Access Control</Buttons>
           </LeftComponent>
