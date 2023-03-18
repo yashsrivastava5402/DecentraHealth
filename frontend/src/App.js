@@ -12,6 +12,7 @@ import PatientLoginOtp from "./components/PatientPage/PatientLoginOtp";
 import PatientLoginFinger from "./components/PatientPage/PatientLoginFinger";
 import Patient from "./components/PatientPage/Patient";
 import PatientPage from "./components/PatientPage/PatientPage";
+import PatientAccessControl from "./components/PatientPage/PatientAccessControl";
 import FileUpload from "./components/FileUpload";
 import FileDownload from "./components/FileDownload";
 import PatientPageHospital from "./components/PatientPageHospital"
@@ -48,6 +49,7 @@ function App() {
             <Route path="/PatientPage/:id" element={<PatientPage />} />
             <Route path='/PatientIntroPage' element={<PatientIntroPage />} />
             <Route path='/PatientInsight' element={<PatientInsight />} />
+            <Route path='/PatientAccessControl' element={<PatientAccessControl />} />
             <Route path="/fileUpload/:aadhar" element={<FileUpload />} />
             <Route path="/FileDownload" element={<FileDownload />} />
             <Route path="/PatientPageDoctor/:aadhar" element={<PatientPageDoctor />} />

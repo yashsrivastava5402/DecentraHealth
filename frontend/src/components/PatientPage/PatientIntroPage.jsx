@@ -78,7 +78,11 @@ function PatientIntroPage() {
       e.preventDefault();
       setSubmitted(true);
       navigate(`/InputSymptoms`, {state: { Name: state.Name, Aadhar: state.Aadhar, Age: state.Age, Gender: state.Gender }});
-  }
+    } 
+
+    const goToAccess = ()=>{
+      navigate('/PatientAccessControl', {state: { Name: state.Name, Aadhar: state.Aadhar, Age: state.Age, Gender: state.Gender }});
+    }
 
     return (
       <>
@@ -91,7 +95,7 @@ function PatientIntroPage() {
             <Buttons variant='contained'  onClick={goToPatient} >Book appointment</Buttons>
             <Buttons variant='contained' onClick={goToRecc}>Disease Prediction</Buttons>
             <Buttons variant='contained' onClick={()=>{ navigate(`/ViewReports`,{state: state.Aadhar})}}>HealthCare Records</Buttons>
-            <Buttons variant='contained'>Access Control</Buttons>
+            <Buttons variant='contained' onClick={goToAccess}>Access Control</Buttons>
           </LeftComponent>
           <Grid item lg={6} md={8} sm={12} xs={12}>
             <Image src='/patientLoginIntro.jpg' alt="Sample image" />
