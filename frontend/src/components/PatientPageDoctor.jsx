@@ -18,7 +18,7 @@ import FileDownload from './PatientPage/FileDownload';
     }
     console.log(state2)
     useEffect(() => {
-    axios.post('https://decentrahealth-backend.onrender.com/viewFiles', {aadhar: aadhar}).then((response) => {
+    axios.post('http://localhost:8000/viewFiles', {aadhar: aadhar}).then((response) => {
     console.log(response.data);
     if(response.status===200)
      {

@@ -37,6 +37,12 @@ const LowerComponent = styled(Box)(({ theme }) => ({
   }
 }))
 
+const CardWrapper = styled(Box)`
+  margin: 0px 0 30px 25px;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 0fr));
+`
 
 function Symptoms() {
   const { state } = useLocation();
@@ -70,8 +76,6 @@ function Symptoms() {
     'fluid_overload', 'blood_in_sputum', 'prominent_veins_on_calf', 'palpitations', 'painful_walking', 'pus_filled_pimples', 'blackheads', 'scurring', 'skin_peeling',
     'silver_like_dusting', 'small_dents_in_nails', 'inflammatory_nails', 'blister', 'red_sore_around_nose', 'yellow_crust_ooze'];
 
-
-
   const [symptoms, setsymptoms] = useState([]);
   const [disease, setdisease] = useState("");
   const handleChange = (e) => {
@@ -84,7 +88,7 @@ function Symptoms() {
     e.preventDefault();
     try {
       console.log(symptoms);
-      const diseases = await axios.post('https://decentrahealth-backend.onrender.com/getDisease', { symptoms: symptoms })
+      const diseases = await axios.post('http://localhost:8000/getDisease', { symptoms: symptoms })
       setdisease(diseases.data);
     }
     catch (err) {
@@ -109,36 +113,39 @@ function Symptoms() {
         <Typography variant='h3' textAlign={'center'}>Patient Insight</Typography>
         <Typography variant='h4'>Hello, {state.Name}</Typography>
         <LowerComponent >
-
           <form onSubmit={handleSubmit}>
             <Box>
-            <Typography>Tell your Symptoms</Typography>
-              <TextField select label="Select" onChange={handleChange} helperText="Please select your symptom"> 
-              {symptomsoptions.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-              </TextField>
-                <Button type="submit" size='large' variant="contained" style={{ marginLeft: 15, marginTop: 5 }}>Submit</Button>
-            </Box>
-            <Box>
-              <List style={flexContainer}>
-
-                {symptoms.map((option) => (
-                  <ListItem >
-                    <Card padding="0">
+              <Box style={{ display: 'flex', flexDirection: 'row' }}>
+                <TextField select label="Please select your symptom" onChange={handleChange} style={{ width: '80%', margin: '0px auto' }}>
+                  {symptomsoptions.map((option) => (
+                    <MenuItem key={option} value={option}>
+                      {option}
+                    </MenuItem>
+                  ))}
+                </TextField>
+                <Button type="submit" size='large' variant="contained" style={{ margin: '0px auto', width: '10%',height:'50px' }}>Predict</Button>
+              </Box>
+              <Box style={{ margin: '20px auto 0px auto', width: '97%' }}>
+                <CardWrapper >
+                  {symptoms.map((option) => (
+                    <Card sx={{  width: '190px',background:'#6558F5',color:'#fff',height:'50px'}}>
                       <CardContent>
-                        <Typography sx={{ fontSize: 14 }} color="blue" gutterBottom>
+                        <Typography textAlign={'center'} style={{fontSize:'16px'}}>
                           {option}
                         </Typography>
 
                       </CardContent>
                     </Card>
-
-                  </ListItem>
-                ))}
-              </List>
+                  ))}
+                </CardWrapper>
+                <Box style={{marginLeft:'20px',width:'97%'}}>
+                <Typography variant='h5' textAlign={'justify'}>We suspect that you have a fungal infection, it is important to see a healthcare professional for an accurate diagnsis and appropriate treatment. Depending on the type and severity of the infectio, you may need topical or oral antifungal medication.</Typography>
+                <Typography variant='h5' textAlign={'justify'}>The type of doctor you should see for a fungal infection depends on the location of the infection. For example, if you have a fungal infection on your skin or nails,you  want to see a dermatologist. If you have a fungal infection in your lungs or other internal organs, you may need to see an infectious disease specialtist. Your primary care physician can also provide guidance on the appropriate speicalist to see for your specific situation</Typography>
+                <Box style={{display:'flex',margin:'30px 0 0 0'}}>
+                  <Typography variant='h6' marginRight={'20px'}>Suggested Doctor: </Typography><Typography variant='h6'>Dentist</Typography><Button  size='large' style={{margin:'-10px 0 0 20px',background:''}} variant="contained" >Book Appointment</Button>  
+                </Box>
+                </Box>
+              </Box>
             </Box>
           </form>
         </LowerComponent>
