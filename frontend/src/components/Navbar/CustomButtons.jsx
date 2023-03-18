@@ -12,7 +12,8 @@ const Wrapper = styled(Box)(({ theme }) => ({
         marginRight: '40px !important',
         fontSize:'20px',
         alignItems : 'center',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        color:'black'
     },
     // [theme.breakpoints.down('md')]: {
     //     display: 'block'

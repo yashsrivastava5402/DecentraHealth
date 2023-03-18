@@ -7,10 +7,10 @@ import { Box, Button, Typography, styled, TableContainer, TableCell, TableRow, T
 
 //CSS
 const ParentComponent = styled(Box)`
-    margin-top : 50px;
+    margin-top : 80px;
 `
 const Title = styled(Typography)`
-    font-size: 70px;
+    font-size: 40px;
     color: #207868;
     text-align: center;   
 `
@@ -42,7 +42,7 @@ function Doctor() {
         <>
             <ParentComponent>
                 <Title>
-                    DecentraHealth
+                    Doctor Dashboard
                 </Title>
                 <LowerComponent>
                     <Typography variant='h4'>Hello, Dr. Aakash</Typography>

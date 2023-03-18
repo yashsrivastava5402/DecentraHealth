@@ -14,12 +14,12 @@ import Patient from "./components/PatientPage/Patient";
 import PatientPage from "./components/PatientPage/PatientPage";
 import PatientAccessControl from "./components/PatientPage/PatientAccessControl";
 import FileUpload from "./components/FileUpload";
-import FileDownload from "./components/FileDownload";
+import FileDownload from "./components/PatientPage/FileDownload";
 import PatientPageHospital from "./components/PatientPageHospital"
 import PatientPageDoctor from "./components/PatientPageDoctor";
 import Doctor from "./components/HealthCareOperator/Doctor";
 import Appbar from "./components/Navbar/Appbar";
-import ViewReports from "./components/ViewReports";
+import ViewReports from './components/PatientPage/ViewReports'
 import Creators from "./components/Creators";
 import InputSymptoms from './components/PatientPage/InputSymptoms';
 import PatientIntroPage from "./components/PatientPage/PatientIntroPage";

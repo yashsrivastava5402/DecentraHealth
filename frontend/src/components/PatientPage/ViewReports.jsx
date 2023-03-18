@@ -1,9 +1,8 @@
 import axios from 'axios';
 import React,{useState} from 'react'
 import { useLocation, useParams } from 'react-router-dom'
-import { useNavigate } from "react-router";
-import HospitalCard from './HospitalCard';
 import FileDownload from './FileDownload';
+import { useEffect } from 'react';
 
 //MUI
 import { Box, Button, Typography, styled, TableContainer, TableCell, TableRow, TableHead, Table,TableBody, TextField } from "@mui/material";
@@ -48,34 +47,31 @@ const Tablerow = styled(TableRow)`
 
 `
 
-function PaitentPage(){
-    const navigate = useNavigate();
-    const [submitted, setSubmitted] = useState(false);
-    //const { aadhar } = useParams();
+export default function ViewReports() {
     const {state} = useLocation();
+
+    console.log(state);
     const [files, setFiles] = useState([]);
-    //console.log(state);
-    function showDocs(e){
-        e.preventDefault();
-        setSubmitted(true);
-        axios.post('https://decentrahealth-backend.onrender.com/viewFiles', {aadhar: state.values.Aadhar}).then((response) => {
+    useEffect(() => { //It will fetch the data already before even openeing page!
+        axios.post('https://decentrahealth-backend.onrender.com/viewFiles', {aadhar: state.Aadhar}).then((response) => {
             console.log(response.data);
                 setFiles((prevState) => {
-                    return [prevState,...response.data];
+                    return [...prevState,...response.data];
                 })
         })
-    }
-    
-      return (
-        <>
-           <ParentComponent>
+    }, [])  
+
+
+  return (
+    <>
+        <ParentComponent>
                 <Title>
-                    Book an Appointment
+                    View Reports
                 </Title>
                 <LowerComponent>
-                    <Typography variant='h4'>Hello, {state.values.Name}</Typography>
+                    <Typography variant='h4'>Hello, {state.Name}</Typography>
                     <InputSearch>
-                      <TextField variant='filled' label='Search for hospital,doctor,specialization'></TextField>
+                      <TextField variant='filled' label='Document'></TextField>
                       <TextField variant='filled' label='Location'></TextField>
                       <Button>Search</Button>
                     </InputSearch>
@@ -83,54 +79,40 @@ function PaitentPage(){
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
                                 <Tablerow>
-                                    <TableCell>Name of Doctor</TableCell>
-                                    <TableCell>Hospital Id</TableCell>
-                                    <TableCell>Hospital Name</TableCell>
-                                    <TableCell>Qualification</TableCell>
+                                    <TableCell>S.No</TableCell>
+                                    <TableCell>Document Name</TableCell>
+                                    <TableCell>Link</TableCell>
                                 </Tablerow>
                             </TableHead>
                             <TableBody>
-                                {state.values.hospitals.map((hospital) => (
-                                  <HospitalCard id={hospital.regNo} name={hospital.Name} state={state} />
-                                ))}
+                            <FileDownload aadhar={state.Aadhar} files={files}/>
                             </TableBody>
                         </Table>
                     </Tablecontainer>
                 </LowerComponent>
             </ParentComponent>
-        </>
-      )
-    }
-    
-    
-export default PaitentPage;
+    </>
+)}
 
-{/* <div className="container my-5">
+{/* <div>
+            <div className="container my-5">
             <div className="card text-left border-dark text-black" style={myStyle}>
               <div className="card-header  border-dark">
-                Available Hospitals
+                <h1>Previous Records of Aadhar : {state}</h1>
               </div>
               <div className="card-body">
                 <table class="table table-hover border-success">
                   <thead>
                     <tr>
-                      <th scope="col">Hospital Id</th>
-                      <th scope="col">Name</th>
-    
+                      <th scope="col">File Name</th>
+                      <th scope="col">Link</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {state.values.hospitals.map((hospital) => {
-                      console.log(hospital);
-                      return <>
-                        <tr>
-                        <HospitalCard id={hospital.regNo} name={hospital.Name} state={state} />
-                        </tr>
-                        
-                      </>
-                    })}
+                  <FileDownload aadhar={state} files={files}/>
                   </tbody>
-                </table>
+                  </table>
               </div>
             </div>
-          </div> */}
+          </div>
+        </div> */}

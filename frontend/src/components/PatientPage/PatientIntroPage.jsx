@@ -94,7 +94,7 @@ function PatientIntroPage() {
             <Buttons variant='contained' onClick={goToInsight}>Patient Insight</Buttons>
             <Buttons variant='contained'  onClick={goToPatient} >Book appointment</Buttons>
             <Buttons variant='contained' onClick={goToRecc}>Disease Prediction</Buttons>
-            <Buttons variant='contained' onClick={()=>{ navigate(`/ViewReports`,{state: state.Aadhar})}}>HealthCare Records</Buttons>
+            <Buttons variant='contained' onClick={()=>{ navigate(`/ViewReports`,{state: { Name: state.Name, Aadhar: state.Aadhar }}) }}>HealthCare Records</Buttons>
             <Buttons variant='contained' onClick={goToAccess}>Access Control</Buttons>
           </LeftComponent>
           <Grid item lg={6} md={8} sm={12} xs={12}>

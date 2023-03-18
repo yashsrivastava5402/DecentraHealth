@@ -2,7 +2,7 @@ import axios from 'axios';
 import React,{useEffect, useState} from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import FileUpload from './FileUpload';
-import FileDownload from './FileDownload';
+import FileDownload from './PatientPage/FileDownload';
 
 
  function PaitentPageDoctor(){

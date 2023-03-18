@@ -25,34 +25,7 @@ function PatientCardDoctor({ aadhar, name }) {
                 <TableCell component='th' scope='row'></TableCell>
                 <TableCell component='th' scope='row' style={{ fontSize: 16, fontWeight: 600 }}>{name}</TableCell>
                 <TableCell component='th' scope='row' style={{ fontSize: 16 }}>{aadhar}</TableCell>
-                <TableCell component='th' scope='row'>
-                    <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
-                        <InputLabel id="demo-simple-select-filled-label">Age</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-filled-label"
-                            id="demo-simple-select-filled"
-                        >
-                            <MenuItem value="">
-                                <em>None</em>
-                            </MenuItem>
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
-                        </Select>
-                        <InputLabel id="demo-simple-select-filled-label">TimeAccess</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-filled-label"
-                            id="demo-simple-select-filled"
-                        >
-                            <MenuItem value="">
-                                <em>None</em>
-                            </MenuItem>
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
-                        </Select>
-                    </FormControl>
-                </TableCell>
+                <TableCell component='th' scope='row'><Button style={{height: '40px',width:'100px',backgroundColor: '#6558F5',color: '#fff',fontWeight :'600',fontSize: '16px'}} onClick={goToPatient}>Request</Button></TableCell>
             </TableRow>
 
         </>)
