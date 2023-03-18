@@ -21,5 +21,6 @@ router.post('/addPatientDoctor', doctorController.addPatientDoctor);
 router.post('/findDoctor', doctorController.findDoctor);
 router.post('/getDisease', patientController.getDisease);
 router.post('/getDoctorsRecommend', patientController.getDoctors);
+router.post('/grantAccess', patientController.grantAccess);
 
 module.exports=router;

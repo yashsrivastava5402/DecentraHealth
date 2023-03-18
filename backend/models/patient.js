@@ -22,6 +22,10 @@ const patientSchema = new Schema({
     Phone: {
         type: Number,
         required: [true]
+    },
+    DoctorRequests: {
+        type: String,
+        requiured: [true]
     }
 });
 

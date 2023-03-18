@@ -1,6 +1,7 @@
 //const Patient = require('../models/patient');
 const Hospital = require('../models/hospital');
 const Patients = require('../models/patients');
+const Patient = require('../models/patient');
 const Doctor = require('../models/doctor');
  const {getdata, setdata} =require('../utils/web3');
  const p_id="2EIossNsEkeVC88aVyiK1oR8mkA";
@@ -17,6 +18,7 @@ headers: {
 // const { Blob } = require('node-blob');
 
   const { spawn } = require('child_process');
+// const { default: Patient } = require('../../frontend/src/components/Patient');
 // const { speciality } = require('../utils/specializations');
 speciality = [        
     {            
@@ -497,4 +499,43 @@ exports.getDoctors = async (req, res) => {
     }
     if(i === speciality.length && flag === 0)
     res.status(200).send("Doctor not found");
+}
+
+exports.grantAccess = async (req, res) => {
+    const doctorid = req.body.doctorid;
+    const patientid = req.body.id;
+    const accept = req.body.grant;
+    const doctor = await Doctor.findOne({doctorId: doctorid});
+    const patient = await Patient.findOne({Aadhar: patientid});
+    if(accept === 0){
+        Doctor.findOneAndUpdate({doctorId: doctorid}, {$push: {patients: patient}}, (err, output) => {
+            if (err) {
+                res.status(206).send(err);
+            }
+            else{
+                res.status(200).send(output);
+            }
+        });
+    }
+    else if(accept === 1){
+        Doctor.findOneAndUpdate({doctorId: doctorid}, {$push: {insPatients: patient}}, (err, output) => {
+            if (err) {
+                res.status(206).send(err);
+            }
+            else{
+                res.status(200).send(output);
+            }
+        });
+    }
+    else{
+        Patient.findOneAndUpdate({Aadhar: patientid}, {$pull: {DoctorRequests: doctor}}, (err, output) => {
+            if (err) {
+                res.status(206).send(err);
+            }
+            else{
+                res.status(200).send(output);
+            }
+        });
+    }
+
 }

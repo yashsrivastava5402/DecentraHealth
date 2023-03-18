@@ -70,15 +70,16 @@ exports.addDoctor = (req, res) => {
     }
 }
 
-exports.addPatientDoctor = (req, res) => {
+exports.addPatientDoctor = async (req, res) => {
     const { doctorId, Name, Aadhar, Age, Gender} = req.body;
+    const doctor = await Doctor.findOne({doctorId: doctorId});
     const newPatient = {
         Name,
         Aadhar,
         Age,
         Gender
     }
-    Doctor.findOneAndUpdate({doctorId: doctorId}, {$push: {patients: newPatient}}, (err, output) => {
+    Patient.findOneAndUpdate({Aadhar: Aadhar}, {$push: {DoctorRequests: doctor}}, (err, output) => {
         if (err) {
             res.status(500).send(err);
         }

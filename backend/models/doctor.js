@@ -30,6 +30,10 @@ const doctorSchema = new Schema({
     patients: {
         type: Array,
         required: [true]
+    },
+    insPatients: {
+        type: Array,
+        required: [true]
     }
 });
 
