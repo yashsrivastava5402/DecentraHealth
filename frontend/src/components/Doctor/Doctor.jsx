@@ -59,15 +59,15 @@ function Doctor() {
                                 {state.patients.map((patient) => (
                                     <PatientCardDoctor aadhar={patient.Aadhar} name={patient.Name}  doctorId={state.doctorId} />
                                 ))}
-                                {state.reqPatients.size>0 ? state.reqPatients.map((patient) => (
+                                { state.reqPatients.map((patient) => (
                                     <Requested aadhar={patient && patient.Aadhar} name={patient && patient.Name}  />
-                                )):null}
-                                {state.insPatients.size>0 ? state.insPatients.map((patient) => (
+                                ))}
+                                {state.insPatients.map((patient) => (
                                     <Insights aadhar={patient && patient.Aadhar} name={patient && patient.Name}  />
-                                )):null}
-                                {state.fullPatients.size>0 ? state.fullPatients.map((patient) => (
+                                ))}
+                                {state.fullPatients.map((patient) => (
                                     <FullAccess aadhar={patient && patient.Aadhar} name={patient && patient.Name}  />
-                                )):null}
+                                ))}
                             </TableBody>
                         </Table>
                     </Tablecontainer>
