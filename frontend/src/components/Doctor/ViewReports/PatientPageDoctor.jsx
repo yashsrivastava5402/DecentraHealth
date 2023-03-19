@@ -22,18 +22,7 @@ const LowerComponent = styled(Box)`
 `
 
 const InputSearch = styled(Box)`
-    margin-top:20px;
-    &>button{
-      color:white;
-      background-color: #6558F5;
-      width:100px;
-      height:50px;
-      font-size:16px;
-    },
-    &>div{
-      margin:0 30px 0 0;
-      width: 40%;
-    }
+    margin: 20px 0px 0px 15px;
 `
 
 const Tablecontainer = styled(TableContainer)`
@@ -81,7 +70,7 @@ const Tablerow = styled(TableRow)`
                 </Title>
                 <LowerComponent>
                     <InputSearch>
-                    <FileUpload aadhar={aadhar} handleupl={handleup}/> 
+                      <FileUpload aadhar={aadhar} handleupl={handleup}/> 
                     </InputSearch>
                     <Tablecontainer>
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">

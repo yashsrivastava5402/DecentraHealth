@@ -8,6 +8,7 @@ function FileUpload({ aadhar, handleupl }) {
   console.log(aadhar);
   const formData = new FormData();
   const [isloading, setloading] = useState(false);
+  const [color,setColor] = useState('#2C88D9');
   const inputRef = useRef(null);
   const saveFile = (e) => {
     console.log(e.target.files[0])
@@ -22,6 +23,7 @@ function FileUpload({ aadhar, handleupl }) {
 
   const uploadFile = async (e) => {
     setloading(true);
+    setColor('#ADD8E6');
     console.log(e);
     // var options = { content: formData };
     for (var pair of formData.entries()) {
@@ -44,17 +46,11 @@ function FileUpload({ aadhar, handleupl }) {
 
   return (
     <>
-      <Box style={{display:'flex'}}>
-      <Box style={{width:'50%'}}>
-        <input ref={inputRef} type="file" id='file' multiple onChange={saveFile}  style={{width:'50%'}}/>
-        </Box>
-        <Box style={{width:'50%'}}>
-        <Button  onClick={uploadFile} disabled={isloading} style={{height: '40px',width:'140px',backgroundColor: '#2C88D9',color: '#fff',fontWeight :'600',fontSize: '16px'}} >
+        <input ref={inputRef} type="file" id='file' multiple onChange={saveFile} />
+        <Button  onClick={uploadFile} disabled={isloading} style={{height: '40px',width:'140px',backgroundColor: `${color}`,color: '#fff',fontWeight :'600',fontSize: '16px'}} >
           {isloading && <span>Uploading</span>}
           {!isloading && <span>Upload</span>}
         </Button>
-        </Box>
-      </Box>
     </>
   )
 }
