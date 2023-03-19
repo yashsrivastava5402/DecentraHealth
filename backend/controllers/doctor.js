@@ -96,19 +96,28 @@ exports.addPatientDoctor = async (req, res) => {
 
 exports.requestPatient = async (req, res) => {
     const { doctorId, Aadhar } = req.body;
-    const patient = await Patient.findOne({Aadhar: Aadhar});
+    const patient = await PatientSingle.findOne({Aadhar: Aadhar});
     const doctor = await Doctor.findOne({doctorId: doctorId});
-    Doctor.findOneAndUpdate({doctorId: doctorId}, {$push: {reqPatients: patient}}, {$pull: {patients: {Aadhar: Aadhar}}}, (err, output) => {
+    console.log(patient, doctor);
+    Doctor.findOneAndUpdate({doctorId: doctorId}, {$push: {reqPatients: patient}}, (err, output) => {
         if (err) {
             res.status(500).send(err);
         }
         else{
-            PatientSingle.findOneAndUpdate({Aadhar: Aadhar}, {$push: {DoctorRequests: doctor}}, (err) => {
+            Doctor.findOneAndUpdate({doctorId: doctorId}, {$pull: {patients: {Aadhar: Aadhar}}}, (err, output) => {
                 if (err) {
                     res.status(500).send(err);
                 }
-            })
-            res.status(200).send(output);
+                else{
+                    PatientSingle.findOneAndUpdate({Aadhar: Aadhar}, {$push: {DoctorRequests: doctor}}, (err) => {
+                        if (err) {
+                            res.status(500).send(err);
+                        }
+                    })
+                    res.status(200).send(output);
+                }
+             })
+            
         }
     });
 }

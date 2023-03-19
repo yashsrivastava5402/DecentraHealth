@@ -32,7 +32,7 @@ function LineChart() {
    primaryYAxis={{title:"Oxygen Saturation"}} legendSettings={{visible: true}} tooltip={{enable: true}}> 
      <Inject services={[LineSeries, Category, Legend, DataLabel, Tooltip]}></Inject>
      <SeriesCollectionDirective>
-       <SeriesDirective dataSource={oxygenSaturation} xName="year" yName="oxygen_saturation" type="Line" name="Sugar Level" 
+       <SeriesDirective dataSource={oxygenSaturation} xName="year" yName="oxygen_saturation" type="Line" name="Oxygen Saturation" 
        marker={{dataLabel:{visible: true}, visible:true}}></SeriesDirective>
      </SeriesCollectionDirective>
    </ChartComponent>
