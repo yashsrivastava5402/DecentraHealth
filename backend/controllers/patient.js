@@ -221,8 +221,15 @@ exports.addPatients = (req, res) => {
             Name,
             Aadhar,
             Age,
-            Gender
+            Gender,
+            Phone,
+            DoctorRequests: []
         }
+        Patinet.insertMany(newPatient, (err) => {
+            if (err) {
+                console.log(err);
+            }
+        });
         console.log(newPatient);
         Patients.findOneAndUpdate({Phone: Phone}, {$push: {patients: newPatient}}, {new: true, upsert: true}, (err, patients) => {
             if (err) {
@@ -508,27 +515,37 @@ exports.grantAccess = async (req, res) => {
     const doctor = await Doctor.findOne({doctorId: doctorid});
     const patient = await Patient.findOne({Aadhar: patientid});
     if(accept === 0){
-        Doctor.findOneAndUpdate({doctorId: doctorid}, {$push: {patients: patient}}, (err, output) => {
+        Doctor.findOneAndUpdate({doctorId: doctorid}, {$push: {fullPatients: patient}}, {$pull: {reqPatients: {Aadhar: Aadhar}}}, (err, output) => {
             if (err) {
                 res.status(206).send(err);
             }
             else{
+                Patient.findOneAndUpdate({Aadhar: patientid}, {$push: {GrantedRequests: doctor}}, {$pull: {DoctorRequests: {doctorId: doctorid}}}, (err) => {
+                    if (err) {
+                        res.status(500).send(err);
+                    }
+                })
                 res.status(200).send(output);
             }
         });
     }
     else if(accept === 1){
-        Doctor.findOneAndUpdate({doctorId: doctorid}, {$push: {insPatients: patient}}, (err, output) => {
+        Doctor.findOneAndUpdate({doctorId: doctorid}, {$push: {insPatients: patient}}, {$pull: {reqPatients: {Aadhar: Aadhar}}}, (err, output) => {
             if (err) {
                 res.status(206).send(err);
             }
             else{
+                Patient.findOneAndUpdate({Aadhar: patientid}, {$push: {GrantedRequests: doctor}}, {$pull: {DoctorRequests: {doctorId: doctorid}}}, (err) => {
+                    if (err) {
+                        res.status(500).send(err);
+                    }
+                })
                 res.status(200).send(output);
             }
         });
     }
     else{
-        Patient.findOneAndUpdate({Aadhar: patientid}, {$pull: {DoctorRequests: doctor}}, (err, output) => {
+        Patient.findOneAndUpdate({Aadhar: patientid}, {$pull: {DoctorRequests: doctor}}, {$pull: {reqPatients: {Aadhar: Aadhar}}}, (err, output) => {
             if (err) {
                 res.status(206).send(err);
             }

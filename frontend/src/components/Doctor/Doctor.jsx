@@ -55,6 +55,15 @@ function Doctor() {
                                 {state.patients.map((patient) => (
                                     <PatientCardDoctor aadhar={patient.Aadhar} name={patient.Name}  />
                                 ))}
+                                {state.reqPatients.map((patient) => (
+                                    <PatientCardDoctor aadhar={patient.Aadhar} name={patient.Name}  />
+                                ))}
+                                {state.insPatients.map((patient) => (
+                                    <PatientCardDoctor aadhar={patient.Aadhar} name={patient.Name}  />
+                                ))}
+                                {state.fullPatients.map((patient) => (
+                                    <PatientCardDoctor aadhar={patient.Aadhar} name={patient.Name}  />
+                                ))}
                             </TableBody>
                         </Table>
                     </Tablecontainer>
