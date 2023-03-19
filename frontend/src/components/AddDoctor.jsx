@@ -3,8 +3,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import axios from 'axios';
-import { Grid, Paper, Avatar, TextField, Button, Typography, Link, Dialog } from '@material-ui/core'
+import {TextField, Button,Dialog } from '@material-ui/core'
 
 export default function AddDoctor({handleChange,values,onClick,submitted}) {
     const [open, setOpen] = React.useState(false);

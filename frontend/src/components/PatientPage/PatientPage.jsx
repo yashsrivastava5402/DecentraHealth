@@ -1,9 +1,7 @@
 import axios from 'axios';
 import React,{useState} from 'react'
-import { useLocation, useParams } from 'react-router-dom'
-import { useNavigate } from "react-router";
+import { useLocation} from 'react-router-dom'
 import HospitalCard from './HospitalCard';
-import FileDownload from './FileDownload';
 
 //MUI
 import { Box, Button, Typography, styled, TableContainer, TableCell, TableRow, TableHead, Table,TableBody, TextField } from "@mui/material";
@@ -49,7 +47,6 @@ const Tablerow = styled(TableRow)`
 `
 
 function PaitentPage(){
-    const navigate = useNavigate();
     const [submitted, setSubmitted] = useState(false);
     //const { aadhar } = useParams();
     const {state} = useLocation();
@@ -104,33 +101,3 @@ function PaitentPage(){
     
     
 export default PaitentPage;
-
-{/* <div className="container my-5">
-            <div className="card text-left border-dark text-black" style={myStyle}>
-              <div className="card-header  border-dark">
-                Available Hospitals
-              </div>
-              <div className="card-body">
-                <table class="table table-hover border-success">
-                  <thead>
-                    <tr>
-                      <th scope="col">Hospital Id</th>
-                      <th scope="col">Name</th>
-    
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {state.values.hospitals.map((hospital) => {
-                      console.log(hospital);
-                      return <>
-                        <tr>
-                        <HospitalCard id={hospital.regNo} name={hospital.Name} state={state} />
-                        </tr>
-                        
-                      </>
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div> */}

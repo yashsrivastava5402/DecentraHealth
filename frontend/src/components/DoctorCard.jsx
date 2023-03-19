@@ -1,8 +1,6 @@
 import axios from 'axios';
 import React,{useState} from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+
 
 function DoctorCard({id,name,aadhar, patientName, age, gender}) {
     const [submitted, setSubmitted] = useState(false);

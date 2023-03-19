@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import PatientCardDoctor from '../PatientCardDoctor';
 
 //MUI
-import { Box, Button, Typography, styled, TableContainer, TableCell, TableRow, TableHead, Table,TableBody } from "@mui/material";
+import { Box, Typography, styled, TableContainer, TableCell, TableRow, TableHead, Table,TableBody } from "@mui/material";
 
 //CSS
 const ParentComponent = styled(Box)`
@@ -32,11 +32,6 @@ function Doctor() {
     const { state } = useLocation();
     console.log(state);
     //console.log(state);
-
-    const myStyle = {
-        width: '50rem',
-        backgroundColor: 'white'
-    }
 
     return (
         <>
@@ -79,28 +74,3 @@ function Doctor() {
 }
 
 export default Doctor;
-
-
-{/* <div className="container my-5">
-                <div className="card text-left border-dark text-black" style={myStyle}>
-                    <div className="card-header  border-dark">
-                        Patient List
-                    </div>
-                    <div className="card-body">
-                        <table class="table table-hover border-success">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Aadhar</th>
-                                    <th scope="col">Name</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {state.patients.map((patient) => {
-                                    console.log(patient);
-                                    return <tr><PatientCardDoctor aadhar={patient.Aadhar} name={patient.Name} /> </tr> 
-                                })}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div> */}

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import axios from 'axios';
 
 //MUI
-import { Box, Button, Typography, styled, TableContainer, TableCell, TableRow, TableHead, Table, TableBody, Select, MenuItem, InputLabel, FormControl } from "@mui/material";
+import {Button,TableCell, TableRow} from "@mui/material";
 
 function PatientCardDoctor({ aadhar, name }) {
 
@@ -33,8 +33,3 @@ function PatientCardDoctor({ aadhar, name }) {
 }
 
 export default PatientCardDoctor;
-
-{/* <td>{aadhar}</td>
-            <td>{name}</td>
-            <button className="btn btn-primary" onClick={goToPatient} style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 50px" }}>View Reports</button>
-            <button className="btn btn-primary" style={{ color: "white", backgroundColor: "Blue", margin: "0px 5px 5px 20px" }}>Remove</button> */}

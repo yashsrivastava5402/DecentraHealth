@@ -5,7 +5,7 @@ import { generate } from './utils/passgen';
 import PatientCardHospital from './PatientCardHospital';
 import AddDoctor from './AddDoctor';
 
-const addDoctor = function (values) {
+// const addDoctor = function (values) {
   // await axios.post('/addDoctor', values)
   // .then ((response) => {
   //     if(response.status===200)
@@ -37,8 +37,7 @@ const addDoctor = function (values) {
   //   // });
   //   resolve({ newDoctorId, newPassword });
   // });
-
-}
+// }
 
 function Admin() {
   const { state } = useLocation();

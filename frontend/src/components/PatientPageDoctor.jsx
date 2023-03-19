@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React,{useEffect, useState} from 'react'
 import { useLocation, useParams } from 'react-router-dom'
+import FileDownload from './PatientPage/PatientReports/FileDownload';
+// import FileDownload from './PatientPage/PatientReports/FileDownload';
 import FileUpload from './FileUpload';
-import FileDownload from './PatientPage/FileDownload';
-
 
  function PaitentPageDoctor(){
     const { aadhar } = useParams();

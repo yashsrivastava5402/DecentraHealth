@@ -1,11 +1,23 @@
 import React from 'react'
-import "./creators.css";
+import { Box, Typography } from '@mui/material';
 
 export default function Creators() {
   return (
     <>
+		<Box style={{margin: '20% auto 0 auto', width: '50%',textAlign:'center'}}>
+			<Typography variant='h5' fontWeight={'600'}>Aaditya Mishra</Typography>
+			<Typography variant='h5' fontWeight={'600'}>Aditya Jha</Typography>
+			<Typography variant='h5' fontWeight={'600'}>Pranshu chandra</Typography>
+			<Typography variant='h5' fontWeight={'600'}>Prince Kumar</Typography>
+			<Typography variant='h5' fontWeight={'600'}>Shaurya Singh</Typography>
+			<Typography variant='h5' fontWeight={'600'}>Yash Shrivastav</Typography>
+		</Box>
+    </>
+  )
+}
 
-<section style={{ backgroundColor: 'transparent'}}>
+
+{/* <section style={{ backgroundColor: 'transparent'}}>
     <div class="container" >
 
     	<div class="row" >
@@ -88,7 +100,4 @@ export default function Creators() {
     		</div>
     	</div>
     </div>
-</section>
-    </>
-  )
-}
+</section> */}
