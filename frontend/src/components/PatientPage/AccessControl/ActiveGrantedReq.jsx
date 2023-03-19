@@ -51,7 +51,7 @@ export default function ActiveGrantedReq() {
   return (
     <ParentComponent>
     <Title>
-        Book an Appointment
+        Access Control
     </Title>
     <LowerComponent>
         <Typography variant='h4'>Hello, {state.Name}</Typography>

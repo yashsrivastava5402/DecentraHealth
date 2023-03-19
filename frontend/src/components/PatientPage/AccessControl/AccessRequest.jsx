@@ -50,7 +50,7 @@ export default function AccessRequest() {
   return (
     <ParentComponent>
     <Title>
-        Book an Appointment
+        Access Request
     </Title>
     <LowerComponent>
         <Typography variant='h4'>Hello, {state.Name}</Typography>
@@ -71,7 +71,7 @@ export default function AccessRequest() {
                         <TableCell>Dr. Aditya</TableCell>
                         <TableCell>Level 1</TableCell>
                         <TableCell>1 hour</TableCell>
-                        <TableCell><Button style={{background :'#207868',color:'#fff'}}>Approve</Button><Button style={{background :'#D3455B',color:'#fff'}}>Revoke</Button></TableCell>
+                        <TableCell><Button style={{background :'#207868',color:'#fff'}}>Approve</Button><Button style={{background :'#D3455B',color:'#fff',marginLeft:'30px'}}>Revoke</Button></TableCell>
                     </Tablerow>
                 </TableBody>
             </Table>
