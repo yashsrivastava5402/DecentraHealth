@@ -225,7 +225,7 @@ exports.addPatients = (req, res) => {
             Phone,
             DoctorRequests: []
         }
-        Patinet.insertMany(newPatient, (err) => {
+        Patient.insertMany(newPatient, (err) => {
             if (err) {
                 console.log(err);
             }
