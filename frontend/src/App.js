@@ -24,6 +24,8 @@ import Creators from './components/Creators/Creators';
 import InputSymptoms from './components/PatientPage/InputSymptoms';
 import PatientIntroPage from "./components/PatientPage/PatientIntroPage";
 import RecommendedDocs from "./components/RecommendedDocs";
+import AccessRequest from './components/PatientPage/AccessControl/AccessRequest'
+import ActiveGrantedReq from "./components/PatientPage/AccessControl/ActiveGrantedReq";
 
 //Material UI
 import { Box } from '@mui/material';
@@ -60,6 +62,8 @@ function App() {
             <Route path="/RecommendedDocs" element={<RecommendedDocs />} />
             <Route path="/" element={<Navigate replace to="/home" />} />
             <Route path="/Creators" element={<Creators />} />
+            <Route path='/Patient/AccessRequest' element={<AccessRequest />}/>
+            <Route path='/Patient/AccessGrantedReq' element={<ActiveGrantedReq />}/>
           </Routes>
           </Box>
       </BrowserRouter>

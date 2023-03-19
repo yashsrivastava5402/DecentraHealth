@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 
 //MUI
 import { Box, styled, Typography, Grid, Button } from '@mui/material';
@@ -53,6 +53,7 @@ const Component = styled(Box)(({ theme }) => ({
     }))
 
 export default function PatientAccessControl() {
+    const navigate = useNavigate();
     const { state } = useLocation();
     return (
         <Component>
@@ -60,8 +61,8 @@ export default function PatientAccessControl() {
             <Container container>
                 <LeftComponent item lg={6} md={4} sm={12} xs={12}>
                     <Typography variant='h4'  style={{margin:'60px 0px 20px 100px'}}>Hello, {state.Name}</Typography>
-                    <Buttons variant='contained'>Access Requests</Buttons>
-                    <Buttons variant='contained'>Active granted requests</Buttons>
+                    <Buttons variant='contained' onClick={()=>{ navigate(`/Patient/AccessRequest`,{state: { Name: state.Name, Aadhar: state.Aadhar }})} }>Access Requests</Buttons>
+                    <Buttons variant='contained' onClick={()=>{ navigate(`/Patient/AccessGrantedReq`,{state: { Name: state.Name, Aadhar: state.Aadhar }})} }>Active granted requests</Buttons>
                 </LeftComponent>
                 <Grid item lg={6} md={8} sm={12} xs={12} style={{alignItems:'center'}}>
                     <Image src='/accessControl.jpg' alt="Sample image" />
