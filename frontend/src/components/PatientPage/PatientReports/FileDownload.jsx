@@ -11,10 +11,10 @@ function FileDownload({files}) {
   return (
     <>
       { 
-        files.map((file) => (
+        files.map((file,index) => (
                 <TableRow>
-                <TableCell component='th' scope='row' style={{ fontSize: 16 }}></TableCell>
-                <TableCell component='th' scope='row' style={{ fontSize: 16 }}>{file.name}</TableCell>
+                <TableCell component='th' scope='row' style={{ fontSize: 16 }}>{index+1}</TableCell>
+                <TableCell component='th' scope='row' style={{ fontSize: 16,fontWeight:'600' }}>{file.name}</TableCell>
                 <TableCell component='th' scope='row' style={{ fontSize: 16 }}><Button style={{height: '40px',width:'140px',backgroundColor: '#2C88D9',color: '#fff',fontWeight :'600',fontSize: '16px'}} onClick={() => download(file)}>Download</Button></TableCell>
                 </TableRow>
              ))}

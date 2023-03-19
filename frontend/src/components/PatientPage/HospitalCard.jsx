@@ -5,7 +5,7 @@ import axios from 'axios';
 //MUI
 import { Button, TableCell, TableRow, } from "@mui/material";
 
-function HospitalCard({ id, name, state }) {
+function HospitalCard({ id, name, state,sno}) {
 
     const navigate = useNavigate();
     const [submitted, setSubmitted] = useState(false);
@@ -30,7 +30,7 @@ function HospitalCard({ id, name, state }) {
     }
     return (<>
         <TableRow>
-                <TableCell component='th' scope='row' style={{ fontSize: 16 }}>Dr. Shaurya Singh</TableCell>
+                <TableCell component='th' scope='row' style={{ fontSize: 16 }}>{sno}</TableCell>
                 <TableCell component='th' scope='row' style={{ fontSize: 16 }}>{id}</TableCell>
                 <TableCell component='th' scope='row' style={{ fontSize: 16 }}>{name}</TableCell>
                 <TableCell component='th' scope='row' style={{ fontSize: 16 }}>MBBS</TableCell>
