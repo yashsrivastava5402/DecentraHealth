@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import {useParams } from 'react-router-dom'
 import PatientCard from './PatientCard';
 import AddMember from './AddMember';
 
@@ -104,7 +104,6 @@ function Patient() {
         <AddMember phone={values.Phone} handlenew={handlenew} setSubmitted={setSubmitted} handleChange={handleChange} handleNull={handleNull} submitted={submitted} values={values} />
         <CardWrapper >
           {values.patients.map((patient) => {
-            {/* console.log(patient); */ }
             return <>
               <PatientCard aadhar={patient.Aadhar} name={patient.Name} age={patient.Age} gender={patient.Gender} />
             </>
@@ -116,32 +115,3 @@ function Patient() {
 }
 
 export default Patient;
-
-{/* <div className="container my-5">
-    <div className="card text-left border-dark text-black" style={myStyle}>
-      <div className="card-header  border-dark">
-        Patient List
-      </div>
-      <div className="card-body">
-        <table class="table table-hover border-success">
-          <thead>
-            <tr>
-              <th scope="col">Aadhar</th>
-              <th scope="col">Name</th>
-              <th scope="col">Age</th>
-              <th scope="col">Gender</th>
-            </tr>
-          </thead>
-          <tbody>
-              <AddMember phone={values.Phone} handlenew={handlenew} setSubmitted={setSubmitted} handleChange={handleChange} handleNull={handleNull} submitted={submitted} values={values} />
-              {values.patients.map((patient) => {
-                console.log(patient);
-                return <>
-                 <tr> <PatientCard aadhar={patient.Aadhar} name={patient.Name} age={patient.Age} gender={patient.Gender}/> </tr>
-                </>
-              })}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div> */}

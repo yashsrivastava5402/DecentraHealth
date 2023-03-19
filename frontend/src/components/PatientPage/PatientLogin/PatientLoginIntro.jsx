@@ -9,10 +9,10 @@ import { Box, Button, Typography, styled } from "@mui/material";
 const ParentComponent = styled(Box)`
     margin-top : 50px;
 `
-const Title = styled(Typography)`
-    font-size: 70px;
-    color: #207868;
-`
+// const Title = styled(Typography)`
+//     font-size: 70px;
+//     color: #207868;
+// `
 const Component = styled(Box)`
    text-align: center;
     display:flex;

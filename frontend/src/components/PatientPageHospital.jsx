@@ -1,11 +1,5 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useLocation, useParams } from 'react-router-dom'
-import { useNavigate } from "react-router";
-import Button from "@mui/material/Button";
-import HospitalCard from './PatientPage/HospitalCard';
-import FileUpload from './FileUpload';
-import FileDownload from './PatientPage/FileDownload';
 // import Hospital from '../../../backend/models/hospital';
 import DoctorCard from './DoctorCard';
 

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 
 
 //Material UI
-import { Box, Button, Typography, styled } from '@mui/material';
+import { Box,Typography, styled } from '@mui/material';
 
 const Wrapper = styled(Box)(({ theme }) => ({
     display:'flex',

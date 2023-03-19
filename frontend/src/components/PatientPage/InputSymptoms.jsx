@@ -1,19 +1,10 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { Navigate, useLocation } from 'react-router-dom'
+import {useLocation } from 'react-router-dom'
 import Button from '@mui/material/Button';
-// import { Input, MenuItem } from 'semantic-ui-react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-// import List from '@mui/joy/List';
-// import ListItem from '@mui/joy/ListItem';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import { InputAdornment } from '@mui/material';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
@@ -49,13 +40,7 @@ function Symptoms() {
   console.log(state);
   // const patient=state.patient;
   const navigate = useNavigate();
-  const flexContainer = {
-    display: 'flex',
-    flexDirection: 'row',
-    padding: 0,
-    float: 'left'
-  };
-
+  
   const [amount, setamount] = useState("");
   const symptomsoptions = ['itching', 'skin_rash', 'nodal_skin_eruptions', 'continuous_sneezing', 'shivering', 'chills', 'joint_pain',
     'stomach_pain', 'acidity', 'ulcers_on_tongue', 'muscle_wasting', 'vomiting', 'burning_micturition', 'spotting_ urination', 'fatigue',

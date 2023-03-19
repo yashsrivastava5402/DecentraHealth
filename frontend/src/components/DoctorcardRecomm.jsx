@@ -1,8 +1,6 @@
 import axios from 'axios';
 import React,{useState} from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+
 
 function DoctorcardRecomm({id,Dname,speciality,hospital_name,aadhar, patientName, age, gender}) {
     console.log(id,Dname,speciality,hospital_name,aadhar, patientName);

@@ -3,24 +3,24 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 //Components
 import Home from "./components/Home/Home";
-import DoctorLogin from './components/HealthCareOperator/DoctorLogin';
+import DoctorLogin from './components/Doctor/DoctorLogin';
 import HospitalSignupPage from "./components/HospitalPage/HospitalSignupPage";
 import HospitalLogin from "./components/HospitalPage/HospitalLogin"
 import Admin from "./components/Admin";
-import PatientLoginIntro from "./components/PatientPage/PatientLoginIntro";
-import PatientLoginOtp from "./components/PatientPage/PatientLoginOtp";
-import PatientLoginFinger from "./components/PatientPage/PatientLoginFinger";
+import PatientLoginIntro from "./components/PatientPage/PatientLogin/PatientLoginIntro";
+import PatientLoginOtp from "./components/PatientPage/PatientLogin/PatientLoginOtp";
+import PatientLoginFinger from "./components/PatientPage/PatientLogin/PatientLoginFinger";
 import Patient from "./components/PatientPage/Patient";
 import PatientPage from "./components/PatientPage/PatientPage";
 import PatientAccessControl from "./components/PatientPage/PatientAccessControl";
 import FileUpload from "./components/FileUpload";
-import FileDownload from "./components/PatientPage/FileDownload";
+import FileDownload from "./components/PatientPage/PatientReports/FileDownload";
 import PatientPageHospital from "./components/PatientPageHospital"
 import PatientPageDoctor from "./components/PatientPageDoctor";
-import Doctor from "./components/HealthCareOperator/Doctor";
+import Doctor from "./components/Doctor/Doctor";
 import Appbar from "./components/Navbar/Appbar";
-import ViewReports from './components/PatientPage/ViewReports'
-import Creators from "./components/Creators";
+import ViewReports from './components/PatientPage/PatientReports/ViewReports';
+import Creators from './components/Creators/Creators';
 import InputSymptoms from './components/PatientPage/InputSymptoms';
 import PatientIntroPage from "./components/PatientPage/PatientIntroPage";
 import RecommendedDocs from "./components/RecommendedDocs";

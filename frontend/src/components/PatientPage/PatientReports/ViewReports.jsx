@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React,{useState} from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation} from 'react-router-dom'
 import FileDownload from './FileDownload';
 import { useEffect } from 'react';
 
@@ -93,26 +93,3 @@ export default function ViewReports() {
             </ParentComponent>
     </>
 )}
-
-{/* <div>
-            <div className="container my-5">
-            <div className="card text-left border-dark text-black" style={myStyle}>
-              <div className="card-header  border-dark">
-                <h1>Previous Records of Aadhar : {state}</h1>
-              </div>
-              <div className="card-body">
-                <table class="table table-hover border-success">
-                  <thead>
-                    <tr>
-                      <th scope="col">File Name</th>
-                      <th scope="col">Link</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  <FileDownload aadhar={state} files={files}/>
-                  </tbody>
-                  </table>
-              </div>
-            </div>
-          </div>
-        </div> */}

@@ -1,5 +1,5 @@
 import React from 'react'
-import useFileDownloader from './utils/Downloader/useFileDownloader';
+import useFileDownloader from '../utils/Downloader/useFileDownloader'
 // import './FileDownload.css';
 
 import { Button, TableCell, TableRow, } from "@mui/material";

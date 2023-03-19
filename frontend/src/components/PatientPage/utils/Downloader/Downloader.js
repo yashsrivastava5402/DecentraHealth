@@ -52,15 +52,15 @@ const DownloadItem = ({ name, file, filename, removeFile }) => {
       console.log(response);
       let n=name.length;
       let s=name.substring(n-3,n);
-      if(s=='pdf')
+      if(s==='pdf')
       {
         s='application/pdf';
       }
-      else if(s=='jpg' || s=='jpeg')
+      else if(s==='jpg' || s==='jpeg')
       {
         s='image/jpeg';
       }
-      else if(s=='png')
+      else if(s==='png')
       {
         s='image/png';
       }

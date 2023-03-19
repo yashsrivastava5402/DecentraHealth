@@ -1,17 +1,16 @@
 import React from 'react'
-import { useNavigate } from "react-router";
 
 //MUI
-import { Box, Button, Typography, styled } from "@mui/material";
+import { Box,Typography, styled } from "@mui/material";
 
 //CSS
 const ParentComponent = styled(Box)`
     margin-top : 50px;
 `
-const Title = styled(Typography)`
-    font-size: 70px;
-    color: #207868;
-`
+// const Title = styled(Typography)`
+//     font-size: 70px;
+//     color: #207868;
+// `
 const Component = styled(Box)`
    text-align: center;
     display:flex;
@@ -31,7 +30,6 @@ const Component = styled(Box)`
     }
 `
 export default function PatientLoginFinger() {
-  const navigate = useNavigate();
   return (
     <>
       <ParentComponent>

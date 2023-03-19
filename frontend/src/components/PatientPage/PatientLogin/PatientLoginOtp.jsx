@@ -19,10 +19,10 @@ import { Box, Button, Typography, styled, TextField } from "@mui/material";
 const ParentComponent = styled(Box)`
   margin-top: 50px;
 `;
-const Title = styled(Typography)`
-  font-size: 70px;
-  color: #207868;
-`;
+// const Title = styled(Typography)`
+//   font-size: 70px;
+//   color: #207868;
+// `;
 const Component = styled(Box)`
   text-align: center;
   display: flex;
@@ -95,13 +95,6 @@ function PatientLogin() {
   //     e.preventDefault();
   //     setSubmitted(true);
   // };
-  const paperStyle = {
-    padding: 20,
-    height: "65vh",
-    width: 500,
-    margin: "0 auto",
-    border: "2px solid #fff",
-  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({
