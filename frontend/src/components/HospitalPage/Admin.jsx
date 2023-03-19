@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useLocation} from 'react-router-dom'
-import { generate } from './utils/passgen';
+import { generate } from '../utils/passgen';
 import PatientCardHospital from './PatientCardHospital';
 import AddDoctor from './AddDoctor';
 

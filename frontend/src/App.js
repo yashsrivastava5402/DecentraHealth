@@ -6,7 +6,7 @@ import Home from "./components/Home/Home";
 import DoctorLogin from './components/Doctor/DoctorLogin';
 import HospitalSignupPage from "./components/HospitalPage/HospitalSignupPage";
 import HospitalLogin from "./components/HospitalPage/HospitalLogin"
-import Admin from "./components/Admin";
+import Admin from './components/HospitalPage/Admin'
 import PatientLoginIntro from "./components/PatientPage/PatientLogin/PatientLoginIntro";
 import PatientLoginOtp from "./components/PatientPage/PatientLogin/PatientLoginOtp";
 import PatientLoginFinger from "./components/PatientPage/PatientLogin/PatientLoginFinger";
