@@ -20,7 +20,7 @@ const patientSchema = new Schema({
         required: [true]
     },
     Phone: {
-        type: Number,
+        type: String,
         required: [true]
     },
     DoctorRequests: {
@@ -33,4 +33,4 @@ const patientSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Patient', patientSchema);
+module.exports = mongoose.model('PatientSingle', patientSchema);
