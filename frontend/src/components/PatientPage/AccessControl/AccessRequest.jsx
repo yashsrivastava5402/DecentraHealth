@@ -3,6 +3,7 @@ import { useLocation} from 'react-router-dom';
 
 //MUI
 import { Box, Button, Typography, styled, TableContainer, TableCell, TableRow, TableHead, Table,TableBody, TextField } from "@mui/material";
+import AccessList from './AccessList';
 
 //CSS
 const ParentComponent = styled(Box)`
@@ -52,12 +53,11 @@ export default function AccessRequest() {
                     </Tablerow>
                 </TableHead>
                 <TableBody>
-                <TableRow>
-                        <TableCell component='th' scope='row' style={{ fontSize: 16 }}>1</TableCell>
-                        <TableCell component='th' scope='row' style={{ fontSize: 16 }}>Dr. Aditya</TableCell>
-                        <TableCell component='th' scope='row' style={{ fontSize: 16 }}>Level 1</TableCell>
-                        <TableCell><Button style={{background :'#207868',color:'#fff',height: '40px',width:'140px',fontWeight :'600',fontSize: '16px'}}>Approve</Button><Button style={{background :'#D3455B',color:'#fff',marginLeft:'30px',height: '40px',width:'140px',fontWeight :'600',fontSize: '16px'}}>Revoke</Button></TableCell>
-                    </TableRow>
+                {
+                    state.DoctorRequests.map(()=>
+                  <AccessList></AccessList>
+                    )
+                }
                 </TableBody>
             </Table>
         </Tablecontainer>

@@ -23,5 +23,6 @@ router.post('/getDisease', patientController.getDisease);
 router.post('/getDoctorsRecommend', patientController.getDoctors);
 router.post('/grantAccess', patientController.grantAccess);
 router.post('/requestPatient', doctorController.requestPatient);
+router.post('/reqDoctors', doctorController.reqDoctors);
 
 module.exports=router;

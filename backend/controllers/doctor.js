@@ -121,3 +121,13 @@ exports.requestPatient = async (req, res) => {
         }
     });
 }
+
+exports.reqDoctors = (req, res) => {
+    const { Aadhar } = req.body;
+    PatientSingle.findOne({Aadhar: Aadhar}, (err, patients) => {
+        if(err){
+            res.status(500).send(err);
+        }
+        res.status(200).send(patients.DoctorRequests);
+    })
+}
