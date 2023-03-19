@@ -61,7 +61,6 @@ export default function AccessRequest() {
                         <TableCell>S.No</TableCell>
                         <TableCell>Doctor Name</TableCell>
                         <TableCell>Access Level</TableCell>
-                        <TableCell>Time Duration</TableCell>
                         <TableCell>Grant Access</TableCell>
                     </Tablerow>
                 </TableHead>
@@ -70,7 +69,6 @@ export default function AccessRequest() {
                         <TableCell>1</TableCell>
                         <TableCell>Dr. Aditya</TableCell>
                         <TableCell>Level 1</TableCell>
-                        <TableCell>1 hour</TableCell>
                         <TableCell><Button style={{background :'#207868',color:'#fff'}}>Approve</Button><Button style={{background :'#D3455B',color:'#fff',marginLeft:'30px'}}>Revoke</Button></TableCell>
                     </Tablerow>
                 </TableBody>
