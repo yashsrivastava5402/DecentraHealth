@@ -18,6 +18,12 @@ const LowerComponent = styled(Box)`
     width:85%;
 `
 
+const Tablerow = styled(TableRow)`
+    &>th{
+     font-size: 16px;
+     font-weight: 600;
+    }
+`
 
 const Tablecontainer = styled(TableContainer)`
     margin-top: 40px;
@@ -37,12 +43,12 @@ export default function ActiveGrantedReq() {
         <Tablecontainer>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
-                    <TableRow>
+                    <Tablerow>
                         <TableCell>S.No</TableCell>
                         <TableCell>Doctor Name</TableCell>
                         <TableCell>Access Level</TableCell>
                         <TableCell>Grant Access</TableCell>
-                    </TableRow>
+                    </Tablerow>
                 </TableHead>
                 <TableBody>
                 <TableRow>

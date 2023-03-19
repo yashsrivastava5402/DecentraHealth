@@ -24,6 +24,12 @@ const Tablecontainer = styled(TableContainer)`
     margin-top: 40px;
 `
 
+const Tablerow = styled(TableRow)`
+    &>th{
+     font-size: 16px;
+     font-weight: 600;
+    }
+`
 
 export default function AccessRequest() {
 
@@ -38,12 +44,12 @@ export default function AccessRequest() {
         <Tablecontainer>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
-                    <TableRow>
+                    <Tablerow>
                         <TableCell>S.No</TableCell>
                         <TableCell>Doctor Name</TableCell>
                         <TableCell>Access Level</TableCell>
                         <TableCell>Grant Access</TableCell>
-                    </TableRow>
+                    </Tablerow>
                 </TableHead>
                 <TableBody>
                 <TableRow>
