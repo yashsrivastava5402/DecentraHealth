@@ -13,20 +13,17 @@ function AccessList() {
             <TableCell>1</TableCell>
             <TableCell>Dr. Aditya</TableCell>
             <TableCell><FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                <InputLabel id="demo-simple-select-label">Level</InputLabel>
                 <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    // value={age}
-                    label="Age"
-                    // onChange={handleChange}
+                    label="level"
                 >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                    <MenuItem value={0}>Level 0</MenuItem>
+                    <MenuItem value={1}>Level 1</MenuItem>
                 </Select>
             </FormControl></TableCell>
-            <TableCell><Button style={{ background: '#207868', color: '#fff' }}>Approve</Button><Button style={{ background: '#D3455B', color: '#fff', marginLeft: '30px' }}>Revoke</Button></TableCell>
+            <TableCell><Button style={{ background: '#207868', color: '#fff',height: '40px',width:'140px',fontWeight :'600',fontSize: '16px'}}>Approve</Button><Button style={{ background: '#D3455B', color: '#fff', marginLeft: '30px',height: '40px',width:'140px',fontWeight :'600',fontSize: '16px' }}>Revoke</Button></TableCell>
         </Tablerow>
 
     )
