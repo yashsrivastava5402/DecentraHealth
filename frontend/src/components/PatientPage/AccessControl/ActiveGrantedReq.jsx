@@ -18,30 +18,9 @@ const LowerComponent = styled(Box)`
     width:85%;
 `
 
-const InputSearch = styled(Box)`
-    margin-top:20px;
-    &>button{
-      color:white;
-      background-color: #6558F5;
-      width:100px;
-      height:50px;
-      font-size:16px;
-    },
-    &>div{
-      margin:0 30px 0 0;
-      width: 40%;
-    }
-`
 
 const Tablecontainer = styled(TableContainer)`
     margin-top: 40px;
-`
-const Tablerow = styled(TableRow)`
-    &>th{
-     font-size: 16px;
-     font-weight: 600;
-    }
-
 `
 
 export default function ActiveGrantedReq() {
@@ -58,20 +37,20 @@ export default function ActiveGrantedReq() {
         <Tablecontainer>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
-                    <Tablerow>
+                    <TableRow>
                         <TableCell>S.No</TableCell>
                         <TableCell>Doctor Name</TableCell>
                         <TableCell>Access Level</TableCell>
                         <TableCell>Grant Access</TableCell>
-                    </Tablerow>
+                    </TableRow>
                 </TableHead>
                 <TableBody>
-                <Tablerow>
-                        <TableCell>1</TableCell>
-                        <TableCell>Dr. Aditya</TableCell>
-                        <TableCell>Level 1</TableCell>
-                        <TableCell><Button style={{background: '#D3455B',color:'#fff'}}>Revoke</Button></TableCell>
-                    </Tablerow>
+                <TableRow>
+                        <TableCell component='th' scope='row' style={{ fontSize: 16 }}>1</TableCell>
+                        <TableCell component='th' scope='row' style={{ fontSize: 16 }}>Dr. Aditya</TableCell>
+                        <TableCell component='th' scope='row' style={{ fontSize: 16 }}>Level 1</TableCell>
+                        <TableCell><Button style={{background: '#D3455B',color:'#fff',height: '40px',width:'140px',fontWeight :'600',fontSize: '16px'}}>Revoke</Button></TableCell>
+                    </TableRow>
                 </TableBody>
             </Table>
         </Tablecontainer>

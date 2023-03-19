@@ -80,15 +80,15 @@ function PaitentPage(){
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
                                 <Tablerow>
-                                    <TableCell>Name of Doctor</TableCell>
+                                    <TableCell>S.No </TableCell>
                                     <TableCell>Hospital Id</TableCell>
                                     <TableCell>Hospital Name</TableCell>
                                     <TableCell>Qualification</TableCell>
                                 </Tablerow>
                             </TableHead>
                             <TableBody>
-                                {state.values.hospitals.map((hospital) => (
-                                  <HospitalCard id={hospital.regNo} name={hospital.Name} state={state} />
+                                {state.values.hospitals.map((hospital,index) => (
+                                  <HospitalCard id={hospital.regNo} name={hospital.Name} state={state} sno={index+1} />
                                 ))}
                             </TableBody>
                         </Table>
