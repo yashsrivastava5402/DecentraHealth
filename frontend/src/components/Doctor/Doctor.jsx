@@ -1,6 +1,10 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
-import PatientCardDoctor from '../PatientCardDoctor';
+import PatientCardDoctor from './AccessModes/PatientCardDoctor';
+import { useParams } from 'react-router-dom';
+import FullAccess from './AccessModes/FullAccess';
+import Insights from './AccessModes/Insights';
+import Requested from './AccessModes/Requested';
 
 //MUI
 import { Box, Typography, styled, TableContainer, TableCell, TableRow, TableHead, Table,TableBody } from "@mui/material";
@@ -28,8 +32,85 @@ const Tablerow = styled(TableRow)`
     }
 `
 function Doctor() {
-    //const { aadhar } = useParams();
-    const { state } = useLocation();
+    // const { aadhar } = useParams();
+    // const { state } = useLocation();
+    const state = {
+        "patients": [
+            {
+                "Name": "Test_Patient",
+                "Aadhar": "12345",
+                "Age": "20",
+                "Gender": "Male"
+            },
+            {
+                "Name": "Test_Patient",
+                "Aadhar": "12345",
+                "Age": "20",
+                "Gender": "Male"
+            },
+            {
+                "Name": "No name",
+                "Aadhar": "8992",
+                "Age": "43",
+                "Gender": "Male"
+            },
+            {
+                "Name": "Test_Patient",
+                "Aadhar": "12345",
+                "Age": "20",
+                "Gender": "Male"
+            },
+            {
+                "Name": "Yash",
+                "Aadhar": "8980808008080808080",
+                "Age": "23",
+                "Gender": "m"
+            }
+        ],
+        "reqPatients": [
+            {
+                "Name": "Test_Patient",
+                "Aadhar": "12345",
+                "Age": "20",
+                "Gender": "Male"
+            },
+            {
+                "Name": "Test_Patient",
+                "Aadhar": "12345",
+                "Age": "20",
+                "Gender": "Male"
+            }
+        ],
+        "insPatients": [
+            {
+                "Name": "Test_Patient",
+                "Aadhar": "12345",
+                "Age": "20",
+                "Gender": "Male"
+            },
+            {
+                "Name": "Test_Patient",
+                "Aadhar": "12345",
+                "Age": "20",
+                "Gender": "Male"
+            },
+        ],
+        "fullPatients": [
+            {
+                "Name": "Test_Patient",
+                "Aadhar": "12345",
+                "Age": "20",
+                "Gender": "Male"
+            },
+            {
+                "Name": "Test_Patient",
+                "Aadhar": "12345",
+                "Age": "20",
+                "Gender": "Male"
+            },
+        ],
+        "doctorId": "Te771Manipal.com"
+    }
     console.log(state);
     //console.log(state);
 
@@ -45,10 +126,10 @@ function Doctor() {
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
                                 <Tablerow>
-                                    <TableCell>S.No</TableCell>
                                     <TableCell>Patient's Name</TableCell>
                                     <TableCell>Aadhar</TableCell>
                                     <TableCell>Request Access Level</TableCell>
+                                    <TableCell>View Reports</TableCell>
                                 </Tablerow>
                             </TableHead>
                             <TableBody>
@@ -56,13 +137,13 @@ function Doctor() {
                                     <PatientCardDoctor aadhar={patient.Aadhar} name={patient.Name}  doctorId={state.doctorId} />
                                 ))}
                                 {state.reqPatients.map((patient) => (
-                                    <PatientCardDoctor aadhar={patient.Aadhar} name={patient.Name}  />
+                                    <Requested aadhar={patient.Aadhar} name={patient.Name}   />
                                 ))}
                                 {state.insPatients.map((patient) => (
-                                    <PatientCardDoctor aadhar={patient.Aadhar} name={patient.Name}  />
+                                    <Insights aadhar={patient.Aadhar} name={patient.Name}  />
                                 ))}
                                 {state.fullPatients.map((patient) => (
-                                    <PatientCardDoctor aadhar={patient.Aadhar} name={patient.Name}  />
+                                    <FullAccess aadhar={patient.Aadhar} name={patient.Name}  />
                                 ))}
                             </TableBody>
                         </Table>

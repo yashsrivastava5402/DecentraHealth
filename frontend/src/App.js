@@ -13,10 +13,10 @@ import PatientLoginFinger from "./components/PatientPage/PatientLogin/PatientLog
 import Patient from "./components/PatientPage/Patient";
 import PatientPage from "./components/PatientPage/PatientPage";
 import PatientAccessControl from "./components/PatientPage/PatientAccessControl";
-import FileUpload from "./components/FileUpload";
+import FileUpload from "./components/Doctor/ViewReports/FileUpload";
 import FileDownload from "./components/PatientPage/PatientReports/FileDownload";
 import PatientPageHospital from "./components/PatientPageHospital"
-import PatientPageDoctor from "./components/PatientPageDoctor";
+import PatientPageDoctor from './components/Doctor/ViewReports/PatientPageDoctor'
 import Doctor from "./components/Doctor/Doctor";
 import Appbar from "./components/Navbar/Appbar";
 import ViewReports from './components/PatientPage/PatientReports/ViewReports';
