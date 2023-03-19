@@ -41,7 +41,7 @@ const Component = styled(Box)(({ theme }) => ({
   
   const Buttons = styled(Button)(({ theme }) => ({
         width:'45%',
-        margin: '50px 0 20px 100px',
+        margin: '60px 0 20px 100px',
         backgroundColor: '#6558F5',
         color: '#fff',
         fontWeight : '500',

@@ -139,10 +139,10 @@ function Symptoms() {
                   ))}
                 </CardWrapper>
                 <Box style={{marginLeft:'20px',width:'97%'}}>
-                <Typography variant='h5' textAlign={'justify'}>We suspect that you have a fungal infection, it is important to see a healthcare professional for an accurate diagnsis and appropriate treatment. Depending on the type and severity of the infectio, you may need topical or oral antifungal medication.</Typography>
+                <Typography variant='h5' textAlign={'justify'}>We suspect that you have a {disease}, it is important to see a healthcare professional for an accurate diagnsis and appropriate treatment. Depending on the type and severity of the infectio, you may need topical or oral antifungal medication.</Typography>
                 <Typography variant='h5' textAlign={'justify'}>The type of doctor you should see for a fungal infection depends on the location of the infection. For example, if you have a fungal infection on your skin or nails,you  want to see a dermatologist. If you have a fungal infection in your lungs or other internal organs, you may need to see an infectious disease specialtist. Your primary care physician can also provide guidance on the appropriate speicalist to see for your specific situation</Typography>
                 <Box style={{display:'flex',margin:'30px 0 0 0'}}>
-                  <Typography variant='h6' marginRight={'20px'}>Suggested Doctor: </Typography><Typography variant='h6'>Dentist</Typography><Button  size='large' style={{margin:'-10px 0 0 20px',background:''}} variant="contained" >Book Appointment</Button>  
+                  <Typography variant='h6' marginRight={'20px'}>Suggested Doctor: </Typography><Typography variant='h6'>Dentist</Typography><Button  size='large' style={{margin:'-10px 0 0 20px',background:''}} variant="contained" onClick={goToReccom}>Book Appointment</Button>  
                 </Box>
                 </Box>
               </Box>
@@ -214,16 +214,3 @@ export default Symptoms;
 
 </div>
 */}
-
-
-
-
-{/* <Box>
-              <TextField select label="Select" onChange={handleChange} helperText="Please select your symptom"> {symptomsoptions.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-              </TextField>
-                <Button type="submit" size='large' variant="contained" style={{ marginLeft: 15, marginTop: 5 }}>Submit</Button>
-            </Box> */}
