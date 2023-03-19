@@ -1,6 +1,6 @@
 // const { default: Patient } = require('../../frontend/src/components/Patient');
 const Doctor = require('../models/doctor');
-const Patient = require('../models/patient');
+const PatientSingle = require('../models/patient');
 const Hospital = require('../models/hospital');
 
 exports.findDoctor = (req, res) => {
@@ -103,7 +103,7 @@ exports.requestPatient = async (req, res) => {
             res.status(500).send(err);
         }
         else{
-            Patient.findOneAndUpdate({Aadhar: Aadhar}, {$push: {DoctorRequests: doctor}}, (err) => {
+            PatientSingle.findOneAndUpdate({Aadhar: Aadhar}, {$push: {DoctorRequests: doctor}}, (err) => {
                 if (err) {
                     res.status(500).send(err);
                 }

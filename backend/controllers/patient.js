@@ -1,7 +1,7 @@
 //const Patient = require('../models/patient');
 const Hospital = require('../models/hospital');
 const Patients = require('../models/patients');
-const Patient = require('../models/patient');
+const PatientSingle = require('../models/patient');
 const Doctor = require('../models/doctor');
  const {getdata, setdata} =require('../utils/web3');
  const p_id="2EIossNsEkeVC88aVyiK1oR8mkA";
@@ -223,19 +223,32 @@ exports.addPatients = (req, res) => {
             Age,
             Gender,
             Phone,
-            DoctorRequests: []
+            DoctorRequests: [],
+            GrantedRequests: []
         }
-        Patient.insertMany(newPatient, (err) => {
+        PatientSingle.insertMany(newPatient, (err) => {
             if (err) {
                 console.log(err);
             }
+            console.log("patient");
+           
         });
         console.log(newPatient);
+        // res.status(200).send(newPatient);
         Patients.findOneAndUpdate({Phone: Phone}, {$push: {patients: newPatient}}, {new: true, upsert: true}, (err, patients) => {
             if (err) {
                 res.status(206).send(err);
             }
             else{
+                // const newPatient = {
+                //     Name,
+                //     Aadhar,
+                //     Age,
+                //     Gender,
+                //     Phone,
+                //     DoctorRequests: [],
+                //     GrantedRequests: []
+                // }
                 console.log("patients: ", patients);
                 // hospital.doctors.push(newDoctor);
                 res.status(200).send(patients);
@@ -520,7 +533,7 @@ exports.grantAccess = async (req, res) => {
                 res.status(206).send(err);
             }
             else{
-                Patient.findOneAndUpdate({Aadhar: patientid}, {$push: {GrantedRequests: doctor}}, {$pull: {DoctorRequests: {doctorId: doctorid}}}, (err) => {
+                PatientSingle.findOneAndUpdate({Aadhar: patientid}, {$push: {GrantedRequests: doctor}}, {$pull: {DoctorRequests: {doctorId: doctorid}}}, (err) => {
                     if (err) {
                         res.status(500).send(err);
                     }
@@ -535,7 +548,7 @@ exports.grantAccess = async (req, res) => {
                 res.status(206).send(err);
             }
             else{
-                Patient.findOneAndUpdate({Aadhar: patientid}, {$push: {GrantedRequests: doctor}}, {$pull: {DoctorRequests: {doctorId: doctorid}}}, (err) => {
+                PatientSingle.findOneAndUpdate({Aadhar: patientid}, {$push: {GrantedRequests: doctor}}, {$pull: {DoctorRequests: {doctorId: doctorid}}}, (err) => {
                     if (err) {
                         res.status(500).send(err);
                     }
@@ -545,7 +558,7 @@ exports.grantAccess = async (req, res) => {
         });
     }
     else{
-        Patient.findOneAndUpdate({Aadhar: patientid}, {$pull: {DoctorRequests: doctor}}, {$pull: {reqPatients: {Aadhar: Aadhar}}}, (err, output) => {
+        PatientSingle.findOneAndUpdate({Aadhar: patientid}, {$pull: {DoctorRequests: doctor}}, {$pull: {reqPatients: {Aadhar: Aadhar}}}, (err, output) => {
             if (err) {
                 res.status(206).send(err);
             }
