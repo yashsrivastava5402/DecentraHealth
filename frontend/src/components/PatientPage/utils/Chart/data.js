@@ -146,3 +146,57 @@ exports.diabetesData= [
   {"year": 2021, "bloodsugar": 110},
   {"year": 2022, "bloodsugar": 100}
 ]
+exports.cholesterolData= [
+  {
+    "year": "2012",
+    "cholesterol": 210
+  },
+  {
+    "year": "2013",
+    "cholesterol": 200
+  },
+  {
+    "year": "2014",
+    "cholesterol": 190
+  },
+  {
+    "year": "2015",
+    "cholesterol": 180
+  },
+  {
+    "year": "2016",
+    "cholesterol": 170
+  },
+  {
+    "year": "2017",
+    "cholesterol": 160
+  },
+  {
+    "year": "2018",
+    "cholesterol": 150
+  },
+  {
+    "year": "2019",
+    "cholesterol": 140
+  },
+  {
+    "year": "2020",
+    "cholesterol": 130
+  },
+  {
+    "year": "2021",
+    "cholesterol": 120
+    }
+  ]
+exports.temp=[
+  {"year": 2013, "temp": 36.8},
+  {"year": 2014, "temp": 37.2},
+  {"year": 2015, "temp": 36.5},
+  {"year": 2016, "temp": 36.9},
+  {"year": 2017, "temp": 37.1},
+  {"year": 2018, "temp": 37.0},
+  {"year": 2019, "temp": 36.7},
+  {"year": 2020, "temp": 36.8},
+  {"year": 2021, "temp": 37.3},
+  {"year": 2022, "temp": 36.6}
+]
