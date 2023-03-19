@@ -58,6 +58,7 @@ function PatientIntroPage() {
     const { state } = useLocation();
     const navigate = useNavigate();
     const [submitted, setSubmitted] = useState(false);
+    
     const goToPatient = (e) => {
         e.preventDefault();
         setSubmitted(true);
