@@ -1,5 +1,6 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom';
+import LineChart from './utils/Chart/LineChart';
 
 //MUI
 import { Box, styled, Typography } from '@mui/material';
@@ -46,6 +47,7 @@ export default function PatientInsight() {
       <LowerComponent>
         <Statistics>
           <Typography variant='h5' fontWeight={600}>Statistics</Typography>
+          <LineChart />
         </Statistics>
         <Analysis>
           <Typography variant='h5' fontWeight={600}>Analysis</Typography>

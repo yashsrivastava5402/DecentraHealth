@@ -24,7 +24,6 @@ import Creators from "./components/Creators";
 import InputSymptoms from './components/PatientPage/InputSymptoms';
 import PatientIntroPage from "./components/PatientPage/PatientIntroPage";
 import RecommendedDocs from "./components/RecommendedDocs";
-import Chartrender from "./components/utils/Chart/LineChart";
 
 //Material UI
 import { Box } from '@mui/material';
@@ -61,7 +60,6 @@ function App() {
             <Route path="/RecommendedDocs" element={<RecommendedDocs />} />
             <Route path="/" element={<Navigate replace to="/home" />} />
             <Route path="/Creators" element={<Creators />} />
-            <Route path="/Chartrender" element={<Chartrender />} />
           </Routes>
           </Box>
       </BrowserRouter>
