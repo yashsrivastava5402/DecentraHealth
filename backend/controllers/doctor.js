@@ -1,4 +1,6 @@
+// const { default: Patient } = require('../../frontend/src/components/Patient');
 const Doctor = require('../models/doctor');
+const Patient = require('../models/patient');
 const Hospital = require('../models/hospital');
 
 exports.findDoctor = (req, res) => {
@@ -41,7 +43,10 @@ exports.addDoctor = (req, res) => {
                     UPRNnum: req.body.UPRN,
                     speciality,
                     password,
-                    patients: []
+                    patients: [],
+                    insPatients: [],
+                    reqPatients: [],
+                    fullPatients: []
                 }
                 console.log(newDoctor);
                 // while (newDoctor.Name !== req.body.Name);
@@ -72,18 +77,37 @@ exports.addDoctor = (req, res) => {
 
 exports.addPatientDoctor = async (req, res) => {
     const { doctorId, Name, Aadhar, Age, Gender} = req.body;
-    const doctor = await Doctor.findOne({doctorId: doctorId});
+    //const doctor = await Doctor.findOne({doctorId: doctorId});
     const newPatient = {
         Name,
         Aadhar,
         Age,
         Gender
     }
-    Patient.findOneAndUpdate({Aadhar: Aadhar}, {$push: {DoctorRequests: doctor}}, (err, output) => {
+    Doctor.findOneAndUpdate({doctorId: doctorId}, {$push: {patients: newPatient}}, (err, output) => {
         if (err) {
             res.status(500).send(err);
         }
         else{
+            res.status(200).send(output);
+        }
+    });
+}
+
+exports.requestPatient = async (req, res) => {
+    const { doctorId, Aadhar } = req.body;
+    const patient = await Patient.findOne({Aadhar: Aadhar});
+    const doctor = await Doctor.findOne({doctorId: doctorId});
+    Doctor.findOneAndUpdate({doctorId: doctorId}, {$push: {reqPatients: patient}}, {$pull: {patients: {Aadhar: Aadhar}}}, (err, output) => {
+        if (err) {
+            res.status(500).send(err);
+        }
+        else{
+            Patient.findOneAndUpdate({Aadhar: Aadhar}, {$push: {DoctorRequests: doctor}}, (err) => {
+                if (err) {
+                    res.status(500).send(err);
+                }
+            })
             res.status(200).send(output);
         }
     });

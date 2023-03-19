@@ -10,6 +10,10 @@ const patientsSchema = new Schema({
     patients: {
         type: Array,
         required: [true]
+    },
+    DoctorRequests: {
+        type: Array,
+        requiured: [true]
     }
 });
 

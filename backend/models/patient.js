@@ -24,7 +24,11 @@ const patientSchema = new Schema({
         required: [true]
     },
     DoctorRequests: {
-        type: String,
+        type: Array,
+        requiured: [true]
+    },
+    GrantedRequests: {
+        type: Array,
         requiured: [true]
     }
 });

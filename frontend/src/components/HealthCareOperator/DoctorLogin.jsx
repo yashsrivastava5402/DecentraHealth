@@ -70,7 +70,7 @@ const DoctorLogin = () => {
     axios.post("http://localhost:8000/findDoctor", { email: values.doctorId, password: values.doctorPass })
       .then((response) => {
         if (response.status === 200) {
-          navigate(`/Doctor`, { state: { patients: response.data.patients } });
+          navigate(`/Doctor`, { state: { patients: response.data.patients, reqPatients: response.data.reqPatients, insPatients: response.data.insPatients, fullPatients: response.data.fullPatients} });
         }
       });
   };
