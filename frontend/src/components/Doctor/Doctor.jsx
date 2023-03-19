@@ -53,7 +53,7 @@ function Doctor() {
                             </TableHead>
                             <TableBody>
                                 {state.patients.map((patient) => (
-                                    <PatientCardDoctor aadhar={patient.Aadhar} name={patient.Name}  />
+                                    <PatientCardDoctor aadhar={patient.Aadhar} name={patient.Name}  doctorId={state.doctorId} />
                                 ))}
                                 {state.reqPatients.map((patient) => (
                                     <PatientCardDoctor aadhar={patient.Aadhar} name={patient.Name}  />
