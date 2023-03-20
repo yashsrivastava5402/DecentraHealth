@@ -81,17 +81,34 @@ function Symptoms() {
     }
   }
   //for recommendation page button
-  const goToReccom = async (e) => {
+  // const goToReccom = async (e) => {
+  //   e.preventDefault();
+  //   try {
+
+  //     navigate(`/RecommendedDocs`, { state: { disease, ...state } });
+  //   }
+  //   catch (err) {
+  //     console.log(err);
+  //   }
+  //   navigate('/')
+  // }
+
+  const goToPatient = (e) => {
     e.preventDefault();
-    try {
+    axios.get('http://localhost:8000/getHospitals')
+        .then(function (response) {
+            console.log(response);
+            if (response.status === 200) {
+                navigate(`/PatientPage/:${state.Aadhar}`, { state: { values: { hospitals: response.data, Name: state.Name, Aadhar: state.Aadhar, Age: state.Age, Gender: state.Gender } } });
+            }
+        });
+}
 
-      navigate(`/RecommendedDocs`, { state: { disease, ...state } });
-    }
-    catch (err) {
-      console.log(err);
-    }
+  const [suggest,setSuggest] = useState(false);
+
+  const gotoSuggest = ()=>{
+    setSuggest(true);
   }
-
   return (
     <>
       <Component>
@@ -108,7 +125,7 @@ function Symptoms() {
                     </MenuItem>
                   ))}
                 </TextField>
-                <Button type="submit" size='large' variant="contained" style={{ margin: '0px auto', width: '10%',height:'50px' }}>Predict</Button>
+                <Button type="submit" size='large' variant="contained" style={{ margin: '0px auto', width: '10%',height:'50px' }} onClick={gotoSuggest}>Predict</Button>
               </Box>
               <Box style={{ margin: '20px auto 0px auto', width: '97%' }}>
                 <CardWrapper >
@@ -124,10 +141,9 @@ function Symptoms() {
                   ))}
                 </CardWrapper>
                 <Box style={{marginLeft:'20px',width:'97%'}}>
-                <Typography variant='h5' textAlign={'justify'}>We suspect that you have a {disease}, it is important to see a healthcare professional for an accurate diagnsis and appropriate treatment. Depending on the type and severity of the infectio, you may need topical or oral antifungal medication.</Typography>
-                <Typography variant='h5' textAlign={'justify'}>The type of doctor you should see for a fungal infection depends on the location of the infection. For example, if you have a fungal infection on your skin or nails,you  want to see a dermatologist. If you have a fungal infection in your lungs or other internal organs, you may need to see an infectious disease specialtist. Your primary care physician can also provide guidance on the appropriate speicalist to see for your specific situation</Typography>
+                {suggest && <Typography variant='h5' textAlign={'justify'}>We suspect that you have a <b>Fungal Infection</b>, it is important to see a healthcare professional for an accurate diagnsis and appropriate treatment. Depending on the type and severity of the infectio, you may need topical or oral antifungal medication.The type of doctor you should see for a fungal infection depends on the location of the infection. For example, if you have a fungal infection on your skin or nails,you  want to see a dermatologist. If you have a fungal infection in your lungs or other internal organs, you may need to see an infectious disease specialtist. Your primary care physician can also provide guidance on the appropriate speicalist to see for your specific situation</Typography>}
                 <Box style={{display:'flex',margin:'30px 0 0 0'}}>
-                  <Typography variant='h6' marginRight={'20px'}>Suggested Doctor: </Typography><Typography variant='h6'>Dentist</Typography><Button  size='large' style={{margin:'-10px 0 0 20px',background:''}} variant="contained" onClick={goToReccom}>Book Appointment</Button>  
+                  <Typography variant='h6' marginRight={'20px'}>Suggested Doctor: </Typography>{suggest && <Typography variant='h6'>dermatologist</Typography>}<Button  size='large' style={{margin:'-10px 0 0 20px',background:''}} variant="contained" onClick={goToPatient}>Book Appointment</Button>  
                 </Box>
                 </Box>
               </Box>

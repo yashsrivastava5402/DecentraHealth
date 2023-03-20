@@ -35,6 +35,7 @@ const Tablerow = styled(TableRow)`
 export default function AccessRequest() {
 
   const {state} = useLocation();
+  console.log( state.DoctorRequests[0])
   return (
     <ParentComponent>
     <Title>
@@ -54,8 +55,8 @@ export default function AccessRequest() {
                 </TableHead>
                 <TableBody>
                 {
-                    state.DoctorRequests.map(()=>
-                  <AccessList></AccessList>
+                    state.DoctorRequests.map((doctor,index)=>
+                  <AccessList Name={doctor.Name} SNo={index+1}></AccessList>
                     )
                 }
                 </TableBody>

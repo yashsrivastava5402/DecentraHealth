@@ -36,7 +36,9 @@ function FileUpload({ aadhar, handleupl }) {
         formData
       );
       setloading(false);
+      setColor('#2C88D9');
       inputRef.current.value = null;
+   
       console.log(res);
       handleupl(res.data);
     } catch (ex) {
