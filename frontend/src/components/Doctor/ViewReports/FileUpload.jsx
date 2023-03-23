@@ -31,7 +31,7 @@ function FileUpload({ aadhar, handleupl }) {
     }
     try {
       const res = await axios.post(
-        "http://localhost:8000/fileUpload",
+        "https://decentrahealth-backend.onrender.com/fileUpload",
         // options,
         formData
       );
