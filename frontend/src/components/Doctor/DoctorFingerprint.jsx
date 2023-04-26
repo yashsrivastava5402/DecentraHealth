@@ -7,7 +7,7 @@ import axios from 'axios';
 import FullAccess from './AccessModes/FullAccess';
 
 //MUI
-import { Box, Typography, styled } from "@mui/material";
+import { Box, Typography, styled, TableContainer, TableCell, TableRow, TableHead, Table,TableBody } from "@mui/material";
 
 //CSS
 const ParentComponent = styled(Box)`
@@ -30,6 +30,16 @@ const Component = styled(Box)`
       color: #fff;
       font-weight :600;
       height: 40px;
+    }
+`
+
+const Tablecontainer = styled(TableContainer)`
+    margin-top: 40px;
+`
+const Tablerow = styled(TableRow)`
+    &>th{
+     font-size: 16px;
+     font-weight: 600;
     }
 `
 export default function DoctorFingerprint() {
