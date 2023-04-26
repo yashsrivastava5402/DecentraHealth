@@ -48,13 +48,14 @@ export default function DoctorFingerprint() {
 
   const [login, setLogin] = useState(false);
 
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState({});
 
   const getUser = async () => {
     console.log(state.doctorId)
     axios.post('http://localhost:8000/level', { doctorId: state.doctorId })
       .then(function (response) {
         if (response.status === 200) {
+          setUser(response.data);
           setLogin(true);
         }
       });
@@ -94,9 +95,7 @@ export default function DoctorFingerprint() {
                 </Tablerow>
               </TableHead>
               <TableBody>
-                {state.fullPatients.map((patient) => (
-                  <FullAccess aadhar={patient && patient.Aadhar} name={patient && patient.Name} />
-                ))}
+                  <FullAccess aadhar={user.aadhar} name={user.name} />
               </TableBody>
             </Table>
           </Tablecontainer>
