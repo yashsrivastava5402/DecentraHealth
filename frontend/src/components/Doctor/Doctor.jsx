@@ -55,7 +55,7 @@ function Doctor() {
                 
                 <LowerComponent>
                     <Typography variant='h4'>Hello, Dr. Aakash</Typography>
-                    <Fingerprint onClick={ ()=>{navigate('/DoctorFingerprint')}} variant='contained'>Fingerprint</Fingerprint>
+                    <Fingerprint onClick={ ()=>{navigate('/DoctorFingerprint',{state:{doctorId:state.doctorId}})}} variant='contained'>Fingerprint</Fingerprint>
                     <Tablecontainer>
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>

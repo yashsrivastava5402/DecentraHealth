@@ -141,6 +141,9 @@ exports.level = (req,res) => {
     console.log("a");
     const {SerialPort}= require("serialport");
     const serialPort = new SerialPort({path: "COM8",baudRate: 9600});
+   
+    const doctorId = req.body.doctorId;
+    console.log(doctorId);
     
         serialPort.on("open", function() {
             console.log("-- Connection opened --");
@@ -161,11 +164,12 @@ exports.level = (req,res) => {
                                     if (err) {
                                         res.status(500).send(err);
                                     }
+                                    serialPort.close(function (err) {
+                                        console.log('port closed', err);
+                                        res.status(200).send(patient);
+                                    });
                                 })
-                                serialPort.close(function (err) {
-                                    console.log('port closed', err);
-                                    res.status(200).send(patient);
-                                });
+                               
                             }
                          })
                     }
@@ -180,11 +184,12 @@ exports.level = (req,res) => {
                                     if (err) {
                                         res.status(500).send(err);
                                     }
+                                    serialPort.close(function (err) {
+                                        console.log('port closed', err);
+                                        res.status(200).send(patient);
+                                    });
                                 })
-                                serialPort.close(function (err) {
-                                    console.log('port closed', err);
-                                    res.status(200).send(patient);
-                                });
+                                
                             }
                          })
                     }
@@ -199,11 +204,12 @@ exports.level = (req,res) => {
                                     if (err) {
                                         res.status(500).send(err);
                                     }
+                                    serialPort.close(function (err) {
+                                        console.log('port closed', err);
+                                        res.status(200).send(patient);
+                                    });
                                 })
-                                serialPort.close(function (err) {
-                                    console.log('port closed', err);
-                                    res.status(200).send(patient);
-                                });
+                               
                             }
                          })
                     }
@@ -218,11 +224,12 @@ exports.level = (req,res) => {
                                     if (err) {
                                         res.status(500).send(err);
                                     }
+                                    serialPort.close(function (err) {
+                                        console.log('port closed', err);
+                                        res.status(200).send(patient);
+                                    });
                                 })
-                                serialPort.close(function (err) {
-                                    console.log('port closed', err);
-                                    res.status(200).send(patient);
-                                });
+                            
                             }
                          })
                     }
