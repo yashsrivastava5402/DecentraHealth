@@ -18,6 +18,10 @@ export default function AddMember({ phone, handlenew, setSubmitted, handleChange
   };
 
   const handleClose = () => {
+    values.Aadhar="";
+    values.Age="";
+    values.Name="";
+    values.Gender="";
     setOpen(false);
   };
 
