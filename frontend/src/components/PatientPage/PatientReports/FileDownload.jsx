@@ -11,7 +11,7 @@ function FileDownload({files}) {
   return (
     <>
       { 
-        files.slice(68).map((file,index) => (
+        files.map((file,index) => (
                 <TableRow>
                 <TableCell component='th' scope='row' style={{ fontSize: 16 }}>{index+1}</TableCell>
                 <TableCell component='th' scope='row' style={{ fontSize: 16,fontWeight:'600' }}>{file.name}</TableCell>
