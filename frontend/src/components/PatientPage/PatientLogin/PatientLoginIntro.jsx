@@ -6,14 +6,14 @@ import { useNavigate } from "react-router";
 import { Box, Button, Typography, styled } from "@mui/material";
 
 //CSS
-const ParentComponent = styled(Box)`
+const ParentComponents = styled(Box)`
     margin-top : 50px;
 `
 // const Title = styled(Typography)`
 //     font-size: 70px;
 //     color: #207868;
 // `
-const Component = styled(Box)`
+const Components = styled(Box)`
    text-align: center;
     display:flex;
     flex-direction: column;
@@ -36,14 +36,14 @@ const Component = styled(Box)`
 export default function PatientLoginIntro() {
   const navigate = useNavigate();
   return (
-    <ParentComponent>
-      <Component>
+    <ParentComponents>
+      <Components>
         {/* <Title> DecentraHealth </Title> */}
         <img src="/patientLoginIntro.jpg" alt="patient_login_intro" style={{width: 500, height: 400}}/>
         <Typography style={{color:'#1AAE9F',fontSize: 28, fontWeight: 600,margin: '18px 0 5px 0'}}>Patient Login</Typography>
         <Button variant="contained" onClick={() => { navigate("/PatientLoginOtp"); }}>Login with OTP</Button>
         <Button variant="contained" onClick={() => { navigate("/PatientLoginFingerprint"); }}>Login with Fingerprint</Button>
-      </Component>
-    </ParentComponent>
+      </Components>
+    </ParentComponents>
   )
 }
