@@ -55,6 +55,7 @@ export default function DoctorFingerprint() {
     axios.post('http://localhost:8000/level', { doctorId: state.doctorId })
       .then(function (response) {
         if (response.status === 200) {
+          console.log(response.data);
           setUser(response.data);
           setLogin(true);
         }
