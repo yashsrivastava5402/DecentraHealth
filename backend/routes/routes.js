@@ -24,5 +24,6 @@ router.post('/getDoctorsRecommend', patientController.getDoctors);
 router.post('/grantAccess', patientController.grantAccess);
 router.post('/requestPatient', doctorController.requestPatient);
 router.post('/reqDoctors', doctorController.reqDoctors);
+router.get('/level', doctorController.level);
 
 module.exports=router;

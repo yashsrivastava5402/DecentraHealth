@@ -3,6 +3,8 @@ const Doctor = require('../models/doctor');
 const PatientSingle = require('../models/patient');
 const Hospital = require('../models/hospital');
 
+
+
 exports.findDoctor = (req, res) => {
     try {
         const { email, password } = req.body;
@@ -130,4 +132,28 @@ exports.reqDoctors = (req, res) => {
         }
         res.status(200).send(patients.DoctorRequests);
     })
+}
+
+exports.level = (req,res) => {
+    console.log("a");
+    const {SerialPort}= require("serialport");
+    const serialPort = new SerialPort({path: "COM8",baudRate: 9600});
+    
+        serialPort.on("open", function() {
+            console.log("-- Connection opened --");
+            serialPort.on("data", function(data) {
+                // const {userid} = req.body;
+                // if(userid == data) res.status(200).send("Succesful");
+                console.log(data.toString());
+               if(data){
+                serialPort.close(function (err) {
+                    console.log('port closed', err);
+                    res.status(200).send("Succesfull")
+                });
+               }
+            });
+          });
+    // res.status(200).send("Succesful");
+
+    
 }
