@@ -10,6 +10,52 @@ import CanvasJSReact from './canvasjs.react';
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 function LineChart() {
+  const options = {
+    animationEnabled: true,
+    exportEnabled: true,
+    theme: "light2", // "light1", "dark1", "dark2"
+    title:{
+      text: "Bounce Rate by Week of Year"
+    },
+    axisY: {
+      title: "Bounce Rate",
+      suffix: "%"
+    },
+    axisX: {
+      title: "Week of Year",
+      prefix: "W",
+      interval: 2
+    },
+    data: [{
+      type: "line",
+      toolTipContent: "Week {x}: {y}%",
+      dataPoints: [
+        { x: 1, y: 64 },
+        { x: 2, y: 61 },
+        { x: 3, y: 64 },
+        { x: 4, y: 62 },
+        { x: 5, y: 64 },
+        { x: 6, y: 60 },
+        { x: 7, y: 58 },
+        { x: 8, y: 59 },
+        { x: 9, y: 53 },
+        { x: 10, y: 54 },
+        { x: 11, y: 61 },
+        { x: 12, y: 60 },
+        { x: 13, y: 55 },
+        { x: 14, y: 60 },
+        { x: 15, y: 56 },
+        { x: 16, y: 60 },
+        { x: 17, y: 59.5 },
+        { x: 18, y: 63 },
+        { x: 19, y: 58 },
+        { x: 20, y: 54 },
+        { x: 21, y: 59 },
+        { x: 22, y: 64 },
+        { x: 23, y: 59 }
+      ]
+    }]
+  }
     // registerLicense('Mgo+DSMBaFt/QHRqVVhkVFpAaV5FQmFJfFBmRGNTf196dVBWESFaRnZdQV1gSHZSdkVmWnxXc3xQ;Mgo+DSMBPh8sVXJ0S0J+XE9AflRGQmJOYVF2R2BJfl56dFRMYVlBNQtUQF1hSn5Qd01iWX9bc3dcQ2NZ;ORg4AjUWIQA/Gnt2VVhkQlFacldJWXxIeUx0RWFab19wflVHal1UVAciSV9jS31TdURrWH9edXdWT2ZVVA==;MTM2NTQzOEAzMjMwMmUzNDJlMzBpYmZpa3pyWWRwVlpiVkQ5ajZaa3E2SGxFRGV2ZGZ4WlAxYVBuRHVEa21VPQ==;MTM2NTQzOUAzMjMwMmUzNDJlMzBhc0RRWTRSSUtOVmNzM2drZ2NLU1I0L0F2eFQyMUhsRk42bjdBTlZ6UmNNPQ==;NRAiBiAaIQQuGjN/V0Z+WE9EaFtKVmdWf1RpR2NbfE5xdF9GYVZQQWYuP1ZhSXxQdkZiUX5ecHFWQmFcVUA=;MTM2NTQ0MUAzMjMwMmUzNDJlMzBmOHdKVE9GME13OVR5ZXd0TG14OUJ1OHNYQW5nNTNxQWtMM3Q1NXByTXk0PQ==;MTM2NTQ0MkAzMjMwMmUzNDJlMzBTNFRYUjY3Z21xekxsdnk0MjFjRWdRNzZ6TjBYeDNOM3hOTnJYaWR1QVNFPQ==;Mgo+DSMBMAY9C3t2VVhkQlFacldJWXxIeUx0RWFab19wflVHal1UVAciSV9jS31TdURrWH9edXdRR2ZaVA==;MTM2NTQ0NEAzMjMwMmUzNDJlMzBZOG9LRDgwUzdCT3R0QS9GT3VjUjYxV21hRnNMcVB0bGdQa1NOejBDaW5FPQ==;MTM2NTQ0NUAzMjMwMmUzNDJlMzBMSjJLRmdoNFRVdFVwU3JhaCtXanJ6aFlxSFFhcG9nb1R3L0FDeWxFMEpnPQ==;MTM2NTQ0NkAzMjMwMmUzNDJlMzBmOHdKVE9GME13OVR5ZXd0TG14OUJ1OHNYQW5nNTNxQWtMM3Q1NXByTXk0PQ==');
   return (
   //   <Box>

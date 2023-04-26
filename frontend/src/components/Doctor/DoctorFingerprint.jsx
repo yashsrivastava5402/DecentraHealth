@@ -34,8 +34,13 @@ export default function DoctorFingerprint() {
   const [user,setUser] = useState([]);
 
   const getUser = async ()=>{
-    const{data}= await axios.get(`http://localhost:8000`);
-    setUser(data);    
+
+    axios.get('http://localhost:8000/level')
+    .then(function (response) {
+      console.log(response);
+    });
+    // console.log(data);
+    // setUser(data);    
   }
 
   useEffect(()=>{
