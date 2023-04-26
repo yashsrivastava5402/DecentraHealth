@@ -137,12 +137,17 @@ exports.reqDoctors = (req, res) => {
     })
 }
 
-exports.level = (req,res) => {
+exports.level = async (req,res) => {
     console.log("a");
     const {SerialPort}= require("serialport");
     const serialPort = new SerialPort({path: "COM8",baudRate: 9600});
    
     const doctorId = req.body.doctorId;
+    const Pranshu = await PatientSingle.findOne({Aadhar: "867453324"})
+    const Aditya = await PatientSingle.findOne({Aadhar: "867453322"})
+    const Shaurya = await PatientSingle.findOne({Aadhar: "867453323"})
+    const Yash = await PatientSingle.findOne({Aadhar: "867453321"})
+    const doctor = await Doctor.findOne({doctorId: doctorId});
     console.log(doctorId);
     
         serialPort.on("open", function() {
@@ -155,12 +160,13 @@ exports.level = (req,res) => {
                if(data){
                     if(val == '1'){
                         //Pranshu
-                        Doctor.findOneAndUpdate({doctorId: doctorId}, {$push: {fullPatients: {Aadhar: "867453324"}}}, (err, output) => {
+                       ;
+                        Doctor.findOneAndUpdate({doctorId: doctorId}, {$push: {fullPatients: Pranshu}}, (err, output) => {
                             if (err) {
                                 res.status(500).send(err);
                             }
                             else{
-                                PatientSingle.findOneAndUpdate({Aadhar: "867453324"}, {$push: {GrantedRequests: {doctorId: doctorId}}}, (err, patient) => {
+                                PatientSingle.findOneAndUpdate({Aadhar: "867453324"}, {$push: {GrantedRequests: doctor}}, (err, patient) => {
                                     if (err) {
                                         res.status(500).send(err);
                                     }
@@ -175,12 +181,12 @@ exports.level = (req,res) => {
                     }
                     else if(val == '2'){
                         //Aditya
-                        Doctor.findOneAndUpdate({doctorId: doctorId}, {$push: {fullPatients: {Aadhar: "867453322"}}}, (err, output) => {
+                        Doctor.findOneAndUpdate({doctorId: doctorId}, {$push: {fullPatients: Aditya}}, (err, output) => {
                             if (err) {
                                 res.status(500).send(err);
                             }
                             else{
-                                PatientSingle.findOneAndUpdate({Aadhar: "867453322"}, {$push: {GrantedRequests: {doctorId: doctorId}}}, (err, patient) => {
+                                PatientSingle.findOneAndUpdate({Aadhar: "867453322"}, {$push: {GrantedRequests: doctor}}, (err, patient) => {
                                     if (err) {
                                         res.status(500).send(err);
                                     }
@@ -195,12 +201,12 @@ exports.level = (req,res) => {
                     }
                     else if(val == '3'){
                         //Shaurya
-                        Doctor.findOneAndUpdate({doctorId: doctorId}, {$push: {fullPatients: {Aadhar: "867453323"}}}, (err, output) => {
+                        Doctor.findOneAndUpdate({doctorId: doctorId}, {$push: {fullPatients: Shaurya}}, (err, output) => {
                             if (err) {
                                 res.status(500).send(err);
                             }
                             else{
-                                PatientSingle.findOneAndUpdate({Aadhar: "867453323"}, {$push: {GrantedRequests: {doctorId: doctorId}}}, (err, patient) => {
+                                PatientSingle.findOneAndUpdate({Aadhar: "867453323"}, {$push: {GrantedRequests: doctor}}, (err, patient) => {
                                     if (err) {
                                         res.status(500).send(err);
                                     }
@@ -215,12 +221,12 @@ exports.level = (req,res) => {
                     }
                     else if(val == '4'){
                         //Yash
-                        Doctor.findOneAndUpdate({doctorId: doctorId}, {$push: {fullPatients: {Aadhar: "867453321"}}}, (err, output) => {
+                        Doctor.findOneAndUpdate({doctorId: doctorId}, {$push: {fullPatients: Yash}}, (err, output) => {
                             if (err) {
                                 res.status(500).send(err);
                             }
                             else{
-                                PatientSingle.findOneAndUpdate({Aadhar: "867453321"}, {$push: {GrantedRequests: {doctorId: doctorId}}}, (err, patient) => {
+                                PatientSingle.findOneAndUpdate({Aadhar: "867453321"}, {$push: {GrantedRequests: doctor}}, (err, patient) => {
                                     if (err) {
                                         res.status(500).send(err);
                                     }
