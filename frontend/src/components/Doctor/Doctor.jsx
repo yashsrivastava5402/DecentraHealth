@@ -5,9 +5,11 @@ import { useParams } from 'react-router-dom';
 import FullAccess from './AccessModes/FullAccess';
 import Insights from './AccessModes/Insights';
 import Requested from './AccessModes/Requested';
+import { useNavigate } from 'react-router-dom';
 
 //MUI
-import { Box, Typography, styled, TableContainer, TableCell, TableRow, TableHead, Table,TableBody } from "@mui/material";
+import { Box, Typography, styled, TableContainer, TableCell, TableRow, TableHead, Table,TableBody,Button } from "@mui/material";
+
 
 //CSS
 const ParentComponent = styled(Box)`
@@ -31,9 +33,16 @@ const Tablerow = styled(TableRow)`
      font-weight: 600;
     }
 `
+const Fingerprint = styled(Button)`
+    margin: 30px 0 0 20px;
+    height:50px;
+    font-weight:600;
+    font-size:14px;
+`
 function Doctor() {
     // const { aadhar } = useParams();
     const { state } = useLocation();
+    const navigate = useNavigate();
     console.log(state);
     //console.log(state);
 
@@ -43,8 +52,10 @@ function Doctor() {
                 <Title>
                     Doctor Dashboard
                 </Title>
+                
                 <LowerComponent>
                     <Typography variant='h4'>Hello, Dr. Aakash</Typography>
+                    <Fingerprint onClick={ ()=>{navigate('/DoctorFingerprint')}} variant='contained'>Fingerprint</Fingerprint>
                     <Tablecontainer>
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
