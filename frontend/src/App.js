@@ -26,6 +26,7 @@ import PatientIntroPage from "./components/PatientPage/PatientIntroPage";
 import RecommendedDocs from "./components/RecommendedDocs";
 import AccessRequest from './components/PatientPage/AccessControl/AccessRequest'
 import ActiveGrantedReq from "./components/PatientPage/AccessControl/ActiveGrantedReq";
+import DoctorFingerprint from './components/Doctor/DoctorFingerprint';
 
 //Material UI
 import { Box } from '@mui/material';
@@ -64,6 +65,7 @@ function App() {
             <Route path="/Creators" element={<Creators />} />
             <Route path='/Patient/AccessRequest' element={<AccessRequest />}/>
             <Route path='/Patient/AccessGrantedReq' element={<ActiveGrantedReq />}/>
+            <Route path='/DoctorFingerprint' element={<DoctorFingerprint />}/>
           </Routes>
           </Box>
       </BrowserRouter>
