@@ -148,12 +148,86 @@ exports.level = (req,res) => {
                 // const {userid} = req.body;
                 // if(userid == data) res.status(200).send("Succesful");
                 console.log(data.toString());
+                const val = data.toString();
                if(data){
-                serialPort.close(function (err) {
-                    console.log('port closed', err);
-                    res.status(200).send("Succesfull")
-                });
-               }
+                    if(val == '1'){
+                        //Pranshu
+                        Doctor.findOneAndUpdate({doctorId: doctorId}, {$push: {fullPatients: {Aadhar: "867453324"}}}, (err, output) => {
+                            if (err) {
+                                res.status(500).send(err);
+                            }
+                            else{
+                                PatientSingle.findOneAndUpdate({Aadhar: "867453324"}, {$push: {GrantedRequests: {doctorId: doctorId}}}, (err, patient) => {
+                                    if (err) {
+                                        res.status(500).send(err);
+                                    }
+                                })
+                                serialPort.close(function (err) {
+                                    console.log('port closed', err);
+                                    res.status(200).send(patient);
+                                });
+                            }
+                         })
+                    }
+                    else if(val == '2'){
+                        //Aditya
+                        Doctor.findOneAndUpdate({doctorId: doctorId}, {$push: {fullPatients: {Aadhar: "867453322"}}}, (err, output) => {
+                            if (err) {
+                                res.status(500).send(err);
+                            }
+                            else{
+                                PatientSingle.findOneAndUpdate({Aadhar: "867453322"}, {$push: {GrantedRequests: {doctorId: doctorId}}}, (err, patient) => {
+                                    if (err) {
+                                        res.status(500).send(err);
+                                    }
+                                })
+                                serialPort.close(function (err) {
+                                    console.log('port closed', err);
+                                    res.status(200).send(patient);
+                                });
+                            }
+                         })
+                    }
+                    else if(val == '3'){
+                        //Shaurya
+                        Doctor.findOneAndUpdate({doctorId: doctorId}, {$push: {fullPatients: {Aadhar: "867453323"}}}, (err, output) => {
+                            if (err) {
+                                res.status(500).send(err);
+                            }
+                            else{
+                                PatientSingle.findOneAndUpdate({Aadhar: "867453323"}, {$push: {GrantedRequests: {doctorId: doctorId}}}, (err, patient) => {
+                                    if (err) {
+                                        res.status(500).send(err);
+                                    }
+                                })
+                                serialPort.close(function (err) {
+                                    console.log('port closed', err);
+                                    res.status(200).send(patient);
+                                });
+                            }
+                         })
+                    }
+                    else if(val == '4'){
+                        //Yash
+                        Doctor.findOneAndUpdate({doctorId: doctorId}, {$push: {fullPatients: {Aadhar: "867453321"}}}, (err, output) => {
+                            if (err) {
+                                res.status(500).send(err);
+                            }
+                            else{
+                                PatientSingle.findOneAndUpdate({Aadhar: "867453321"}, {$push: {GrantedRequests: {doctorId: doctorId}}}, (err, patient) => {
+                                    if (err) {
+                                        res.status(500).send(err);
+                                    }
+                                })
+                                serialPort.close(function (err) {
+                                    console.log('port closed', err);
+                                    res.status(200).send(patient);
+                                });
+                            }
+                         })
+                    }
+                    
+                }
             });
           });
     // res.status(200).send("Succesful");
