@@ -333,7 +333,7 @@ exports.fileUpload= async (req,res)=>{
                 console.log(9);
                 console.log(file);
                 await setdata(Aadhar,fileName, file[0].hash);
-                let link = `http://localhost:8000/fileDownload/${Aadhar}/${file[0].hash}`;
+                let link = `https://decentrahealth-backend.onrender.com/fileDownload/${Aadhar}/${file[0].hash}`;
                 senddata.push({name:fileName, file:link, filename:fileName})
                 console.log(senddata)
                 res.status(200).send(senddata);
@@ -358,7 +358,7 @@ exports.fileUpload= async (req,res)=>{
 
                 let newfile = await ipfs.files.add(testBuffer);
                 await setdata(Aadhar, newfile[0].hash, fileName[i]);
-                let link = `http://localhost:8000/fileDownload/${Aadhar}/${newfile[0].hash}`; 
+                let link = `https://decentrahealth-backend.onrender.com/fileDownload/${Aadhar}/${newfile[0].hash}`; 
                 senddata.push({name:fileName[i], file:link, filename:fileName[i]})
             //else{
             //   res.status(200).send({ message: "File Uploaded", code: 200 });
@@ -415,7 +415,7 @@ exports.viewFiles =async (req, res) => {
     //         console.log("No erroe");
     //         files.forEach(function (file) {
 
-    //                 var link = `http://localhost:8000/fileDownload/${aadhar}/${file}`;
+    //                 var link = `https://decentrahealth-backend.onrender.com/fileDownload/${aadhar}/${file}`;
 
     //             const output = {
     //                 filename: file,
@@ -437,7 +437,7 @@ exports.viewFiles =async (req, res) => {
     for(let i=0;i<data.length;i++)
     {
         let element=data[i];
-        var link = `http://localhost:8000/fileDownload/${aadhar}/${element.userDataDetail}`;
+        var link = `https://decentrahealth-backend.onrender.com/fileDownload/${aadhar}/${element.userDataDetail}`;
         const output = {
                             filename:element.userDataDetail ,
                             name: element.userDataFilename,
@@ -526,14 +526,14 @@ exports.grantAccess = async (req, res) => {
     const patientid = req.body.id;
     const accept = req.body.grant;
     const doctor = await Doctor.findOne({doctorId: doctorid});
-    const patient = await Patient.findOne({Aadhar: patientid});
+    const patient = await PatientSingle.findOne({Aadhar: patientid});
     if(accept === 0){
-        Doctor.findOneAndUpdate({doctorId: doctorid}, {$push: {fullPatients: patient}}, {$pull: {reqPatients: {Aadhar: Aadhar}}}, (err, output) => {
+        Doctor.findOneAndUpdate({doctorId: doctorid}, {$push: {fullPatients: patient}, $pull: {reqPatients: {Aadhar: patientid}}}, (err, output) => {
             if (err) {
                 res.status(206).send(err);
             }
             else{
-                PatientSingle.findOneAndUpdate({Aadhar: patientid}, {$push: {GrantedRequests: doctor}}, {$pull: {DoctorRequests: {doctorId: doctorid}}}, (err) => {
+                PatientSingle.findOneAndUpdate({Aadhar: patientid}, {$push: {GrantedRequests: doctor}, $pull: {DoctorRequests: {doctorId: doctorid}}}, (err) => {
                     if (err) {
                         res.status(500).send(err);
                     }
@@ -543,12 +543,12 @@ exports.grantAccess = async (req, res) => {
         });
     }
     else if(accept === 1){
-        Doctor.findOneAndUpdate({doctorId: doctorid}, {$push: {insPatients: patient}}, {$pull: {reqPatients: {Aadhar: Aadhar}}}, (err, output) => {
+        Doctor.findOneAndUpdate({doctorId: doctorid}, {$push: {insPatients: patient}, $pull: {reqPatients: {Aadhar: patientid}}}, (err, output) => {
             if (err) {
                 res.status(206).send(err);
             }
             else{
-                PatientSingle.findOneAndUpdate({Aadhar: patientid}, {$push: {GrantedRequests: doctor}}, {$pull: {DoctorRequests: {doctorId: doctorid}}}, (err) => {
+                PatientSingle.findOneAndUpdate({Aadhar: patientid}, {$push: {GrantedRequests: doctor}, $pull: {DoctorRequests: {doctorId: doctorid}}}, (err) => {
                     if (err) {
                         res.status(500).send(err);
                     }
@@ -558,7 +558,7 @@ exports.grantAccess = async (req, res) => {
         });
     }
     else{
-        PatientSingle.findOneAndUpdate({Aadhar: patientid}, {$pull: {DoctorRequests: doctor}}, {$pull: {reqPatients: {Aadhar: Aadhar}}}, (err, output) => {
+        PatientSingle.findOneAndUpdate({Aadhar: patientid}, {$pull: {DoctorRequests: doctor}, $pull: {reqPatients: {Aadhar: patientid}}}, (err, output) => {
             if (err) {
                 res.status(206).send(err);
             }

@@ -130,7 +130,10 @@ exports.reqDoctors = (req, res) => {
         if(err){
             res.status(500).send(err);
         }
+        console.log(patients);
+        if(patients)
         res.status(200).send(patients.DoctorRequests);
+        else res.status(200).send("Patient Doesnt exist");
     })
 }
 

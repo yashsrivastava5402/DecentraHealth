@@ -56,7 +56,7 @@ export default function AccessRequest() {
                 <TableBody>
                 {
                     state.DoctorRequests.map((doctor,index)=>
-                  <AccessList Name={doctor.Name} SNo={index+1}></AccessList>
+                  <AccessList patientid={state.Aadhar} doctorid={doctor.doctorId} Name={doctor.Name} SNo={index+1}></AccessList>
                     )
                 }
                 </TableBody>
