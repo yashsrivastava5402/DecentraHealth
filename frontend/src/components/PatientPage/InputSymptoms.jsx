@@ -73,7 +73,7 @@ function Symptoms() {
     e.preventDefault();
     try {
       console.log(symptoms);
-      const diseases = await axios.post('http://localhost:8000/getDisease', { symptoms: symptoms })
+      const diseases = await axios.post('https://decentrahealth-backend.onrender.com/getDisease', { symptoms: symptoms })
       setdisease(diseases.data);
     }
     catch (err) {
@@ -95,7 +95,7 @@ function Symptoms() {
 
   const goToPatient = (e) => {
     e.preventDefault();
-    axios.get('http://localhost:8000/getHospitals')
+    axios.get('https://decentrahealth-backend.onrender.com/getHospitals')
         .then(function (response) {
             console.log(response);
             if (response.status === 200) {

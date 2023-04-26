@@ -1,42 +1,85 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useLocation} from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { generate } from '../utils/passgen';
 import PatientCardHospital from './PatientCardHospital';
 import AddDoctor from './AddDoctor';
 
+//MUI
+import { Box, Button, Typography, styled, TableContainer, TableCell, TableRow, TableHead, Table, TableBody, TextField } from "@mui/material";
+
+//CSS
+const ParentComponent = styled(Box)`
+    margin-top : 80px;
+`
+const Title = styled(Typography)`
+    font-size: 40px;
+    color: #207868;
+    text-align: center;   
+`
+const LowerComponent = styled(Box)`
+    margin: 30px auto 0 auto;
+    width:85%;
+`
+
+const InputSearch = styled(Box)`
+    margin-top:20px;
+    &>button{
+      color:white;
+      background-color: #6558F5;
+      width:110px;
+      height:50px;
+      font-size:16px;
+    },
+    &>div{
+      margin:0 30px 0 0;
+      width: 41.5%;
+    }
+`
+
+const Tablecontainer = styled(TableContainer)`
+    margin-top: 40px;
+`
+const Tablerow = styled(TableRow)`
+    &>th{
+     font-size: 16px;
+     font-weight: 600;
+    }
+
+`
+
 // const addDoctor = function (values) {
-  // await axios.post('/addDoctor', values)
-  // .then ((response) => {
-  //     if(response.status===200)
-  //     {
+// await axios.post('/addDoctor', values)
+// .then ((response) => {
+//     if(response.status===200)
+//     {
 
-  //     }
-  //     else if(response.status==203)
-  //     {
-  //         //reject("Wrong Password,Try again");
-  //     }
-  //     else if(response.status==204)
-  //     {
-  //         //reject("Hospital not found!");
-  //     }
-  //     else
-  //     //reject("Something went wrong");
-  // })
-  // .catch(function (error) {
-  //   reject(error);
+//     }
+//     else if(response.status==203)
+//     {
+//         //reject("Wrong Password,Try again");
+//     }
+//     else if(response.status==204)
+//     {
+//         //reject("Hospital not found!");
+//     }
+//     else
+//     //reject("Something went wrong");
+// })
+// .catch(function (error) {
+//   reject(error);
 
-  // });
-  // return new Promise( (resolve, reject) => {
+// });
+// return new Promise( (resolve, reject) => {
 
-  //     const{ newDoctorId, newPassword }=generate(values);
-  //   //   setValues({
-  //   //     ...values,
-  //   //     doctorId: newDoctorId,
-  //   //     password:newPassword
-  //   // });
-  //   resolve({ newDoctorId, newPassword });
-  // });
+//     const{ newDoctorId, newPassword }=generate(values);
+//   //   setValues({
+//   //     ...values,
+//   //     doctorId: newDoctorId,
+//   //     password:newPassword
+//   // });
+//   resolve({ newDoctorId, newPassword });
+// });
 // }
 
 function Admin() {
@@ -60,7 +103,7 @@ function Admin() {
   // setdoctors(state);
   // console.log(state);
   // console.log(doctors);
-  // axios.post('http://localhost:8000/getDoctors',
+  // axios.post('https://decentrahealth-backend.onrender.com/getDoctors',
   //   hospitalRegnumber
   // )
   //   .then(function (response) {
@@ -92,14 +135,14 @@ function Admin() {
   };
   useEffect(() => {
 
-    axios.post('http://localhost:8000/getDoctors',
+    axios.post('https://decentrahealth-backend.onrender.com/getDoctors',
       state.values
     )
       .then(function (response) {
         console.log(response);
         setdoctors(response.data);
       });
-    axios.post('http://localhost:8000/getPatientsHospital',
+    axios.post('https://decentrahealth-backend.onrender.com/getPatientsHospital',
       { HospitalID: state.values.hospitalRegnumber }
     )
       .then(function (response) {
@@ -108,7 +151,7 @@ function Admin() {
       });
   }, []);
 
-  const onClick= (e) => {
+  const onClick = (e) => {
     e.preventDefault();
     setSubmitted(true);
     const { newDoctorId, newPassword } = generate(values);
@@ -125,7 +168,7 @@ function Admin() {
 
     //addDoctor(values).then (function (received){
 
-    axios.post('http://localhost:8000/addDoctors', values).then(function (response) {
+    axios.post('https://decentrahealth-backend.onrender.com/addDoctors', values).then(function (response) {
       alert(`doctor added ${response.data.Name}`);
       // function Admin() {
       //ßconsole.log(error);
@@ -145,35 +188,45 @@ function Admin() {
   }
 
   return (
-    <>
-      <div className="container my-5">
-        <div className="card text-left border-dark text-black" style={myStyle}>
-          <div className="card-header  border-dark">
-            Admin{values.hospitalRegnumber}
-          </div>
-          <div className="card-body">
-            <table class="table table-hover border-success">
-              <thead>
-                <tr>
-                  <th scope="col">Hospital Id</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Reg_No</th>
-                  <th scope="col">Age</th>
-                  <th scope="col">Gender</th>
-                </tr>
-              </thead>
-              <tbody>
-                <AddDoctor handleChange={handleChange} values={values} onClick={onClick} submitted={submitted}/>
-                {patients.map((patient) => {
-                  return <tr><PatientCardHospital aadhar={patient.Aadhar} name={patient.Name} regNo={values.hospitalRegnumber} age={patient.Age} gender={patient.Gender} /> </tr>
-                })}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </>
+    <ParentComponent>
+    
+      <Title>
+        Admin
+      </Title>
+      <AddDoctor handleChange={handleChange} values={values} onClick={onClick} submitted={submitted}/>
+      <LowerComponent>
+        <InputSearch>
+          <TextField variant='filled' label='Search for Patient using Name/Aadhar'></TextField>
+          <TextField variant='filled' label='Search for Hospital using RegNo'></TextField>
+          <Button>Search</Button>
+        </InputSearch>
+        <Tablecontainer>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <Tablerow>
+                <TableCell>S.No </TableCell>
+                <TableCell>Patient's Aadhar</TableCell>
+                <TableCell>Patient's Name</TableCell>
+                <TableCell>RegNo</TableCell>
+                <TableCell>Patient's Age</TableCell>
+                <TableCell>Gender</TableCell>
+              </Tablerow>
+            </TableHead>
+            <TableBody>
+              {patients.map((patient,index) => (
+                <PatientCardHospital serialnumber = {index} aadhar={patient.Aadhar} name={patient.Name} regNo={values.hospitalRegnumber} age={patient.Age} gender={patient.Gender} />
+              ))}
+            </TableBody>
+          </Table>
+        </Tablecontainer>
+      </LowerComponent>
+    </ParentComponent>
   )
 }
 
 export default Admin;
+
+{/* <AddDoctor handleChange={handleChange} values={values} onClick={onClick} submitted={submitted}/>
+                {patients.map((patient) => {
+                  return <tr><PatientCardHospital aadhar={patient.Aadhar} name={patient.Name} regNo={values.hospitalRegnumber} age={patient.Age} gender={patient.Gender} /> </tr>
+                })} */}

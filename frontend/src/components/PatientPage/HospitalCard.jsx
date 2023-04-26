@@ -20,7 +20,7 @@ function HospitalCard({ id, name, state,sno}) {
             Gender: state.values.Gender,
             HospitalID: id
         }
-        axios.post('http://localhost:8000/addPatientHospital', values)
+        axios.post('https://decentrahealth-backend.onrender.com/addPatientHospital', values)
             .then(function (response) {
                 console.log(response);
                 if (response.status === 200) {
