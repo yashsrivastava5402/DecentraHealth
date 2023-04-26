@@ -55,7 +55,7 @@ function Patient() {
   useEffect(() => {
 
 
-    axios.post('https://decentrahealth-backend.onrender.com/getPatients',
+    axios.post('http://localhost:8000/getPatients',
       { Phone: values.Phone }
     )
       .then(function (response) {
@@ -85,7 +85,7 @@ function Patient() {
     //    useEffect(() => {
 
 
-    //     axios.post('https://decentrahealth-backend.onrender.com/getPatients',
+    //     axios.post('http://localhost:8000/getPatients',
     //     {Phone:values.Phone}
     //     )
     //       .then(function (response) {
