@@ -160,7 +160,7 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
         gender: gender,
         phone: ':' + _phoneNo!);
     await Dio()
-        .post('https://decentrahealth-backend.onrender.com/addPatients', data: addPatient.toJson());
+        .post('http://localhost:8000/addPatients', data: addPatient.toJson());
     Navigator.pop(context, 'update');
   }
 
