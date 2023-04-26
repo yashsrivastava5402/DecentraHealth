@@ -7,7 +7,7 @@ import axios from 'axios';
 import FullAccess from './AccessModes/FullAccess';
 
 //MUI
-import { Box, Typography, styled, TableContainer, TableCell, TableRow, TableHead, Table,TableBody } from "@mui/material";
+import { Box, Typography, styled,Button } from "@mui/material";
 
 //CSS
 const ParentComponent = styled(Box)`
@@ -33,14 +33,28 @@ const Component = styled(Box)`
     }
 `
 
-const Tablecontainer = styled(TableContainer)`
-    margin-top: 40px;
+const ParentComponents = styled(Box)`
+margin-top : 50px;
 `
-const Tablerow = styled(TableRow)`
-    &>th{
-     font-size: 16px;
-     font-weight: 600;
-    }
+
+const Components = styled(Box)`
+text-align: center;
+display:flex;
+flex-direction: column;
+&>img{
+margin: 50px auto 0px auto;
+}
+&>button{
+  width: 300px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  background-color: #2C88D9;
+  color: #fff;
+  font-weight :600;
+  font-size: 16px;
+  height: 50px;
+}
 `
 export default function DoctorFingerprint() {
   const navigate = useNavigate();
@@ -48,29 +62,43 @@ export default function DoctorFingerprint() {
 
   const [login, setLogin] = useState(false);
 
-  const [user, setUser] = useState({});
+  const [aadhar, setAadhar] = useState('')
+  const [name, setName] = useState('');
 
   const getUser = async () => {
     console.log(state.doctorId)
     axios.post('http://localhost:8000/level', { doctorId: state.doctorId })
       .then(function (response) {
         if (response.status === 200) {
-          setUser(response.data);
-          setLogin(true);
+          setAadhar(response.data.Aadhar)
+          setName(response.data.Name);
         }
       });
     // console.log(data);
     // setUser(data);    
   }
 
+
   useEffect(() => {
     getUser();
   }, []);
 
+  const goToInsight = () => {
+    navigate('/PatientInsight', { state: { Name: name, Aadhar: aadhar } });
+  }
+  const viewReports = (e) => {
+    e.preventDefault();
+    axios.post('http://localhost:8000/viewFiles', { aadhar: aadhar }).then((response) => {
+      console.log(response.data);
+      if (response.status === 200)
+        navigate(`/PatientPageDoctor/${aadhar}`, { state: { values: response.data } });
+    })
+  }
   return (
     <>
       {
-        login === false ? <ParentComponent>
+        login === false ? 
+        <ParentComponent>
           <Component>
             {/* <Title> DecentraHealth </Title> */}
             {/* <img src="/patientLoginIntro.jpg" alt="patient_login_intro" style={{ width: 400, height: 300 }} /> */}
@@ -84,23 +112,19 @@ export default function DoctorFingerprint() {
             </div>
           </Component>
         </ParentComponent> :
-          <Tablecontainer>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <Tablerow>
-                  <TableCell>Patient's Name</TableCell>
-                  <TableCell>Aadhar</TableCell>
-                  <TableCell>Insights</TableCell>
-                  <TableCell>Reports</TableCell>
-                </Tablerow>
-              </TableHead>
-              <TableBody>
-                  <FullAccess aadhar={user.aadhar} name={user.name} />
-              </TableBody>
-            </Table>
-          </Tablecontainer>
+          <ParentComponents>
+            <Components>
+              {/* <Title> DecentraHealth </Title> */}
+              <img src="/patientLoginIntro.jpg" alt="patient_login_intro" style={{ width: 500, height: 400 }} />
+              <Typography style={{ color: '#1AAE9F', fontSize: 28, fontWeight: 600, margin: '18px 0 5px 0' }}>Patient Login</Typography>
+              <Button variant="contained" onClick={goToInsight} >Login with OTP</Button>
+              <Button variant="contained" onClick={viewReports}>Login with Fingerprint</Button>
+            </Components>
+          </ParentComponents>
       }
 
     </>
   )
 }
+
+{/* <FullAccess aadhar={aadhar} name={name} /> */}
