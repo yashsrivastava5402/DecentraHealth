@@ -143,24 +143,25 @@ exports.level = async (req,res) => {
     const serialPort = new SerialPort({path: "COM8",baudRate: 9600});
    
     const doctorId = req.body.doctorId;
-    const Pranshu = await PatientSingle.findOne({Aadhar: "867453324"})
-    const Aditya = await PatientSingle.findOne({Aadhar: "867453322"})
-    const Shaurya = await PatientSingle.findOne({Aadhar: "867453323"})
-    const Yash = await PatientSingle.findOne({Aadhar: "867453321"})
-    const doctor = await Doctor.findOne({doctorId: doctorId});
+
     console.log(doctorId);
     
-        serialPort.on("open", function() {
+        serialPort.on("open", async function() {
             console.log("-- Connection opened --");
-            serialPort.on("data", function(data) {
+            serialPort.on("data", async function(data) {
                 // const {userid} = req.body;
+                const Pranshu = await PatientSingle.findOne({Aadhar: "867453324"})
+                const Aditya = await PatientSingle.findOne({Aadhar: "867453322"})
+                const Shaurya = await PatientSingle.findOne({Aadhar: "867453323"})
+                const Yash = await PatientSingle.findOne({Aadhar: "867453321"})
+                const doctor = await Doctor.findOne({doctorId: doctorId});
                 // if(userid == data) res.status(200).send("Succesful");
                 console.log(data.toString());
                 const val = data.toString();
                if(data){
                     if(val == '1'){
                         //Pranshu
-                       ;
+  
                         Doctor.findOneAndUpdate({doctorId: doctorId}, {$push: {fullPatients: Pranshu}}, (err, output) => {
                             if (err) {
                                 res.status(500).send(err);

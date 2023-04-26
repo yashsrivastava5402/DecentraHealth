@@ -70,8 +70,10 @@ export default function DoctorFingerprint() {
     axios.post('http://localhost:8000/level', { doctorId: state.doctorId })
       .then(function (response) {
         if (response.status === 200) {
+          console.log(response.data);
           setAadhar(response.data.Aadhar)
           setName(response.data.Name);
+          setLogin(true)
         }
       });
     // console.log(data);
@@ -116,9 +118,9 @@ export default function DoctorFingerprint() {
             <Components>
               {/* <Title> DecentraHealth </Title> */}
               <img src="/patientLoginIntro.jpg" alt="patient_login_intro" style={{ width: 500, height: 400 }} />
-              <Typography style={{ color: '#1AAE9F', fontSize: 28, fontWeight: 600, margin: '18px 0 5px 0' }}>Patient Login</Typography>
-              <Button variant="contained" onClick={goToInsight} >Login with OTP</Button>
-              <Button variant="contained" onClick={viewReports}>Login with Fingerprint</Button>
+              <Typography style={{ color: '#1AAE9F', fontSize: 28, fontWeight: 600, margin: '18px 0 5px 0' }}>Hello {name}</Typography>
+              <Button variant="contained" onClick={goToInsight} >Insights</Button>
+              <Button variant="contained" onClick={viewReports}>Reports</Button>
             </Components>
           </ParentComponents>
       }
