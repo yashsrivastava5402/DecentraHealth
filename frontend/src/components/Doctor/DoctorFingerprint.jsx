@@ -1,7 +1,7 @@
 import React from 'react';
 import './Fingerprint.css';
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -32,6 +32,7 @@ const Component = styled(Box)`
     }
 `
 export default function DoctorFingerprint() {
+  const navigate = useNavigate();
   const { state } = useLocation();
   const [user,setUser] = useState([]);
 
@@ -39,7 +40,9 @@ export default function DoctorFingerprint() {
     console.log(state.doctorId)
     axios.post('http://localhost:8000/level', {doctorId:state.doctorId})
     .then(function (response) {
-      console.log(response);
+      if(response.status === 200){
+        navigate("/PatientIntroPage", { state: { Name: response.data.name, Aadhar: response.data.aadhar, Age: response.data.age, Gender: response.data.gender } });
+      }
     });
     // console.log(data);
     // setUser(data);    
