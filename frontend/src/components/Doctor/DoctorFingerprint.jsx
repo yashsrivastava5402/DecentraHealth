@@ -8,6 +8,7 @@ import FullAccess from './AccessModes/FullAccess';
 
 //MUI
 import { Box, Typography, styled,Button } from "@mui/material";
+import { FmdGood } from '@mui/icons-material';
 
 //CSS
 const ParentComponent = styled(Box)`
@@ -61,7 +62,7 @@ export default function DoctorFingerprint() {
   const { state } = useLocation();
 
   const [login, setLogin] = useState(false);
-
+  const [photo, setPhoto] = useState('');
   const [aadhar, setAadhar] = useState('')
   const [name, setName] = useState('');
 
@@ -73,6 +74,18 @@ export default function DoctorFingerprint() {
           console.log(response.data);
           setAadhar(response.data.Aadhar)
           setName(response.data.Name);
+          if(response.data.Name === 'Yash Shrivastav'){
+              setPhoto('/yash.jpg')
+          }
+          if(response.data.Name === 'Shaurya Singh'){
+              setPhoto('/shaurya.jpg')
+          }
+          if(response.data.Name === 'Pranshu Chandra'){
+            setPhoto('/pranshu.jpg')
+          }
+          if(response.data.Name === 'Pranshu Chandra'){
+            setPhoto('/aditya.jpg')
+          }
           setLogin(true)
         }
       });
@@ -117,7 +130,7 @@ export default function DoctorFingerprint() {
           <ParentComponents>
             <Components>
               {/* <Title> DecentraHealth </Title> */}
-              <img src="/patientLoginIntro.jpg" alt="patient_login_intro" style={{ width: 500, height: 400 }} />
+              <img src={photo} alt="patient_login_intro" style={{ width: 500, height: 400 }} />
               <Typography style={{ color: '#1AAE9F', fontSize: 28, fontWeight: 600, margin: '18px 0 5px 0' }}>Hello {name}</Typography>
               <Button variant="contained" onClick={goToInsight} >Insights</Button>
               <Button variant="contained" onClick={viewReports}>Reports</Button>
