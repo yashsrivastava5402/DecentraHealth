@@ -10,9 +10,8 @@ from sklearn.metrics import f1_score, accuracy_score, confusion_matrix ,classifi
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from sklearn.naive_bayes import GaussianNB
-
-data  = pd.read_csv("/Users/yashsrivastava/Desktop/DecentraHealth/backend/controllers/dataset.csv")
-data_sevrity = pd.read_csv("/Users/yashsrivastava/Desktop/DecentraHealth/backend/controllers/Symptom-severity.csv")
+data  = pd.read_csv(r"C:\Users\Desmond\Documents\GitHub\DecentraHealth\backend\controllers\dataset.csv")
+data_sevrity = pd.read_csv(r"C:\Users\Desmond\Documents\GitHub\DecentraHealth\backend\controllers\Symptom-severity.csv")
 
 data_dict = data_sevrity.set_index('Symptom').T.to_dict()
 
