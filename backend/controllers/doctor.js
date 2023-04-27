@@ -150,12 +150,361 @@ exports.level = async (req,res) => {
             console.log("-- Connection opened --");
             serialPort.on("data", async function(data) {
                 // const {userid} = req.body;
-                const Pranshu = await PatientSingle.findOne({Aadhar: "867453324"})
-                const Aditya = await PatientSingle.findOne({Aadhar: "867453322"})
-                const Shaurya = await PatientSingle.findOne({Aadhar: "867453323"})
-                const Yash = await PatientSingle.findOne({Aadhar: "867453321"})
-                const doctor = await Doctor.findOne({doctorId: doctorId});
-                // if(userid == data) res.status(200).send("Succesful");
+                const Pranshu = {
+       
+                    Name: 'Pranshu Chandra',
+                    Aadhar: '867453324',
+                    Age: 22,
+                    Gender: 'Male',
+                    Phone: ':+917303961375',
+                    DoctorRequests: [],
+                    GrantedRequests: [],
+                    __v: 0
+                  }
+
+                const Aditya = {
+           
+                    Name: 'Aditya Kumar Jha',
+                    Aadhar: '867453322',
+                    Age: 22,
+                    Gender: 'Male',
+                    Phone: ':+917303961375',
+                    DoctorRequests: [],
+                    GrantedRequests: [],
+                    __v: 0
+                  }
+
+                const Shaurya = {
+                    Name: 'Shaurya Singh',
+                    Aadhar: '867453323',
+                    Age: 22,
+                    Gender: 'Male',
+                    Phone: ':+917992423293',
+                    DoctorRequests: [],
+                    GrantedRequests: [],
+                    __v: 0
+                  }
+
+                const Yash ={
+                    Name: 'Yash Srivastava',
+                    Aadhar: '867453321',
+                    Age: 22,
+                    Gender: 'Male',
+                    Phone: ':+917303961375',
+                    DoctorRequests: [],
+                    GrantedRequests: [],
+                    __v: 0
+                  }
+                // const doctor = await Doctor.findOne({doctorId: doctorId});
+                const doctor = {
+                    "_id": {
+                      "$oid": "62cdc2adc3bcbb644e612b13"
+                    },
+                    "Name": "Aditya Jha",
+                    "doctorId": "Ad944Manipal.com",
+                    "hospitalRegnumber": 123456,
+                    "UPRNnum": 56223298421,
+                    "password": "ye#gRYRHe",
+                    "patients": [],
+                    "__v": 0,
+                    "speciality": "Infectious Disease",
+                    "reqPatients": [],
+                    "fullPatients": [
+                      {
+                        "_id": {
+                          "$oid": "6446c6ac45ce3b724ccf3be2"
+                        },
+                        "Name": "New Patient",
+                        "Aadhar": "6756441",
+                        "Age": 22,
+                        "Gender": "Male",
+                        "Phone": ":+916206794316",
+                        "DoctorRequests": [
+                          {
+                            "insPatients": [],
+                            "reqPatients": [],
+                            "fullPatients": [],
+                            "_id": {
+                              "$oid": "62cdc2adc3bcbb644e612b13"
+                            },
+                            "Name": "Aditya Jha",
+                            "doctorId": "Ad944Manipal.com",
+                            "hospitalRegnumber": 123456,
+                            "UPRNnum": 56223298421,
+                            "password": "ye#gRYRHe",
+                            "patients": [
+                              {
+                                "Name": "New Patient",
+                                "Aadhar": "6756441",
+                                "Age": "22",
+                                "Gender": "Male"
+                              }
+                            ],
+                            "__v": 0,
+                            "speciality": "Infectious Disease"
+                          }
+                        ],
+                        "GrantedRequests": [],
+                        "__v": 0
+                      },
+                      {
+                        "_id": {
+                          "$oid": "6446c6ac45ce3b724ccf3be2"
+                        },
+                        "Name": "New Patient",
+                        "Aadhar": "6756441",
+                        "Age": 22,
+                        "Gender": "Male",
+                        "Phone": ":+916206794316",
+                        "DoctorRequests": [
+                          {
+                            "insPatients": [],
+                            "reqPatients": [],
+                            "fullPatients": [],
+                            "_id": {
+                              "$oid": "62cdc2adc3bcbb644e612b13"
+                            },
+                            "Name": "Aditya Jha",
+                            "doctorId": "Ad944Manipal.com",
+                            "hospitalRegnumber": 123456,
+                            "UPRNnum": 56223298421,
+                            "password": "ye#gRYRHe",
+                            "patients": [
+                              {
+                                "Name": "New Patient",
+                                "Aadhar": "6756441",
+                                "Age": "22",
+                                "Gender": "Male"
+                              }
+                            ],
+                            "__v": 0,
+                            "speciality": "Infectious Disease"
+                          }
+                        ],
+                        "GrantedRequests": [
+                          {
+                            "insPatients": [],
+                            "fullPatients": [],
+                            "_id": {
+                              "$oid": "62cdc2adc3bcbb644e612b13"
+                            },
+                            "Name": "Aditya Jha",
+                            "doctorId": "Ad944Manipal.com",
+                            "hospitalRegnumber": 123456,
+                            "UPRNnum": 56223298421,
+                            "password": "ye#gRYRHe",
+                            "patients": [],
+                            "__v": 0,
+                            "speciality": "Infectious Disease",
+                            "reqPatients": [
+                              {
+                                "_id": {
+                                  "$oid": "6446c6ac45ce3b724ccf3be2"
+                                },
+                                "Name": "New Patient",
+                                "Aadhar": "6756441",
+                                "Age": 22,
+                                "Gender": "Male",
+                                "Phone": ":+916206794316",
+                                "DoctorRequests": [],
+                                "GrantedRequests": [],
+                                "__v": 0
+                              }
+                            ]
+                          }
+                        ],
+                        "__v": 0
+                      },
+                      {
+                        "Aadhar": "867453323"
+                      },
+                      {
+                        "Aadhar": "867453323"
+                      },
+                      {
+                        "_id": {
+                          "$oid": "64495cda03bedd7c4c3e609b"
+                        },
+                        "Name": "Shaurya Singh",
+                        "Aadhar": "867453323",
+                        "Age": 22,
+                        "Gender": "Male",
+                        "Phone": ":+917303961375",
+                        "DoctorRequests": [],
+                        "GrantedRequests": [
+                          {
+                            "doctorId": null
+                          },
+                          {
+                            "doctorId": null
+                          },
+                          {
+                            "doctorId": "Ad944Manipal.com"
+                          },
+                          {
+                            "doctorId": "Ad944Manipal.com"
+                          }
+                        ],
+                        "__v": 0
+                      },
+                      {
+                        "_id": {
+                          "$oid": "64495cda03bedd7c4c3e609b"
+                        },
+                        "Name": "Shaurya Singh",
+                        "Aadhar": "867453323",
+                        "Age": 22,
+                        "Gender": "Male",
+                        "Phone": ":+917303961375",
+                        "DoctorRequests": [],
+                        "GrantedRequests": [
+                          {
+                            "doctorId": null
+                          },
+                          {
+                            "doctorId": null
+                          },
+                          {
+                            "doctorId": "Ad944Manipal.com"
+                          },
+                          {
+                            "doctorId": "Ad944Manipal.com"
+                          },
+                          {
+                            "insPatients": [],
+                            "_id": {
+                              "$oid": "62cdc2adc3bcbb644e612b13"
+                            },
+                            "Name": "Aditya Jha",
+                            "doctorId": "Ad944Manipal.com",
+                            "hospitalRegnumber": 123456,
+                            "UPRNnum": 56223298421,
+                            "password": "ye#gRYRHe",
+                            "patients": [],
+                            "__v": 0,
+                            "speciality": "Infectious Disease",
+                            "reqPatients": [],
+                            "fullPatients": [
+                              {
+                                "_id": {
+                                  "$oid": "6446c6ac45ce3b724ccf3be2"
+                                },
+                                "Name": "New Patient",
+                                "Aadhar": "6756441",
+                                "Age": 22,
+                                "Gender": "Male",
+                                "Phone": ":+916206794316",
+                                "DoctorRequests": [
+                                  {
+                                    "insPatients": [],
+                                    "reqPatients": [],
+                                    "fullPatients": [],
+                                    "_id": {
+                                      "$oid": "62cdc2adc3bcbb644e612b13"
+                                    },
+                                    "Name": "Aditya Jha",
+                                    "doctorId": "Ad944Manipal.com",
+                                    "hospitalRegnumber": 123456,
+                                    "UPRNnum": 56223298421,
+                                    "password": "ye#gRYRHe",
+                                    "patients": [
+                                      {
+                                        "Name": "New Patient",
+                                        "Aadhar": "6756441",
+                                        "Age": "22",
+                                        "Gender": "Male"
+                                      }
+                                    ],
+                                    "__v": 0,
+                                    "speciality": "Infectious Disease"
+                                  }
+                                ],
+                                "GrantedRequests": [],
+                                "__v": 0
+                              },
+                              {
+                                "_id": {
+                                  "$oid": "6446c6ac45ce3b724ccf3be2"
+                                },
+                                "Name": "New Patient",
+                                "Aadhar": "6756441",
+                                "Age": 22,
+                                "Gender": "Male",
+                                "Phone": ":+916206794316",
+                                "DoctorRequests": [
+                                  {
+                                    "insPatients": [],
+                                    "reqPatients": [],
+                                    "fullPatients": [],
+                                    "_id": {
+                                      "$oid": "62cdc2adc3bcbb644e612b13"
+                                    },
+                                    "Name": "Aditya Jha",
+                                    "doctorId": "Ad944Manipal.com",
+                                    "hospitalRegnumber": 123456,
+                                    "UPRNnum": 56223298421,
+                                    "password": "ye#gRYRHe",
+                                    "patients": [
+                                      {
+                                        "Name": "New Patient",
+                                        "Aadhar": "6756441",
+                                        "Age": "22",
+                                        "Gender": "Male"
+                                      }
+                                    ],
+                                    "__v": 0,
+                                    "speciality": "Infectious Disease"
+                                  }
+                                ],
+                                "GrantedRequests": [
+                                  {
+                                    "insPatients": [],
+                                    "fullPatients": [],
+                                    "_id": {
+                                      "$oid": "62cdc2adc3bcbb644e612b13"
+                                    },
+                                    "Name": "Aditya Jha",
+                                    "doctorId": "Ad944Manipal.com",
+                                    "hospitalRegnumber": 123456,
+                                    "UPRNnum": 56223298421,
+                                    "password": "ye#gRYRHe",
+                                    "patients": [],
+                                    "__v": 0,
+                                    "speciality": "Infectious Disease",
+                                    "reqPatients": [
+                                      {
+                                        "_id": {
+                                          "$oid": "6446c6ac45ce3b724ccf3be2"
+                                        },
+                                        "Name": "New Patient",
+                                        "Aadhar": "6756441",
+                                        "Age": 22,
+                                        "Gender": "Male",
+                                        "Phone": ":+916206794316",
+                                        "DoctorRequests": [],
+                                        "GrantedRequests": [],
+                                        "__v": 0
+                                      }
+                                    ]
+                                  }
+                                ],
+                                "__v": 0
+                              },
+                              {
+                                "Aadhar": "867453323"
+                              },
+                              {
+                                "Aadhar": "867453323"
+                              }
+                            ]
+                          }
+                        ],
+                        "__v": 0
+                      }
+                    ]
+                  }
+
+                // console.log(doctor)
                 console.log(data.toString());
                 const val = data.toString();
                if(data){
