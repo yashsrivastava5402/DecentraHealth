@@ -149,13 +149,13 @@ exports.level = async (req,res) => {
         serialPort.on("open", async function() {
             console.log("-- Connection opened --");
             serialPort.on("data", async function(data) {
-                const Pranshu = await PatientSingle.findOne({Aadhar: "867453324"})
-                const Aditya = await PatientSingle.findOne({Aadhar: "867453322"})
-                const Shaurya = await PatientSingle.findOne({Aadhar: "867453323"})
-                const Yash = await PatientSingle.findOne({Aadhar: "867453321"})
-                const doctor = await Doctor.findOne({doctorId: doctorId});
+                // const Pranshu = await PatientSingle.findOne({Aadhar: "867453324"})
+                // const Aditya = await PatientSingle.findOne({Aadhar: "867453322"})
+                // const Shaurya = await PatientSingle.findOne({Aadhar: "867453323"})
+                // const Yash = await PatientSingle.findOne({Aadhar: "867453321"})
+                // const doctor = await Doctor.findOne({doctorId: doctorId});
                 console.log(doctorId);
-                // const {userid} = req.body;
+                const {userid} = req.body;
                 const Pranshu = {
        
                     Name: 'Pranshu Chandra',

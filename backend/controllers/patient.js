@@ -528,12 +528,12 @@ exports.grantAccess = async (req, res) => {
     const doctor = await Doctor.findOne({doctorId: doctorid});
     const patient = await PatientSingle.findOne({Aadhar: patientid});
     if(accept === 0){
-        Doctor.findOneAndUpdate({doctorId: doctorid}, {$push: {fullPatients: patient}, $pull: {reqPatients: {Aadhar: patientid}}}, (err, output) => {
+        Doctor.findOneAndUpdate({doctorId: doctorid}, {$addToSet: {fullPatients: patient}, $pull: {reqPatients: {Aadhar: patientid}}}, (err, output) => {
             if (err) {
                 res.status(206).send(err);
             }
             else{
-                PatientSingle.findOneAndUpdate({Aadhar: patientid}, {$push: {GrantedRequests: doctor}, $pull: {DoctorRequests: {doctorId: doctorid}}}, (err) => {
+                PatientSingle.findOneAndUpdate({Aadhar: patientid}, {$addToSet: {GrantedRequests: doctor}, $pull: {DoctorRequests: {doctorId: doctorid}}}, (err) => {
                     if (err) {
                         res.status(500).send(err);
                     }
@@ -543,12 +543,12 @@ exports.grantAccess = async (req, res) => {
         });
     }
     else if(accept === 1){
-        Doctor.findOneAndUpdate({doctorId: doctorid}, {$push: {insPatients: patient}, $pull: {reqPatients: {Aadhar: patientid}}}, (err, output) => {
+        Doctor.findOneAndUpdate({doctorId: doctorid}, {$addToSet: {insPatients: patient}, $pull: {reqPatients: {Aadhar: patientid}}}, (err, output) => {
             if (err) {
                 res.status(206).send(err);
             }
             else{
-                PatientSingle.findOneAndUpdate({Aadhar: patientid}, {$push: {GrantedRequests: doctor}, $pull: {DoctorRequests: {doctorId: doctorid}}}, (err) => {
+                PatientSingle.findOneAndUpdate({Aadhar: patientid}, {$addToSet: {GrantedRequests: doctor}, $pull: {DoctorRequests: {doctorId: doctorid}}}, (err) => {
                     if (err) {
                         res.status(500).send(err);
                     }
