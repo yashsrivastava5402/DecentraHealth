@@ -74,7 +74,7 @@ export default function DoctorFingerprint() {
           console.log(response.data);
           setAadhar(response.data.Aadhar)
           setName(response.data.Name);
-          if(response.data.Name === 'Yash Shrivastav'){
+          if(response.data.Name === 'Yash Srivastava'){
               setPhoto('/yash.png')
           }
           if(response.data.Name === 'Shaurya Singh'){
@@ -83,7 +83,7 @@ export default function DoctorFingerprint() {
           if(response.data.Name === 'Pranshu Chandra'){
             setPhoto('/pranshu.png')
           }
-          if(response.data.Name === 'Pranshu Chandra'){
+          if(response.data.Name === 'Aditya Jha'){
             setPhoto('/aditya.png')
           }
           setLogin(true)
@@ -130,7 +130,7 @@ export default function DoctorFingerprint() {
           <ParentComponents>
             <Components>
               {/* <Title> DecentraHealth </Title> */}
-              <img src={photo} alt="patient_login_intro" />
+              <img src={photo} alt="patient_login_intro" style={{height:300,width:300}}/>
               <Typography style={{ color: '#1AAE9F', fontSize: 28, fontWeight: 600, margin: '18px 0 5px 0' }}>Hello {name}</Typography>
               <Button variant="contained" onClick={goToInsight} >Insights</Button>
               <Button variant="contained" onClick={viewReports}>Reports</Button>
