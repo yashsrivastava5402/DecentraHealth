@@ -61,7 +61,7 @@ export default function PatientAccessControl() {
             <Container container>
                 <LeftComponent item lg={6} md={4} sm={12} xs={12}>
                     <Typography variant='h4'  style={{margin:'60px 0px 20px 100px'}}>Hello, {state.Name}</Typography>
-                    <Buttons variant='contained' onClick={async ()=>{ await axios.post('https://decentrahealth-backend.onrender.com/reqDoctors',
+                    <Buttons variant='contained' onClick={async ()=>{ await axios.post('https://decentrahealth-server.onrender.com/reqDoctors',
       { Aadhar:state.Aadhar}
     )
       .then(function (response) {
@@ -69,7 +69,7 @@ export default function PatientAccessControl() {
         navigate(`/Patient/AccessRequest`,{state: { Name: state.Name, Aadhar: state.Aadhar ,DoctorRequests:response.data}})
       });
                      }}>Access Requests</Buttons>
-                    <Buttons variant='contained' onClick={async ()=>{ await axios.post('https://decentrahealth-backend.onrender.com/reqDoctors',
+                    <Buttons variant='contained' onClick={async ()=>{ await axios.post('https://decentrahealth-server.onrender.com/reqDoctors',
       { Aadhar:state.Aadhar}
     )
       .then(function (response) {

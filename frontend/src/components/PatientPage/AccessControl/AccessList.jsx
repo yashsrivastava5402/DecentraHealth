@@ -14,7 +14,7 @@ function AccessList({ Name, SNo, patientid, doctorid }) {
     const [level, setlevel] = useState(0);
 
     const handleRequest = async (patientid, doctorid, level) => {
-        const res = await axios.post('https://decentrahealth-backend.onrender.com/grantAccess', {
+        const res = await axios.post('https://decentrahealth-server.onrender.com/grantAccess', {
             doctorid: doctorid,
             id: patientid,
             grant: level
@@ -27,7 +27,7 @@ function AccessList({ Name, SNo, patientid, doctorid }) {
     }
 
     const handleRevoke = async (patientid, doctorid) => {
-        const res = await axios.post('https://decentrahealth-backend.onrender.com/grantAccess', {
+        const res = await axios.post('https://decentrahealth-server.onrender.com/grantAccess', {
             doctorid: doctorid,
             id: patientid,
             grant: 2
@@ -57,7 +57,7 @@ function AccessList({ Name, SNo, patientid, doctorid }) {
                 </Select>
             </FormControl></TableCell>
             <TableCell><Button  onClick={()=>{
-                // https://decentrahealth-backend.onrender.com/grantAccess
+                // https://decentrahealth-server.onrender.com/grantAccess
                 //const doctorid = req.body.doctorid;
                 // const patientid = req.body.id;
                 // const accept = req.body.grant;

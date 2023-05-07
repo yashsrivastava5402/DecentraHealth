@@ -14,7 +14,7 @@ function PatientCardDoctor({ aadhar, name ,doctorId}) {
     const goToPatient = (e) => {
         e.preventDefault();
         setSubmitted(true);
-        axios.post('https://decentrahealth-backend.onrender.com/requestPatient', { Aadhar: aadhar,doctorId:doctorId }).then((response) => {
+        axios.post('https://decentrahealth-server.onrender.com/requestPatient', { Aadhar: aadhar,doctorId:doctorId }).then((response) => {
             console.log(response.data);
             if (response.status === 200)
                 // navigate(`/PatientPageDoctor/${aadhar}`, { state: { values: response.data } });

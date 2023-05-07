@@ -53,7 +53,7 @@ export default function ViewReports() {
     console.log(state);
     const [files, setFiles] = useState([]);
     useEffect(() => { //It will fetch the data already before even openeing page!
-        axios.post('https://decentrahealth-backend.onrender.com/viewFiles', {aadhar: state.Aadhar}).then((response) => {
+        axios.post('https://decentrahealth-server.onrender.com/viewFiles', {aadhar: state.Aadhar}).then((response) => {
             console.log(response.data);
                 setFiles((prevState) => {
                     return [...prevState,...response.data];

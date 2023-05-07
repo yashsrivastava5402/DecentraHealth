@@ -103,7 +103,7 @@ function Admin() {
   // setdoctors(state);
   // console.log(state);
   // console.log(doctors);
-  // axios.post('https://decentrahealth-backend.onrender.com/getDoctors',
+  // axios.post('https://decentrahealth-server.onrender.com/getDoctors',
   //   hospitalRegnumber
   // )
   //   .then(function (response) {
@@ -135,14 +135,14 @@ function Admin() {
   };
   useEffect(() => {
 
-    axios.post('https://decentrahealth-backend.onrender.com/getDoctors',
+    axios.post('https://decentrahealth-server.onrender.com/getDoctors',
       state.values
     )
       .then(function (response) {
         console.log(response);
         setdoctors(response.data);
       });
-    axios.post('https://decentrahealth-backend.onrender.com/getPatientsHospital',
+    axios.post('https://decentrahealth-server.onrender.com/getPatientsHospital',
       { HospitalID: state.values.hospitalRegnumber }
     )
       .then(function (response) {
@@ -168,7 +168,7 @@ function Admin() {
 
     //addDoctor(values).then (function (received){
 
-    axios.post('https://decentrahealth-backend.onrender.com/addDoctors', values).then(function (response) {
+    axios.post('https://decentrahealth-server.onrender.com/addDoctors', values).then(function (response) {
       alert(`doctor added ${response.data.Name}`);
       // function Admin() {
       //ßconsole.log(error);

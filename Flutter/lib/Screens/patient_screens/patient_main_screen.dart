@@ -30,7 +30,7 @@ class _PatientMainScreenState extends State<PatientMainScreen> {
   late List<Patient> patientList;
   late Future<List<Patient>> dataFuture;
   Future<List<Patient>> getPatients() async {
-    var res = await Dio().post('https://decentrahealth-backend.onrender.com/getPatients',
+    var res = await Dio().post('https://decentrahealth-server.onrender.com/getPatients',
         data: {'Phone': ':' + _phoneNum!});
     patientList = (res.data as List).map((e) => Patient.fromJson(e)).toList();
 

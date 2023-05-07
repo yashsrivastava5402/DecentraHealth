@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 class BaseService {
-  static String baseUrl = 'https://decentrahealth-backend.onrender.com';
+  static String baseUrl = 'https://decentrahealth-server.onrender.com';
 
   Future<Response?> getresponse(String subpath) async {
     try {
