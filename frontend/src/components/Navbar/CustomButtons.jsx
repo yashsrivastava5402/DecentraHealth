@@ -28,7 +28,6 @@ export default function CustomButtons() {
             <Typography  onClick={() => { navigate("/PatientLogin"); }}>Patient</Typography>
             <Typography  onClick={() => { navigate("/DoctorLogin"); }}>Doctor</Typography>
             <Typography  onClick={() => { navigate("/HospitalLogin"); }}>Hospital</Typography>
-            <Typography  onClick={() => { navigate("/Creators"); }}>Creator</Typography>
         </Wrapper>
     )
 }

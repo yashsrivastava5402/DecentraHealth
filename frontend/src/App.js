@@ -20,7 +20,7 @@ import PatientPageDoctor from './components/Doctor/ViewReports/PatientPageDoctor
 import Doctor from "./components/Doctor/Doctor";
 import Appbar from "./components/Navbar/Appbar";
 import ViewReports from './components/PatientPage/PatientReports/ViewReports';
-import Creators from './components/Creators/Creators';
+
 import InputSymptoms from './components/PatientPage/InputSymptoms';
 import PatientIntroPage from "./components/PatientPage/PatientIntroPage";
 import RecommendedDocs from "./components/RecommendedDocs";
@@ -62,7 +62,7 @@ function App() {
             <Route path="/ViewReports" element={<ViewReports />} />
             <Route path="/RecommendedDocs" element={<RecommendedDocs />} />
             <Route path="/" element={<Navigate replace to="/home" />} />
-            <Route path="/Creators" element={<Creators />} />
+           
             <Route path='/Patient/AccessRequest' element={<AccessRequest />}/>
             <Route path='/Patient/AccessGrantedReq' element={<ActiveGrantedReq />}/>
             <Route path='/DoctorFingerprint' element={<DoctorFingerprint />}/>

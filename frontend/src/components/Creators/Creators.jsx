@@ -11,6 +11,7 @@ export default function Creators() {
 			<Typography variant='h5' fontWeight={'600'}>Prince Kumar</Typography>
 			<Typography variant='h5' fontWeight={'600'}>Shaurya Singh</Typography>
 			<Typography variant='h5' fontWeight={'600'}>Yash Shrivastav</Typography>
+			<Typography variant='h5' fontWeight={'600'}>Yash Padiyar</Typography>
 		</Box>
     </>
   )
