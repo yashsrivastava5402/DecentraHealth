@@ -62,7 +62,7 @@ function PatientIntroPage() {
     const goToPatient = (e) => {
         e.preventDefault();
         setSubmitted(true);
-        axios.get('http://localhost:8000/getHospitals')
+        axios.get('https://decentrahealth-server.onrender.com/getHospitals')
             .then(function (response) {
                 console.log(response);
                 if (response.status === 200) {

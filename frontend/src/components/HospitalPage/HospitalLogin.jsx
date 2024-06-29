@@ -63,8 +63,8 @@ function HospitalLogin() {
         e.preventDefault();
         setSubmitted(true);
         if (values.hospitalRegnumber.trim() !== "" && values.password.trim() !== "") {
-            // const res = await axios.post('http://localhost:8000/getPatientsHospital',{HospitalID: hospitalRegnumber} );
-            axios.post('http://localhost:8000/hospitalLogin',
+            // const res = await axios.post('https://decentrahealth-server.onrender.com/getPatientsHospital',{HospitalID: hospitalRegnumber} );
+            axios.post('https://decentrahealth-server.onrender.com/hospitalLogin',
                 values
             )
                 .then(function (response) {

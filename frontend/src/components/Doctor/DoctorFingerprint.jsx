@@ -68,7 +68,7 @@ export default function DoctorFingerprint() {
 
   const getUser = async () => {
     console.log(state.doctorId)
-    axios.post('http://localhost:8000/level', { doctorId: state.doctorId })
+    axios.post('https://decentrahealth-server.onrender.com/level', { doctorId: state.doctorId })
       .then(function (response) {
         if (response.status === 200) {
           console.log(response.data);
@@ -103,7 +103,7 @@ export default function DoctorFingerprint() {
   }
   const viewReports = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8000/viewFiles', { aadhar: aadhar }).then((response) => {
+    axios.post('https://decentrahealth-server.onrender.com/viewFiles', { aadhar: aadhar }).then((response) => {
       console.log(response.data);
       if (response.status === 200)
         navigate(`/PatientPageDoctor/${aadhar}`, { state: { values: response.data } });

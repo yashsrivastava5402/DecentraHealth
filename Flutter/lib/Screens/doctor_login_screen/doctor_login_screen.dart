@@ -18,7 +18,7 @@ class _DoctorLoginScreenState extends State<DoctorLoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   Future<void> doctorLogin(String email, String password) async {
-    var res = await Dio().post('http://localhost:8000/doctorLogin',
+    var res = await Dio().post('https://decentrahealth-server.onrender.com/doctorLogin',
         data: {'email': email, 'password': password});
     if (res.statusCode == 500) {
       showSnackbar('Incorrent Password');
@@ -153,4 +153,4 @@ class _DoctorLoginScreenState extends State<DoctorLoginScreen> {
 //     );
 //   }
 // }
-//'http://localhost:8000/doctorLogin'
+//'https://decentrahealth-server.onrender.com/doctorLogin'

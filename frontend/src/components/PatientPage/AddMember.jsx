@@ -91,7 +91,7 @@ export default function AddMember({ phone, handlenew, setSubmitted, handleChange
               e.preventDefault();
               setSubmitted(true);
               handleClose();
-              axios.post('http://localhost:8000/addPatients',
+              axios.post('https://decentrahealth-server.onrender.com/addPatients',
                 values
               )
                 .then(function (response) {

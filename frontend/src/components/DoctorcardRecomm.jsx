@@ -15,7 +15,7 @@ function DoctorcardRecomm({id,Dname,speciality,hospital_name,aadhar, patientName
            Age: age,
            Gender: gender
         }
-        axios.post('http://localhost:8000/addPatientDoctor', postInfo)
+        axios.post('https://decentrahealth-server.onrender.com/addPatientDoctor', postInfo)
         .then(function (response){
             console.log(response);
             if(response.status === 200){

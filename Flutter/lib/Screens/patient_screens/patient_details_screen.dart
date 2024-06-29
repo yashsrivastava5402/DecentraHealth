@@ -106,7 +106,7 @@ class _HospitalApplyState extends State<HospitalApply>
   late final AnimationController _controller;
   Future<List<Hospitals>> getHospitals() async {
     var res = await Dio().get(
-      'http://localhost:8000/getHospitals',
+      'https://decentrahealth-server.onrender.com/getHospitals',
     );
     // patientList = (res.data as List).map((e) => Patient.fromJson(e)).toList();
     _hospitalList =
@@ -121,7 +121,7 @@ class _HospitalApplyState extends State<HospitalApply>
     map.addAll({
       'HospitalID': id,
     });
-    await Dio().post('http://localhost:8000/addPatientHospital', data: map);
+    await Dio().post('https://decentrahealth-server.onrender.com/addPatientHospital', data: map);
   }
 
   @override
